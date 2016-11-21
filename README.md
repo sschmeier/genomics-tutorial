@@ -64,8 +64,8 @@ the content in the build directory.
 ```bash
 .PHONY: clean
 clean:
-	rm -rf $(BUILDDIR)/html/*
-    ```
+    rm -rf $(BUILDDIR)/html/*
+```
 
 ### The workflow
 
@@ -116,8 +116,8 @@ pages:
 Then we add the gitlab remote:
 
 ```bash
-git remote add gitlab git@gitlab.com:username/myproject.git
-git push gitlab master
+$ git remote add gitlab git@gitlab.com:username/myproject.git
+$ git push gitlab master
 ```
 
 Done!
