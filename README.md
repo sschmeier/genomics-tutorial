@@ -1,6 +1,9 @@
-#Sphinx course doc on github.
+Sphinx course doc
+===========
 
-## Setup directory structure
+## GITHUB
+
+### Setup directory structure
 
 ```bash
 $ mkdir myproject
@@ -45,7 +48,7 @@ $ rm .git/index
 $ git clean -fdx
 ```
 
-## Makefile changes
+### Makefile changes
 
 We need to make some changes in the `Makefile` produced by `sphinx-quickstart`.
 Change the build directory to one level up, which will create a html directory
@@ -64,7 +67,7 @@ clean:
 	rm -rf $(BUILDDIR)/html/*
     ```
 
-## The workflow
+### The workflow
 
 Make changes in the source directory `docs`. Commit changes made here to the
 `master`-branch and commit freely. Push to remote `origin/master` if required.
@@ -85,4 +88,38 @@ $ git add -A
 $ git commit -m "New html-build"
 $ git push origin gh-pages
 ```
+
+Done!
+
+## GITLAB
+
+We also set up this repo in gitlab to make use of their pages as well. Create file `.gitlab-ci.yml` with the following content in the source directory `docs`:
+
+```bash
+image: alpine
+
+pages:
+  script:
+  - apk --no-cache add py-pip python-dev
+  - pip install sphinx
+  - pip install sphinx_rtd_theme
+  - apk --no-cache add make
+  - make html
+  - mv ../html/ public/
+  artifacts:
+    paths:
+    - public
+  only:
+  - master
+```
+
+Then we add the gitlab remote:
+
+```bash
+git remote add gitlab git@gitlab.com:username/myproject.git
+git push gitlab master
+```
+
+Done!
+
 
