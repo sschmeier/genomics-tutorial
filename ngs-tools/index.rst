@@ -54,6 +54,9 @@ Install software
     conda install bamtools   # Working with mapping files
     conda install freebayes  # SNP caller
     conda install bcftools   # working with SNP files
+    conda install tabix
+    conda install vcflib
+    conda install rtg-tools
     conda install igvtools   # for visualisation
 
 General conda commands
