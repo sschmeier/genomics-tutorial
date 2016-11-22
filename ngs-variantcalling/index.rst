@@ -132,5 +132,25 @@ Now we can use it to do some statistics and filter our variant calls.
           $ rtg vcfstats variants/sample-freebayes-q30.vcf.gz
           
 
+Finding variants of interest (VAI)
+----------------------------------
 
+Things to consider when looking VAI:
 
+- The quality score of the variant call.
+  
+  * Do we call the variant with a higher then normal score?
+    
+- The mapping quality score.
+  
+  * How confident are we that the reads where mapped here correctly?
+- The location of the SNP.
+  
+  * SNPs in larger contigs probably more interesting than in tiny contigs.
+  * Does the SNP overlap a coding region in the genome annotation?
+    
+- The type of SNP.
+ 
+          
+Overlap variants with genes
+---------------------------
