@@ -126,8 +126,9 @@ todo_include_todos = True
 
 # Use automatic figure numbering
 numfig=True
-numfig_format={'figure': 'Figure %s'}
-
+# you need to specify all three in this section otherwise throws error for latex
+#numfig_format={'figure': 'Figure %s', 'table': 'Table %s', 'code-block': 'Listing %s'}
+#numfig_secnum_depth = 1
 
 # -- Options for HTML output ----------------------------------------------
 

@@ -61,7 +61,7 @@ The default environment in Ubuntu is called Unity and is similar to other user i
 .. _fig-desktop1:
 .. figure:: images/cli_Desktop1.png
 
-   : The BioLinux desktop environment Unity.
+   The BioLinux desktop environment Unity.
 
 
 Some words regarding the Linux file-system
@@ -73,14 +73,14 @@ It is essentially a tree structure (:numref:`fig-dir1`).
 .. _fig-dir1:
 .. figure::  images/cli_dir1.png
 
-   : Quick look at the directory tree structure on the command-line.
+   Quick look at the directory tree structure on the command-line.
 
 To navigate the file-system you can use a file-manager e.g. "Files" the default file manager in the Unity window manager used by BioLinux (:numref:`fig-dir2`).
 
 .. _fig-dir2:
 .. figure::  images/cli_dir2.png
 
-   : Quick look at the directory tree structure in the "Files" GUI.
+   Quick look at the directory tree structure in the "Files" GUI.
 
 However, on the command-line we navigate via commands and not via mouse clicks.
 Why is it necessary to use the command-line in the first place?
@@ -97,7 +97,7 @@ On your linux desktop find: **Application** --> **Accessories** --> **Terminal**
 .. _fig-shell-out0:        
 .. figure:: images/cli_shell_out0.png
 
-    : Unity search bar.
+    Unity search bar.
 
 :numref:`fig-shell-out1` shows an example of how a terminal window might look like (it is very easy to change its appearance).
 You will se this window to execute the commands to work with files and biological data.
@@ -106,7 +106,7 @@ However, it is by no means restricted to "biological data", once you know how to
 .. _fig-shell-out1:
 .. figure:: images/cli_shell_out1.png
 
-    : An example of a terminal window in Unity.
+    An example of a terminal window in Unity.
 
 .. note:: The command-line prompt (e.g. ``$`` or ``>``) indicates that the shell/terminal is waiting for commands from us. These will be sent to the computer to execute. As long as you do not see the prompt, the computer is busy processing your request.
 
@@ -124,7 +124,7 @@ Open system settings
 .. _fig-proxy1:
 .. figure:: images/cli_proxy2.png
 
-   : Accessing the system settings.
+   Accessing the system settings.
 
 Open network settings
 ^^^^^^^^^^^^^^^^^^^^^
@@ -132,7 +132,7 @@ Open network settings
 .. _fig-proxy2:
 .. figure:: images/cli_proxy2.png
 
-   : Accessing network settings.
+   Accessing network settings.
 
 Change proxy settings to automatic
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -140,7 +140,7 @@ Change proxy settings to automatic
 .. _fig-proxy3:
 .. figure:: images/cli_proxy3.png
 
-   : Changing proxy settings.
+   Changing proxy settings.
 
 After changing the proxy settings to automatic you can open a web-browser and you should be asked for you network *username* and *password*.
 After you typed those and hit *Enter*, you should be connected.

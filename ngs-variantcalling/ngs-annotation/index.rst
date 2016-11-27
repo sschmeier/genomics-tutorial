@@ -1,3 +1,0 @@
-NGS - Genome annotation
-=======================
-

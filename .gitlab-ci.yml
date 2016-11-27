@@ -7,7 +7,7 @@ pages:
   - pip install sphinx_rtd_theme
   - apk --no-cache add make
   - make html
-  - mv ../html/ public/
+  - mv ../build/html/ public/
   artifacts:
     paths:
     - public
