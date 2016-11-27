@@ -14,10 +14,16 @@ Lets see how our directory structure looks so far:
           genome/
           mapping/
 
-Tools we are going to use in this section and how to intall them if you not have done it yet:
+Tools we are going to use in this section and how to intall them if you not have done it yet.
+Make sure you are in the correct conda environment.
+
+.. note:: To tell if you are in the correct conda environment, look at the command-prompt.
+          Do you see the name of the environment in round brackets at the very beginning of the prompt, e.g. (ngs)?
+          If not, activate the ``ngs`` environment with ``source activate ngs`` before installing the tools.
 
 .. code:: bash
 
+          # Install these tools into the conda environment
           $ conda install samtools
           $ conda install bamtools
           $ conda install bcftools
@@ -29,11 +35,12 @@ Tools we are going to use in this section and how to intall them if you not have
 Preprocessing
 -------------
 
-We first need to make an index of our reference genome as this is required by the SNP caller. Given a scaffolds file in fasta-format, e.g. ``scaffolds.fa`` use ``samtools`` to do this:
+We first need to make an index of our reference genome as this is required by the SNP caller.
+Given a contigs file in fasta-format, e.g. ``contigs.fa`` use ``samtools`` to do this:
 
 .. code:: bash
           
-          $ samtools faidx genome/scaffolds.fasta
+          $ samtools faidx genome/contigs.fasta
    
 
 Furthermore we need to pre-process our mapping files a bit further and creaee a bam-index file (``.bai``) for each o the bam-files, e.g.:
@@ -59,7 +66,7 @@ We use the sorted bam-files that we produced in the mapping step before.
 .. code:: bash
 
           # We first pile up all the reads
-          $ samtools mpileup -g -f genome/scaffolds.fasta mapping/sample1.sorted.bam > variants/sample1-mpileup.bcf
+          $ samtools mpileup -g -f genome/contigs.fasta mapping/sample1.sorted.bam > variants/sample1-mpileup.bcf
 
           $ Now we call the variants
           bcftools view -c -v sample1-mpileup.bcf > sample1-mpileup.vcf
@@ -70,12 +77,13 @@ Freebayes
 
       
 
-Now we can do some variant calling. Given a reference genome scaffold file in fasta-format, e.g. ``scaffolds.fasta`` and the index in ``.fai`` format and a mapping file (e.g. ``sample1.sorted.bam``) and mapping index, we can do call ``freebayes`` like so:
+Now we can do some variant calling.
+Given a reference genome scaffold file in fasta-format, e.g. ``contigs.fasta`` and the index in ``.fai`` format and a mapping file (e.g. ``sample1.sorted.bam``) and mapping index, we can do call ``freebayes`` like so:
 
 .. code:: bash
 
           # Now we call them and pipe the results into a new file
-          $ freebayes -f genome/scaffolds.fasta mapping/sample1.sorted.bam > variants/sample1-freebayes.vcf
+          $ freebayes -f genome/contigs.fasta mapping/sample1.sorted.bam > variants/sample1-freebayes.vcf
 
           
 This will result in a variants file ``sample1.vcf``.
@@ -94,7 +102,7 @@ Lets look at a vcf-file:
           ##fileformat=VCFv4.1
           ##fileDate=20161122
           ##source=freeBayes v1.0.2-29-g41c1313
-          ##reference=idx/scaffolds.fasta
+          ##reference=genome/contigs.fasta
           ##contig=<ID=NODE_1_length_1394677_cov_15.3771,length=1394677>
           ##contig=<ID=NODE_2_length_1051867_cov_15.4779,length=1051867>
           ##contig=<ID=NODE_3_length_950567_cov_15.4139,length=950567>
@@ -135,7 +143,7 @@ Now we can use it to do some statistics and filter our variant calls.
 Finding variants of interest (VAI)
 ----------------------------------
 
-Things to consider when looking VAI:
+Things to consider when looking for VAI:
 
 - The quality score of the variant call.
   

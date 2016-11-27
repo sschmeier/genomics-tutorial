@@ -4,10 +4,8 @@ NGS - Tool installation
 Install the conda package manager
 ---------------------------------
 
-We will use the package/tool managing system
-`conda <http://conda.pydata.org/miniconda.html>`__ to install some
-programs that we will use during the course. It is not installed by
-default, thus we need to install it first to be able to use it.
+We will use the package/tool managing system `conda <http://conda.pydata.org/miniconda.html>`__ to install some programs that we will use during the course.
+It is not installed by default, thus we need to install it first to be able to use it.
 
 .. code:: bash
 
@@ -20,7 +18,9 @@ default, thus we need to install it first to be able to use it.
     # copy config file to home dir
     cp data/.condarc ~
 
-Close shell/terminal, **re-open** new shell/terminal.
+.. note:: If the download should not work for some reason, I will bring a USB drive and/or provide you with an alternative url for download.
+    
+Close terminal, **re-open** new terminal.
 
 .. code:: bash
 
@@ -29,10 +29,8 @@ Close shell/terminal, **re-open** new shell/terminal.
 Create environment
 ------------------
 
-We create a `conda <http://conda.pydata.org/miniconda.html>`__
-environment for some tools This is useful to work **reproducible** as we
-can easily re-create the tool-set with the same version numbers later
-on.
+We create a `conda <http://conda.pydata.org/miniconda.html>`__ environment for the tools.
+This is useful to work **reproducible** as we can easily re-create the tool-set with the same version numbers later on.
 
 .. code:: bash
 
