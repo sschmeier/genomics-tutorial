@@ -12,7 +12,7 @@ default, thus we need to install it first to be able to use it.
 .. code:: bash
 
     # download latest conda installer
-    curl -O https://repo.continuum.io/miniconda/Miniconda2-latest-Linux-x86_64.sh
+    curl -O https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh
     # run the installer
     bash Miniconda3-latest-MacOSX-x86_64.sh
     # delete the installer after successful run
