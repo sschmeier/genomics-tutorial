@@ -32,5 +32,6 @@ Contents
    ngs-annotation/index
    ngs-mapping/index
    ngs-variantcalling/index
+   ngs-taxonomic-investigation/index
    general/quickref
 
