@@ -1,0 +1,20 @@
+pre.literal-block {
+  padding: 12px 12px;
+  font-size: 11px;
+  font-family: "Incosolata","Consolata","Monaco",monospace;
+}
+
+
+.sebcode{
+    border:1px solid #e1e4e5;
+    white-space:pre;
+    margin:1px 0 24px 0;
+    padding:12px 12px;
+    overflow-x:auto;
+    background:#fff;
+    font-family:"Incosolata","Consolata","Monaco",monospace;
+    font-size:11px;
+    line-height:1.5;
+    display:block;
+    color:#404040
+}

@@ -34,4 +34,4 @@ Contents
    ngs-variantcalling/index
    ngs-taxonomic-investigation/index
    general/quickref
-
+   general/downloads

@@ -364,3 +364,20 @@ texinfo_documents = [
 # If true, do not generate a @detailmenu in the "Top" node's menu.
 #
 # texinfo_no_detailmenu = False
+
+#-----------------------------------------------------
+# SEB:
+# global substitutions
+# epilog will be added to the end of each file
+rst_epilog = """
+.. |conda| replace:: `conda <http://conda.pydata.org/miniconda.html>`__
+.. |kraken| replace:: `Kraken <https://ccb.jhu.edu/software/kraken/>`__
+.. |ncbitax| replace:: `NCBI Taxonomy <https://www.ncbi.nlm.nih.gov/taxonomy>`__
+.. |filebase| replace:: sampleX
+"""
+
+# prolog will be added to the beginning of each file
+# rst_prolog=""
+
+def setup(app):
+    app.add_stylesheet('css/seb.css')
