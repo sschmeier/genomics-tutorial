@@ -126,7 +126,8 @@ according to taxa-ids (column 5), e.g. ``sort -n -k5``.
    kraken-report *--show-zeros* --db minikraken_20141208 |filebase|.kraken | **sort -n -k5** | gzip > |filebase|.kraken.report.sorted.gz
 
 The report is not ordered according to taxa ids and contains all taxa in the
-database, even if they have not been found in our sample and are thus zero:
+database, even if they have not been found in our sample and are thus zero
+(e.g. "Methylophilus methylotrophus" in the example below):
    
 .. include:: example-kraken-report2.txt 
    :literal: 
@@ -141,9 +142,8 @@ we attach the taxonomic names.
    kraken-translate --mpa-format --db --db minikraken_20141208 |filebase|.kraken | gzip > |filebase|.kraken.names.gz
 
 
-.. include:: example-kraken-names.txt 
+.. include:: example-kraken-translate.txt 
    :literal: 
-   :end-line: 5
 
    
 References
