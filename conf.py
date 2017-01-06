@@ -379,5 +379,8 @@ rst_epilog = """
 # prolog will be added to the beginning of each file
 # rst_prolog=""
 
+# to be ble to use two dashes in my own blocks I turn off smartypants
+html_use_smartypants=False
+
 def setup(app):
     app.add_stylesheet('css/seb.css')
