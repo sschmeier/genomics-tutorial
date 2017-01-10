@@ -375,6 +375,7 @@ rst_epilog = """
 .. |ncbitax| replace:: `NCBI Taxonomy <https://www.ncbi.nlm.nih.gov/taxonomy>`__
 .. |filebase| replace:: sampleX
 .. |spades| replace:: `Spades <http://bioinf.spbau.ru/spades>`__
+.. |krona| replace:: `Krona <https://github.com/marbl/Krona/wiki>`__
 """
 
 # prolog will be added to the beginning of each file
