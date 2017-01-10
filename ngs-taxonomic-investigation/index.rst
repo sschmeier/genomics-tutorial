@@ -8,12 +8,12 @@ Overview
 --------
 
 We want to investigate if there are sequences of other species in our collection of sequenced DNA pieces.
-We know most of them are from our species that we try to assemble.
-However, lets investigate if we have possibly sequences from other species sequenced maybe they got into the sample through contamination.
-We could also decide in section :ref:`ngs-mapping` to classify all unmapped sequence reads with |kraken|.
+We hope that most of them are from our species that we try to study, i.e. the DNA that we have extracted and amplified.
+However, lets investigate if we find sequences from other species in our sequence set.
+Maybe they got into the sample through contamination.
 
 We will use the tool |kraken| to assign taxonomic classifications to our sequence reads.
-Let us see if we can id some sequences from other fungi or even bacteria.
+Let us see if we can id some sequences from other species.
 
 
 Kraken
