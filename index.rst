@@ -35,3 +35,4 @@ Contents
    ngs-taxonomic-investigation/index
    general/quickref
    general/downloads
+   general/references

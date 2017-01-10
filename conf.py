@@ -374,12 +374,13 @@ rst_epilog = """
 .. |kraken| replace:: `Kraken <https://ccb.jhu.edu/software/kraken/>`__
 .. |ncbitax| replace:: `NCBI Taxonomy <https://www.ncbi.nlm.nih.gov/taxonomy>`__
 .. |filebase| replace:: sampleX
+.. |spades| replace:: `Spades <http://bioinf.spbau.ru/spades>`__
 """
 
 # prolog will be added to the beginning of each file
 # rst_prolog=""
 
-# to be ble to use two dashes in my own blocks I turn off smartypants
+# to be able to use two dashes in my own blocks I turn off smartypants
 html_use_smartypants=False
 
 def setup(app):
