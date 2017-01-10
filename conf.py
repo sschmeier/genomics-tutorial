@@ -368,12 +368,13 @@ texinfo_documents = [
 #-----------------------------------------------------
 # SEB:
 # global substitutions
-# epilog will be added to the end of each file
+# epilog will be added to the end of each rst-file
+# we define some shortcuts here
 rst_epilog = """
+.. |filebase| replace:: sampleX
 .. |conda| replace:: `conda <http://conda.pydata.org/miniconda.html>`__
 .. |kraken| replace:: `Kraken <https://ccb.jhu.edu/software/kraken/>`__
 .. |ncbitax| replace:: `NCBI Taxonomy <https://www.ncbi.nlm.nih.gov/taxonomy>`__
-.. |filebase| replace:: sampleX
 .. |spades| replace:: `Spades <http://bioinf.spbau.ru/spades>`__
 .. |krona| replace:: `Krona <https://github.com/marbl/Krona/wiki>`__
 """

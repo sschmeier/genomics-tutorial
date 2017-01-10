@@ -31,7 +31,7 @@ Installation
 
 Use conda in the same fashion as before to install |kraken|:
 
-.. code:: bash
+.. code-block:: bash
           
    source activate ngs
    conda install kraken-all
@@ -40,7 +40,7 @@ Use conda in the same fashion as before to install |kraken|:
 Now we need to create or download a |kraken| database that can be used to assign the taxonomic labels to sequences.
 We opt for downloading a pre-build database from the |kraken| website:
 
-.. code:: bash
+.. code-block:: bash
           
    curl -O https://ccb.jhu.edu/software/kraken/dl/minikraken.tgz
 
@@ -116,7 +116,7 @@ This can be achieved with the tool ``kranken-report``.
 
 .. rst-class:: sebcode 
 
-   kraken-report --db minikraken_20141208 |filebase|.kraken | gzip > |filebase|.kraken.report.gz
+   kraken-report --db minikraken_20141208 |filebase|.kraken > |filebase|.kraken.report
 
 
 The first few lines of thus a report are shown below.
@@ -141,7 +141,7 @@ We will print out all taxa (instead of only those found), ``--show-zeros`` optio
 
 .. rst-class:: sebcode 
 
-   kraken-report *--show-zeros* --db minikraken_20141208 |filebase|.kraken | **sort -n -k5** | gzip > |filebase|.kraken.report.sorted.gz
+   kraken-report *--show-zeros* --db minikraken_20141208 |filebase|.kraken | **sort -n -k5** > |filebase|.kraken.report.sorted
 
 The report is not ordered according to taxa ids and contains all taxa in the database, even if they have not been found in our sample and are thus zero (e.g. "Methylophilus methylotrophus" in the example below):
    
@@ -160,9 +160,11 @@ we can attach the taxonomic names with ``kraken-translate``.
 
 .. rst-class:: sebcode 
 
-   kraken-translate --mpa-format --db --db minikraken_20141208 |filebase|.kraken | gzip > |filebase|.kraken.names.gz
+   kraken-translate --mpa-format --db --db minikraken_20141208 |filebase|.kraken > |filebase|.kraken.names
 
 
+An example output looks like this:
+   
 .. include:: example-kraken-translate.txt 
    :literal: 
 
@@ -175,9 +177,18 @@ Visualisation
 ^^^^^^^^^^^^^
 
 We use the |krona| tools to create a nice interactive visualisation of the taxa content of our sample [ONDOV2011]_.
+:numref:`fig-krona` shows an example (albeit an artificial one) snapshot of the visualisation |krona| provides.
+:numref:`fig-krona` is a snapshot of the `interactive web-page <../_static/taxonomy.krona.html>`_ similar to the one we try to create.
+
+.. _fig-krona:
+.. figure:: krona.png
+
+   Example of an Krona output webpage.
+
+
 Install |krona| with:
 
-.. code:: bash
+.. code-block:: bash
 
    source activate ngs
    conda install krona
@@ -185,7 +196,7 @@ Install |krona| with:
 First some house-keeping to make the |krona| installation work.
 Do not worry to much about what is happening here.
 
-.. code:: bash
+.. code-block:: bash
 
    # we delete a symbolic link that is not correct
    rm -rf ~/miniconda3/envs/ngs/opt/krona/taxonomy
@@ -205,23 +216,28 @@ However, if this fails we will skip this step and just download a pre-build one.
 Lets first try to build one.
 
 
-.. code:: bash
+.. code-block:: bash
           
    ktUpdateTaxonomy.sh ~/krona/taxonomy
 
 Now, if this fails, we download a pre-build taxonomy database for krona.
-   
-.. code:: bash
+
+
+.. code-block:: bash
           
    # Download pre-build database
    curl -O http://compbio.massey.ac.nz/data/taxonomy.tab.gz
+
+   # we unzip the file
    gzip -d taxonomy.tab.gz
+
+   # we move the unzipped file to our taxonomy directory we specified in the step before.
    mv taxonomy.tab ~/krona/taxonomy
    
 .. ATTENTION:: 
    Should this also fail we can download a pre-build database on the :ref:`downloads` page via a browser.
 
-
+   
 Now we use the tool ``ktImportTaxonomy`` from the |krona| tools to crate the html web-page:
 
 .. rst-class:: sebcode 
@@ -231,9 +247,5 @@ Now we use the tool ``ktImportTaxonomy`` from the |krona| tools to crate the htm
    firefox taxonomy*.html
 
 What happens here is that we extract the second and third column from the |kraken| results.
-We input these to the |krona| script, and open the resulting web-page in a bowser. An example (albeit an extrem one) of the output html-file can be found `here <../_static/taxonomy.krona.html>`_.
-
-.. _fig-krona:
-.. figure:: krona.png
-
-   Example of an Krona output webpage.
+Afterwards, we input these to the |krona| script, and open the resulting web-page in a bowser.
+Done!
