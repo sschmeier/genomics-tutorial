@@ -28,11 +28,11 @@ Contents
    cli/index
    ngs-tools/index
    ngs-qc/index
+   ngs-taxonomic-investigation/index
    ngs-assembly/index
    ngs-annotation/index
    ngs-mapping/index
    ngs-variantcalling/index
-   ngs-taxonomic-investigation/index
    general/quickref
    general/downloads
    general/references
