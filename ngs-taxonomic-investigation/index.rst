@@ -54,7 +54,7 @@ We opt for downloading a pre-build database from the |kraken| website:
 
 .. ATTENTION::
    Should the download fail. Please find links to alternative locations on the
-   :doc:`../general/downloads` page.
+   :ref:`downloads` page.
    
    
    
@@ -169,9 +169,71 @@ we can attach the taxonomic names with ``kraken-translate``.
 Here, each sequence that got classified is present in one row.
 The nomenclature for the names is preceded with an letter according to its rank, e.g. **(d)omain, (k)ingdom, (p)hylum, (c)lass, (o)rder, (f)amily (g)enus, or (s)pecies**.
 Taxonomy assignments above the superkingdom (**d**) rank are represented as just **root**. 
-      
+
+
+Visualisation
+^^^^^^^^^^^^^
+
+We use the |krona| tools to create a nice interactive visualisation of the taxa content of our sample [ONDOV2011]_.
+Install |krona| with:
+
+.. code:: bash
+
+   source activate ngs
+   conda install krona
+
+First some house-keeping to make the |krona| installation work.
+Do not worry to much about what is happening here.
+
+.. code:: bash
+
+   # we delete a symbolic link that is not correct
+   rm -rf ~/miniconda3/envs/ngs/opt/krona/taxonomy
+
+   # we create a directory in our home where the krona database will live
+   mkdir -p ~/krona/taxonomy
+
+   # now we make a symbolic link to that directory 
+   ln -s ~/krona/taxonomy ~/miniconda3/envs/ngs/opt/krona/taxonomy
    
-References
-----------
+   # now we copy some scripts around, this is neccaesayry as krona installation fails to do this
+   cp -r ~/miniconda3/envs/ngs/opt/krona/scripts ~/miniconda3/envs/py3-kraken/bin/
+
+
+We need to build a taxonomy database for |krona|.
+However, if this fails we will skip this step and just download a pre-build one.
+Lets first try to build one.
+
+
+.. code:: bash
+          
+   ktUpdateTaxonomy.sh ~/krona/taxonomy
+
+Now, if this fails, we download a pre-build taxonomy database for krona.
    
-.. [WOOD2014] Kraken: ultrafast metagenomic sequence classification using exact alignments. Derrick E WoodEmail author and Steven L Salzberg. Genome Biology, 2014, 15:R46, `DOI: 10.1186/gb-2014-15-3-r46 <http://genomebiology.biomedcentral.com/articles/10.1186/gb-2014-15-3-r46>`__.
+.. code:: bash
+          
+   # Download pre-build database
+   curl -O http://compbio.massey.ac.nz/data/taxonomy.tab.gz
+   gzip -d taxonomy.tab.gz
+   mv taxonomy.tab ~/krona/taxonomy
+   
+.. ATTENTION:: 
+   Should this also fail we can download a pre-build database on the :ref:`downloads` page via a browser.
+
+
+Now we use the tool ``ktImportTaxonomy`` from the |krona| tools to crate the html web-page:
+
+.. rst-class:: sebcode 
+
+   cat |filebase|.kraken | cut -f 2,3 > |filebase|.kraken.krona
+   ktImportTaxonomy |filebase|.kraken.krona
+   firefox taxonomy*.html
+
+What happens here is that we extract the second and third column from the |kraken| results.
+We input these to the |krona| script, and open the resulting web-page in a bowser. An example (albeit an extrem one) of the output html-file can be found `here <../_static/taxonomy.krona.html>`_.
+
+.. _fig-krona:
+.. figure:: krona.png
+
+   Example of an Krona output webpage.
