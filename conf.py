@@ -371,8 +371,12 @@ texinfo_documents = [
 # epilog will be added to the end of each rst-file
 # we define some shortcuts here
 rst_epilog = """
-.. |fileref| replace:: anc
-.. |fileevol| replace:: A6-evolved
+.. |fileanc| replace:: ancestor
+.. |fileanc1| replace:: ancestor-R1
+.. |fileanc2| replace:: ancestor-R2
+.. |fileevol| replace:: evolved-6
+.. |fileevol1| replace:: evolved-6-R1
+.. |fileevol2| replace:: evolved-6-R2
 .. |conda| replace:: `conda <http://conda.pydata.org/miniconda.html>`__
 .. |kraken| replace:: `Kraken <https://ccb.jhu.edu/software/kraken/>`__
 .. |ncbitax| replace:: `NCBI Taxonomy <https://www.ncbi.nlm.nih.gov/taxonomy>`__
