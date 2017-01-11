@@ -1,12 +1,10 @@
-  0.00  1       1       U       0       unclassified
-100.00  24725   501     -       1       root
- 50.76  12550   0       -       131567    cellular organisms
- 46.30  11448   5       D       2           Bacteria
- 24.48  6052    4       P       1224          Proteobacteria
- 13.70  3388    4       C       1236            Gammaproteobacteria
-  6.68  1651    13      O       91347             Enterobacterales
-  5.10  1260    270     F       543                 Enterobacteriaceae
-  1.70  420     2       G       590                   Salmonella
-  1.67  412     314     S       28901                   Salmonella enterica
-  0.36  90      69      -       59201                     Salmonella enterica subsp. enterica
-  0.02  4       4       -       54388                       Salmonella enterica subsp. enterica serovar Paratyphi
+  0.00	0	0	U	0	unclassified
+100.00	2665	47	-	1	root
+ 54.56	1454	0	-	131567	  cellular organisms
+ 38.50	1026	1023	D	2157	    Archaea
+  0.08	2	0	P	651137	      Thaumarchaeota
+  0.08	2	0	-	651142	        unclassified Thaumarchaeota
+  0.08	2	0	G	1048752	          Candidatus Caldiarchaeum
+  0.08	2	2	S	311458	            Candidatus Caldiarchaeum subterraneum
+  0.04	1	0	P	28890	      Euryarchaeota
+  0.04	1	0	C	183967	        Thermoplasmata
