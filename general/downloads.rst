@@ -13,12 +13,22 @@ Tools
 Data
 ----
 
-* Sequences of ancestor:
-  
-  - R1:  `INTERNAL <http://compbio.massey.ac.nz/data/203341/ancestor-R1.fastq.gz>`__
-  - R2:  `INTERNAL <http://compbio.massey.ac.nz/data/203341/ancestor-R2.fastq.gz>`__ 
+* Data we want to analyse: `INTERNAL <http://compbio.massey.ac.nz/data/203341/data.tar.gz>`__
 
-* Sequences of evolved line:
 
-  - R1:  `INTERNAL <http://compbio.massey.ac.nz/data/203341/evolved-6-R1.fastq.gz>`__
-  - R2:  `INTERNAL <http://compbio.massey.ac.nz/data/203341/evolved-6-R2.fastq.gz>`__
+Software
+--------
+
+
+.. code-block:: bash
+   
+   conda install fastqc     # quality assessment
+   conda install spades     # assembler
+   conda install quast      # QA assemblies
+   conda install bwa        # mapper
+   conda install samtools   # Working with mapping files
+   conda install bamtools   # Working with mapping files
+   conda install freebayes  # SNP caller
+   conda install bcftools   # working with SNP files
+   conda install igvtools   # for visualisation
+   
