@@ -382,6 +382,9 @@ rst_epilog = """
 .. |ncbitax| replace:: `NCBI Taxonomy <https://www.ncbi.nlm.nih.gov/taxonomy>`__
 .. |spades| replace:: `Spades <http://bioinf.spbau.ru/spades>`__
 .. |krona| replace:: `Krona <https://github.com/marbl/Krona/wiki>`__
+.. |solexaqa| replace:: `SolexaQA++ <http://solexaqa.sourceforge.net>`__
+.. |fastqc| replace:: `FastQC <http://www.bioinformatics.babraham.ac.uk/projects/fastqc/>`__
+.. |sickle| replace:: `Sickle <https://github.com/najoshi/sickle>`__
 """
 
 # prolog will be added to the beginning of each file
