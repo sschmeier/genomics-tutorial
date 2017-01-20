@@ -26,6 +26,26 @@ The result is a classification of the sequence in question to the most likely ta
 If the k-mer content is not similar to any genomic sequence in the database used, it will not assign any taxonomic label.
 
 
+Before we start
+---------------
+
+Lets see how our directory structure looks so far:
+
+.. code:: bash
+
+          cd ~/analysis
+          ls -1F
+
+.. code:: bash
+          
+          data/
+          SolexaQA/
+          SolexaQA++
+          trimmed/
+          trimmed-fastqc/
+          trimmed-solexaqa/
+
+
 Installation
 ------------
 

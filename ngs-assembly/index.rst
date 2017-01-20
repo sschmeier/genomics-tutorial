@@ -17,7 +17,7 @@ There is an accompanying lecture for this tutorial:
 
    You will encounter some **To-do** sections at times. Write the solutions and answers into a text-file.   
 
-   
+
 Learning outcomes
 -----------------
 
@@ -26,6 +26,27 @@ After studying this tutorial you should be able to:
 #. Compute and interpret a whole genome assembly.
 #. Judge the quality of a genome assembly.
 
+
+Before we start
+---------------
+
+Lets see how our directory structure looks so far:
+
+.. code:: bash
+
+          cd ~/analysis
+          ls -1F
+
+.. code:: bash
+          
+          data/
+          kraken/
+          SolexaQA/
+          SolexaQA++
+          trimmed/
+          trimmed-fastqc/
+          trimmed-solexaqa/
+          
 
 Creating a genome assembly
 --------------------------

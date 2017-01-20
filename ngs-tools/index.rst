@@ -13,13 +13,13 @@ to install it first to be able to use it.
 .. code-block:: bash
 
     # download latest conda installer
-    curl -O https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh
+    curl -O https://repo.continuum.io/miniconda/Miniconda2-latest-Linux-x86_64.sh
 
     # run the installer
-    bash Miniconda3-latest-MacOSX-x86_64.sh
+    bash Miniconda2-latest-MacOSX-x86_64.sh
     
     # delete the installer after successful run
-    rm Miniconda3-latest-MacOSX-x86_64.sh
+    rm Miniconda2-latest-MacOSX-x86_64.sh
 
     # Install some conda channels
     # A channel is where conda looks for packages
@@ -48,9 +48,10 @@ We create a |conda| environment for some tools This is useful to work
 **reproducible** as we can easily re-create the tool-set with the same version
 numbers later on.
 
+
 .. code-block:: bash
 
-    conda create -n ngs python=3 
+    conda create -n ngs python=2
     # activate the environment
     source activate ngs
 
@@ -65,7 +66,13 @@ To install software into the activated environment, one uses the command ``conda
     # install more tools into the environment
     conda install package
 
+
+.. note:: To tell if you are in the correct conda environment, look at the command-prompt.
+          Do you see the name of the environment in round brackets at the very beginning of the prompt, e.g. (ngs)?
+          If not, activate the ``ngs`` environment with ``source activate ngs`` before installing the tools.
+
     
+                
 General conda commands
 ----------------------
 
