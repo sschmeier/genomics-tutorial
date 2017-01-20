@@ -4,8 +4,8 @@ NGS - Taxonomic investigation
 =============================
 
 
-Overview
---------
+Preface
+-------
 
 We want to investate if there are sequences of other species in our collection of sequenced DNA pieces.
 We hope that most of them are from our species that we try to study, i.e. the DNA that we have extracted and amplified.
@@ -40,6 +40,10 @@ Now we create a directory where we are going to do the analysis and we will chan
 
 .. code-block:: bash
 
+   # make sure you are in your analysis root folder
+   cd ~/analysis
+
+   # create dir
    mkdir kraken
    cd kraken
    

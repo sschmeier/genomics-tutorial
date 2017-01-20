@@ -380,11 +380,12 @@ rst_epilog = """
 .. |conda| replace:: `conda <http://conda.pydata.org/miniconda.html>`__
 .. |kraken| replace:: `Kraken <https://ccb.jhu.edu/software/kraken/>`__
 .. |ncbitax| replace:: `NCBI Taxonomy <https://www.ncbi.nlm.nih.gov/taxonomy>`__
-.. |spades| replace:: `Spades <http://bioinf.spbau.ru/spades>`__
+.. |spades| replace:: `SPAdes <http://bioinf.spbau.ru/spades>`__
 .. |krona| replace:: `Krona <https://github.com/marbl/Krona/wiki>`__
 .. |solexaqa| replace:: `SolexaQA++ <http://solexaqa.sourceforge.net>`__
 .. |fastqc| replace:: `FastQC <http://www.bioinformatics.babraham.ac.uk/projects/fastqc/>`__
 .. |sickle| replace:: `Sickle <https://github.com/najoshi/sickle>`__
+.. |quast| replace:: `Quast <http://quast.bioinf.spbau.ru/>`__
 """
 
 # prolog will be added to the beginning of each file

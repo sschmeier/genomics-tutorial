@@ -7,14 +7,15 @@ Preface
 In this quality control section we will use our skill on the
 command-line interface to deal with the task of investigating the quality and cleaning sequencing data.
 
-You will encounter some **To-do** sections at times. Write the solutions and answers into a text-file.
-
 There is an accompanying lectures for this tutorial:
 
--  **Next-generation sequencing and quality control: An introduction**
-   is available at
-   `figshare <https://dx.doi.org/10.6084/m9.figshare.2972320.v1>`__
-   (https://dx.doi.org/10.6084/m9.figshare.2972320.v1).
+-  `Next-generation sequencing and quality control: An introduction <https://dx.doi.org/10.6084/m9.figshare.2972320.v1>`__
+   is available at `figshare <https://dx.doi.org/10.6084/m9.figshare.2972320.v1>`__
+   (`https://dx.doi.org/10.6084/m9.figshare.2972320.v1 <https://dx.doi.org/10.6084/m9.figshare.2972320.v1>`__).
+
+.. NOTE::
+
+   You will encounter some **To-do** sections at times. Write the solutions and answers into a text-file.
 
 
 Learning outcomes
@@ -271,24 +272,28 @@ Should the dynamic trimming not work with |solexaqa|, you can alternatively use 
 .. code:: bash
 
     source activate ngs
-    conda install sickle
+    conda install sickle-trim
 
-Now we are going to run the program on our interleaved paired-end data:
+Now we are going to run the program on our paired-end data:
 
-.. code:: bash
+.. rst-class:: sebcode
 
     # create a new directory
     mkdir trimmed
+    
+    # sickle parameters:
+    sickle --help
 
-    # move the sickle program here.
-    sickle se -c fastq -t sanger -m data/ancestor-R1.fastq.gz -s trimmed/singletons.fastq
+    # as we are dealing with paired-end data you will be using "sickle pe"
+    sickle pe --help
 
-    # etc.
+    # run sickle like so:
+    sickle pe -g -t sanger -f data/|fileanc1|.fastq.gz -r data/|fileanc2|.fastq.gz -o trimmed/|fileanc1|.trimmed.fastq.gz -p trimmed/|fileanc2|.trimmed.fastq.gz 
   
 
-.. attention::
+.. hint::
 
-   Should you be unable to run |sickle| or |solexaqa| at all to trim the data. You can download the trimmed dataset `here <http://compbio.massey.ac.nz/data/203341/trimmed.tar.gz>`__. Uncompress the files with ``tar -xvzf trimmed.tar.gz``.
+   Should you be unable to run |sickle| or |solexaqa| at all to trim the data. You can download the trimmed dataset `here <http://compbio.massey.ac.nz/data/203341/trimmed.tar.gz>`__. Unarchive and uncompress the files with ``tar -xvzf trimmed.tar.gz``.
 
 
 Quality assessment of sequencing reads (|fastqc|)
@@ -390,4 +395,13 @@ Run FastQC on the untrimmed and trimmed data
 .. figure:: images/fastqc_bad3.png
             
     GC distribution over all sequences.
+
+
+Web links
+---------
+
+- Lectures for this topic: `Next-generation sequencing and quality control: An introduction <https://dx.doi.org/10.6084/m9.figshare.2972320.v1>`__
+- `Illumina paired-end sequencing <http://www.illumina.com/technology/next-generation-sequencing/paired-end-sequencing_assay.html>`__
+- |fastqc|
+- |solexaqa|
 
