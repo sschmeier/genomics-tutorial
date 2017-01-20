@@ -113,7 +113,7 @@ We can install it locally with:
           source activate ngs
           conda install quast
 
-Run |quast| with both assembly contigs.fa files to compare the results.
+Run |quast| with both assembly scaffolds.fasta files to compare the results.
 
 .. hint::
 
@@ -122,7 +122,7 @@ Run |quast| with both assembly contigs.fa files to compare the results.
 
 .. rst-class:: sebcode
 
-   quast -o assembly/quast assembly/spades_default/contigs.fasta assembly/spades_150/contigs.fasta
+   quast -o assembly/quast assembly/spades_default/scaffolds.fasta assembly/spades_150/scaffolds.fasta
    
 
 .. admonition:: TODO
@@ -137,7 +137,7 @@ Assemblathon
 .. admonition:: TODO
                 
    Now that you know the basics for assembling a genome and judging their quality, play with the |spades| parameters to create the best assembly possible. 
-
+    
    
 Further reading
 ---------------
