@@ -1,0 +1,587 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>3. NGS - Quality control &mdash; Documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/css/seb.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="Documentation" href="../index.html"/>
+        <link rel="next" title="4. NGS - Taxonomic investigation" href="../ngs-taxonomic-investigation/index.html"/>
+        <link rel="prev" title="2. NGS - Tool installation" href="../ngs-tools/index.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Genomics Tutorial
+          
+
+          
+            
+            <img src="../_static/icon.png" class="logo" />
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                2017.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../cli/index.html">1. Command-line interface introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ngs-tools/index.html">2. NGS - Tool installation</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">3. NGS - Quality control</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#preface">3.1. Preface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#learning-outcomes">3.2. Learning outcomes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#the-data">3.3. The data</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#investigate-the-data">3.3.1. Investigate the data</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#the-qc-process">3.4. The QC process</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#phix-genome">3.5. PhiX genome</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#adapter-trimming">3.6. Adapter trimming</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#quality-assessment-of-sequencing-reads-solexaqa">3.7. Quality assessment of sequencing reads (SolexaQA++)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#install-solexaqa">3.7.1. Install SolexaQA++</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#solexaqa-manual">3.7.2. SolexaQA++ manual</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#solexaqa-dynamic-trimming">3.7.3. SolexaQA++ dynamic trimming</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#solexaqa-analysis-on-trimmed-data">3.7.4. SolexaQA++ analysis on trimmed data</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#sickle-for-dynamic-trimming-alternative-to-solexaqa">3.8. Sickle for dynamic trimming (alternative to SolexaQA++)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#quality-assessment-of-sequencing-reads-fastqc">3.9. Quality assessment of sequencing reads (FastQC)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#installing-fastqc">3.9.1. Installing FastQC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#fastqc-manual">3.9.2. FastQC manual</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#run-fastqc-on-the-untrimmed-and-trimmed-data">3.9.3. Run FastQC on the untrimmed and trimmed data</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#web-links">3.10. Web links</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../ngs-taxonomic-investigation/index.html">4. NGS - Taxonomic investigation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ngs-assembly/index.html">5. NGS - Genome assembly</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ngs-annotation/index.html">6. NGS - Genome annotation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ngs-mapping/index.html">7. NGS - Read mapping</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ngs-variantcalling/index.html">8. NGS - Variant calling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../general/quickref.html">9. Quick command reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../general/downloads.html">10. Downloads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../general/references.html">11. References</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">Genomics Tutorial</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+    <li>3. NGS - Quality control</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="ngs-quality-control">
+<h1>3. NGS - Quality control<a class="headerlink" href="#ngs-quality-control" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="preface">
+<h2>3.1. Preface<a class="headerlink" href="#preface" title="Permalink to this headline">¶</a></h2>
+<p>In this quality control section we will use our skill on the
+command-line interface to deal with the task of investigating the quality and cleaning sequencing data.</p>
+<p>There is an accompanying lectures for this tutorial:</p>
+<ul class="simple">
+<li><a class="reference external" href="https://dx.doi.org/10.6084/m9.figshare.2972320.v1">Next-generation sequencing and quality control: An introduction</a>
+is available at <a class="reference external" href="https://dx.doi.org/10.6084/m9.figshare.2972320.v1">figshare</a>
+(<a class="reference external" href="https://dx.doi.org/10.6084/m9.figshare.2972320.v1">https://dx.doi.org/10.6084/m9.figshare.2972320.v1</a>).</li>
+</ul>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">You will encounter some <strong>To-do</strong> sections at times. Write the solutions and answers into a text-file.</p>
+</div>
+</div>
+<div class="section" id="learning-outcomes">
+<h2>3.2. Learning outcomes<a class="headerlink" href="#learning-outcomes" title="Permalink to this headline">¶</a></h2>
+<p>After studying this tutorial you should be able to:</p>
+<ol class="arabic simple">
+<li>Describe the steps involved in pre-processing/cleaning sequencing
+data.</li>
+<li>Distinguish between a good and a bad sequencing run.</li>
+<li>Compute, investigate and evaluate the quality of sequence data from a
+sequencing experiment.</li>
+</ol>
+</div>
+<div class="section" id="the-data">
+<h2>3.3. The data<a class="headerlink" href="#the-data" title="Permalink to this headline">¶</a></h2>
+<p>First, we are going to download the data we will analyse. Open a shell/terminal.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="c1"># create a directory you work in</span>
+mkdir analysis
+
+<span class="c1"># change into the directory</span>
+<span class="nb">cd</span> analysis
+
+<span class="c1"># download the data</span>
+curl -O http://compbio.massey.ac.nz/data/203341/data.tar.gz
+
+<span class="c1"># uncompress it</span>
+tar -xvzf data.tar.gz
+</pre></div>
+</div>
+<p>The data is from a paired-end sequencing run data (see <a class="reference internal" href="#fig-pairedend"><span class="std std-numref">Fig. 3.1</span></a>), thus we have two files, one
+for each end of the read.</p>
+<div class="figure" id="id3">
+<span id="fig-pairedend"></span><img alt="../_images/pairedend.png" src="../_images/pairedend.png" />
+<p class="caption"><span class="caption-number">Fig. 3.1 </span><span class="caption-text">Illustration of single-end (SE) versus paired-end (PE) sequencing.</span></p>
+</div>
+<p>If you need to refresh how Illumina paired-end sequencing works have a
+look at the <a class="reference external" href="http://www.illumina.com/technology/next-generation-sequencing/paired-end-sequencing_assay.html">Illumina
+webpage</a>
+and this <a class="reference external" href="https://youtu.be/HMyCqWhwB8E">video</a>.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The data we are using is &quot;almost&quot; raw data coming from the machine. This data has been post-processed in two ways already. All sequences that were identified as belonging to the PhiX genome have been removed. This process requires some skills we will learn in later sections. Illumina adapters have been removed as well already! The process is explained below but we are not going to do it.</p>
+</div>
+<div class="section" id="investigate-the-data">
+<h3>3.3.1. Investigate the data<a class="headerlink" href="#investigate-the-data" title="Permalink to this headline">¶</a></h3>
+<p>Make use of your newly developed skills on the command-line to
+investigate the files in <code class="docutils literal"><span class="pre">data</span></code> folder.</p>
+<div class="admonition-todo admonition">
+<p class="first admonition-title">TODO</p>
+<ol class="last arabic simple">
+<li>Use the command-line to get some ideas about the file.</li>
+<li>What kind of files are we dealing with?</li>
+<li>How many sequence reads are in the file?</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="section" id="the-qc-process">
+<h2>3.4. The QC process<a class="headerlink" href="#the-qc-process" title="Permalink to this headline">¶</a></h2>
+<p>There are a few steps one need to do when getting the raw sequencing data from the sequencing facility:</p>
+<ol class="arabic simple">
+<li>Remove PhiX sequences</li>
+<li>Adapter trimming</li>
+<li>Quality trimming of reads</li>
+<li>Quality assessment</li>
+</ol>
+</div>
+<div class="section" id="phix-genome">
+<h2>3.5. PhiX genome<a class="headerlink" href="#phix-genome" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Phi_X_174">PhiX</a> is a nontailed bacteriophage with a single-stranded DNA and a genome with 5386 nucleotides.
+PhiX is used as a quality and calibration control for <a class="reference external" href="http://www.illumina.com/products/by-type/sequencing-kits/cluster-gen-sequencing-reagents/phix-control-v3.html">sequencing runs</a>.
+PhiX is often added at a low known concentration, spiked in the same lane along with the sample or used as a separate lane.
+As the concentration of the genome is known, one can calibrate the instruments.
+Thus, PhiX genomic sequences need to be removed before processing your data further as this constitutes a deliberate contamination <a class="reference internal" href="../general/references.html#mukherjee2015" id="id1">[MUKHERJEE2015]</a>.
+The steps involve mapping all reads to the &quot;known&quot; PhiX genome, and removing all of those sequence reads from the data.</p>
+<p>However, your sequencing provider might not have used PhiX, thus you need to read the protocol carefully, or just do this step in any case.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">We are not going to do this step here, as this has been already done. Please see the <a class="reference internal" href="../ngs-mapping/index.html"><span class="doc">NGS - Read mapping</span></a> section on how to map reads against a genome.</p>
+</div>
+</div>
+<div class="section" id="adapter-trimming">
+<h2>3.6. Adapter trimming<a class="headerlink" href="#adapter-trimming" title="Permalink to this headline">¶</a></h2>
+<p>The process of sequencing DNA via Illumina technology requires the addition of some adapters to the sequences.
+These get sequenced as well and need to be removed as they are artificial and do not belong to the species we try to sequence.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The process of how to do this is explained here, however we are not going to do this as our sequences have been already adapter-trimmed.</p>
+</div>
+<p>Install a tool called <a class="reference external" href="https://github.com/ExpressionAnalysis/ea-utils/blob/wiki/FastqMcf.md">fastq-mcf</a>  from the <a class="reference external" href="https://expressionanalysis.github.io/ea-utils/">ea-utils suite</a> of tools that is able to do this.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="c1"># install</span>
+conda install ea-utils
+</pre></div>
+</div>
+</div>
+<div class="section" id="quality-assessment-of-sequencing-reads-solexaqa">
+<h2>3.7. Quality assessment of sequencing reads (<a class="reference external" href="http://solexaqa.sourceforge.net">SolexaQA++</a>)<a class="headerlink" href="#quality-assessment-of-sequencing-reads-solexaqa" title="Permalink to this headline">¶</a></h2>
+<p>To assess the sequence read quality of the Illumina run we make use of a program called <a class="reference external" href="http://solexaqa.sourceforge.net">SolexaQA++</a> <a class="reference internal" href="../general/references.html#cox2010" id="id2">[COX2010]</a>.
+<a class="reference external" href="http://solexaqa.sourceforge.net">SolexaQA++</a> was originally developed to work with Solexa data (since bought by Illumina), but long since working with Illumina data.
+It produces nice graphics that intuitively show the quality of the sequences. it is also able to dynamically trim the bad quality ends off the reads.</p>
+<p>From the webpage:</p>
+<blockquote>
+<div>&quot;SolexaQA calculates sequence quality statistics and creates visual
+representations of data quality for second-generation sequencing
+data. Originally developed for the Illumina system (historically
+known as &quot;Solexa&quot;), SolexaQA now also supports Ion Torrent and 454
+data.&quot;</div></blockquote>
+<div class="section" id="install-solexaqa">
+<h3>3.7.1. Install SolexaQA++<a class="headerlink" href="#install-solexaqa" title="Permalink to this headline">¶</a></h3>
+<p>Unfortunately, currently we cannot install <a class="reference external" href="http://solexaqa.sourceforge.net">SolexaQA++</a> with <a class="reference external" href="http://conda.pydata.org/miniconda.html">conda</a>.</p>
+<div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="n">curl</span> <span class="o">-</span><span class="n">O</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">compbio</span><span class="o">.</span><span class="n">massey</span><span class="o">.</span><span class="n">ac</span><span class="o">.</span><span class="n">nz</span><span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="mi">203341</span><span class="o">/</span><span class="n">SolexaQA</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span>
+
+<span class="c1"># uncompress the archive</span>
+<span class="n">tar</span> <span class="o">-</span><span class="n">xvzf</span> <span class="n">SolexaQA</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span>
+
+<span class="c1"># make the file executable</span>
+<span class="n">chmod</span> <span class="n">a</span><span class="o">+</span><span class="n">x</span> <span class="n">SolexaQA</span><span class="o">/</span><span class="n">Linux_x64</span><span class="o">/</span><span class="n">SolexaQA</span><span class="o">++</span>
+
+<span class="c1"># copy program to root folder</span>
+<span class="n">cp</span> <span class="o">./</span><span class="n">SolexaQA</span><span class="o">/</span><span class="n">Linux_x64</span><span class="o">/</span><span class="n">SolexaQA</span><span class="o">++</span> <span class="o">.</span>
+
+<span class="c1"># run the program</span>
+<span class="o">./</span><span class="n">SolexaQA</span><span class="o">++</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Should the download fail, download manually from <a class="reference internal" href="../general/downloads.html"><span class="doc">Downloads</span></a>.</p>
+</div>
+</div>
+<div class="section" id="solexaqa-manual">
+<h3>3.7.2. SolexaQA++ manual<a class="headerlink" href="#solexaqa-manual" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="http://solexaqa.sourceforge.net">SolexaQA++</a> has three modes that can be run. Type:</p>
+<div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">SolexaQA</span><span class="o">++</span>
+</pre></div>
+</div>
+<div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="n">SolexaQA</span><span class="o">++</span> <span class="n">v3</span><span class="o">.</span><span class="mf">1.3</span>
+<span class="n">Released</span> <span class="n">under</span> <span class="n">GNU</span> <span class="n">General</span> <span class="n">Public</span> <span class="n">License</span> <span class="n">version</span> <span class="mi">3</span>
+<span class="n">C</span><span class="o">++</span> <span class="n">version</span> <span class="n">developed</span> <span class="n">by</span> <span class="n">Mauro</span> <span class="n">Truglio</span> <span class="p">(</span><span class="n">M</span><span class="o">.</span><span class="n">Truglio</span><span class="nd">@massey</span><span class="o">.</span><span class="n">ac</span><span class="o">.</span><span class="n">nz</span><span class="p">)</span>
+
+<span class="n">Usage</span><span class="p">:</span> <span class="n">SolexaQA</span><span class="o">++</span> <span class="o">&lt;</span><span class="n">command</span><span class="o">&gt;</span> <span class="p">[</span><span class="n">options</span><span class="p">]</span>
+
+<span class="n">Command</span><span class="p">:</span> <span class="n">analysis</span>      <span class="n">quality</span> <span class="n">analysis</span> <span class="ow">and</span> <span class="n">graphs</span> <span class="n">generation</span>
+         <span class="n">dynamictrim</span>    <span class="n">trim</span> <span class="n">reads</span> <span class="n">using</span> <span class="n">a</span> <span class="n">chosen</span> <span class="n">threshold</span>
+         <span class="n">lengthsort</span>  <span class="n">sort</span> <span class="n">reads</span> <span class="n">by</span> <span class="n">a</span> <span class="n">chosen</span> <span class="n">length</span>
+</pre></div>
+</div>
+<p>The three modes are: <code class="docutils literal"><span class="pre">analysis</span></code>, <code class="docutils literal"><span class="pre">dynamictrim</span></code>, and <code class="docutils literal"><span class="pre">lengthsort</span></code>:</p>
+<p><code class="docutils literal"><span class="pre">analysis</span></code> - the primary quality analysis and visualization tool.
+Designed to run on unmodified FASTQ files obtained directly from
+Illumina, Ion Torrent or 454 sequencers.</p>
+<p><code class="docutils literal"><span class="pre">dynamictrim</span></code> - a read trimmer that individually crops each read to
+its longest contiguous segment for which quality scores are greater than
+a user-supplied quality cutoff.</p>
+<p><code class="docutils literal"><span class="pre">lengthsort</span></code> - a program to separate high quality reads from low
+quality reads. LengthSort assigns trimmed reads to paired-end, singleton
+and discard files based on a user-defined length cutoff.</p>
+</div>
+<div class="section" id="solexaqa-dynamic-trimming">
+<h3>3.7.3. SolexaQA++ dynamic trimming<a class="headerlink" href="#solexaqa-dynamic-trimming" title="Permalink to this headline">¶</a></h3>
+<p>We will use <a class="reference external" href="http://solexaqa.sourceforge.net">SolexaQA++</a> dynamic trim the reads, to chop of nucleotides witha a bad quality score.</p>
+<div class="admonition-todo admonition">
+<p class="first admonition-title">TODO</p>
+<ol class="last arabic simple">
+<li>Create a directory for the result-files --&gt; <strong>trimmed/</strong>.</li>
+<li>Run <a class="reference external" href="http://solexaqa.sourceforge.net">SolexaQA++</a> <code class="docutils literal"><span class="pre">dynamictrim</span></code> with the untrimmed data and a probability cutoff of 0.01., and submit result-directory <strong>trimmed/</strong>.</li>
+<li>Investigate the result-files in <strong>trimmed/</strong>, e.g. do the file-sizes change to the original files?</li>
+<li><a class="reference external" href="http://solexaqa.sourceforge.net">SolexaQA++</a> <code class="docutils literal"><span class="pre">dynamictrim</span></code> produces a graphical output. Explain what the graph shows. Find heklp on the <a class="reference external" href="http://solexaqa.sourceforge.net">SolexaQA++</a> website.</li>
+</ol>
+</div>
+<div class="admonition hint">
+<p class="first admonition-title">Hint</p>
+<p class="last">Should you not get 1 and/or 2 right, try these commands <a class="reference external" href="../_static/code/qc-solexaqa1.txt">here</a>.</p>
+</div>
+</div>
+<div class="section" id="solexaqa-analysis-on-trimmed-data">
+<h3>3.7.4. SolexaQA++ analysis on trimmed data<a class="headerlink" href="#solexaqa-analysis-on-trimmed-data" title="Permalink to this headline">¶</a></h3>
+<div class="admonition-todo admonition">
+<p class="first admonition-title">TODO</p>
+<ol class="last arabic simple">
+<li>Create a directory for the result-files --&gt; <strong>trimmed-solexaqa</strong>.</li>
+<li>use <a class="reference external" href="http://solexaqa.sourceforge.net">SolexaQA++</a> to do the quality assessment with the trimmed data-set.</li>
+<li>Compare your results to the examples of a particularly bad MiSeq run (<a class="reference internal" href="#solexaqa-heatmap-bad"><span class="std std-numref">Fig. 3.5</span></a> to <a class="reference internal" href="#solexaqa-heatmap-bad"><span class="std std-numref">Fig. 3.5</span></a>, taken from <a class="reference external" href="http://solexaqa.sourceforge.net">SolexaQA++</a> website). Write down your observations.</li>
+<li>What elements in these example figures (<a class="reference internal" href="#solexaqa-quality-bad"><span class="std std-numref">Fig. 3.2</span></a> to <a class="reference internal" href="#solexaqa-heatmap-bad"><span class="std std-numref">Fig. 3.5</span></a>) indicate that the show a bad run? Write down your explanations.</li>
+</ol>
+</div>
+<div class="admonition hint">
+<p class="first admonition-title">Hint</p>
+<p class="last">Should you not get 1 and/or 2 it right, try these commands <a class="reference external" href="../_static/code/qc-solexaqa2.txt">here</a></p>
+</div>
+<div class="figure" id="id4">
+<span id="solexaqa-quality-bad"></span><img alt="../_images/solexaqa_quality_bad.png" src="../_images/solexaqa_quality_bad.png" />
+<p class="caption"><span class="caption-number">Fig. 3.2 </span><span class="caption-text">SolexaQA++ example quality plot along reads of a bad MiSeq run</span></p>
+</div>
+<div class="figure" id="id5">
+<span id="solexaqa-hist-bad"></span><img alt="../_images/solexaqa_hist_bad.png" src="../_images/solexaqa_hist_bad.png" />
+<p class="caption"><span class="caption-number">Fig. 3.3 </span><span class="caption-text">SolexaQA++ example histogram plot of a bad MiSeq run.</span></p>
+</div>
+<div class="figure" id="id6">
+<span id="solexaqa-cumulative-bad"></span><img alt="../_images/solexaqa_cumulative_bad.png" src="../_images/solexaqa_cumulative_bad.png" />
+<p class="caption"><span class="caption-number">Fig. 3.4 </span><span class="caption-text">SolexaQA++ example cumulative plot of a bad MiSeq run.</span></p>
+</div>
+<div class="figure" id="id7">
+<span id="solexaqa-heatmap-bad"></span><img alt="../_images/solexaqa_heatmap_bad.png" src="../_images/solexaqa_heatmap_bad.png" />
+<p class="caption"><span class="caption-number">Fig. 3.5 </span><span class="caption-text">SolexaQA++ example quality heatmap of a bad MiSeq run.</span></p>
+</div>
+</div>
+</div>
+<div class="section" id="sickle-for-dynamic-trimming-alternative-to-solexaqa">
+<h2>3.8. <a class="reference external" href="https://github.com/najoshi/sickle">Sickle</a> for dynamic trimming (alternative to <a class="reference external" href="http://solexaqa.sourceforge.net">SolexaQA++</a>)<a class="headerlink" href="#sickle-for-dynamic-trimming-alternative-to-solexaqa" title="Permalink to this headline">¶</a></h2>
+<p>Should the dynamic trimming not work with <a class="reference external" href="http://solexaqa.sourceforge.net">SolexaQA++</a>, you can alternatively use <a class="reference external" href="https://github.com/najoshi/sickle">Sickle</a>.</p>
+<div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="n">source</span> <span class="n">activate</span> <span class="n">ngs</span>
+<span class="n">conda</span> <span class="n">install</span> <span class="n">sickle</span><span class="o">-</span><span class="n">trim</span>
+</pre></div>
+</div>
+<p>Now we are going to run the program on our paired-end data:</p>
+<p class="sebcode"># create a new directory
+mkdir trimmed</p>
+<p class="sebcode"># sickle parameters:
+sickle --help</p>
+<p class="sebcode"># as we are dealing with paired-end data you will be using &quot;sickle pe&quot;
+sickle pe --help</p>
+<p class="sebcode"># run sickle like so:
+sickle pe -g -t sanger -f data/ancestor-R1.fastq.gz -r data/ancestor-R2.fastq.gz -o trimmed/ancestor-R1.trimmed.fastq.gz -p trimmed/ancestor-R2.trimmed.fastq.gz</p>
+<div class="admonition hint">
+<p class="first admonition-title">Hint</p>
+<p class="last">Should you be unable to run <a class="reference external" href="https://github.com/najoshi/sickle">Sickle</a> or <a class="reference external" href="http://solexaqa.sourceforge.net">SolexaQA++</a> at all to trim the data. You can download the trimmed dataset <a class="reference external" href="http://compbio.massey.ac.nz/data/203341/trimmed.tar.gz">here</a>. Unarchive and uncompress the files with <code class="docutils literal"><span class="pre">tar</span> <span class="pre">-xvzf</span> <span class="pre">trimmed.tar.gz</span></code>.</p>
+</div>
+</div>
+<div class="section" id="quality-assessment-of-sequencing-reads-fastqc">
+<h2>3.9. Quality assessment of sequencing reads (<a class="reference external" href="http://www.bioinformatics.babraham.ac.uk/projects/fastqc/">FastQC</a>)<a class="headerlink" href="#quality-assessment-of-sequencing-reads-fastqc" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="installing-fastqc">
+<h3>3.9.1. Installing <a class="reference external" href="http://www.bioinformatics.babraham.ac.uk/projects/fastqc/">FastQC</a><a class="headerlink" href="#installing-fastqc" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="nb">source</span> activate ngs
+conda install fastqc
+
+<span class="c1"># should now run the program</span>
+fastqc --help
+</pre></div>
+</div>
+<div class="code bash highlight-default"><div class="highlight"><pre><span></span>            <span class="n">FastQC</span> <span class="o">-</span> <span class="n">A</span> <span class="n">high</span> <span class="n">throughput</span> <span class="n">sequence</span> <span class="n">QC</span> <span class="n">analysis</span> <span class="n">tool</span>
+
+<span class="n">SYNOPSIS</span>
+
+        <span class="n">fastqc</span> <span class="n">seqfile1</span> <span class="n">seqfile2</span> <span class="o">..</span> <span class="n">seqfileN</span>
+
+    <span class="n">fastqc</span> <span class="p">[</span><span class="o">-</span><span class="n">o</span> <span class="n">output</span> <span class="nb">dir</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="p">(</span><span class="n">no</span><span class="p">)</span><span class="n">extract</span><span class="p">]</span> <span class="p">[</span><span class="o">-</span><span class="n">f</span> <span class="n">fastq</span><span class="o">|</span><span class="n">bam</span><span class="o">|</span><span class="n">sam</span><span class="p">]</span>
+           <span class="p">[</span><span class="o">-</span><span class="n">c</span> <span class="n">contaminant</span> <span class="n">file</span><span class="p">]</span> <span class="n">seqfile1</span> <span class="o">..</span> <span class="n">seqfileN</span>
+
+<span class="n">DESCRIPTION</span>
+
+    <span class="n">FastQC</span> <span class="n">reads</span> <span class="n">a</span> <span class="nb">set</span> <span class="n">of</span> <span class="n">sequence</span> <span class="n">files</span> <span class="ow">and</span> <span class="n">produces</span> <span class="kn">from</span> <span class="nn">each</span> <span class="n">one</span> <span class="n">a</span> <span class="n">quality</span>
+    <span class="n">control</span> <span class="n">report</span> <span class="n">consisting</span> <span class="n">of</span> <span class="n">a</span> <span class="n">number</span> <span class="n">of</span> <span class="n">different</span> <span class="n">modules</span><span class="p">,</span> <span class="n">each</span> <span class="n">one</span> <span class="n">of</span>
+    <span class="n">which</span> <span class="n">will</span> <span class="n">help</span> <span class="n">to</span> <span class="n">identify</span> <span class="n">a</span> <span class="n">different</span> <span class="n">potential</span> <span class="nb">type</span> <span class="n">of</span> <span class="n">problem</span> <span class="ow">in</span> <span class="n">your</span>
+    <span class="n">data</span><span class="o">.</span>
+
+    <span class="n">If</span> <span class="n">no</span> <span class="n">files</span> <span class="n">to</span> <span class="n">process</span> <span class="n">are</span> <span class="n">specified</span> <span class="n">on</span> <span class="n">the</span> <span class="n">command</span> <span class="n">line</span> <span class="n">then</span> <span class="n">the</span> <span class="n">program</span>
+    <span class="n">will</span> <span class="n">start</span> <span class="k">as</span> <span class="n">an</span> <span class="n">interactive</span> <span class="n">graphical</span> <span class="n">application</span><span class="o">.</span>  <span class="n">If</span> <span class="n">files</span> <span class="n">are</span> <span class="n">provided</span>
+    <span class="n">on</span> <span class="n">the</span> <span class="n">command</span> <span class="n">line</span> <span class="n">then</span> <span class="n">the</span> <span class="n">program</span> <span class="n">will</span> <span class="n">run</span> <span class="k">with</span> <span class="n">no</span> <span class="n">user</span> <span class="n">interaction</span>
+    <span class="n">required</span><span class="o">.</span>  <span class="n">In</span> <span class="n">this</span> <span class="n">mode</span> <span class="n">it</span> <span class="ow">is</span> <span class="n">suitable</span> <span class="k">for</span> <span class="n">inclusion</span> <span class="n">into</span> <span class="n">a</span> <span class="n">standardised</span>
+    <span class="n">analysis</span> <span class="n">pipeline</span><span class="o">.</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="fastqc-manual">
+<h3>3.9.2. FastQC manual<a class="headerlink" href="#fastqc-manual" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="http://www.bioinformatics.babraham.ac.uk/projects/fastqc/">FastQC</a> is a very simple program to run that provides similar and additional information to <a class="reference external" href="http://solexaqa.sourceforge.net">SolexaQA++</a>.</p>
+<p>From the webpage:</p>
+<blockquote>
+<div>&quot;FastQC aims to provide a simple way to do some quality control
+checks on raw sequence data coming from high throughput sequencing
+pipelines. It provides a modular set of analyses which you can use
+to give a quick impression of whether your data has any problems of
+which you should be aware before doing any further analysis.&quot;</div></blockquote>
+<p>The basic command looks like:</p>
+<div class="code bash highlight-default"><div class="highlight"><pre><span></span>$ fastqc -o RESULT-DIR INPUT-FILE.[txt/fa/fq] ...
+</pre></div>
+</div>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">-o</span> <span class="pre">RESULT-DIR</span></code> is the directory where the result files will be written</li>
+<li><code class="docutils literal"><span class="pre">INPUT-FILE.[txt/fa/fq]</span></code> is the sequence file to analyze, can be more than one file.</li>
+</ul>
+<div class="admonition hint">
+<p class="first admonition-title">Hint</p>
+<p class="last">The result will be a HTML page per input file that can be opened in a web-browser.</p>
+</div>
+</div>
+<div class="section" id="run-fastqc-on-the-untrimmed-and-trimmed-data">
+<h3>3.9.3. Run FastQC on the untrimmed and trimmed data<a class="headerlink" href="#run-fastqc-on-the-untrimmed-and-trimmed-data" title="Permalink to this headline">¶</a></h3>
+<div class="admonition-todo admonition">
+<p class="first admonition-title">TODO</p>
+<ol class="last arabic simple">
+<li>Create a directory for the results --&gt; <strong>trimmed-fastqc</strong></li>
+<li>Run FastQC on all <strong>trimmed</strong> files.</li>
+<li>Visit the <a class="reference external" href="http://www.bioinformatics.babraham.ac.uk/projects/fastqc/">FastQC</a> website and read about sequencing QC reports for good and bad Illumina sequencing runs.</li>
+<li>Compare your results to these examples (<a class="reference internal" href="#fastqc-bad1"><span class="std std-numref">Fig. 3.6</span></a> to <a class="reference internal" href="#fastqc-bad3"><span class="std std-numref">Fig. 3.8</span></a>) of a particularly bad run (taken from the <a class="reference external" href="http://www.bioinformatics.babraham.ac.uk/projects/fastqc/">FastQC</a> website) and write down your observations with regards to your data.</li>
+<li>What elements in these example figures (<a class="reference internal" href="#fastqc-bad1"><span class="std std-numref">Fig. 3.6</span></a> to <a class="reference internal" href="#fastqc-bad3"><span class="std std-numref">Fig. 3.8</span></a>) indicate that the example is from a bad run?</li>
+</ol>
+</div>
+<div class="admonition hint">
+<p class="first admonition-title">Hint</p>
+<p class="last">Should you not get it right, try these commands <a class="reference external" href="../_static/code/qc-fastqc.txt">here</a>.</p>
+</div>
+<div class="figure" id="id8">
+<span id="fastqc-bad1"></span><img alt="../_images/fastqc_bad1.png" src="../_images/fastqc_bad1.png" />
+<p class="caption"><span class="caption-number">Fig. 3.6 </span><span class="caption-text">Quality score across bases.</span></p>
+</div>
+<div class="figure" id="id9">
+<span id="fastqc-bad2"></span><img alt="../_images/fastqc_bad2.png" src="../_images/fastqc_bad2.png" />
+<p class="caption"><span class="caption-number">Fig. 3.7 </span><span class="caption-text">Quality per tile.</span></p>
+</div>
+<div class="figure" id="id10">
+<span id="fastqc-bad3"></span><img alt="../_images/fastqc_bad3.png" src="../_images/fastqc_bad3.png" />
+<p class="caption"><span class="caption-number">Fig. 3.8 </span><span class="caption-text">GC distribution over all sequences.</span></p>
+</div>
+</div>
+</div>
+<div class="section" id="web-links">
+<h2>3.10. Web links<a class="headerlink" href="#web-links" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Lectures for this topic: <a class="reference external" href="https://dx.doi.org/10.6084/m9.figshare.2972320.v1">Next-generation sequencing and quality control: An introduction</a></li>
+<li><a class="reference external" href="http://www.illumina.com/technology/next-generation-sequencing/paired-end-sequencing_assay.html">Illumina paired-end sequencing</a></li>
+<li><a class="reference external" href="http://www.bioinformatics.babraham.ac.uk/projects/fastqc/">FastQC</a></li>
+<li><a class="reference external" href="http://solexaqa.sourceforge.net">SolexaQA++</a></li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../ngs-taxonomic-investigation/index.html" class="btn btn-neutral float-right" title="4. NGS - Taxonomic investigation" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../ngs-tools/index.html" class="btn btn-neutral" title="2. NGS - Tool installation" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016-2017, Sebastian Schmeier.
+      Last updated on Jan 20, 2017.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'2017.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

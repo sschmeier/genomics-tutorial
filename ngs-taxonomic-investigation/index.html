@@ -1,0 +1,479 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>4. NGS - Taxonomic investigation &mdash; Documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/css/seb.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="Documentation" href="../index.html"/>
+        <link rel="next" title="5. NGS - Genome assembly" href="../ngs-assembly/index.html"/>
+        <link rel="prev" title="3. NGS - Quality control" href="../ngs-qc/index.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Genomics Tutorial
+          
+
+          
+            
+            <img src="../_static/icon.png" class="logo" />
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                2017.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../cli/index.html">1. Command-line interface introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ngs-tools/index.html">2. NGS - Tool installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ngs-qc/index.html">3. NGS - Quality control</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">4. NGS - Taxonomic investigation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#preface">4.1. Preface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#kraken">4.2. Kraken</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#before-we-start">4.3. Before we start</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#installation">4.4. Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#usage">4.5. Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#investigate-taxa">4.6. Investigate taxa</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#kraken-report">4.6.1. kraken-report</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#kraken-translate">4.6.2. kraken-translate</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#visualisation">4.6.3. Visualisation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../ngs-assembly/index.html">5. NGS - Genome assembly</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ngs-annotation/index.html">6. NGS - Genome annotation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ngs-mapping/index.html">7. NGS - Read mapping</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ngs-variantcalling/index.html">8. NGS - Variant calling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../general/quickref.html">9. Quick command reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../general/downloads.html">10. Downloads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../general/references.html">11. References</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">Genomics Tutorial</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+    <li>4. NGS - Taxonomic investigation</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="ngs-taxonomic-investigation">
+<span id="taxonomic-investigation"></span><h1>4. NGS - Taxonomic investigation<a class="headerlink" href="#ngs-taxonomic-investigation" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="preface">
+<h2>4.1. Preface<a class="headerlink" href="#preface" title="Permalink to this headline">¶</a></h2>
+<p>We want to investate if there are sequences of other species in our collection of sequenced DNA pieces.
+We hope that most of them are from our species that we try to study, i.e. the DNA that we have extracted and amplified.
+However, lets investigate if we find sequences from other species in our sequence set.
+Maybe they got into the sample through contamination.</p>
+<p>We will use the tool <a class="reference external" href="https://ccb.jhu.edu/software/kraken/">Kraken</a> to assign taxonomic classifications to our sequence reads.
+Let us see if we can id some sequences from other species.</p>
+</div>
+<div class="section" id="kraken">
+<h2>4.2. Kraken<a class="headerlink" href="#kraken" title="Permalink to this headline">¶</a></h2>
+<p>We will be using a tool called <a class="reference external" href="https://ccb.jhu.edu/software/kraken/">Kraken</a> <a class="reference internal" href="../general/references.html#wood2014" id="id1">[WOOD2014]</a>.
+This tool uses k-mers to assign a taxonomic labels in form of <a class="reference external" href="https://www.ncbi.nlm.nih.gov/taxonomy">NCBI Taxonomy</a> to the sequence (if possible).
+The taxonomic label is assigned based on similar k-mer content of the sequence in question to the k-mer content of reference genome sequence.
+The result is a classification of the sequence in question to the most likely taxonomic label.
+If the k-mer content is not similar to any genomic sequence in the database used, it will not assign any taxonomic label.</p>
+</div>
+<div class="section" id="before-we-start">
+<h2>4.3. Before we start<a class="headerlink" href="#before-we-start" title="Permalink to this headline">¶</a></h2>
+<p>Lets see how our directory structure looks so far:</p>
+<div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~/</span><span class="n">analysis</span>
+<span class="n">ls</span> <span class="o">-</span><span class="mi">1</span><span class="n">F</span>
+</pre></div>
+</div>
+<div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="n">data</span><span class="o">/</span>
+<span class="n">SolexaQA</span><span class="o">/</span>
+<span class="n">SolexaQA</span><span class="o">++</span>
+<span class="n">trimmed</span><span class="o">/</span>
+<span class="n">trimmed</span><span class="o">-</span><span class="n">fastqc</span><span class="o">/</span>
+<span class="n">trimmed</span><span class="o">-</span><span class="n">solexaqa</span><span class="o">/</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="installation">
+<h2>4.4. Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
+<p>Use conda in the same fashion as before to install <a class="reference external" href="https://ccb.jhu.edu/software/kraken/">Kraken</a>:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="nb">source</span> activate ngs
+conda install kraken-all
+</pre></div>
+</div>
+<p>Now we create a directory where we are going to do the analysis and we will change into that directory too.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="c1"># make sure you are in your analysis root folder</span>
+<span class="nb">cd</span> ~/analysis
+
+<span class="c1"># create dir</span>
+mkdir kraken
+<span class="nb">cd</span> kraken
+</pre></div>
+</div>
+<p>Now we need to create or download a <a class="reference external" href="https://ccb.jhu.edu/software/kraken/">Kraken</a> database that can be used to assign the taxonomic labels to sequences.
+We opt for downloading the pre-build &quot;minikraken&quot; database from the <a class="reference external" href="https://ccb.jhu.edu/software/kraken/">Kraken</a> website:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>curl -O https://ccb.jhu.edu/software/kraken/dl/minikraken.tgz
+
+<span class="c1"># alternatively we can use wget</span>
+wget https://ccb.jhu.edu/software/kraken/dl/minikraken.tgz
+
+<span class="c1"># once the download is finished, we need to extract the archive content</span>
+<span class="c1"># it will create a directory: &quot;minikraken_20141208/&quot;</span>
+tar -xvzf minikraken.tgz
+</pre></div>
+</div>
+<div class="admonition attention">
+<p class="first admonition-title">Attention</p>
+<p class="last">Should the download fail. Please find links to alternative locations on the
+<a class="reference internal" href="../general/downloads.html#downloads"><span class="std std-ref">Downloads</span></a> page.</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The &quot;minikraken&quot; database was created from bacteria, viral and archaea sequences.
+What are the implications for us when we are trying to classify our sequences?</p>
+</div>
+</div>
+<div class="section" id="usage">
+<h2>4.5. Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h2>
+<p>Now that we have installed <a class="reference external" href="https://ccb.jhu.edu/software/kraken/">Kraken</a> and downloaded and extracted the minikraken database, we can attempt to investigate the sequences we got back from the sequencing provider for other species as the one it should contain.
+We call the <a class="reference external" href="https://ccb.jhu.edu/software/kraken/">Kraken</a> tool and specify the database and fasta-file with the sequences it should use. The general command structure looks like this:</p>
+<p class="sebcode">kraken --only-classified-output --db minikraken_20141208 example.fa &gt; example.kraken</p>
+<p>However, we may have compressed fastq-files, so we need to use two additional option switches, <code class="docutils literal"><span class="pre">--gzip-compressed</span></code> which allows us to input compressed files and <code class="docutils literal"><span class="pre">--fastq-input</span></code> which tells <a class="reference external" href="https://ccb.jhu.edu/software/kraken/">Kraken</a> that it is dealing with fastq-formated files.
+Here, we are investigating one of the Paired-end read files of the ancestor.</p>
+<p class="sebcode">kraken --only-classified-output --db minikraken_20141208 --gzip-compressed --fastq-input ../data/ancestor-R1.fastq.trimmed.gz &gt; ancestor-R1.kraken</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">We are for now only interested in the portion of sequeuces that can be classified, that is why we supplied the option <code class="docutils literal"><span class="pre">--only-classified-output</span></code> to the <a class="reference external" href="https://ccb.jhu.edu/software/kraken/">Kraken</a> command.</p>
+</div>
+<p>This classification may take a while, depending on how many sequences we are going to classify.
+The resulting content of the file ancestor-R1.kraken looks similar to the following example:</p>
+<pre class="literal-block">
+C       M02810:197:000000000-AV55U:1:1101:10078:18384/1 2157    151     0:99 2157:1 0:1 2157:1 0:19
+C       M02810:197:000000000-AV55U:1:1101:10573:27304/1 364745  150     0:43 364745:1 0:76
+C       M02810:197:000000000-AV55U:1:1101:10852:5722/1  37665   151     0:33 37665:1 0:87
+C       M02810:197:000000000-AV55U:1:1101:11429:10330/1 374840  101     0:17 374840:1 0:4 374840:1 0:2 374840:1 0:45
+C       M02810:197:000000000-AV55U:1:1101:11705:24355/1 2157    151     0:1 2157:1 0:119
+
+</pre>
+<p>Each sequence classified by <a class="reference external" href="https://ccb.jhu.edu/software/kraken/">Kraken</a> results in a single line of output.
+Output lines contain five tab-delimited fields; from left to right, they are:</p>
+<ol class="arabic simple">
+<li><code class="docutils literal"><span class="pre">C/U</span></code>: one letter code indicating that the sequence was either classified or unclassified.</li>
+<li>The sequence ID, obtained from the FASTA/FASTQ header.</li>
+<li>The taxonomy ID Kraken used to label the sequence; this is <strong>0</strong> if the sequence
+is unclassified and otherwise should be the <a class="reference external" href="https://www.ncbi.nlm.nih.gov/taxonomy">NCBI Taxonomy</a> identifier.</li>
+<li>The length of the sequence in bp.</li>
+<li>A space-delimited list indicating the lowest common ancestor (in the
+taxonomic tree) mapping of each k-mer in the sequence.
+For example, <code class="docutils literal"><span class="pre">562:13</span> <span class="pre">561:4</span> <span class="pre">A:31</span> <span class="pre">0:1</span> <span class="pre">562:3</span></code> would indicate that:<ul>
+<li>the first 13 k-mers mapped to taxonomy ID #562</li>
+<li>the next 4 k-mers mapped to taxonomy ID #561</li>
+<li>the next 31 k-mers contained an ambiguous nucleotide</li>
+<li>the next k-mer was not in the database</li>
+<li>the last 3 k-mers mapped to taxonomy ID #562</li>
+</ul>
+</li>
+</ol>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The <a class="reference external" href="https://ccb.jhu.edu/software/kraken/">Kraken</a> manual can be accessed <a class="reference external" href="http://ccb.jhu.edu/software/kraken/MANUAL.html">here</a>.</p>
+</div>
+</div>
+<div class="section" id="investigate-taxa">
+<h2>4.6. Investigate taxa<a class="headerlink" href="#investigate-taxa" title="Permalink to this headline">¶</a></h2>
+<p>We can use the webpage <a class="reference external" href="https://www.ncbi.nlm.nih.gov/Taxonomy/TaxIdentifier/tax_identifier.cgi">NCBI TaxIdentifier</a> to quickly get the names to the taxonomy identifier.
+However, this is impractical as we are dealing potentially with many sequences.
+<a class="reference external" href="https://ccb.jhu.edu/software/kraken/">Kraken</a> has some scripts that help us understand our results better.</p>
+<div class="section" id="kraken-report">
+<h3>4.6.1. kraken-report<a class="headerlink" href="#kraken-report" title="Permalink to this headline">¶</a></h3>
+<p>First, we generate a sample-wide report of all taxa found.
+This can be achieved with the tool <code class="docutils literal"><span class="pre">kranken-report</span></code>.</p>
+<p class="sebcode">kraken-report --db minikraken_20141208 ancestor-R1.kraken &gt; ancestor-R1.kraken.report</p>
+<p>The first few lines of and example report are shown below.</p>
+<pre class="literal-block">
+  0.00  0       0       U       0       unclassified
+100.00  2665    47      -       1       root
+ 54.56  1454    0       -       131567    cellular organisms
+ 38.50  1026    1023    D       2157        Archaea
+  0.08  2       0       P       651137        Thaumarchaeota
+  0.08  2       0       -       651142          unclassified Thaumarchaeota
+  0.08  2       0       G       1048752           Candidatus Caldiarchaeum
+  0.08  2       2       S       311458              Candidatus Caldiarchaeum subterraneum
+  0.04  1       0       P       28890         Euryarchaeota
+  0.04  1       0       C       183967          Thermoplasmata
+
+</pre>
+<p>The output of kraken-report is tab-delimited, with one line per taxon.
+The fields of the output, from left-to-right, are as follows:</p>
+<ol class="arabic simple">
+<li><strong>Percentage</strong> of reads covered by the clade rooted at this taxon</li>
+<li><strong>Number of reads</strong> covered by the clade rooted at this taxon</li>
+<li><strong>Number of reads</strong> assigned directly to this taxon</li>
+<li>A rank code, indicating <strong>(U)nclassified, (D)omain, (K)ingdom, (P)hylum, (C)lass, (O)rder, (F)amily, (G)enus, or (S)pecies</strong>. All other ranks are simply <strong>&quot;-&quot;</strong>.</li>
+<li><a class="reference external" href="https://www.ncbi.nlm.nih.gov/taxonomy">NCBI Taxonomy</a> ID</li>
+<li>indented scientific name</li>
+</ol>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">If you want to compare the taxa content of different samples to another, one can create a report whose structure is always the same for all samples, disregarding which taxa are found (obviously the percentages and numbers will be different).</p>
+</div>
+<p>We can cerate such a report using the option <code class="docutils literal"><span class="pre">--show-zeros</span></code> which will print out all taxa (instead of only those found).
+We then sort the taxa according to taxa-ids (column 5), e.g. <code class="docutils literal"><span class="pre">sort</span> <span class="pre">-n</span> <span class="pre">-k5</span></code>.</p>
+<p class="sebcode">kraken-report <em>--show-zeros</em> --db minikraken_20141208 ancestor-R1.kraken | <strong>sort -n -k5</strong> &gt; ancestor-R1.kraken.report.sorted</p>
+<p>The report is not ordered according to taxa ids and contains all taxa in the database, even if they have not been found in our sample and are thus zero.
+The columns are the same as in the former report, however, we have more rows and they are now differently sorted, according to the <a class="reference external" href="https://www.ncbi.nlm.nih.gov/taxonomy">NCBI Taxonomy</a> id.</p>
+</div>
+<div class="section" id="kraken-translate">
+<h3>4.6.2. kraken-translate<a class="headerlink" href="#kraken-translate" title="Permalink to this headline">¶</a></h3>
+<p>For every sequence in our sample and its predicted taxonomic identifier,
+we can attach the taxonomic names with <code class="docutils literal"><span class="pre">kraken-translate</span></code>.</p>
+<p class="sebcode">kraken-translate --mpa-format --db minikraken_20141208 ancestor-R1.kraken &gt; ancestor-R1.kraken.names</p>
+<p>An example output looks like this:</p>
+<pre class="literal-block">
+M02810:197:000000000-AV55U:1:1101:10078:18384/1 d__Archaea
+M02810:197:000000000-AV55U:1:1101:10573:27304/1 d__Viruses|f__Baculoviridae|g__Betabaculovirus|s__Choristoneura_occidentalis_granulovirus
+M02810:197:000000000-AV55U:1:1101:10852:5722/1  d__Viruses|f__Phycodnaviridae|g__Phaeovirus|s__Ectocarpus_siliculosus_virus_1
+M02810:197:000000000-AV55U:1:1101:11429:10330/1 d__Viruses|f__Microviridae|g__Microvirus|s__Enterobacteria_phage_phiX174_sensu_lato
+M02810:197:000000000-AV55U:1:1101:11705:24355/1 d__Archaea
+M02810:197:000000000-AV55U:1:1101:12206:13333/1 d__Viruses|o__Herpesvirales|f__Alloherpesviridae|g__Cyprinivirus|s__Cyprinid_herpesvirus_3
+M02810:197:000000000-AV55U:1:1101:12336:11626/1 d__Viruses|f__Baculoviridae|g__Betabaculovirus|s__Choristoneura_occidentalis_granulovirus
+M02810:197:000000000-AV55U:1:1101:12707:5809/1  d__Archaea
+M02810:197:000000000-AV55U:1:1101:12741:21685/1 d__Viruses|f__Baculoviridae|g__Betabaculovirus|s__Choristoneura_occidentalis_granulovirus
+M02810:197:000000000-AV55U:1:1101:12767:27821/1 d__Archaea
+
+</pre>
+<p>Here, each sequence that got classified is present in one row.
+The nomenclature for the names is preceded with an letter according to its rank, e.g. <strong>(d)omain, (k)ingdom, (p)hylum, (c)lass, (o)rder, (f)amily (g)enus, or (s)pecies</strong>.
+Taxonomy assignments above the superkingdom (<strong>d</strong>) rank are represented as just <strong>root</strong>.</p>
+</div>
+<div class="section" id="visualisation">
+<h3>4.6.3. Visualisation<a class="headerlink" href="#visualisation" title="Permalink to this headline">¶</a></h3>
+<p>We use the <a class="reference external" href="https://github.com/marbl/Krona/wiki">Krona</a> tools to create a nice interactive visualisation of the taxa content of our sample <a class="reference internal" href="../general/references.html#ondov2011" id="id2">[ONDOV2011]</a>.
+<a class="reference internal" href="#fig-krona"><span class="std std-numref">Fig. 4.1</span></a> shows an example (albeit an artificial one) snapshot of the visualisation <a class="reference external" href="https://github.com/marbl/Krona/wiki">Krona</a> provides.
+<a class="reference internal" href="#fig-krona"><span class="std std-numref">Fig. 4.1</span></a> is a snapshot of the <a class="reference external" href="../_static/taxonomy.krona.html">interactive web-page</a> similar to the one we try to create.</p>
+<div class="figure" id="id3">
+<span id="fig-krona"></span><img alt="../_images/krona.png" src="../_images/krona.png" />
+<p class="caption"><span class="caption-number">Fig. 4.1 </span><span class="caption-text">Example of an Krona output webpage.</span></p>
+</div>
+<p>Install <a class="reference external" href="https://github.com/marbl/Krona/wiki">Krona</a> with:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="nb">source</span> activate ngs
+conda install krona
+</pre></div>
+</div>
+<p>First some house-keeping to make the <a class="reference external" href="https://github.com/marbl/Krona/wiki">Krona</a> installation work.
+Do not worry to much about what is happening here.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="c1"># we delete a symbolic link that is not correct</span>
+rm -rf ~/miniconda3/envs/ngs/opt/krona/taxonomy
+
+<span class="c1"># we create a directory in our home where the krona database will live</span>
+mkdir -p ~/krona/taxonomy
+
+<span class="c1"># now we make a symbolic link to that directory</span>
+ln -s ~/krona/taxonomy ~/miniconda3/envs/ngs/opt/krona/taxonomy
+
+<span class="c1"># now we copy some scripts around, this is neccaesayry as krona installation fails to do this</span>
+cp -r ~/miniconda3/envs/ngs/opt/krona/scripts ~/miniconda3/envs/py3-kraken/bin/
+</pre></div>
+</div>
+<p>We need to build a taxonomy database for <a class="reference external" href="https://github.com/marbl/Krona/wiki">Krona</a>.
+However, if this fails we will skip this step and just download a pre-build one.
+Lets first try to build one.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>ktUpdateTaxonomy.sh ~/krona/taxonomy
+</pre></div>
+</div>
+<p>Now, if this fails, we download a pre-build taxonomy database for krona.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="c1"># Download pre-build database</span>
+curl -O http://compbio.massey.ac.nz/data/taxonomy.tab.gz
+
+<span class="c1"># we unzip the file</span>
+gzip -d taxonomy.tab.gz
+
+<span class="c1"># we move the unzipped file to our taxonomy directory we specified in the step before.</span>
+mv taxonomy.tab ~/krona/taxonomy
+</pre></div>
+</div>
+<div class="admonition attention">
+<p class="first admonition-title">Attention</p>
+<p class="last">Should this also fail we can download a pre-build database on the <a class="reference internal" href="../general/downloads.html#downloads"><span class="std std-ref">Downloads</span></a> page via a browser.</p>
+</div>
+<p>Now we use the tool <code class="docutils literal"><span class="pre">ktImportTaxonomy</span></code> from the <a class="reference external" href="https://github.com/marbl/Krona/wiki">Krona</a> tools to crate the html web-page:</p>
+<p class="sebcode">cat ancestor-R1.kraken | cut -f 2,3 &gt; ancestor-R1.kraken.krona
+ktImportTaxonomy ancestor-R1.kraken.krona
+firefox taxonomy.krona.html</p>
+<p>What happens here is that we extract the second and third column from the <a class="reference external" href="https://ccb.jhu.edu/software/kraken/">Kraken</a> results.
+Afterwards, we input these to the <a class="reference external" href="https://github.com/marbl/Krona/wiki">Krona</a> script, and open the resulting web-page in a bowser.
+Done!</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../ngs-assembly/index.html" class="btn btn-neutral float-right" title="5. NGS - Genome assembly" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../ngs-qc/index.html" class="btn btn-neutral" title="3. NGS - Quality control" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016-2017, Sebastian Schmeier.
+      Last updated on Jan 20, 2017.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'2017.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
