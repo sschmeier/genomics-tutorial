@@ -10,7 +10,9 @@ References
 .. [COX2010] Cox MP, Peterson DA and Biggs PJ. SolexaQA: At-a-glance quality assessment of Illumina second-generation sequencing data. `BMC Bioinformatics, 2010, 11:485. DOI: 10.1186/1471-2105-11-485 <http://www.biomedcentral.com/1471-2105/11/485>`__
 
 .. [GUREVICH2013] Gurevich A, Saveliev V, Vyahhi N and Tesler G. QUAST: quality assessment tool for genome assemblies. `Bioinformatics 2013, 29(8), 1072-1075 <http://bioinformatics.oxfordjournals.org/content/29/8/1072>`__
-             
+
+.. [HUNT2014] Hunt M, Newbold C, Berriman M, Otto TD. A comprehensive evaluation of assembly scaffolding tools. `Genome Biol. 2014 Mar 3;15(3):R42. <http://genomebiology.biomedcentral.com/articles/10.1186/gb-2014-15-3-r42>`__ doi: 10.1186/gb-2014-15-3-r42.
+                  
 .. [MUKHERJEE2015] Mukherjee S, Huntemann M, Ivanova N, Kyrpides NC and Pati A. Large-scale contamination of microbial isolate genomes by Illumina PhiX control. `Standards in Genomic Sciences, 2015, 10:18. DOI: 10.1186/1944-3277-10-18 <https://standardsingenomics.biomedcentral.com/articles/10.1186/1944-3277-10-18>`__
 
 .. [NAGARAJAN2013] Nagarajan N, Pop M. Sequence assembly demystified. `Nat Rev Genet. 2013 Mar;14(3):157-67 <http://dx.doi.org/10.1038/nrg3367>`__
