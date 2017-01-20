@@ -6,17 +6,25 @@
 Genomics Tutorial
 =================
 
-These are the web-pages for the course 203341. You will learn how to analyse next-generation sequencing (NGS) data. The data you will be using is actual research data. The final aim is to identify the genome variations in evolved lines of wild yeast that can explain the observed biological phenotypes.
+This is an introductory tutorial for learning genomics mostly on the command-line.
+You will learn how to analyse next-generation sequencing (NGS) data.
+The data you will be using is actual research data.
+The final aim is to identify the genome variations in evolved lines of wild yeast that can explain the observed biological phenotypes.
 
 To this end, you will learn to:
 
 - Make use of a UNIX-based computer environment
+- Check the data quality of an NGS experiment
 - Create a genome assembly of the ancestor based on NGS data
 - Annotate a newly derived genome
-- Map NGS reads of evolved lines to the ancestor genome
+- Map NGS reads of evolved lines to the ancestral reference genome
 - Call genome variations/mutations in the evolved lines
 - Identify the genes responsible for the observed evolved phenotypes
 
+
+A printable PDF version of this tutorial can be downloaded `here <_static/Genomics.pdf>`__.
+
+  
   
 Contents
 --------
