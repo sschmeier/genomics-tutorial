@@ -1,0 +1,10 @@
+  0.00	0	0	U	0	unclassified
+100.00	2665	47	-	1	root
+ 54.56	1454	0	-	131567	  cellular organisms
+ 38.50	1026	1023	D	2157	    Archaea
+  0.08	2	0	P	651137	      Thaumarchaeota
+  0.08	2	0	-	651142	        unclassified Thaumarchaeota
+  0.08	2	0	G	1048752	          Candidatus Caldiarchaeum
+  0.08	2	2	S	311458	            Candidatus Caldiarchaeum subterraneum
+  0.04	1	0	P	28890	      Euryarchaeota
+  0.04	1	0	C	183967	        Thermoplasmata

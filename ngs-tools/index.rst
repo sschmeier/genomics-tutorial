@@ -1,40 +1,57 @@
+.. _tool-installation:
+
 NGS - Tool installation
 =======================
 
 Install the conda package manager
 ---------------------------------
 
-We will use the package/tool managing system `conda <http://conda.pydata.org/miniconda.html>`__ to install some programs that we will use during the course.
-It is not installed by default, thus we need to install it first to be able to use it.
+We will use the package/tool managing system |conda| to install some programs
+that we will use during the course. It is not installed by default, thus we need
+to install it first to be able to use it. 
 
-.. code:: bash
+.. code-block:: bash
 
     # download latest conda installer
     curl -O https://repo.continuum.io/miniconda/Miniconda2-latest-Linux-x86_64.sh
+
     # run the installer
-    bash Miniconda3-latest-MacOSX-x86_64.sh
-    # delete the installer after successful run
-    rm Miniconda3-latest-MacOSX-x86_64.sh
-    # copy config file to home dir
-    cp data/.condarc ~
-
-.. note:: If the download should not work for some reason, I will bring a USB drive and/or provide you with an alternative url for download.
+    bash Miniconda2-latest-MacOSX-x86_64.sh
     
-Close terminal, **re-open** new terminal.
+    # delete the installer after successful run
+    rm Miniconda2-latest-MacOSX-x86_64.sh
 
-.. code:: bash
+    # Install some conda channels
+    # A channel is where conda looks for packages
+    conda config --add channels conda-forge
+    conda config --add channels defaults
+    conda config --add channels r
+    conda config --add channels bioconda
+
+    
+Close shell/terminal, **re-open** new shell/terminal.
+
+.. code-block:: bash
 
     conda update conda
+
+    
+.. ATTENTION::
+   Should the conda installer download fail. Please find links to alternative locations on the
+   :doc:`../general/downloads` page.
+   
 
 Create environment
 ------------------
 
-We create a `conda <http://conda.pydata.org/miniconda.html>`__ environment for the tools.
-This is useful to work **reproducible** as we can easily re-create the tool-set with the same version numbers later on.
+We create a |conda| environment for some tools This is useful to work
+**reproducible** as we can easily re-create the tool-set with the same version
+numbers later on.
 
-.. code:: bash
 
-    conda create -n ngs fastqc
+.. code-block:: bash
+
+    conda create -n ngs python=2
     # activate the environment
     source activate ngs
 
@@ -42,26 +59,22 @@ This is useful to work **reproducible** as we can easily re-create the tool-set 
 Install software
 ----------------
 
-.. code:: bash
-          
-    # install more tools into the environment
-    conda install spades     # assembler
-    conda install quast      # QA assemblies
-    conda install bwa        # mapper
-    conda install samtools   # Working with mapping files
-    conda install bamtools   # Working with mapping files
-    conda install freebayes  # SNP caller
-    conda install bcftools   # working with SNP files
-    conda install tabix
-    conda install vcflib
-    conda install rtg-tools
-    conda install igvtools   # for visualisation
+To install software into the activated environment, one uses the command ``conda install``.
 
+.. code-block:: bash
+         
+    # install more tools into the environment
+    conda install package
+
+                
 General conda commands
 ----------------------
 
-.. code:: bash
+.. code-block:: bash
 
+    # to search for packages
+    conda search [package]
+    
     # To update all packages
     conda update --all --yes
 
