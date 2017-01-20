@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# 203341 documentation build configuration file, created by
+# Genomics Tutorial documentation build configuration file, created by
 # sphinx-quickstart on Sat Nov 19 11:28:35 2016.
 #
 # This file is execfile()d with the current directory set to its
@@ -58,7 +58,7 @@ source_suffix = ['.rst']
 master_doc = 'index'
 
 # General information about the project.
-project = u'203341'
+project = u'Genomics Tutorial'
 copyright = u'2016-2017, Sebastian Schmeier'
 author = u'Sebastian Schmeier'
 
@@ -261,7 +261,7 @@ html_show_copyright = True
 # html_search_scorer = 'scorer.js'
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = '203341doc'
+htmlhelp_basename = 'Genomicsdoc'
 
 # -- Options for LaTeX output ---------------------------------------------
 
@@ -287,7 +287,7 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-    (master_doc, '203341.tex', u'203341 Documentation',
+    (master_doc, 'Genomics.tex', u'Genomics Tutorial Documentation',
      u'Sebastian Schmeier', 'manual'),
 ]
 
@@ -329,7 +329,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    (master_doc, '203341', u'203341 Documentation',
+    (master_doc, 'Genomics Tutorial', u'Genomics Tutorial Documentation',
      [author], 1)
 ]
 
@@ -344,8 +344,8 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-    (master_doc, '203341', u'203341 Documentation',
-     author, '203341', '203341 course content.',
+    (master_doc, 'Genomics', u'Genomics Tutorial Documentation',
+     author, 'Genomics Tutorial', 'Genomics Tutorial Content.',
      'teaching'),
 ]
 
@@ -386,6 +386,8 @@ rst_epilog = """
 .. |fastqc| replace:: `FastQC <http://www.bioinformatics.babraham.ac.uk/projects/fastqc/>`__
 .. |sickle| replace:: `Sickle <https://github.com/najoshi/sickle>`__
 .. |quast| replace:: `Quast <http://quast.bioinf.spbau.ru/>`__
+.. |freebayes| replace:: `freebayes <https://github.com/ekg/freebayes>`__
+.. |samtools| replace:: `SAMtools <http://samtools.sourceforge.net/>`__
 """
 
 # prolog will be added to the beginning of each file

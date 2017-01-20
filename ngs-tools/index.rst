@@ -66,6 +66,12 @@ To install software into the activated environment, one uses the command ``conda
     # install more tools into the environment
     conda install package
 
+
+.. note:: To tell if you are in the correct conda environment, look at the command-prompt.
+          Do you see the name of the environment in round brackets at the very beginning of the prompt, e.g. (ngs)?
+          If not, activate the ``ngs`` environment with ``source activate ngs`` before installing the tools.
+
+    
                 
 General conda commands
 ----------------------

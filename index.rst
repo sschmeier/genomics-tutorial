@@ -1,10 +1,10 @@
-.. 203341 documentation master file, created by
+.. Genomics Tutorial documentation master file, created by
    sphinx-quickstart on Sat Nov 19 11:54:02 2016.
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-203341 Genetics and Evolution
-=============================
+Genomics Tutorial
+=================
 
 These are the web-pages for the course 203341. You will learn how to analyse next-generation sequencing (NGS) data. The data you will be using is actual research data. The final aim is to identify the genome variations in evolved lines of wild yeast that can explain the observed biological phenotypes.
 

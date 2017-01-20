@@ -1,108 +1,151 @@
 NGS - Variant calling
 =====================
 
-Lecture: `SNPs - GWAS - eQTLs introduction <http://dx.doi.org/10.6084/m9.figshare.1515026>`__
+Preface
+-------
+
+In this section we will use our genome assembly based on the ancestor and call
+genetic variants in the evolved line.
+
+There is an accompanying lecture for this tutorial:
+
+- `SNPs - GWAS - eQTLs introduction <http://dx.doi.org/10.6084/m9.figshare.1515026>`__
+
+.. NOTE::
+
+   You will encounter some **To-do** sections at times. Write the solutions and answers into a text-file.   
+
+   
+Before we start
+---------------
 
 Lets see how our directory structure looks so far:
 
 .. code:: bash
 
-          $ ls -1F
-          README.txt
-          data/
-          data-clean/
-          genome/
-          mapping/
-
-Tools we are going to use in this section and how to intall them if you not have done it yet.
-Make sure you are in the correct conda environment.
-
-.. note:: To tell if you are in the correct conda environment, look at the command-prompt.
-          Do you see the name of the environment in round brackets at the very beginning of the prompt, e.g. (ngs)?
-          If not, activate the ``ngs`` environment with ``source activate ngs`` before installing the tools.
+          cd ~/analysis
+          ls -1F
 
 .. code:: bash
 
-          # Install these tools into the conda environment
-          $ conda install samtools
-          $ conda install bamtools
-          $ conda install bcftools
-          $ conda install freebayes
-          $ conda install rtg-tools
-          $ conda install tabix
+          annotation/
+          assembly/
+          data/
+          kraken/
+          mappings/
+          SolexaQA/
+          SolexaQA++
+          trimmed/
+          trimmed-fastqc/
+          trimmed-solexaqa/
+
+  
+Learning outcomes
+-----------------
+
+After studying this tutorial you should be able to:
+
+#. Use tools to call variants based on a reference genome.
+#. Identify variants of interests.
+#. Understand how the variants might affect the observed biology.
+
+   
+Installing necessary software
+-----------------------------
+  
+Tools we are going to use in this section and how to intall them if you not have done it yet.
+
+.. code:: bash
+
+          # activate the env
+          source activate ngs
           
+          # Install these tools into the conda environment
+          conda install samtools
+          conda install bamtools
+          conda install bcftools
+          conda install freebayes
+          conda install rtg-tools
+          conda install tabix
+
           
 Preprocessing
 -------------
 
 We first need to make an index of our reference genome as this is required by the SNP caller.
-Given a contigs file in fasta-format, e.g. ``contigs.fa`` use ``samtools`` to do this:
+Given a scaffold/contig file in fasta-format, e.g. ``scaffolds.fasta`` which is
+located ina  directory ``assembly/spades_final``, use |samtools| to do this:
 
 .. code:: bash
           
-          $ samtools faidx genome/contigs.fasta
+          samtools faidx assembly/spades_final/scaffolds.fasta
    
 
 Furthermore we need to pre-process our mapping files a bit further and creaee a bam-index file (``.bai``) for each o the bam-files, e.g.:
 
+.. rst-class:: sebcode
+               
+          bamtools index -in mappings/|fileevol|.bam
+
+
+Lets also create a new directory for the variants:
+
 .. code:: bash
-          
-          $ bamtools index -in mapping/sample1.bam
 
+          mkdir variants
 
-Let also create a new directory for the variants:
-
-.. code:: bash
-
-          $ mkdir variants
-
-
-          
-samtools mpileup
+Calling variants
 ----------------
+          
+|samtools| mpileup
+~~~~~~~~~~~~~~~~~~
 
-We use the sorted bam-files that we produced in the mapping step before.
+We use the sorted bam-file that we produced in the mapping step before.
 
-.. code:: bash
+.. rst-class:: sebcode
 
           # We first pile up all the reads
-          $ samtools mpileup -g -f genome/contigs.fasta mapping/sample1.sorted.bam > variants/sample1-mpileup.bcf
-
-          $ Now we call the variants
-          bcftools view -c -v sample1-mpileup.bcf > sample1-mpileup.vcf
-
-          
-Freebayes
----------
-
-      
-
-Now we can do some variant calling.
-Given a reference genome scaffold file in fasta-format, e.g. ``contigs.fasta`` and the index in ``.fai`` format and a mapping file (e.g. ``sample1.sorted.bam``) and mapping index, we can do call ``freebayes`` like so:
-
-.. code:: bash
-
-          # Now we call them and pipe the results into a new file
-          $ freebayes -f genome/contigs.fasta mapping/sample1.sorted.bam > variants/sample1-freebayes.vcf
+          samtools mpileup -g -f assembly/spades_final/scaffolds.fasta mappings/|fileevol|.sorted.bam > variants/|fileevol|.mpileup.bcf
+          # Now we call the variants
+          bcftools view -c -v variants/|fileevol|.mpileup.bcf > variants/|fileevol|.mpileup.vcf
 
           
-This will result in a variants file ``sample1.vcf``.
+|Freebayes|
+~~~~~~~~~~~
 
+Now we can do some variant calling with another tool called |freebayes|.
+Given a reference genome scaffold file in fasta-format, e.g. ``scaffolds.fasta`` and the index in ``.fai`` format and a mapping file (e.g. "|fileevol|.sorted.bam") and a mapping index, we can call |freebayes| like so:
+
+.. rst-class:: sebcode
+
+          # Now we call variants and pipe the results into a new file
+          freebayes -f assembly/spades_final/scaffolds.fasta mappings/|fileevol|.sorted.bam > variants/|fileevol|.freebayes.vcf
+
+          
+This will result in a variants file "|fileevol|.freebayes.vcf".
+
+
+Post-processing
+---------------
 
 Understanding the output files (.vcf)
--------------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Lets look at a vcf-file:
 
-.. code:: bash
+.. rst-class:: sebcode
+
 
           # first 10 lines, which are part of the header
-          $ cat variants/sample1-freebayes.vcf | head
+          cat variants/|fileevol|.freebayes.vcf | head
+
+          
+.. code:: bash
           
           ##fileformat=VCFv4.1
           ##fileDate=20161122
           ##source=freeBayes v1.0.2-29-g41c1313
-          ##reference=genome/contigs.fasta
+          ##reference=genome/scaffolds.fasta
           ##contig=<ID=NODE_1_length_1394677_cov_15.3771,length=1394677>
           ##contig=<ID=NODE_2_length_1051867_cov_15.4779,length=1051867>
           ##contig=<ID=NODE_3_length_950567_cov_15.4139,length=950567>
@@ -112,10 +155,13 @@ Lets look at a vcf-file:
 
 Lets look at the variants:
 
-.. code:: bash
-
+.. rst-class:: sebcode
+               
           # remove header lines and look at top 4 entires
-          $ cat variants/sample1-freebayes.vcf | egrep -v '##' | head -4
+          cat variants/|fileevol|.freebayes.vcf | egrep -v '##' | head -4
+
+          
+.. code:: bash
           
           #CHROM  POS     ID      REF     ALT     QUAL    FILTER  INFO    FORMAT  unknown
           NODE_1_length_1394677_cov_15.3771       137621  .       T       C       76.5197 .       AB=0.318182;ABP=9.32731;AC=1;AF=0.5;AN=2;AO=7;CIGAR=1X;DP=22;DPB=22;DPRA=0;EPP=18.2106;EPPR=4.31318;GTI=0;LEN=1;MEANALT=1;MQM=56.1429;MQMR=56.4;NS=1;NUMALT=1;ODDS=17.6193;PAIRED=1;PAIREDR=1;PAO=0;PQA=0;PQR=0;PRO=0;QA=268;QR=540;RO=15;RPL=0;RPP=18.2106;RPPR=6.62942;RPR=7;RUN=1;SAF=7;SAP=18.2106;SAR=0;SRF=12;SRP=14.7363;SRR=3;TYPE=snp       GT:DP:DPR:RO:QR:AO:QA:GL    0/1:22:22,7:15:540:7:268:-17.3644,0,-42.2185
@@ -124,24 +170,30 @@ Lets look at the variants:
 
 
 Statistics and filter
----------------------
+~~~~~~~~~~~~~~~~~~~~~
 
 Now we can use it to do some statistics and filter our variant calls.
           
-.. code:: bash
-          
+.. rst-class:: sebcode
+               
           # get statistics
-          $ rtg vcfstats variants/sample-freebayes.vcf
+          rtg vcfstats variants/|fileevol|.freebayes.vcf
+
+          
+.. rst-class:: sebcode
           
           # only keep entries with qual of min 30
-          $ rtg vcffilter -q 30 -i variants/sample-freebayes.vcf -o variants/sample-freebayes-q30.vcf
+          rtg vcffilter -q 30 -i variants/|fileevol|.freebayes.vcf -o variants/|fileevol|.freebayes-q30.vcf
 
+          
+.. rst-class:: sebcode
+          
           # look at stats for filtered
-          $ rtg vcfstats variants/sample-freebayes-q30.vcf.gz
+          rtg vcfstats variants/|fileevol|.freebayes-q30.vcf
           
 
 Finding variants of interest (VAI)
-----------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Things to consider when looking for VAI:
 
@@ -161,4 +213,4 @@ Things to consider when looking for VAI:
  
           
 Overlap variants with genes
----------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
