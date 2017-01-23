@@ -128,6 +128,10 @@ Install a tool called `fastq-mcf <https://github.com/ExpressionAnalysis/ea-utils
    conda install ea-utils
 
 
+.. todo::
+
+   Write this section.
+   
 
 Quality assessment of sequencing reads (|solexaqa|)
 ---------------------------------------------------
