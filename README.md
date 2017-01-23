@@ -104,7 +104,7 @@ image: alpine
 
 pages:
   script:
-  - apk --no-cache add py-pip python-dev
+  - apk --no-cache add py2-pip python-dev
   - pip install sphinx
   - pip install sphinx_rtd_theme
   - apk --no-cache add make
