@@ -1,0 +1,5 @@
+# change into the base directory of our analysis
+cd ~/analysis
+
+# run bwa mem
+bwa mem assembly/spades-final/scaffolds.fasta trimmed/evolved-6-R1.fastq.trimmed.gz trimmed/evolved-6-R2.fastq.trimmed.gz > mappings/evolved-6.sam 
