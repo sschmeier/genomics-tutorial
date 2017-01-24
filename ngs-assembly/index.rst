@@ -1,3 +1,5 @@
+.. _ngs-assembly:
+
 NGS - Genome assembly
 =====================
 
@@ -55,7 +57,7 @@ We want to create a genome assembly for our ancestor.
 We are going to use the quality trimmed forward and backward DNA sequences and
 use a program called |spades| to build a genome assembly.
 
-.. admonition:: TODO
+.. todo::
                 
    #. Discuss briefly why we are using the ancestral sequences to create a
       reference genome as opposed to the evolved line.
@@ -97,7 +99,7 @@ The two files we need to submit to |spades| are two paired-end read files.
     spades.py -o assembly/spades_default/ -1 trimmed/|fileanc1|.fastq.trimmed.gz -2 trimmed/|fileanc2|.fastq.trimmed.gz                   
 
 
-.. admonition:: TODO
+.. todo::
    
    #. Run |spades| with default parameters on the ancestor
    #. Read in the |spades| manual about about assembling with 2x150bp reads
@@ -146,8 +148,8 @@ Run |quast| with both assembly scaffolds.fasta files to compare the results.
    quast -o assembly/quast assembly/spades_default/scaffolds.fasta assembly/spades_150/scaffolds.fasta
    
 
-.. admonition:: TODO
-   
+.. todo::
+               
    #. Compare the results of |quast| with regards to the two different assemblies.
    #. Which one do you prefer and why?
    
@@ -155,7 +157,7 @@ Run |quast| with both assembly scaffolds.fasta files to compare the results.
 Assemblathon
 ------------
 
-.. admonition:: TODO
+.. todo::
                 
    Now that you know the basics for assembling a genome and judging their quality, play with the |spades| parameters to create the best assembly possible. 
     

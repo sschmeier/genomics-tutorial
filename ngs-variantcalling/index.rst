@@ -61,6 +61,7 @@ Tools we are going to use in this section and how to intall them if you not have
           source activate ngs
           
           # Install these tools into the conda environment
+          # if not already installed
           conda install samtools
           conda install bamtools
           conda install bcftools
