@@ -96,14 +96,14 @@ The two files we need to submit to |spades| are two paired-end read files.
 
 .. rst-class:: sebcode
                
-    spades.py -o assembly/spades_default/ -1 trimmed/|fileanc1|.fastq.trimmed.gz -2 trimmed/|fileanc2|.fastq.trimmed.gz                   
+    spades.py -o assembly/spades-default/ -1 trimmed/|fileanc1|.fastq.trimmed.gz -2 trimmed/|fileanc2|.fastq.trimmed.gz                   
 
 
 .. todo::
    
    #. Run |spades| with default parameters on the ancestor
    #. Read in the |spades| manual about about assembling with 2x150bp reads
-   #. Run |spades| a second time but use the options suggested at the |spades| manual `section 3.4 <http://spades.bioinf.spbau.ru/release3.9.1/manual.html#sec3.4>`__ for assembling 2x150bp paired-end reads (are fungi multicellular?). Use a different output directory ``assembly/spades_150`` for this run.
+   #. Run |spades| a second time but use the options suggested at the |spades| manual `section 3.4 <http://spades.bioinf.spbau.ru/release3.9.1/manual.html#sec3.4>`__ for assembling 2x150bp paired-end reads (are fungi multicellular?). Use a different output directory ``assembly/spades-150`` for this run.
 
 .. hint::
 
@@ -145,7 +145,7 @@ Run |quast| with both assembly scaffolds.fasta files to compare the results.
 
 .. rst-class:: sebcode
 
-   quast -o assembly/quast assembly/spades_default/scaffolds.fasta assembly/spades_150/scaffolds.fasta
+   quast -o assembly/quast assembly/spades-default/scaffolds.fasta assembly/spades-150/scaffolds.fasta
    
 
 .. todo::
@@ -160,7 +160,15 @@ Assemblathon
 .. todo::
                 
    Now that you know the basics for assembling a genome and judging their quality, play with the |spades| parameters to create the best assembly possible. 
-    
+
+
+.. todo::
+
+   Once you have your final assembly, rename your assembly directory int ``spades-final``, e.g. ``mv assembly/spades-default assembly/spades-final``.
+
+   
+
+   
    
 Further reading
 ---------------
