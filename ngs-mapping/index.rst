@@ -83,7 +83,7 @@ It is simple to install and use.
 
 |bwa| is a short read aligner, that can take a reference genome and map single- or paired-end data to it.
 It requires an indexing step in which one supplies the reference genome and |bwa| will create an index that in the subsequent steps will be used for aligning the reads to the reference genome.
-Te general command structure of |bwa| looks like this:
+The general command structure of the |bwa| tools we are going to use are shown below:
 
 .. code:: bash
 
@@ -134,7 +134,9 @@ Now that we have created our index, it is time to map the filtered and trimmed s
 The sam mapping file-format
 ---------------------------
 
-|bwa| will produce a mapping file in sam-format. Have a look into the sam-file that was created by |bwa|. A quick overview of the sam-format can be found `here <http://bio-bwa.sourceforge.net/bwa.shtml#4>`__ and even more information can be found `here <http://samtools.github.io/hts-specs/SAMv1.pdf>`__. Briefly, first there are a lot of header lines. Then, for each read, that mapped to the reference, there is one line.
+|bwa| will produce a mapping file in sam-format. Have a look into the sam-file that was created by |bwa|.
+A quick overview of the sam-format can be found `here <http://bio-bwa.sourceforge.net/bwa.shtml#4>`__ and even more information can be found `here <http://samtools.github.io/hts-specs/SAMv1.pdf>`__.
+Briefly, first there are a lot of header lines. Then, for each read, that mapped to the reference, there is one line.
 
 The columns of such a line in the mapping file are:
 
@@ -177,27 +179,113 @@ It basically defines, the read and the position in the reference genome where th
 Sorting and compressing
 -----------------------
 
-We are going to use |samtools| to sort the sam-file and create a binary version for efficient storing of and access to the mapped reads. We are going to do the transformation into a bam-file (the binary version of a sam-file) and the sorting in one step:
+We are going to use |samtools| to sort the sam-file and create a binary version for efficient storing of and access to the mapped reads.
+We are going to do the transformation into a bam-file (the binary version of a sam-file) and the sorting in one step:
 
 .. rst-class:: sebcode
 
-    samtools view -bS mappings/|fileevol|.sam | samtools sort -o mappings/|fileevol|.sorted.bam
+    # convert to bam file and sort
+    samtools view -b -S mappings/|fileevol|.sam | samtools sort -o mappings/|fileevol|.sorted.bam
+    # delete sam-file
+    rm mappings/|fileevol|.sam
 
+- ``-b``: indicates that the output is BAM.
+- ``-S``: indicates that the input is SAM.
+- ``-o``: specifies the name of the output file.
+
+    
 .. attention::
 
-   This step might take a few minutes to finish, depending on how big your mapping file is.
+   The step of sam to bam-file conversion might take a few minutes to finish, depending on how big your mapping file is.
     
 
 Mapping statistics
 ------------------
 
+Lets get an mapping overview:
+
 .. rst-class:: sebcode
 
-    samtools depth mappings/|fileevol|.sorted.bam > mappings/|fileevol|.depth.txt
+    samtools flagstat mappings/|fileevol|.sorted.bam
+
+    
+.. todo::
+
+   Look at the mapping statistics and understand `their meaning <https://www.biostars.org/p/12475/>`__. Discuss your results. Also explain why we may find mapped reads that have their mate mapped to a different chromosome/contig? Should we exclude those or can they be used for something?
+    
+   
+Lets get the unmapped portion of the reads from the bam-file:
+
+
+.. rst-class:: sebcode
+               
+    samtools view -b -f 4 mappings/|fileevol|.sorted.bam > mappings/|fileevol|.sorted.unmapped.bam
+    
+    # count them
+    samtools view -c mappings/|fileevol|.sorted.unmapped.bam
+
+- ``-b``: indicates that the output is BAM.
+- ``-f INT``: only include reads with this `SAM flag <http://bio-bwa.sourceforge.net/bwa.shtml#4>`__ set. You can also use the command ``samtools flags`` to get an overview of the flags.
+- ``-c``: count the reads
+
+    
+For the sorted bam-file we can get read depth for at all positions of the reference genome, e.g. how many reads are overlapping the genomic position.
+
+.. rst-class:: sebcode
+
+    samtools depth mappings/|fileevol|.sorted.bam | gzip > mappings/|fileevol|.depth.txt.gz
+
+
+.. todo::
+
+   Extract the depth values for contig 20 and load the data into R, calculate some statistics of our scaffold.
+
+   
+.. rst-class:: sebcode
+   
+   zcat mappings/evolved-6.depth.txt.gz | egrep '^NODE_20_' | gzip >  mappings/NODE_20.depth.txt.gz
+
+   
+Now we quickly use some R to make a coverage plot for contig NODE20.
+Open a R shell by typing ``R`` in the shell.
+   
+.. code:: R
+
+   x <- read.table('mappings/NODE_20.depth.txt.gz', sep='\t', header=FALSE,  strip.white=TRUE)
+   # calculate average depth
+   mean(x[,3])
+   # std dev
+   sqrt(var(x[,3]))
+   
+   # mark areas that have a coverage below 20 in red
+   plot(x[,2], x[,3], col = ifelse(x[,3] < 20,'red','black'), pch=19, xlab='postion', ylab='coverage')
+
+   # to save a plot
+   png('mappings/covNODE20.png', width = 1200, height = 500)
+   plot(x[,2], x[,3], col = ifelse(x[,3] < 20,'red','black'), pch=19, xlab='postion', ylab='coverage')
+   dev.off()
+
+
+The result plot will be looking similar to the one in :numref:`coverage`
+
+.. _coverage:
+.. figure:: images/covNODE20.png
+
+   A example coverage plot for a contig with highlighted in red regions with a coverage below 20 reads.
+   
+   
+.. todo::
+
+   Look at the created plot. Explain why it makes sense that you find  relatively bad coverage at the beginning and the end of the contig.
+
 
 Unmapped reads
 --------------
 
-We could decide to use |kraken| like in section :ref:`taxonomic-investigation`
-to classify all unmapped sequence reads and identify the species they are coming
-from and test for contamination.
+We could decide to use |kraken| like in section :ref:`taxonomic-investigation` to classify all unmapped sequence reads and identify the species they are coming from and test for contamination.
+
+Extract the unmapped reads from the bam-file:
+
+.. rst-class:: sebcode
+
+    samtools view mappings/|fileevol|.sorted.unmapped.bam
