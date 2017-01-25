@@ -388,6 +388,7 @@ rst_epilog = """
 .. |quast| replace:: `Quast <http://quast.bioinf.spbau.ru/>`__
 .. |freebayes| replace:: `freebayes <https://github.com/ekg/freebayes>`__
 .. |samtools| replace:: `SAMtools <http://samtools.sourceforge.net/>`__
+.. |bwa| replace:: `BWA <http://bio-bwa.sourceforge.net/>`__
 """
 
 # prolog will be added to the beginning of each file
