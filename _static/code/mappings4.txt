@@ -1,0 +1,5 @@
+# change into the base directory of our analysis
+cd ~/analysis
+
+# map to the genome. use a max fragemnt length of 1000 bp
+bowtie2 -X 1000 -x assembly/spades-final/scaffolds -1 trimmed/evolved-6-R1.fastq.trimmed.gz -2 trimmed/evolved-6-R2.fastq.trimmed.gz -S mappings/evolved-6.bowtie2.sam 

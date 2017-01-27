@@ -74,11 +74,24 @@ Investigate the data
 Make use of your newly developed skills on the command-line to
 investigate the files in ``data`` folder.
 
-.. admonition:: TODO
+.. todo::
 
    #. Use the command-line to get some ideas about the file.
    #. What kind of files are we dealing with?
    #. How many sequence reads are in the file?
+      
+
+The fastq file format
+---------------------
+
+The data we receive from the sequencing is in ``fastq`` format. To remind us what this format entails, we can revisit the `fastq wikipedia-page <https://en.wikipedia.org/wiki/FASTQ_format>`__!
+
+A useful tool to decode base qualities can be found `here <http://broadinstitute.github.io/picard/explain-qualities.html>`__.
+
+
+.. todo::
+
+   Explain briefly what the quality value represents.
 
 
 The QC process
@@ -106,7 +119,7 @@ However, your sequencing provider might not have used PhiX, thus you need to rea
 
 .. note::
 
-   We are not going to do this step here, as this has been already done. Please see the :doc:`../ngs-mapping/index` section on how to map reads against a genome.
+   We are not going to do this step here, as this has been already done. Please see the :doc:`../ngs-mapping/index` section on how to map reads against a reference genome.
 
 
 Adapter trimming
@@ -217,7 +230,7 @@ SolexaQA++ dynamic trimming
 
 We will use |solexaqa| dynamic trim the reads, to chop of nucleotides witha a bad quality score.
 
-.. admonition:: TODO
+.. todo::
 
     #. Create a directory for the result-files --> **trimmed/**.
     #. Run |solexaqa| ``dynamictrim`` with the untrimmed data and a probability cutoff of 0.01., and submit result-directory **trimmed/**.
@@ -233,7 +246,7 @@ SolexaQA++ analysis on trimmed data
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
-.. admonition:: TODO
+.. todo::
 
     #. Create a directory for the result-files --> **trimmed-solexaqa**.
     #. use |solexaqa| to do the quality assessment with the trimmed data-set.
@@ -358,13 +371,16 @@ From the webpage:
     
 The basic command looks like:
 
+
 .. code:: bash
 
     $ fastqc -o RESULT-DIR INPUT-FILE.[txt/fa/fq] ...
 
+    
 -  ``-o RESULT-DIR`` is the directory where the result files will be written
 -  ``INPUT-FILE.[txt/fa/fq]`` is the sequence file to analyze, can be more than one file.
 
+   
 .. hint::
 
    The result will be a HTML page per input file that can be opened in a web-browser.
@@ -373,7 +389,7 @@ The basic command looks like:
 Run FastQC on the untrimmed and trimmed data
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. admonition:: TODO
+.. todo::
 
    #. Create a directory for the results --> **trimmed-fastqc**
    #. Run FastQC on all **trimmed** files.
@@ -381,20 +397,24 @@ Run FastQC on the untrimmed and trimmed data
    #. Compare your results to these examples (:numref:`fastqc-bad1` to :numref:`fastqc-bad3`) of a particularly bad run (taken from the |fastqc| website) and write down your observations with regards to your data.
    #. What elements in these example figures (:numref:`fastqc-bad1` to :numref:`fastqc-bad3`) indicate that the example is from a bad run?
 
+      
 .. hint::
 
    Should you not get it right, try these commands `here <../_static/code/qc-fastqc.txt>`__.
 
+   
 .. _fastqc-bad1:
 .. figure:: images/fastqc_bad1.png
 
     Quality score across bases.
 
+    
 .. _fastqc-bad2:
 .. figure:: images/fastqc_bad2.png
             
     Quality per tile.
 
+    
 .. _fastqc-bad3:
 .. figure:: images/fastqc_bad3.png
             

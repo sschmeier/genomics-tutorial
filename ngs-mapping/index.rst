@@ -76,10 +76,15 @@ It is simple to install and use.
           source activate ngs
           conda install samtools
           conda install bamtools
+          conda install bedtools
           conda install bwa
+          conda install bowtie2
 
-|bwa| overview
---------------
+|bwa|
+-----
+
+Overview
+~~~~~~~~
 
 |bwa| is a short read aligner, that can take a reference genome and map single- or paired-end data to it.
 It requires an indexing step in which one supplies the reference genome and |bwa| will create an index that in the subsequent steps will be used for aligning the reads to the reference genome.
@@ -104,7 +109,7 @@ The general command structure of the |bwa| tools we are going to use are shown b
 
    
 Creating a reference index for mapping
---------------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. todo::
 
@@ -117,7 +122,7 @@ Creating a reference index for mapping
 
 
 Mapping reads in a paired-end manner
-------------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Now that we have created our index, it is time to map the filtered and trimmed sequencing reads of our evolved line to the reference genome.
 
@@ -129,6 +134,62 @@ Now that we have created our index, it is time to map the filtered and trimmed s
 .. hint::
 
    Should you not get it right, try these commands `here <../_static/code/mapping2.txt>`__.
+
+
+
+|bowtie|
+--------
+
+Overview
+~~~~~~~~
+
+|bowtie| is a short read aligner, that can take a reference genome and map single- or paired-end data to it.
+It requires an indexing step in which one supplies the reference genome and |bowtie| will create an index that in the subsequent steps will be used for aligning the reads to the reference genome.
+The general command structure of the |bowtie| tools we are going to use are shown below:
+
+
+.. code:: bash
+
+   # bowtie2 help
+   bowtie2-build
+          
+   # indexing 
+   bowtie2-build genome.fasta PATH_TO_INDEX_PREFIX
+
+   # paired-end mapping
+   bowtie2 -X 1000 -x PATH_TO_INDEX_PREFIX -1 read1.fq.gz -2 read2.fq.gz -S aln-pe.sam
+
+
+- ``-X``: Adjust the maximum fragment size to 1000bp
+  
+
+Creating a reference index for mapping
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. todo::
+
+   Create an |bowtie| index for our reference genome assembly. Attention! Remember which file you need to submit to |bowtie|.
+
+
+.. hint::
+
+   Should you not get it right, try these commands `here <../_static/code/mapping3.txt>`__.
+
+
+
+Mapping reads in a paired-end manner
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Now that we have created our index, it is time to map the filtered and trimmed sequencing reads of our evolved line to the reference genome.
+
+.. todo::
+   
+   Use the correct ``bowtie2`` command structure from above and map the reads of the evolved line to the reference genome.
+   
+
+.. hint::
+
+   Should you not get it right, try these commands `here <../_static/code/mapping4.txt>`__.
 
    
 The sam mapping file-format
@@ -211,25 +272,14 @@ Lets get an mapping overview:
     
 .. todo::
 
-   Look at the mapping statistics and understand `their meaning <https://www.biostars.org/p/12475/>`__. Discuss your results. Also explain why we may find mapped reads that have their mate mapped to a different chromosome/contig? Should we exclude those or can they be used for something?
-    
+   Look at the mapping statistics and understand `their meaning
+   <https://www.biostars.org/p/12475/>`__. Discuss your results.
+   Explain why we may find mapped reads that have their mate mapped to a different chromosome/contig?
+   Can they be used for something?
+         
    
-Lets get the unmapped portion of the reads from the bam-file:
-
-
-.. rst-class:: sebcode
-               
-    samtools view -b -f 4 mappings/|fileevol|.sorted.bam > mappings/|fileevol|.sorted.unmapped.bam
-    
-    # count them
-    samtools view -c mappings/|fileevol|.sorted.unmapped.bam
-
-- ``-b``: indicates that the output is BAM.
-- ``-f INT``: only include reads with this `SAM flag <http://bio-bwa.sourceforge.net/bwa.shtml#4>`__ set. You can also use the command ``samtools flags`` to get an overview of the flags.
-- ``-c``: count the reads
-
-    
 For the sorted bam-file we can get read depth for at all positions of the reference genome, e.g. how many reads are overlapping the genomic position.
+
 
 .. rst-class:: sebcode
 
@@ -247,7 +297,7 @@ For the sorted bam-file we can get read depth for at all positions of the refere
 
    
 Now we quickly use some R to make a coverage plot for contig NODE20.
-Open a R shell by typing ``R`` in the shell.
+Open a R shell by typing ``R`` on the command-line of the shell.
    
 .. code:: R
 
@@ -276,16 +326,52 @@ The result plot will be looking similar to the one in :numref:`coverage`
    
 .. todo::
 
-   Look at the created plot. Explain why it makes sense that you find  relatively bad coverage at the beginning and the end of the contig.
+   Look at the created plot. Explain why it makes sense that you find relatively bad coverage at the beginning and the end of the contig.
+
+
+   
+Subselecting reads
+------------------
 
 
 Unmapped reads
---------------
+~~~~~~~~~~~~~~
 
 We could decide to use |kraken| like in section :ref:`taxonomic-investigation` to classify all unmapped sequence reads and identify the species they are coming from and test for contamination.
 
-Extract the unmapped reads from the bam-file:
+Lets see how we can get the unmapped portion of the reads from the bam-file:
+
+
+.. rst-class:: sebcode
+               
+    samtools view -b -f 4 mappings/|fileevol|.sorted.bam > mappings/|fileevol|.sorted.unmapped.bam
+    
+    # count them
+    samtools view -c mappings/|fileevol|.sorted.unmapped.bam
+    
+    
+- ``-b``: indicates that the output is BAM.
+- ``-f INT``: only include reads with this `SAM flag <http://bio-bwa.sourceforge.net/bwa.shtml#4>`__ set. You can also use the command ``samtools flags`` to get an overview of the flags. 
+- ``-c``: count the reads
+
+
+Lets extract the fastq sequence of the unmapped reads for read1 and read2.
+
 
 .. rst-class:: sebcode
 
-    samtools view mappings/|fileevol|.sorted.unmapped.bam
+    bamToFastq -i |fileevol|.sorted.unmapped.bam -fq mappings/|fileevol|.sorted.unmapped.R1.fastq -fq2  mappings/|fileevol|.sorted.unmapped.R2.fastq
+  
+  
+.. hint::
+
+   A very useful tools to explain flags can be found `here <http://broadinstitute.github.io/picard/explain-flags.html>`__.
+
+
+Concordant reads
+~~~~~~~~~~~~~~~~
+
+
+
+
+

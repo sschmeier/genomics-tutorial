@@ -77,6 +77,7 @@ We first need to make an index of our reference genome as this is required by th
 Given a scaffold/contig file in fasta-format, e.g. ``scaffolds.fasta`` which is
 located ina  directory ``assembly/spades_final``, use |samtools| to do this:
 
+
 .. code:: bash
           
           samtools faidx assembly/spades_final/scaffolds.fasta
@@ -84,20 +85,24 @@ located ina  directory ``assembly/spades_final``, use |samtools| to do this:
 
 Furthermore we need to pre-process our mapping files a bit further and creaee a bam-index file (``.bai``) for each o the bam-files, e.g.:
 
+
 .. rst-class:: sebcode
                
-          bamtools index -in mappings/|fileevol|.bam
+          bamtools index -in mappings/|fileevol|.sorted.bam
 
 
 Lets also create a new directory for the variants:
+
 
 .. code:: bash
 
           mkdir variants
 
+          
 Calling variants
 ----------------
-          
+
+
 |samtools| mpileup
 ~~~~~~~~~~~~~~~~~~
 
