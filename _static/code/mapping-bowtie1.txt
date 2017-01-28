@@ -1,0 +1,5 @@
+# make sure you are in the analysis folder
+cd ~/analysis
+
+# build the index
+bowtie2-build assembly/spades-final/scaffolds.fasta assembly/spades-final/scaffolds
