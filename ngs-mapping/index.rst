@@ -395,7 +395,21 @@ Lets extract the fastq sequence of the unmapped reads for read1 and read2.
 Concordant reads
 ~~~~~~~~~~~~~~~~
 
+Here, we select the reads **we will be using for subsequent analyses**.
+Frist off, we select reads with a mapping quality of at least 20.
+Furthermore, we select read-pair that have been mapped in a correct manner (same chromosome/contig, correct orientation to each other).
+
+.. rst-class:: sebcode
+               
+   samtools view -h -b -q 20 -f 2 mappings/|fileevol|.sorted.bam > mappings/|fileevol|.sorted.concordant.q20.bam
 
 
+- ``-h``: Include the sam header
+- ``-b``: Output will be bam-format
+- ``-q 20``: Only extract reads with mapping quality >= 20
+- ``-f 2``: Only extract correctly paired reads
 
 
+.. todo::
+
+   Extract the coverage for these reads and compare the mean and standard deviation to all mappings from before.
