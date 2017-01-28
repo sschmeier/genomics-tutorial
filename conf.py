@@ -390,6 +390,7 @@ rst_epilog = """
 .. |samtools| replace:: `SAMtools <http://samtools.sourceforge.net/>`__
 .. |bwa| replace:: `BWA <http://bio-bwa.sourceforge.net/>`__
 .. |bowtie| replace:: `Bowtie2 <http://bowtie-bio.sourceforge.net/bowtie2/index.shtml>`__
+.. |qualimap| replace:: `QualiMap <http://qualimap.bioinfo.cipf.es/>`__
 """
 
 # prolog will be added to the beginning of each file

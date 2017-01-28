@@ -77,11 +77,72 @@ It is simple to install and use.
           conda install samtools
           conda install bamtools
           conda install bedtools
-          conda install bwa
           conda install bowtie2
+          conda install bwa
 
+          
+|bowtie|
+--------
+
+Overview
+~~~~~~~~
+
+|bowtie| is a short read aligner, that can take a reference genome and map single- or paired-end data to it.
+It requires an indexing step in which one supplies the reference genome and |bowtie| will create an index that in the subsequent steps will be used for aligning the reads to the reference genome.
+The general command structure of the |bowtie| tools we are going to use are shown below:
+
+
+.. code:: bash
+
+   # bowtie2 help
+   bowtie2-build
+          
+   # indexing 
+   bowtie2-build genome.fasta PATH_TO_INDEX_PREFIX
+
+   # paired-end mapping
+   bowtie2 -X 1000 -x PATH_TO_INDEX_PREFIX -1 read1.fq.gz -2 read2.fq.gz -S aln-pe.sam
+
+
+- ``-X``: Adjust the maximum fragment size (length of paired-end alignments + insert size) to 1000bp. This might be useful if you do not know the exact insert size of your data. The |bowtie| default is set to 500 which is `often considered too short <http://lab.loman.net/2013/05/02/use-x-with-bowtie2-to-set-minimum-and-maximum-insert-sizes-for-nextera-libraries/>`__.
+  
+
+Creating a reference index for mapping
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. todo::
+
+   Create an |bowtie| index for our reference genome assembly. Attention! Remember which file you need to submit to |bowtie|.
+
+
+.. hint::
+
+   Should you not get it right, try these commands `here <../_static/code/mapping-bowtie1.txt>`__.
+
+
+
+Mapping reads in a paired-end manner
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Now that we have created our index, it is time to map the filtered and trimmed sequencing reads of our evolved line to the reference genome.
+
+.. todo::
+   
+   Use the correct ``bowtie2`` command structure from above and map the reads of the evolved line to the reference genome.
+   
+
+.. hint::
+
+   Should you not get it right, try these commands `here <../_static/code/mapping-bowtie2.txt>`__.
+
+          
 |bwa|
 -----
+
+.. Attention::
+
+   If the mapping did not succeed with |bowtie|. We can use the aligner |bwa| explained in this section. If the mapping with |bowtie| did work, you can jump this section.
+
 
 Overview
 ~~~~~~~~
@@ -118,7 +179,7 @@ Creating a reference index for mapping
 
 .. hint::
 
-   Should you not get it right, try these commands `here <../_static/code/mapping1.txt>`__.
+   Should you not get it right, try these commands `here <../_static/code/mapping-bwa1.txt>`__.
 
 
 Mapping reads in a paired-end manner
@@ -133,63 +194,10 @@ Now that we have created our index, it is time to map the filtered and trimmed s
 
 .. hint::
 
-   Should you not get it right, try these commands `here <../_static/code/mapping2.txt>`__.
+   Should you not get it right, try these commands `here <../_static/code/mapping-bwa2.txt>`__.
 
 
 
-|bowtie|
---------
-
-Overview
-~~~~~~~~
-
-|bowtie| is a short read aligner, that can take a reference genome and map single- or paired-end data to it.
-It requires an indexing step in which one supplies the reference genome and |bowtie| will create an index that in the subsequent steps will be used for aligning the reads to the reference genome.
-The general command structure of the |bowtie| tools we are going to use are shown below:
-
-
-.. code:: bash
-
-   # bowtie2 help
-   bowtie2-build
-          
-   # indexing 
-   bowtie2-build genome.fasta PATH_TO_INDEX_PREFIX
-
-   # paired-end mapping
-   bowtie2 -X 1000 -x PATH_TO_INDEX_PREFIX -1 read1.fq.gz -2 read2.fq.gz -S aln-pe.sam
-
-
-- ``-X``: Adjust the maximum fragment size to 1000bp
-  
-
-Creating a reference index for mapping
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-.. todo::
-
-   Create an |bowtie| index for our reference genome assembly. Attention! Remember which file you need to submit to |bowtie|.
-
-
-.. hint::
-
-   Should you not get it right, try these commands `here <../_static/code/mapping3.txt>`__.
-
-
-
-Mapping reads in a paired-end manner
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Now that we have created our index, it is time to map the filtered and trimmed sequencing reads of our evolved line to the reference genome.
-
-.. todo::
-   
-   Use the correct ``bowtie2`` command structure from above and map the reads of the evolved line to the reference genome.
-   
-
-.. hint::
-
-   Should you not get it right, try these commands `here <../_static/code/mapping4.txt>`__.
 
    
 The sam mapping file-format
@@ -263,6 +271,9 @@ We are going to do the transformation into a bam-file (the binary version of a s
 Mapping statistics
 ------------------
 
+Stats with |samtools|
+~~~~~~~~~~~~~~~~~~~~~
+
 Lets get an mapping overview:
 
 .. rst-class:: sebcode
@@ -329,9 +340,22 @@ The result plot will be looking similar to the one in :numref:`coverage`
    Look at the created plot. Explain why it makes sense that you find relatively bad coverage at the beginning and the end of the contig.
 
 
+Stats with |qualimap|
+~~~~~~~~~~~~~~~~~~~~~
+
+For a more in depth analysis of the mappings, one can use |qualimap|.
+
+|qualimap| examines sequencing alignment data in SAM/BAM files according to the features of the mapped reads and provides an overall view of the data that helps to the detect biases in the sequencing and/or mapping of the data and eases decision-making for further analysis.
+
+Installation:
+
+.. code::
+
+   conda install qualimap
    
-Subselecting reads
-------------------
+   
+Sub-selecting reads
+-------------------
 
 
 Unmapped reads
