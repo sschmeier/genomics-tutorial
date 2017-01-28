@@ -1,0 +1,5 @@
+# make sure you are in the analysis folder
+cd ~/analysis
+
+# index the genome assembly
+bwa index assembly/spades-final/scaffolds.fasta

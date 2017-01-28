@@ -215,6 +215,7 @@ genetic variants in the evolved line.</p>
 <span class="n">source</span> <span class="n">activate</span> <span class="n">ngs</span>
 
 <span class="c1"># Install these tools into the conda environment</span>
+<span class="c1"># if not already installed</span>
 <span class="n">conda</span> <span class="n">install</span> <span class="n">samtools</span>
 <span class="n">conda</span> <span class="n">install</span> <span class="n">bamtools</span>
 <span class="n">conda</span> <span class="n">install</span> <span class="n">bcftools</span>
@@ -233,7 +234,7 @@ located ina  directory <code class="docutils literal"><span class="pre">assembly
 </pre></div>
 </div>
 <p>Furthermore we need to pre-process our mapping files a bit further and creaee a bam-index file (<code class="docutils literal"><span class="pre">.bai</span></code>) for each o the bam-files, e.g.:</p>
-<p class="sebcode">bamtools index -in mappings/evolved-6.bam</p>
+<p class="sebcode">bamtools index -in mappings/evolved-6.sorted.bam</p>
 <p>Lets also create a new directory for the variants:</p>
 <div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="n">mkdir</span> <span class="n">variants</span>
 </pre></div>
@@ -343,7 +344,7 @@ rtg vcfstats variants/evolved-6.freebayes-q30.vcf</p>
   <div role="contentinfo">
     <p>
         &copy; Copyright 2016-2017, Sebastian Schmeier.
-      Last updated on Jan 24, 2017.
+      Last updated on Jan 29, 2017.
 
     </p>
   </div>
