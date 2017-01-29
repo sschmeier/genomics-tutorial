@@ -97,23 +97,24 @@ def git(br, to_br='master', v=None):
         local("git push %s %s"%(answer, to_br))
 
 
-def gitlab(br='master', v=None):
+def html(msg, br='master'):
     """ make latexpdf
         copy pdf to _static. 
         commit change. 
         push master to gitlab remote.
 
     Keyword arguments:
+    msg -- commit message
     br -- the branch that should be pushed
 
     Usage:
-    fab gitlab
+    fab html:msg="This is a commit message"
     """
-
     # co branch
     puts(yellow("[Checkout branch %s]"%(br)))
     local("git checkout %s"%(br))
 
+    # create new pdf
     puts(yellow('[Make latexpdf]'))
     local("make latexpdf")
 
@@ -122,10 +123,22 @@ def gitlab(br='master', v=None):
     
     puts(yellow('[git stage/commit changes]'))
     local("git add -u")
-    local('git commit -m "New pdf-version added"')
+    local('git commit -m "%s"' %(msg))
     
+    # push changes to gitlab
     puts(yellow("[Push %s to gitlab]"%(br)))
     local("git push gitlab %s"%(br))
 
+    # for github gh-pages
+    puts(yellow("[Make html for github/gh-pages]"%(br)))
+    local("make clean; make html")
+
+    puts(yellow("[Push gh-pages to github]"))
+    puts(red("Will NOT add newly created content. Only already tracked content."))
+    with cd("../build/html"):
+        run("git add -u")
+        run('git commit -m "%s"'%(msg))
+        run("git push origin gh-pages")
+    
 
 
