@@ -67,7 +67,7 @@ def git(br, to_br='master', v=None):
     v -- new version/tag number requested this will create a repo tag.
 
     Usage:
-    fab github:br='new_feature',v='v1.2.5'
+    fab git:br='new_feature',v='v1.2.5'
     """
 
     # co master and merge
@@ -95,3 +95,37 @@ def git(br, to_br='master', v=None):
         answer = prompt("Remote name?", default='origin')
         puts(yellow("[Push %s to remote %s]"%(to_br,answer)))
         local("git push %s %s"%(answer, to_br))
+
+
+def gitlab(br='master', v=None):
+    """ make latexpdf
+        copy pdf to _static. 
+        commit change. 
+        push master to gitlab remote.
+
+    Keyword arguments:
+    br -- the branch that should be pushed
+
+    Usage:
+    fab gitlab
+    """
+
+    # co branch
+    puts(yellow("[Checkout branch %s]"%(br)))
+    local("git checkout %s"%(br))
+
+    puts(yellow('[Make latexpdf]'))
+    local("make latexpdf")
+
+    puts(yellow('[Copy pdf]'))
+    local("cp ../build/latex/*.pdf _static/")
+    
+    puts(yellow('[git stage/commit changes]'))
+    local("git add -u")
+    local('git commit -m "New pdf-version added"')
+    
+    puts(yellow("[Push %s to gitlab]"%(br)))
+    local("git push gitlab %s"%(br))
+
+
+
