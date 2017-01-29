@@ -26,7 +26,7 @@ def logs():
 
 
 @hosts('seb@vm010865.massey.ac.nz', 'seb@vm010944.massey.ac.nz') # only for deploy
-def deploy(activate_env=True, conda=None):
+def deploylocal(activate_env=True, conda=None):
     """ Deploy project to remote hosts. """
     remote_dir = os.path.abspath(os.path.join(REMOTE_BASE_DIR, REPO_NAME))
     
@@ -59,7 +59,7 @@ def deploy(activate_env=True, conda=None):
 
         
 def git(br, to_br='master', v=None):
-    """Execute local git checkout master, merge branch into master and push to remote.
+    """Execute local git checkout master, merge branch into master.
 
     Keyword arguments:
     br -- the branch that should be merged into 'to_br'
@@ -90,25 +90,24 @@ def git(br, to_br='master', v=None):
             puts(yellow("[Tag new version: %s]"%v))
             local('git tag -a %s'%v)
 
-    answer = prompt("Push to remote?", default='y')
-    if answer == 'y':
-        answer = prompt("Remote name?", default='origin')
-        puts(yellow("[Push %s to remote %s]"%(to_br,answer)))
-        local("git push %s %s"%(answer, to_br))
 
-
-def html(msg, br='master'):
-    """ make latexpdf
-        copy pdf to _static. 
-        commit change. 
-        push master to gitlab remote.
+def deploy(msg, br='master'):
+    """ 
+    - make latexpdf
+    - copy pdf to _static. 
+    - commit changes.
+    - push master to gitlab remote.
+    - push master to origin (github)
+    - make clean; make html
+    - commit html to gh-pages
+    - push gh-pages to github/gh-pages
 
     Keyword arguments:
     msg -- commit message
     br -- the branch that should be pushed
 
     Usage:
-    fab html:msg="This is a commit message"
+    fab deploy:msg="This is a commit message"
     """
     # co branch
     puts(yellow("[Checkout branch %s]"%(br)))
@@ -129,8 +128,12 @@ def html(msg, br='master'):
     puts(yellow("[Push %s to gitlab]"%(br)))
     local("git push gitlab %s"%(br))
 
-    # for github gh-pages
-    puts(yellow("[Make html for github/gh-pages]"%(br)))
+    # push changes to github
+    puts(yellow("[Push %s to github]"%(br)))
+    local("git push origin %s"%(br))
+
+    # for html to github gh-pages
+    puts(yellow("[Make html for github/gh-pages]"))
     local("make clean; make html")
 
     puts(yellow("[Push gh-pages to github]"))
