@@ -245,27 +245,58 @@ One line of a mapped read can be seen here:
 
 It basically defines, the read and the position in the reference genome where the read mapped and a quality of the map.
 
-Sorting and compressing
+Mapping post-processing
 -----------------------
 
-We are going to use |samtools| to sort the sam-file and create a binary version for efficient storing of and access to the mapped reads.
-We are going to do the transformation into a bam-file (the binary version of a sam-file) and the sorting in one step:
+Fix mates and compress
+~~~~~~~~~~~~~~~~~~~~~~
+
+Because aligners can sometimes leave unusual `SAM flag <http://bio-bwa.sourceforge.net/bwa.shtml#4>`__ information on SAM records, it is helpful when working with many tools to first clean up read pairing information and flags with |samtools|.
+We are going to produce also compressed bam output for efficient storing of and access to the mapped reads.
+
+
+.. rst-class:: sebcode
+               
+   samtools fixmate -O bam |fileevol|.sam |fileevol|.fixmate.bam
+
+   
+- ``-O bam``: specifies that we want compressed bam output
+
+
+.. attention:: 
+
+   The step of sam to bam-file conversion might take a few minutes to finish, depending on how big your mapping file is. 
+
+
+We will be using the `SAM flag <http://bio-bwa.sourceforge.net/bwa.shtml#4>`__ information later below to extract specific alignments. 
+
+.. hint::
+
+   A very useful tools to explain flags can be found `here <http://broadinstitute.github.io/picard/explain-flags.html>`__.
+
+      
+Once we have bam-file, we can also delete the original sam-file as it requires too much space.
+   
+  
+.. rst-class:: sebcode
+
+   rm mappings/|fileevol|.sam
+
+
+Sorting
+~~~~~~~
+
+We are going to use |samtools| again to sort the bam-file into coordinate order:
+
 
 .. rst-class:: sebcode
 
     # convert to bam file and sort
-    samtools view -b -S mappings/|fileevol|.sam | samtools sort -o mappings/|fileevol|.sorted.bam
-    # delete sam-file
-    rm mappings/|fileevol|.sam
-
-- ``-b``: indicates that the output is BAM.
-- ``-S``: indicates that the input is SAM.
-- ``-o``: specifies the name of the output file.
-
+    samtools sort -O bam -o |fileevol|.sorted.bam |fileevol|.fixmate.bam
     
-.. attention::
 
-   The step of sam to bam-file conversion might take a few minutes to finish, depending on how big your mapping file is.
+- ``-o``: specifies the name of the output file.
+- ``-O bam``: specifies that the output will be bam-format
     
 
 Mapping statistics
@@ -307,12 +338,16 @@ For the sorted bam-file we can get read depth for at all positions of the refere
    zcat mappings/evolved-6.depth.txt.gz | egrep '^NODE_20_' | gzip >  mappings/NODE_20.depth.txt.gz
 
    
-Now we quickly use some R to make a coverage plot for contig NODE20.
-Open a R shell by typing ``R`` on the command-line of the shell.
+Now we quickly use some |R| to make a coverage plot for contig NODE20.
+Open a |R| shell by typing ``R`` on the command-line of the shell.
    
 .. code:: R
 
    x <- read.table('mappings/NODE_20.depth.txt.gz', sep='\t', header=FALSE,  strip.white=TRUE)
+
+   # Look at the beginning of x
+   head(x)
+
    # calculate average depth
    mean(x[,3])
    # std dev
@@ -357,6 +392,37 @@ Installation:
 Sub-selecting reads
 -------------------
 
+It is important to remember that the mapping commands we used above, without additional parameter to sub-select specific alignments (e.g. for |bowtie| there are options like ``--no-mixed``, which suppresses unpaired alignments for paired reads or ``--no-discordant``, which suppresses discordant alignments for paired reads, etc.), is going to output all reads, including unmapped reads, multi-mapping reads, unpaired reads, discordant read pairs, etc. in one file. We can sub-select from the output reads we want to analyse further using |samtools|.
+
+
+.. todo::
+
+   Explain what concordant and discordant read pairs are? Look at the |bowtie| manual.
+   
+
+Concordant reads
+~~~~~~~~~~~~~~~~
+
+Here, we select the reads **we will be using for subsequent analyses**.
+Frist off, we select reads with a mapping quality of at least 20.
+Furthermore, we select read-pair that have been mapped in a correct manner (same chromosome/contig, correct orientation to each other).
+
+
+.. rst-class:: sebcode
+               
+   samtools view -h -b -q 20 -f 2 mappings/|fileevol|.sorted.bam > mappings/|fileevol|.sorted.concordant.q20.bam
+
+
+- ``-h``: Include the sam header
+- ``-b``: Output will be bam-format
+- ``-q 20``: Only extract reads with mapping quality >= 20
+- ``-f 2``: Only extract correctly paired reads. ``-f`` extracts alignments with the specified `SAM flag <http://bio-bwa.sourceforge.net/bwa.shtml#4>`__ set.
+
+
+.. attention::
+
+   The resulting file of this step will be used in the next section for calling variants.
+
 
 Unmapped reads
 ~~~~~~~~~~~~~~
@@ -385,31 +451,3 @@ Lets extract the fastq sequence of the unmapped reads for read1 and read2.
 .. rst-class:: sebcode
 
     bamToFastq -i |fileevol|.sorted.unmapped.bam -fq mappings/|fileevol|.sorted.unmapped.R1.fastq -fq2  mappings/|fileevol|.sorted.unmapped.R2.fastq
-  
-  
-.. hint::
-
-   A very useful tools to explain flags can be found `here <http://broadinstitute.github.io/picard/explain-flags.html>`__.
-
-
-Concordant reads
-~~~~~~~~~~~~~~~~
-
-Here, we select the reads **we will be using for subsequent analyses**.
-Frist off, we select reads with a mapping quality of at least 20.
-Furthermore, we select read-pair that have been mapped in a correct manner (same chromosome/contig, correct orientation to each other).
-
-.. rst-class:: sebcode
-               
-   samtools view -h -b -q 20 -f 2 mappings/|fileevol|.sorted.bam > mappings/|fileevol|.sorted.concordant.q20.bam
-
-
-- ``-h``: Include the sam header
-- ``-b``: Output will be bam-format
-- ``-q 20``: Only extract reads with mapping quality >= 20
-- ``-f 2``: Only extract correctly paired reads
-
-
-.. todo::
-
-   Extract the coverage for these reads and compare the mean and standard deviation to all mappings from before.
