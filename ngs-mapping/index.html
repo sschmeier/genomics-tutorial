@@ -119,15 +119,19 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#the-sam-mapping-file-format">7.7. The sam mapping file-format</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#sorting-and-compressing">7.8. Sorting and compressing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#mapping-post-processing">7.8. Mapping post-processing</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#fix-mates-and-compress">7.8.1. Fix mates and compress</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sorting">7.8.2. Sorting</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="#mapping-statistics">7.9. Mapping statistics</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#stats-with-samtools">7.9.1. Stats with SAMtools</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#stats-with-qualimap">7.9.2. Stats with QualiMap</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#sub-selecting-reads">7.10. Sub-selecting reads</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#unmapped-reads">7.10.1. Unmapped reads</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#concordant-reads">7.10.2. Concordant reads</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#concordant-reads">7.10.1. Concordant reads</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#unmapped-reads">7.10.2. Unmapped reads</a></li>
 </ul>
 </li>
 </ul>
@@ -419,22 +423,37 @@ Briefly, first there are a lot of header lines. Then, for each read, that mapped
 </div>
 <p>It basically defines, the read and the position in the reference genome where the read mapped and a quality of the map.</p>
 </div>
-<div class="section" id="sorting-and-compressing">
-<h2>7.8. Sorting and compressing<a class="headerlink" href="#sorting-and-compressing" title="Permalink to this headline">¶</a></h2>
-<p>We are going to use <a class="reference external" href="http://samtools.sourceforge.net/">SAMtools</a> to sort the sam-file and create a binary version for efficient storing of and access to the mapped reads.
-We are going to do the transformation into a bam-file (the binary version of a sam-file) and the sorting in one step:</p>
-<p class="sebcode"># convert to bam file and sort
-samtools view -b -S mappings/evolved-6.sam | samtools sort -o mappings/evolved-6.sorted.bam
-# delete sam-file
-rm mappings/evolved-6.sam</p>
+<div class="section" id="mapping-post-processing">
+<h2>7.8. Mapping post-processing<a class="headerlink" href="#mapping-post-processing" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="fix-mates-and-compress">
+<h3>7.8.1. Fix mates and compress<a class="headerlink" href="#fix-mates-and-compress" title="Permalink to this headline">¶</a></h3>
+<p>Because aligners can sometimes leave unusual <a class="reference external" href="http://bio-bwa.sourceforge.net/bwa.shtml#4">SAM flag</a> information on SAM records, it is helpful when working with many tools to first clean up read pairing information and flags with <a class="reference external" href="http://samtools.sourceforge.net/">SAMtools</a>.
+We are going to produce also compressed bam output for efficient storing of and access to the mapped reads.</p>
+<p class="sebcode">samtools fixmate -O bam evolved-6.sam evolved-6.fixmate.bam</p>
 <ul class="simple">
-<li><code class="docutils literal"><span class="pre">-b</span></code>: indicates that the output is BAM.</li>
-<li><code class="docutils literal"><span class="pre">-S</span></code>: indicates that the input is SAM.</li>
-<li><code class="docutils literal"><span class="pre">-o</span></code>: specifies the name of the output file.</li>
+<li><code class="docutils literal"><span class="pre">-O</span> <span class="pre">bam</span></code>: specifies that we want compressed bam output</li>
 </ul>
 <div class="admonition attention">
 <p class="first admonition-title">Attention</p>
 <p class="last">The step of sam to bam-file conversion might take a few minutes to finish, depending on how big your mapping file is.</p>
+</div>
+<p>We will be using the <a class="reference external" href="http://bio-bwa.sourceforge.net/bwa.shtml#4">SAM flag</a> information later below to extract specific alignments.</p>
+<div class="admonition hint">
+<p class="first admonition-title">Hint</p>
+<p class="last">A very useful tools to explain flags can be found <a class="reference external" href="http://broadinstitute.github.io/picard/explain-flags.html">here</a>.</p>
+</div>
+<p>Once we have bam-file, we can also delete the original sam-file as it requires too much space.</p>
+<p class="sebcode">rm mappings/evolved-6.sam</p>
+</div>
+<div class="section" id="sorting">
+<h3>7.8.2. Sorting<a class="headerlink" href="#sorting" title="Permalink to this headline">¶</a></h3>
+<p>We are going to use <a class="reference external" href="http://samtools.sourceforge.net/">SAMtools</a> again to sort the bam-file into coordinate order:</p>
+<p class="sebcode"># convert to bam file and sort
+samtools sort -O bam -o evolved-6.sorted.bam evolved-6.fixmate.bam</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">-o</span></code>: specifies the name of the output file.</li>
+<li><code class="docutils literal"><span class="pre">-O</span> <span class="pre">bam</span></code>: specifies that the output will be bam-format</li>
+</ul>
 </div>
 </div>
 <div class="section" id="mapping-statistics">
@@ -456,9 +475,13 @@ Can they be used for something?</p>
 <p class="last">Extract the depth values for contig 20 and load the data into R, calculate some statistics of our scaffold.</p>
 </div>
 <p class="sebcode">zcat mappings/evolved-6.depth.txt.gz | egrep '^NODE_20_' | gzip &gt;  mappings/NODE_20.depth.txt.gz</p>
-<p>Now we quickly use some R to make a coverage plot for contig NODE20.
-Open a R shell by typing <code class="docutils literal"><span class="pre">R</span></code> on the command-line of the shell.</p>
+<p>Now we quickly use some <a class="reference external" href="https://www.r-project.org/">R</a> to make a coverage plot for contig NODE20.
+Open a <a class="reference external" href="https://www.r-project.org/">R</a> shell by typing <code class="docutils literal"><span class="pre">R</span></code> on the command-line of the shell.</p>
 <div class="code R highlight-default"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">&lt;-</span> <span class="n">read</span><span class="o">.</span><span class="n">table</span><span class="p">(</span><span class="s1">&#39;mappings/NODE_20.depth.txt.gz&#39;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="n">FALSE</span><span class="p">,</span>  <span class="n">strip</span><span class="o">.</span><span class="n">white</span><span class="o">=</span><span class="n">TRUE</span><span class="p">)</span>
+
+<span class="c1"># Look at the beginning of x</span>
+<span class="n">head</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
 <span class="c1"># calculate average depth</span>
 <span class="n">mean</span><span class="p">(</span><span class="n">x</span><span class="p">[,</span><span class="mi">3</span><span class="p">])</span>
 <span class="c1"># std dev</span>
@@ -495,8 +518,30 @@ Open a R shell by typing <code class="docutils literal"><span class="pre">R</spa
 </div>
 <div class="section" id="sub-selecting-reads">
 <h2>7.10. Sub-selecting reads<a class="headerlink" href="#sub-selecting-reads" title="Permalink to this headline">¶</a></h2>
+<p>It is important to remember that the mapping commands we used above, without additional parameter to sub-select specific alignments (e.g. for <a class="reference external" href="http://bowtie-bio.sourceforge.net/bowtie2/index.shtml">Bowtie2</a> there are options like <code class="docutils literal"><span class="pre">--no-mixed</span></code>, which suppresses unpaired alignments for paired reads or <code class="docutils literal"><span class="pre">--no-discordant</span></code>, which suppresses discordant alignments for paired reads, etc.), is going to output all reads, including unmapped reads, multi-mapping reads, unpaired reads, discordant read pairs, etc. in one file. We can sub-select from the output reads we want to analyse further using <a class="reference external" href="http://samtools.sourceforge.net/">SAMtools</a>.</p>
+<div class="admonition-todo admonition" id="index-8">
+<p class="first admonition-title">Todo</p>
+<p class="last">Explain what concordant and discordant read pairs are? Look at the <a class="reference external" href="http://bowtie-bio.sourceforge.net/bowtie2/index.shtml">Bowtie2</a> manual.</p>
+</div>
+<div class="section" id="concordant-reads">
+<h3>7.10.1. Concordant reads<a class="headerlink" href="#concordant-reads" title="Permalink to this headline">¶</a></h3>
+<p>Here, we select the reads <strong>we will be using for subsequent analyses</strong>.
+Frist off, we select reads with a mapping quality of at least 20.
+Furthermore, we select read-pair that have been mapped in a correct manner (same chromosome/contig, correct orientation to each other).</p>
+<p class="sebcode">samtools view -h -b -q 20 -f 2 mappings/evolved-6.sorted.bam &gt; mappings/evolved-6.sorted.concordant.q20.bam</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">-h</span></code>: Include the sam header</li>
+<li><code class="docutils literal"><span class="pre">-b</span></code>: Output will be bam-format</li>
+<li><code class="docutils literal"><span class="pre">-q</span> <span class="pre">20</span></code>: Only extract reads with mapping quality &gt;= 20</li>
+<li><code class="docutils literal"><span class="pre">-f</span> <span class="pre">2</span></code>: Only extract correctly paired reads. <code class="docutils literal"><span class="pre">-f</span></code> extracts alignments with the specified <a class="reference external" href="http://bio-bwa.sourceforge.net/bwa.shtml#4">SAM flag</a> set.</li>
+</ul>
+<div class="admonition attention">
+<p class="first admonition-title">Attention</p>
+<p class="last">The resulting file of this step will be used in the next section for calling variants.</p>
+</div>
+</div>
 <div class="section" id="unmapped-reads">
-<h3>7.10.1. Unmapped reads<a class="headerlink" href="#unmapped-reads" title="Permalink to this headline">¶</a></h3>
+<h3>7.10.2. Unmapped reads<a class="headerlink" href="#unmapped-reads" title="Permalink to this headline">¶</a></h3>
 <p>We could decide to use <a class="reference external" href="https://ccb.jhu.edu/software/kraken/">Kraken</a> like in section <a class="reference internal" href="../ngs-taxonomic-investigation/index.html#taxonomic-investigation"><span class="std std-ref">NGS - Taxonomic investigation</span></a> to classify all unmapped sequence reads and identify the species they are coming from and test for contamination.</p>
 <p>Lets see how we can get the unmapped portion of the reads from the bam-file:</p>
 <p class="sebcode">samtools view -b -f 4 mappings/evolved-6.sorted.bam &gt; mappings/evolved-6.sorted.unmapped.bam</p>
@@ -509,13 +554,6 @@ samtools view -c mappings/evolved-6.sorted.unmapped.bam</p>
 </ul>
 <p>Lets extract the fastq sequence of the unmapped reads for read1 and read2.</p>
 <p class="sebcode">bamToFastq -i evolved-6.sorted.unmapped.bam -fq mappings/evolved-6.sorted.unmapped.R1.fastq -fq2  mappings/evolved-6.sorted.unmapped.R2.fastq</p>
-<div class="admonition hint">
-<p class="first admonition-title">Hint</p>
-<p class="last">A very useful tools to explain flags can be found <a class="reference external" href="http://broadinstitute.github.io/picard/explain-flags.html">here</a>.</p>
-</div>
-</div>
-<div class="section" id="concordant-reads">
-<h3>7.10.2. Concordant reads<a class="headerlink" href="#concordant-reads" title="Permalink to this headline">¶</a></h3>
 </div>
 </div>
 </div>
@@ -540,7 +578,7 @@ samtools view -c mappings/evolved-6.sorted.unmapped.bam</p>
   <div role="contentinfo">
     <p>
         &copy; Copyright 2016-2017, Sebastian Schmeier.
-      Last updated on Jan 29, 2017.
+      Last updated on Jan 30, 2017.
 
     </p>
   </div>
