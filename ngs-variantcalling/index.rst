@@ -193,7 +193,7 @@ The fields in a vcf-file are described in he table (:numref:`table-vcf`) below:
    +-----+-----------+--------------------------------------------------------------------------------------+
    | 2   | POS       | 1-based position. For an indel, this is the position preceding the indel.            |
    +-----+-----------+--------------------------------------------------------------------------------------+
-   | 3   + ID        | Variant identifier. Usually the dbSNP rsID.                                          |
+   | 3   | ID        | Variant identifier. Usually the dbSNP rsID.                                          |
    +-----+-----------+--------------------------------------------------------------------------------------+
    | 4   | REF       | Reference sequence at POS involved in the variant. For a SNP, it is a single base.   |
    +-----+-----------+--------------------------------------------------------------------------------------+
