@@ -202,35 +202,38 @@ The sam mapping file-format
 A quick overview of the sam-format can be found `here <http://bio-bwa.sourceforge.net/bwa.shtml#4>`__ and even more information can be found `here <http://samtools.github.io/hts-specs/SAMv1.pdf>`__.
 Briefly, first there are a lot of header lines. Then, for each read, that mapped to the reference, there is one line.
 
-The columns of such a line in the mapping file are:
+The columns of such a line in the mapping file are described in :numref:`table-sam`.
 
-+-----+---------+-----------------------------------------------------------+
-| Col |  Field	| Description                                               |
-+=====+=========+===========================================================+
-| 1   | QNAME   | Query (pair) NAME                                         |
-+-----+---------+-----------------------------------------------------------+
-| 2   | FLAG    | bitwise FLAG                                              |
-+-----+---------+-----------------------------------------------------------+
-| 3   | RNAME   | Reference sequence NAME                                   |
-+-----+---------+-----------------------------------------------------------+
-| 4   | POS     | 1-based leftmost POSition/coordinate of clipped sequence  |
-+-----+---------+-----------------------------------------------------------+
-| 5   | MAPQ    | MAPping Quality (Phred-scaled)                            |
-+-----+---------+-----------------------------------------------------------+
-| 6   | CIAGR   | extended CIGAR string                                     |
-+-----+---------+-----------------------------------------------------------+
-| 7   | MRNM    | Mate Reference sequence NaMe (‘=’ if same as RNAME)       |
-+-----+---------+-----------------------------------------------------------+
-| 8   | MPOS    | 1-based Mate POSition                                     |
-+-----+---------+-----------------------------------------------------------+
-| 9   |	ISIZE   | Inferred insert SIZE                                      |
-+-----+---------+-----------------------------------------------------------+
-| 10  |	SEQ     | query SEQuence on the same strand as the reference        |
-+-----+---------+-----------------------------------------------------------+
-| 11  |	QUAL    | query QUALity (ASCII-33 gives the Phred base quality)     |
-+-----+---------+-----------------------------------------------------------+
-| 12  |	OPT     | variable OPTional fields in the format TAG\:VTYPE\:VALUE  |
-+-----+---------+-----------------------------------------------------------+
+.. _table-sam:
+.. table:: The sam-file format fields.
+
+   +-----+---------+-----------------------------------------------------------+
+   | Col |  Field  | Description                                               |
+   +=====+=========+===========================================================+
+   | 1   | QNAME   | Query (pair) NAME                                         |
+   +-----+---------+-----------------------------------------------------------+
+   | 2   | FLAG    | bitwise FLAG                                              |
+   +-----+---------+-----------------------------------------------------------+
+   | 3   | RNAME   | Reference sequence NAME                                   |
+   +-----+---------+-----------------------------------------------------------+
+   | 4   | POS     | 1-based leftmost POSition/coordinate of clipped sequence  |
+   +-----+---------+-----------------------------------------------------------+
+   | 5   | MAPQ    | MAPping Quality (Phred-scaled)                            |
+   +-----+---------+-----------------------------------------------------------+
+   | 6   | CIAGR   | extended CIGAR string                                     |
+   +-----+---------+-----------------------------------------------------------+
+   | 7   | MRNM    | Mate Reference sequence NaMe (‘=’ if same as RNAME)       |
+   +-----+---------+-----------------------------------------------------------+
+   | 8   | MPOS    | 1-based Mate POSition                                     |
+   +-----+---------+-----------------------------------------------------------+
+   | 9   | ISIZE   | Inferred insert SIZE                                      |
+   +-----+---------+-----------------------------------------------------------+
+   | 10  | SEQ     | query SEQuence on the same strand as the reference        |
+   +-----+---------+-----------------------------------------------------------+
+   | 11  | QUAL    | query QUALity (ASCII-33 gives the Phred base quality)     |
+   +-----+---------+-----------------------------------------------------------+
+   | 12  | OPT     | variable OPTional fields in the format TAG\:VTYPE\:VALUE  |
+   +-----+---------+-----------------------------------------------------------+
 
 One line of a mapped read can be seen here:
 

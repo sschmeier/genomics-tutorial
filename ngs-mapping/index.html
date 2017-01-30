@@ -352,8 +352,9 @@ The general command structure of the <a class="reference external" href="http://
 <p><a class="reference external" href="http://bio-bwa.sourceforge.net/">BWA</a> will produce a mapping file in sam-format. Have a look into the sam-file that was created by <a class="reference external" href="http://bio-bwa.sourceforge.net/">BWA</a>.
 A quick overview of the sam-format can be found <a class="reference external" href="http://bio-bwa.sourceforge.net/bwa.shtml#4">here</a> and even more information can be found <a class="reference external" href="http://samtools.github.io/hts-specs/SAMv1.pdf">here</a>.
 Briefly, first there are a lot of header lines. Then, for each read, that mapped to the reference, there is one line.</p>
-<p>The columns of such a line in the mapping file are:</p>
-<table border="1" class="docutils">
+<p>The columns of such a line in the mapping file are described in <a class="reference internal" href="#table-sam"><span class="std std-numref">Table 7.1</span></a>.</p>
+<table border="1" class="docutils" id="id4">
+<span id="table-sam"></span><caption><span class="caption-number">Table 7.1 </span><span class="caption-text">The sam-file format fields.</span><a class="headerlink" href="#id4" title="Permalink to this table">¶</a></caption>
 <colgroup>
 <col width="7%" />
 <col width="12%" />
@@ -496,7 +497,7 @@ Open a <a class="reference external" href="https://www.r-project.org/">R</a> she
 </pre></div>
 </div>
 <p>The result plot will be looking similar to the one in <a class="reference internal" href="#coverage"><span class="std std-numref">Fig. 7.1</span></a></p>
-<div class="figure" id="id4">
+<div class="figure" id="id5">
 <span id="coverage"></span><img alt="../_images/covNODE20.png" src="../_images/covNODE20.png" />
 <p class="caption"><span class="caption-number">Fig. 7.1 </span><span class="caption-text">A example coverage plot for a contig with highlighted in red regions with a coverage below 20 reads.</span></p>
 </div>
@@ -577,7 +578,7 @@ samtools view -c mappings/evolved-6.sorted.unmapped.bam</p>
   <div role="contentinfo">
     <p>
         &copy; Copyright 2016-2017, Sebastian Schmeier.
-      Last updated on Jan 30, 2017.
+      Last updated on Jan 31, 2017.
 
     </p>
   </div>

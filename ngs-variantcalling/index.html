@@ -107,7 +107,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#preprocessing">8.5. Preprocessing</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#calling-variants">8.6. Calling variants</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#samtools-mpileup">8.6.1. SAMtools mpileup</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#freebayes">8.6.2. freebayes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#freebayes">8.6.2. Freebayes</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#post-processing">8.7. Post-processing</a><ul>
@@ -222,20 +222,19 @@ genetic variants in the evolved line.</p>
 <span class="n">conda</span> <span class="n">install</span> <span class="n">bcftools</span>
 <span class="n">conda</span> <span class="n">install</span> <span class="n">freebayes</span>
 <span class="n">conda</span> <span class="n">install</span> <span class="n">rtg</span><span class="o">-</span><span class="n">tools</span>
-<span class="n">conda</span> <span class="n">install</span> <span class="n">tabix</span>
+<span class="n">conda</span> <span class="n">install</span> <span class="n">bedtools</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="preprocessing">
 <h2>8.5. Preprocessing<a class="headerlink" href="#preprocessing" title="Permalink to this headline">¶</a></h2>
 <p>We first need to make an index of our reference genome as this is required by the SNP caller.
-Given a scaffold/contig file in fasta-format, e.g. <code class="docutils literal"><span class="pre">scaffolds.fasta</span></code> which is
-located ina  directory <code class="docutils literal"><span class="pre">assembly/spades_final</span></code>, use <a class="reference external" href="http://samtools.sourceforge.net/">SAMtools</a> to do this:</p>
-<div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="n">samtools</span> <span class="n">faidx</span> <span class="n">assembly</span><span class="o">/</span><span class="n">spades_final</span><span class="o">/</span><span class="n">scaffolds</span><span class="o">.</span><span class="n">fasta</span>
+Given a scaffold/contig file in fasta-format, e.g. <code class="docutils literal"><span class="pre">scaffolds.fasta</span></code> which is located in the directory <code class="docutils literal"><span class="pre">assembly/spades_final</span></code>, use <a class="reference external" href="http://samtools.sourceforge.net/">SAMtools</a> to do this:</p>
+<div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="n">samtools</span> <span class="n">faidx</span> <span class="n">assembly</span><span class="o">/</span><span class="n">spades</span><span class="o">-</span><span class="n">final</span><span class="o">/</span><span class="n">scaffolds</span><span class="o">.</span><span class="n">fasta</span>
 </pre></div>
 </div>
-<p>Furthermore we need to pre-process our mapping files a bit further and creaee a bam-index file (<code class="docutils literal"><span class="pre">.bai</span></code>) for each o the bam-files, e.g.:</p>
-<p class="sebcode">bamtools index -in mappings/evolved-6.sorted.bam</p>
+<p>Furthermore we need to pre-process our mapping files a bit further and create a bam-index file (<code class="docutils literal"><span class="pre">.bai</span></code>) for the bam-file we want to work with:</p>
+<p class="sebcode">bamtools index -in mappings/evolved-6.sorted.concordant.q20.bam</p>
 <p>Lets also create a new directory for the variants:</p>
 <div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="n">mkdir</span> <span class="n">variants</span>
 </pre></div>
@@ -245,19 +244,29 @@ located ina  directory <code class="docutils literal"><span class="pre">assembly
 <h2>8.6. Calling variants<a class="headerlink" href="#calling-variants" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="samtools-mpileup">
 <h3>8.6.1. SAMtools mpileup<a class="headerlink" href="#samtools-mpileup" title="Permalink to this headline">¶</a></h3>
-<p>We use the sorted bam-file that we produced in the mapping step before.</p>
-<p class="sebcode"># We first pile up all the reads
-samtools mpileup -g -f assembly/spades_final/scaffolds.fasta mappings/evolved-6.sorted.bam &gt; variants/evolved-6.mpileup.bcf
-# Now we call the variants
-bcftools view -c -v variants/evolved-6.mpileup.bcf &gt; variants/evolved-6.mpileup.vcf</p>
+<p>We use the sorted filtered bam-file that we produced in the mapping step before.</p>
+<p class="sebcode"># We first pile up all the reads and then call variants
+samtools mpileup -u -g -f assembly/spades-final/scaffolds.fasta mappings/evolved-6.sorted.concordant.q20.bam | bcftools call -v -m -O z -o variants/evolved-6.mpileup.vcf.gz</p>
+<p><a class="reference external" href="http://samtools.sourceforge.net/">SAMtools</a> mpileup parameter:</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">-u</span></code>: uncompressed output</li>
+<li><code class="docutils literal"><span class="pre">-g</span></code>: generate genotype likelihoods in BCF format</li>
+<li><code class="docutils literal"><span class="pre">-f</span> <span class="pre">FILE</span></code>: faidx indexed reference sequence file</li>
+</ul>
+<p><a class="reference external" href="http://www.htslib.org/doc/bcftools.html">BCFtools</a> view parameter:</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">-v</span></code>: output variant sites only</li>
+<li><code class="docutils literal"><span class="pre">-m</span></code>: alternative model for multiallelic and rare-variant calling</li>
+<li><code class="docutils literal"><span class="pre">-o</span></code>: output file-name</li>
+<li><code class="docutils literal"><span class="pre">-O</span> <span class="pre">z</span></code>: output type: 'z' compressed VCF</li>
+</ul>
 </div>
 <div class="section" id="freebayes">
-<h3>8.6.2. freebayes<a class="headerlink" href="#freebayes" title="Permalink to this headline">¶</a></h3>
-<p>Now we can do some variant calling with another tool called <a class="reference external" href="https://github.com/ekg/freebayes">freebayes</a>.
-Given a reference genome scaffold file in fasta-format, e.g. <code class="docutils literal"><span class="pre">scaffolds.fasta</span></code> and the index in <code class="docutils literal"><span class="pre">.fai</span></code> format and a mapping file (e.g. &quot;evolved-6.sorted.bam&quot;) and a mapping index, we can call <a class="reference external" href="https://github.com/ekg/freebayes">freebayes</a> like so:</p>
+<h3>8.6.2. Freebayes<a class="headerlink" href="#freebayes" title="Permalink to this headline">¶</a></h3>
+<p>As an alternative we can do some variant calling with another tool called <a class="reference external" href="https://github.com/ekg/freebayes">freebayes</a>.
+Given a reference genome scaffold file in fasta-format, e.g. <code class="docutils literal"><span class="pre">scaffolds.fasta</span></code> and the index in <code class="docutils literal"><span class="pre">.fai</span></code> format and a mapping file (.bam file) and a mapping index (.bai file), we can call variants with <a class="reference external" href="https://github.com/ekg/freebayes">freebayes</a> like so:</p>
 <p class="sebcode"># Now we call variants and pipe the results into a new file
-freebayes -f assembly/spades_final/scaffolds.fasta mappings/evolved-6.sorted.bam &gt; variants/evolved-6.freebayes.vcf</p>
-<p>This will result in a variants file &quot;evolved-6.freebayes.vcf&quot;.</p>
+freebayes -f assembly/spades-final/scaffolds.fasta mappings/evolved-6.sorted.concordant.q20.bam | gzip &gt; variants/evolved-6.freebayes.vcf.gz</p>
 </div>
 </div>
 <div class="section" id="post-processing">
@@ -266,38 +275,158 @@ freebayes -f assembly/spades_final/scaffolds.fasta mappings/evolved-6.sorted.bam
 <h3>8.7.1. Understanding the output files (.vcf)<a class="headerlink" href="#understanding-the-output-files-vcf" title="Permalink to this headline">¶</a></h3>
 <p>Lets look at a vcf-file:</p>
 <p class="sebcode"># first 10 lines, which are part of the header
-cat variants/evolved-6.freebayes.vcf | head</p>
-<div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="c1">##fileformat=VCFv4.1</span>
-<span class="c1">##fileDate=20161122</span>
-<span class="c1">##source=freeBayes v1.0.2-29-g41c1313</span>
-<span class="c1">##reference=genome/scaffolds.fasta</span>
-<span class="c1">##contig=&lt;ID=NODE_1_length_1394677_cov_15.3771,length=1394677&gt;</span>
-<span class="c1">##contig=&lt;ID=NODE_2_length_1051867_cov_15.4779,length=1051867&gt;</span>
-<span class="c1">##contig=&lt;ID=NODE_3_length_950567_cov_15.4139,length=950567&gt;</span>
-<span class="c1">##contig=&lt;ID=NODE_4_length_925223_cov_15.3905,length=925223&gt;</span>
-<span class="c1">##contig=&lt;ID=NODE_5_length_916389_cov_15.4457,length=916389&gt;</span>
-<span class="c1">##contig=&lt;ID=NODE_6_length_772252_cov_15.4454,length=772252&gt;</span>
+zcat variants/evolved-6.mpileup.vcf.gz | head</p>
+<div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="c1">##fileformat=VCFv4.2</span>
+<span class="c1">##FILTER=&lt;ID=PASS,Description=&quot;All filters passed&quot;&gt;</span>
+<span class="c1">##samtoolsVersion=1.3.1+htslib-1.3.1</span>
+<span class="c1">##samtoolsCommand=samtools mpileup -g -f assembly/spades-final/scaffolds.fasta -o variants/evolved-6.mpileup.bcf mappings/evolved-6.sorted.concordant.q20.bam</span>
+<span class="c1">##reference=file://assembly/spades-final/scaffolds.fasta</span>
+<span class="c1">##contig=&lt;ID=NODE_1_length_1419525_cov_15.3898,length=1419525&gt;</span>
+<span class="c1">##contig=&lt;ID=NODE_2_length_1254443_cov_15.4779,length=1254443&gt;</span>
+<span class="c1">##contig=&lt;ID=NODE_3_length_972329_cov_15.3966,length=972329&gt;</span>
+<span class="c1">##contig=&lt;ID=NODE_4_length_951685_cov_15.4231,length=951685&gt;</span>
+<span class="c1">##contig=&lt;ID=NODE_5_length_925222_cov_15.39,length=925222&gt;</span>
+<span class="c1">##contig=&lt;ID=NODE_6_length_916533_cov_15.4426,length=916533&gt;</span>
 </pre></div>
 </div>
 <p>Lets look at the variants:</p>
 <p class="sebcode"># remove header lines and look at top 4 entires
-cat variants/evolved-6.freebayes.vcf | egrep -v '##' | head -4</p>
-<div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="c1">#CHROM  POS     ID      REF     ALT     QUAL    FILTER  INFO    FORMAT  unknown</span>
-<span class="n">NODE_1_length_1394677_cov_15</span><span class="o">.</span><span class="mi">3771</span>       <span class="mi">137621</span>  <span class="o">.</span>       <span class="n">T</span>       <span class="n">C</span>       <span class="mf">76.5197</span> <span class="o">.</span>       <span class="n">AB</span><span class="o">=</span><span class="mf">0.318182</span><span class="p">;</span><span class="n">ABP</span><span class="o">=</span><span class="mf">9.32731</span><span class="p">;</span><span class="n">AC</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">AF</span><span class="o">=</span><span class="mf">0.5</span><span class="p">;</span><span class="n">AN</span><span class="o">=</span><span class="mi">2</span><span class="p">;</span><span class="n">AO</span><span class="o">=</span><span class="mi">7</span><span class="p">;</span><span class="n">CIGAR</span><span class="o">=</span><span class="mi">1</span><span class="n">X</span><span class="p">;</span><span class="n">DP</span><span class="o">=</span><span class="mi">22</span><span class="p">;</span><span class="n">DPB</span><span class="o">=</span><span class="mi">22</span><span class="p">;</span><span class="n">DPRA</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">EPP</span><span class="o">=</span><span class="mf">18.2106</span><span class="p">;</span><span class="n">EPPR</span><span class="o">=</span><span class="mf">4.31318</span><span class="p">;</span><span class="n">GTI</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">LEN</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">MEANALT</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">MQM</span><span class="o">=</span><span class="mf">56.1429</span><span class="p">;</span><span class="n">MQMR</span><span class="o">=</span><span class="mf">56.4</span><span class="p">;</span><span class="n">NS</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">NUMALT</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">ODDS</span><span class="o">=</span><span class="mf">17.6193</span><span class="p">;</span><span class="n">PAIRED</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">PAIREDR</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">PAO</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">PQA</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">PQR</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">PRO</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">QA</span><span class="o">=</span><span class="mi">268</span><span class="p">;</span><span class="n">QR</span><span class="o">=</span><span class="mi">540</span><span class="p">;</span><span class="n">RO</span><span class="o">=</span><span class="mi">15</span><span class="p">;</span><span class="n">RPL</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">RPP</span><span class="o">=</span><span class="mf">18.2106</span><span class="p">;</span><span class="n">RPPR</span><span class="o">=</span><span class="mf">6.62942</span><span class="p">;</span><span class="n">RPR</span><span class="o">=</span><span class="mi">7</span><span class="p">;</span><span class="n">RUN</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">SAF</span><span class="o">=</span><span class="mi">7</span><span class="p">;</span><span class="n">SAP</span><span class="o">=</span><span class="mf">18.2106</span><span class="p">;</span><span class="n">SAR</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">SRF</span><span class="o">=</span><span class="mi">12</span><span class="p">;</span><span class="n">SRP</span><span class="o">=</span><span class="mf">14.7363</span><span class="p">;</span><span class="n">SRR</span><span class="o">=</span><span class="mi">3</span><span class="p">;</span><span class="n">TYPE</span><span class="o">=</span><span class="n">snp</span>       <span class="n">GT</span><span class="p">:</span><span class="n">DP</span><span class="p">:</span><span class="n">DPR</span><span class="p">:</span><span class="n">RO</span><span class="p">:</span><span class="n">QR</span><span class="p">:</span><span class="n">AO</span><span class="p">:</span><span class="n">QA</span><span class="p">:</span><span class="n">GL</span>    <span class="mi">0</span><span class="o">/</span><span class="mi">1</span><span class="p">:</span><span class="mi">22</span><span class="p">:</span><span class="mi">22</span><span class="p">,</span><span class="mi">7</span><span class="p">:</span><span class="mi">15</span><span class="p">:</span><span class="mi">540</span><span class="p">:</span><span class="mi">7</span><span class="p">:</span><span class="mi">268</span><span class="p">:</span><span class="o">-</span><span class="mf">17.3644</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mf">42.2185</span>
-<span class="n">NODE_1_length_1394677_cov_15</span><span class="o">.</span><span class="mi">3771</span>       <span class="mi">568696</span>  <span class="o">.</span>       <span class="n">G</span>       <span class="n">A</span>       <span class="mf">1269.62</span> <span class="o">.</span>       <span class="n">AB</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">ABP</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">AC</span><span class="o">=</span><span class="mi">2</span><span class="p">;</span><span class="n">AF</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">AN</span><span class="o">=</span><span class="mi">2</span><span class="p">;</span><span class="n">AO</span><span class="o">=</span><span class="mi">38</span><span class="p">;</span><span class="n">CIGAR</span><span class="o">=</span><span class="mi">1</span><span class="n">X</span><span class="p">;</span><span class="n">DP</span><span class="o">=</span><span class="mi">38</span><span class="p">;</span><span class="n">DPB</span><span class="o">=</span><span class="mi">38</span><span class="p">;</span><span class="n">DPRA</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">EPP</span><span class="o">=</span><span class="mf">3.23888</span><span class="p">;</span><span class="n">EPPR</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">GTI</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">LEN</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">MEANALT</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">MQM</span><span class="o">=</span><span class="mi">60</span><span class="p">;</span><span class="n">MQMR</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">NS</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">NUMALT</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">ODDS</span><span class="o">=</span><span class="mf">57.2844</span><span class="p">;</span><span class="n">PAIRED</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">PAIREDR</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">PAO</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">PQA</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">PQR</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">PRO</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">QA</span><span class="o">=</span><span class="mi">1438</span><span class="p">;</span><span class="n">QR</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">RO</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">RPL</span><span class="o">=</span><span class="mi">20</span><span class="p">;</span><span class="n">RPP</span><span class="o">=</span><span class="mf">3.23888</span><span class="p">;</span><span class="n">RPPR</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">RPR</span><span class="o">=</span><span class="mi">18</span><span class="p">;</span><span class="n">RUN</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">SAF</span><span class="o">=</span><span class="mi">20</span><span class="p">;</span><span class="n">SAP</span><span class="o">=</span><span class="mf">3.23888</span><span class="p">;</span><span class="n">SAR</span><span class="o">=</span><span class="mi">18</span><span class="p">;</span><span class="n">SRF</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">SRP</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">SRR</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">TYPE</span><span class="o">=</span><span class="n">snp</span>      <span class="n">GT</span><span class="p">:</span><span class="n">DP</span><span class="p">:</span><span class="n">DPR</span><span class="p">:</span><span class="n">RO</span><span class="p">:</span><span class="n">QR</span><span class="p">:</span><span class="n">AO</span><span class="p">:</span><span class="n">QA</span><span class="p">:</span><span class="n">GL</span>        <span class="mi">1</span><span class="o">/</span><span class="mi">1</span><span class="p">:</span><span class="mi">38</span><span class="p">:</span><span class="mi">38</span><span class="p">,</span><span class="mi">38</span><span class="p">:</span><span class="mi">0</span><span class="p">:</span><span class="mi">0</span><span class="p">:</span><span class="mi">38</span><span class="p">:</span><span class="mi">1438</span><span class="p">:</span><span class="o">-</span><span class="mf">129.701</span><span class="p">,</span><span class="o">-</span><span class="mf">11.4391</span><span class="p">,</span><span class="mi">0</span>
-<span class="n">NODE_1_length_1394677_cov_15</span><span class="o">.</span><span class="mi">3771</span>       <span class="mi">612771</span>  <span class="o">.</span>       <span class="n">T</span>       <span class="n">C</span>       <span class="mf">60.7485</span> <span class="o">.</span>       <span class="n">AB</span><span class="o">=</span><span class="mf">0.3</span><span class="p">;</span><span class="n">ABP</span><span class="o">=</span><span class="mf">9.95901</span><span class="p">;</span><span class="n">AC</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">AF</span><span class="o">=</span><span class="mf">0.5</span><span class="p">;</span><span class="n">AN</span><span class="o">=</span><span class="mi">2</span><span class="p">;</span><span class="n">AO</span><span class="o">=</span><span class="mi">6</span><span class="p">;</span><span class="n">CIGAR</span><span class="o">=</span><span class="mi">1</span><span class="n">X</span><span class="p">;</span><span class="n">DP</span><span class="o">=</span><span class="mi">20</span><span class="p">;</span><span class="n">DPB</span><span class="o">=</span><span class="mi">20</span><span class="p">;</span><span class="n">DPRA</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">EPP</span><span class="o">=</span><span class="mf">4.45795</span><span class="p">;</span><span class="n">EPPR</span><span class="o">=</span><span class="mf">8.59409</span><span class="p">;</span><span class="n">GTI</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">LEN</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">MEANALT</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">MQM</span><span class="o">=</span><span class="mf">49.5</span><span class="p">;</span><span class="n">MQMR</span><span class="o">=</span><span class="mf">54.3571</span><span class="p">;</span><span class="n">NS</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">NUMALT</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">ODDS</span><span class="o">=</span><span class="mf">13.9879</span><span class="p">;</span><span class="n">PAIRED</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">PAIREDR</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">PAO</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">PQA</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">PQR</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">PRO</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">QA</span><span class="o">=</span><span class="mi">223</span><span class="p">;</span><span class="n">QR</span><span class="o">=</span><span class="mi">540</span><span class="p">;</span><span class="n">RO</span><span class="o">=</span><span class="mi">14</span><span class="p">;</span><span class="n">RPL</span><span class="o">=</span><span class="mi">6</span><span class="p">;</span><span class="n">RPP</span><span class="o">=</span><span class="mf">16.0391</span><span class="p">;</span><span class="n">RPPR</span><span class="o">=</span><span class="mf">33.4109</span><span class="p">;</span><span class="n">RPR</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">RUN</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">SAF</span><span class="o">=</span><span class="mi">4</span><span class="p">;</span><span class="n">SAP</span><span class="o">=</span><span class="mf">4.45795</span><span class="p">;</span><span class="n">SAR</span><span class="o">=</span><span class="mi">2</span><span class="p">;</span><span class="n">SRF</span><span class="o">=</span><span class="mi">4</span><span class="p">;</span><span class="n">SRP</span><span class="o">=</span><span class="mf">8.59409</span><span class="p">;</span><span class="n">SRR</span><span class="o">=</span><span class="mi">10</span><span class="p">;</span><span class="n">TYPE</span><span class="o">=</span><span class="n">snp</span>    <span class="n">GT</span><span class="p">:</span><span class="n">DP</span><span class="p">:</span><span class="n">DPR</span><span class="p">:</span><span class="n">RO</span><span class="p">:</span><span class="n">QR</span><span class="p">:</span><span class="n">AO</span><span class="p">:</span><span class="n">QA</span><span class="p">:</span><span class="n">GL</span>        <span class="mi">0</span><span class="o">/</span><span class="mi">1</span><span class="p">:</span><span class="mi">20</span><span class="p">:</span><span class="mi">20</span><span class="p">,</span><span class="mi">6</span><span class="p">:</span><span class="mi">14</span><span class="p">:</span><span class="mi">540</span><span class="p">:</span><span class="mi">6</span><span class="p">:</span><span class="mi">223</span><span class="p">:</span><span class="o">-</span><span class="mf">12.5734</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mf">40.0605</span>
+zcat variants/evolved-6.mpileup.vcf.gz | egrep -v '##' | head -4</p>
+<div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="c1">#CHROM  POS     ID      REF     ALT     QUAL    FILTER  INFO    FORMAT  mappings/evolved-6.sorted.concordant.q20.bam</span>
+<span class="n">NODE_1_length_1419525_cov_15</span><span class="o">.</span><span class="mi">3898</span>       <span class="mi">24721</span>   <span class="o">.</span>       <span class="n">T</span>       <span class="n">C</span>       <span class="mi">164</span>     <span class="o">.</span>       <span class="n">DP</span><span class="o">=</span><span class="mi">12</span><span class="p">;</span><span class="n">VDB</span><span class="o">=</span><span class="mf">0.205941</span><span class="p">;</span><span class="n">SGB</span><span class="o">=-</span><span class="mf">0.680642</span><span class="p">;</span><span class="n">MQ0F</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">AC</span><span class="o">=</span><span class="mi">2</span><span class="p">;</span><span class="n">AN</span><span class="o">=</span><span class="mi">2</span><span class="p">;</span><span class="n">DP4</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">12</span><span class="p">,</span><span class="mi">0</span><span class="p">;</span><span class="n">MQ</span><span class="o">=</span><span class="mi">40</span>     <span class="n">GT</span><span class="p">:</span><span class="n">PL</span>   <span class="mi">1</span><span class="o">/</span><span class="mi">1</span><span class="p">:</span><span class="mi">191</span><span class="p">,</span><span class="mi">36</span><span class="p">,</span><span class="mi">0</span>
+<span class="n">NODE_1_length_1419525_cov_15</span><span class="o">.</span><span class="mi">3898</span>       <span class="mi">157033</span>  <span class="o">.</span>       <span class="n">AAGAGAGAGAGAGAGAGAGAGAGA</span>        <span class="n">AAGAGAGAGAGAGAGAGAGAGA</span>  <span class="mf">39.3328</span>  <span class="o">.</span>       <span class="n">INDEL</span><span class="p">;</span><span class="n">IDV</span><span class="o">=</span><span class="mi">6</span><span class="p">;</span><span class="n">IMF</span><span class="o">=</span><span class="mf">0.146341</span><span class="p">;</span><span class="n">DP</span><span class="o">=</span><span class="mi">41</span><span class="p">;</span><span class="n">VDB</span><span class="o">=</span><span class="mf">0.0813946</span><span class="p">;</span><span class="n">SGB</span><span class="o">=-</span><span class="mf">0.616816</span><span class="p">;</span><span class="n">MQSB</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">MQ0F</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">ICB</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">HOB</span><span class="o">=</span><span class="mf">0.5</span><span class="p">;</span><span class="n">AC</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">AN</span><span class="o">=</span><span class="mi">2</span><span class="p">;</span><span class="n">DP4</span><span class="o">=</span><span class="mi">13</span><span class="p">,</span><span class="mi">17</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">;</span><span class="n">MQ</span><span class="o">=</span><span class="mi">42</span>     <span class="n">GT</span><span class="p">:</span><span class="n">PL</span>   <span class="mi">0</span><span class="o">/</span><span class="mi">1</span><span class="p">:</span><span class="mi">75</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">255</span>
+<span class="n">NODE_1_length_1419525_cov_15</span><span class="o">.</span><span class="mi">3898</span>       <span class="mi">162469</span>  <span class="o">.</span>       <span class="n">T</span>       <span class="n">C</span>       <span class="mf">19.609</span>  <span class="o">.</span>       <span class="n">DP</span><span class="o">=</span><span class="mi">16</span><span class="p">;</span><span class="n">VDB</span><span class="o">=</span><span class="mf">0.045681</span><span class="p">;</span><span class="n">SGB</span><span class="o">=-</span><span class="mf">0.511536</span><span class="p">;</span><span class="n">RPB</span><span class="o">=</span><span class="mf">0.032027</span><span class="p">;</span><span class="n">MQB</span><span class="o">=</span><span class="mf">0.832553</span><span class="p">;</span><span class="n">BQB</span><span class="o">=</span><span class="mf">0.130524</span><span class="p">;</span><span class="n">MQ0F</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">ICB</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">HOB</span><span class="o">=</span><span class="mf">0.5</span><span class="p">;</span><span class="n">AC</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">AN</span><span class="o">=</span><span class="mi">2</span><span class="p">;</span><span class="n">DP4</span><span class="o">=</span><span class="mi">13</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">0</span><span class="p">;</span><span class="n">MQ</span><span class="o">=</span><span class="mi">39</span>        <span class="n">GT</span><span class="p">:</span><span class="n">PL</span>   <span class="mi">0</span><span class="o">/</span><span class="mi">1</span><span class="p">:</span><span class="mi">54</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">155</span>
 </pre></div>
 </div>
+<p>The fields in a vcf-file are described in he table (<a class="reference internal" href="#table-vcf"><span class="std std-numref">Table 8.1</span></a>) below:</p>
+<table border="1" class="docutils" id="id1">
+<span id="table-vcf"></span><caption><span class="caption-number">Table 8.1 </span><span class="caption-text">The vcf-file format fields.</span><a class="headerlink" href="#id1" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col width="5%" />
+<col width="11%" />
+<col width="84%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Col</th>
+<th class="head">Field</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>1</td>
+<td>CHROM</td>
+<td>Chromosome name</td>
+</tr>
+<tr class="row-odd"><td>2</td>
+<td>POS</td>
+<td>1-based position. For an indel, this is the position preceding the indel.</td>
+</tr>
+<tr class="row-even"><td>3</td>
+<td>ID</td>
+<td>Variant identifier. Usually the dbSNP rsID.</td>
+</tr>
+<tr class="row-odd"><td>4</td>
+<td>REF</td>
+<td>Reference sequence at POS involved in the variant. For a SNP, it is a single base.</td>
+</tr>
+<tr class="row-even"><td>5</td>
+<td>ALT</td>
+<td>Comma delimited list of alternative seuqence(s).</td>
+</tr>
+<tr class="row-odd"><td>6</td>
+<td>QUAL</td>
+<td>Phred-scaled probability of all samples being homozygous reference.</td>
+</tr>
+<tr class="row-even"><td>7</td>
+<td>FILTER</td>
+<td>Semicolon delimited list of filters that the variant fails to pass.</td>
+</tr>
+<tr class="row-odd"><td>8</td>
+<td>INFO</td>
+<td>Semicolon delimited list of variant information.</td>
+</tr>
+<tr class="row-even"><td>9</td>
+<td>FORMAT</td>
+<td>Colon delimited list of the format of individual genotypes in the following fields.</td>
+</tr>
+<tr class="row-odd"><td>10+</td>
+<td>Sample(s)</td>
+<td>Individual genotype information defined by FORMAT.</td>
+</tr>
+</tbody>
+</table>
 </div>
 <div class="section" id="statistics-and-filter">
 <h3>8.7.2. Statistics and filter<a class="headerlink" href="#statistics-and-filter" title="Permalink to this headline">¶</a></h3>
 <p>Now we can use it to do some statistics and filter our variant calls.</p>
-<p class="sebcode"># get statistics
-rtg vcfstats variants/evolved-6.freebayes.vcf</p>
-<p class="sebcode"># only keep entries with qual of min 30
-rtg vcffilter -q 30 -i variants/evolved-6.freebayes.vcf -o variants/evolved-6.freebayes-q30.vcf</p>
+<p>First, to prepare out vcf-file for querying we need to index it with <code class="docutils literal"><span class="pre">tabix</span></code>:</p>
+<p class="sebcode">tabix -p vcf variants/evolved-6.mpileup.vcf.gz</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">-p</span> <span class="pre">vcf</span></code>: input format</li>
+</ul>
+<p>We can get some quick stats with <code class="docutils literal"><span class="pre">rtg</span> <span class="pre">vcfstats</span></code>:</p>
+<p class="sebcode">rtg vcfstats variants/evolved-6.mpileup.vcf.gz</p>
+<p>Example output from <code class="docutils literal"><span class="pre">rtg</span> <span class="pre">vcfstats</span></code>:</p>
+<div class="code highlight-default"><div class="highlight"><pre><span></span><span class="n">Location</span>                     <span class="p">:</span> <span class="n">variants</span><span class="o">/</span><span class="n">evolved</span><span class="o">-</span><span class="mf">6.</span><span class="n">mpileup</span><span class="o">.</span><span class="n">vcf</span><span class="o">.</span><span class="n">gz</span>
+<span class="n">Failed</span> <span class="n">Filters</span>               <span class="p">:</span> <span class="mi">0</span>
+<span class="n">Passed</span> <span class="n">Filters</span>               <span class="p">:</span> <span class="mi">516</span>
+<span class="n">SNPs</span>                         <span class="p">:</span> <span class="mi">399</span>
+<span class="n">MNPs</span>                         <span class="p">:</span> <span class="mi">0</span>
+<span class="n">Insertions</span>                   <span class="p">:</span> <span class="mi">104</span>
+<span class="n">Deletions</span>                    <span class="p">:</span> <span class="mi">13</span>
+<span class="n">Indels</span>                       <span class="p">:</span> <span class="mi">0</span>
+<span class="n">Same</span> <span class="k">as</span> <span class="n">reference</span>            <span class="p">:</span> <span class="mi">0</span>
+<span class="n">SNP</span> <span class="n">Transitions</span><span class="o">/</span><span class="n">Transversions</span><span class="p">:</span> <span class="mf">1.87</span> <span class="p">(</span><span class="mi">286</span><span class="o">/</span><span class="mi">153</span><span class="p">)</span>
+<span class="n">Total</span> <span class="n">Het</span><span class="o">/</span><span class="n">Hom</span> <span class="n">ratio</span>          <span class="p">:</span> <span class="mf">3.20</span> <span class="p">(</span><span class="mi">393</span><span class="o">/</span><span class="mi">123</span><span class="p">)</span>
+<span class="n">SNP</span> <span class="n">Het</span><span class="o">/</span><span class="n">Hom</span> <span class="n">ratio</span>            <span class="p">:</span> <span class="mf">8.98</span> <span class="p">(</span><span class="mi">359</span><span class="o">/</span><span class="mi">40</span><span class="p">)</span>
+<span class="n">MNP</span> <span class="n">Het</span><span class="o">/</span><span class="n">Hom</span> <span class="n">ratio</span>            <span class="p">:</span> <span class="o">-</span> <span class="p">(</span><span class="mi">0</span><span class="o">/</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">Insertion</span> <span class="n">Het</span><span class="o">/</span><span class="n">Hom</span> <span class="n">ratio</span>      <span class="p">:</span> <span class="mf">0.30</span> <span class="p">(</span><span class="mi">24</span><span class="o">/</span><span class="mi">80</span><span class="p">)</span>
+<span class="n">Deletion</span> <span class="n">Het</span><span class="o">/</span><span class="n">Hom</span> <span class="n">ratio</span>       <span class="p">:</span> <span class="mf">3.33</span> <span class="p">(</span><span class="mi">10</span><span class="o">/</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">Indel</span> <span class="n">Het</span><span class="o">/</span><span class="n">Hom</span> <span class="n">ratio</span>          <span class="p">:</span> <span class="o">-</span> <span class="p">(</span><span class="mi">0</span><span class="o">/</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">Insertion</span><span class="o">/</span><span class="n">Deletion</span> <span class="n">ratio</span>     <span class="p">:</span> <span class="mf">8.00</span> <span class="p">(</span><span class="mi">104</span><span class="o">/</span><span class="mi">13</span><span class="p">)</span>
+<span class="n">Indel</span><span class="o">/</span><span class="n">SNP</span><span class="o">+</span><span class="n">MNP</span> <span class="n">ratio</span>          <span class="p">:</span> <span class="mf">0.29</span> <span class="p">(</span><span class="mi">117</span><span class="o">/</span><span class="mi">399</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>However, we can also run <a class="reference external" href="http://www.htslib.org/doc/bcftools.html">BCFtools</a> to extract more detailed statistics about our variant calls:</p>
+<p class="sebcode">bcftools stats -F assembly/spades-final/scaffolds.fasta -s - variants/evolved-6.mpileup.vcf.gz &gt; variants/evolved-6.mpileup.vcf.gz.stats</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">-s</span> <span class="pre">-</span></code>: list of samples for sample stats, &quot;-&quot; to include all samples</li>
+<li><code class="docutils literal"><span class="pre">-F</span> <span class="pre">FILE</span></code>: faidx indexed reference sequence file to determine INDEL context</li>
+</ul>
+<p>Now we take the stats and make some plots (e.g. <a class="reference internal" href="#fig-vcfstats"><span class="std std-numref">Fig. 8.1</span></a>) which are particular of interest if having multiple samples, as one can easily compare them. However, we are only working with one here:</p>
+<p class="sebcode">mkdir variants/plots
+plot-vcfstats -p variants/plots/ variants/evolved-6.vcf.gz.stats</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">-p</span></code>: The output files prefix, add a slash to create new directory.</li>
+</ul>
+<div class="figure" id="id2">
+<span id="fig-vcfstats"></span><img alt="../_images/vcfstats.png" src="../_images/vcfstats.png" />
+<p class="caption"><span class="caption-number">Fig. 8.1 </span><span class="caption-text">Example of <code class="docutils literal"><span class="pre">plot-vcfstats</span></code> output.</span></p>
+</div>
+<p>Next, we filter out low quality reads.
+We only include variants that have quality &gt; 30.</p>
+<p class="sebcode"># use rtg vcfffilter
+rtg vcffilter -q 30 -i variants/evolved-6.mpileup.vcf.gz -o variants/evolved-6.mpileup.q30.vcf.gz</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">-i</span> <span class="pre">FILE</span></code>: input file</li>
+<li><code class="docutils literal"><span class="pre">-o</span> <span class="pre">FILE</span></code>: output file</li>
+<li><code class="docutils literal"><span class="pre">-q</span> <span class="pre">FLOAT</span></code>: minimal allowed quality in output.</li>
+</ul>
+<p>or use <a class="reference external" href="http://www.htslib.org/doc/bcftools.html">BCFtools</a>:</p>
+<p class="sebcode"># or use bcftools
+bcftools filter -O z -o variants/evolved-6.mpileup.q30.vcf.gz -i'%QUAL&gt;=30' variants/evolved-6.mpileup.vcf.gz
+# bcftools filter does not index output, so we need to do it again
+tabix -p vcf variants/evolved-6.mpileup.q30.vcf.gz</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">-i'%QUAL&gt;=30'</span></code>: we only include variants that have been called with quality &gt;= 30.</li>
+</ul>
+<p>Quick stats for the filtered variants:</p>
 <p class="sebcode"># look at stats for filtered
-rtg vcfstats variants/evolved-6.freebayes-q30.vcf</p>
+rtg vcfstats variants/evolved-6.mpileup.q30.vcf.gz</p>
+<div class="admonition-todo admonition" id="index-0">
+<p class="first admonition-title">Todo</p>
+<p class="last">Look at the statistics. One ratio that is mentioned in the statistics is transition transversion ratio (<em>ts/tv</em>). Explain what this ratio is and why the observed ratio makes sense.</p>
+</div>
 </div>
 <div class="section" id="finding-variants-of-interest-vai">
 <h3>8.7.3. Finding variants of interest (VAI)<a class="headerlink" href="#finding-variants-of-interest-vai" title="Permalink to this headline">¶</a></h3>
@@ -308,19 +437,26 @@ rtg vcfstats variants/evolved-6.freebayes-q30.vcf</p>
 </ul>
 </li>
 <li>The mapping quality score.<ul>
-<li>How confident are we that the reads where mapped here correctly?</li>
+<li>How confident are we that the reads were mapped at the position correctly?</li>
 </ul>
 </li>
 <li>The location of the SNP.<ul>
-<li>SNPs in larger contigs probably more interesting than in tiny contigs.</li>
+<li>SNPs in larger contigs are probably more interesting than in tiny contigs.</li>
 <li>Does the SNP overlap a coding region in the genome annotation?</li>
 </ul>
 </li>
-<li>The type of SNP.</li>
+<li>The type of SNP.<ul>
+<li>substitutions vs. indels</li>
+</ul>
+</li>
 </ul>
 </div>
 <div class="section" id="overlap-variants-with-genes">
 <h3>8.7.4. Overlap variants with genes<a class="headerlink" href="#overlap-variants-with-genes" title="Permalink to this headline">¶</a></h3>
+<div class="admonition-todo admonition" id="index-1">
+<p class="first admonition-title">Todo</p>
+<p class="last">SEB: Write this section.</p>
+</div>
 </div>
 </div>
 </div>
@@ -345,7 +481,7 @@ rtg vcfstats variants/evolved-6.freebayes-q30.vcf</p>
   <div role="contentinfo">
     <p>
         &copy; Copyright 2016-2017, Sebastian Schmeier.
-      Last updated on Jan 30, 2017.
+      Last updated on Jan 31, 2017.
 
     </p>
   </div>
