@@ -67,28 +67,27 @@ Tools we are going to use in this section and how to intall them if you not have
           conda install bcftools
           conda install freebayes
           conda install rtg-tools
-          conda install tabix
+          conda install bedtools
 
           
 Preprocessing
 -------------
 
 We first need to make an index of our reference genome as this is required by the SNP caller.
-Given a scaffold/contig file in fasta-format, e.g. ``scaffolds.fasta`` which is
-located ina  directory ``assembly/spades_final``, use |samtools| to do this:
+Given a scaffold/contig file in fasta-format, e.g. ``scaffolds.fasta`` which is located in the directory ``assembly/spades_final``, use |samtools| to do this:
 
 
 .. code:: bash
           
-          samtools faidx assembly/spades_final/scaffolds.fasta
+          samtools faidx assembly/spades-final/scaffolds.fasta
    
 
-Furthermore we need to pre-process our mapping files a bit further and creaee a bam-index file (``.bai``) for each o the bam-files, e.g.:
+Furthermore we need to pre-process our mapping files a bit further and create a bam-index file (``.bai``) for the bam-file we want to work with:
 
 
 .. rst-class:: sebcode
                
-          bamtools index -in mappings/|fileevol|.sorted.bam
+          bamtools index -in mappings/|fileevol|.sorted.concordant.q20.bam
 
 
 Lets also create a new directory for the variants:
@@ -102,35 +101,42 @@ Lets also create a new directory for the variants:
 Calling variants
 ----------------
 
-
 SAMtools mpileup
 ~~~~~~~~~~~~~~~~
 
-We use the sorted bam-file that we produced in the mapping step before.
+We use the sorted filtered bam-file that we produced in the mapping step before.
 
 .. rst-class:: sebcode
 
-          # We first pile up all the reads
-          samtools mpileup -g -f assembly/spades_final/scaffolds.fasta mappings/|fileevol|.sorted.bam > variants/|fileevol|.mpileup.bcf
-          # Now we call the variants
-          bcftools view -c -v variants/|fileevol|.mpileup.bcf > variants/|fileevol|.mpileup.vcf
+   # We first pile up all the reads and then call variants
+   samtools mpileup -u -g -f assembly/spades-final/scaffolds.fasta mappings/|fileevol|.sorted.concordant.q20.bam | bcftools call -v -m -O z -o variants/|fileevol|.mpileup.vcf.gz
+   
+|samtools| mpileup parameter:
 
-          
-freebayes
+- ``-u``: uncompressed output
+- ``-g``: generate genotype likelihoods in BCF format
+- ``-f FILE``: faidx indexed reference sequence file
+  
+|bcftools| view parameter:
+
+- ``-v``: output variant sites only
+- ``-m``: alternative model for multiallelic and rare-variant calling
+- ``-o``: output file-name
+- ``-O z``: output type: 'z' compressed VCF
+
+  
+Freebayes
 ~~~~~~~~~
 
-Now we can do some variant calling with another tool called |freebayes|.
-Given a reference genome scaffold file in fasta-format, e.g. ``scaffolds.fasta`` and the index in ``.fai`` format and a mapping file (e.g. "|fileevol|.sorted.bam") and a mapping index, we can call |freebayes| like so:
+As an alternative we can do some variant calling with another tool called |freebayes|.
+Given a reference genome scaffold file in fasta-format, e.g. ``scaffolds.fasta`` and the index in ``.fai`` format and a mapping file (.bam file) and a mapping index (.bai file), we can call variants with |freebayes| like so:
 
 .. rst-class:: sebcode
 
-          # Now we call variants and pipe the results into a new file
-          freebayes -f assembly/spades_final/scaffolds.fasta mappings/|fileevol|.sorted.bam > variants/|fileevol|.freebayes.vcf
+   # Now we call variants and pipe the results into a new file
+   freebayes -f assembly/spades-final/scaffolds.fasta mappings/|fileevol|.sorted.concordant.q20.bam | gzip > variants/|fileevol|.freebayes.vcf.gz
 
-          
-This will result in a variants file "|fileevol|.freebayes.vcf".
-
-
+         
 Post-processing
 ---------------
 
@@ -141,63 +147,192 @@ Lets look at a vcf-file:
 
 .. rst-class:: sebcode
 
-
-          # first 10 lines, which are part of the header
-          cat variants/|fileevol|.freebayes.vcf | head
+   # first 10 lines, which are part of the header
+   zcat variants/|fileevol|.mpileup.vcf.gz | head
 
           
 .. code:: bash
-          
-          ##fileformat=VCFv4.1
-          ##fileDate=20161122
-          ##source=freeBayes v1.0.2-29-g41c1313
-          ##reference=genome/scaffolds.fasta
-          ##contig=<ID=NODE_1_length_1394677_cov_15.3771,length=1394677>
-          ##contig=<ID=NODE_2_length_1051867_cov_15.4779,length=1051867>
-          ##contig=<ID=NODE_3_length_950567_cov_15.4139,length=950567>
-          ##contig=<ID=NODE_4_length_925223_cov_15.3905,length=925223>
-          ##contig=<ID=NODE_5_length_916389_cov_15.4457,length=916389>
-          ##contig=<ID=NODE_6_length_772252_cov_15.4454,length=772252>
+   
+   ##fileformat=VCFv4.2
+   ##FILTER=<ID=PASS,Description="All filters passed">
+   ##samtoolsVersion=1.3.1+htslib-1.3.1
+   ##samtoolsCommand=samtools mpileup -g -f assembly/spades-final/scaffolds.fasta -o variants/evolved-6.mpileup.bcf mappings/evolved-6.sorted.concordant.q20.bam
+   ##reference=file://assembly/spades-final/scaffolds.fasta
+   ##contig=<ID=NODE_1_length_1419525_cov_15.3898,length=1419525>
+   ##contig=<ID=NODE_2_length_1254443_cov_15.4779,length=1254443>
+   ##contig=<ID=NODE_3_length_972329_cov_15.3966,length=972329>
+   ##contig=<ID=NODE_4_length_951685_cov_15.4231,length=951685>
+   ##contig=<ID=NODE_5_length_925222_cov_15.39,length=925222>
+   ##contig=<ID=NODE_6_length_916533_cov_15.4426,length=916533>
 
 Lets look at the variants:
 
 .. rst-class:: sebcode
                
-          # remove header lines and look at top 4 entires
-          cat variants/|fileevol|.freebayes.vcf | egrep -v '##' | head -4
+   # remove header lines and look at top 4 entires
+   zcat variants/|fileevol|.mpileup.vcf.gz | egrep -v '##' | head -4
 
           
 .. code:: bash
           
-          #CHROM  POS     ID      REF     ALT     QUAL    FILTER  INFO    FORMAT  unknown
-          NODE_1_length_1394677_cov_15.3771       137621  .       T       C       76.5197 .       AB=0.318182;ABP=9.32731;AC=1;AF=0.5;AN=2;AO=7;CIGAR=1X;DP=22;DPB=22;DPRA=0;EPP=18.2106;EPPR=4.31318;GTI=0;LEN=1;MEANALT=1;MQM=56.1429;MQMR=56.4;NS=1;NUMALT=1;ODDS=17.6193;PAIRED=1;PAIREDR=1;PAO=0;PQA=0;PQR=0;PRO=0;QA=268;QR=540;RO=15;RPL=0;RPP=18.2106;RPPR=6.62942;RPR=7;RUN=1;SAF=7;SAP=18.2106;SAR=0;SRF=12;SRP=14.7363;SRR=3;TYPE=snp       GT:DP:DPR:RO:QR:AO:QA:GL    0/1:22:22,7:15:540:7:268:-17.3644,0,-42.2185
-          NODE_1_length_1394677_cov_15.3771       568696  .       G       A       1269.62 .       AB=0;ABP=0;AC=2;AF=1;AN=2;AO=38;CIGAR=1X;DP=38;DPB=38;DPRA=0;EPP=3.23888;EPPR=0;GTI=0;LEN=1;MEANALT=1;MQM=60;MQMR=0;NS=1;NUMALT=1;ODDS=57.2844;PAIRED=1;PAIREDR=0;PAO=0;PQA=0;PQR=0;PRO=0;QA=1438;QR=0;RO=0;RPL=20;RPP=3.23888;RPPR=0;RPR=18;RUN=1;SAF=20;SAP=3.23888;SAR=18;SRF=0;SRP=0;SRR=0;TYPE=snp      GT:DP:DPR:RO:QR:AO:QA:GL        1/1:38:38,38:0:0:38:1438:-129.701,-11.4391,0
-          NODE_1_length_1394677_cov_15.3771       612771  .       T       C       60.7485 .       AB=0.3;ABP=9.95901;AC=1;AF=0.5;AN=2;AO=6;CIGAR=1X;DP=20;DPB=20;DPRA=0;EPP=4.45795;EPPR=8.59409;GTI=0;LEN=1;MEANALT=1;MQM=49.5;MQMR=54.3571;NS=1;NUMALT=1;ODDS=13.9879;PAIRED=1;PAIREDR=1;PAO=0;PQA=0;PQR=0;PRO=0;QA=223;QR=540;RO=14;RPL=6;RPP=16.0391;RPPR=33.4109;RPR=0;RUN=1;SAF=4;SAP=4.45795;SAR=2;SRF=4;SRP=8.59409;SRR=10;TYPE=snp    GT:DP:DPR:RO:QR:AO:QA:GL        0/1:20:20,6:14:540:6:223:-12.5734,0,-40.0605
+   #CHROM  POS     ID      REF     ALT     QUAL    FILTER  INFO    FORMAT  mappings/evolved-6.sorted.concordant.q20.bam
+   NODE_1_length_1419525_cov_15.3898       24721   .       T       C       164     .       DP=12;VDB=0.205941;SGB=-0.680642;MQ0F=0;AC=2;AN=2;DP4=0,0,12,0;MQ=40     GT:PL   1/1:191,36,0
+   NODE_1_length_1419525_cov_15.3898       157033  .       AAGAGAGAGAGAGAGAGAGAGAGA        AAGAGAGAGAGAGAGAGAGAGA  39.3328  .       INDEL;IDV=6;IMF=0.146341;DP=41;VDB=0.0813946;SGB=-0.616816;MQSB=1;MQ0F=0;ICB=1;HOB=0.5;AC=1;AN=2;DP4=13,17,3,3;MQ=42     GT:PL   0/1:75,0,255
+   NODE_1_length_1419525_cov_15.3898       162469  .       T       C       19.609  .       DP=16;VDB=0.045681;SGB=-0.511536;RPB=0.032027;MQB=0.832553;BQB=0.130524;MQ0F=0;ICB=1;HOB=0.5;AC=1;AN=2;DP4=13,0,3,0;MQ=39        GT:PL   0/1:54,0,155
 
 
+The fields in a vcf-file are described in he table (:numref:`table-vcf`) below:
+
+.. _table-vcf:
+.. table:: The vcf-file format fields.
+
+   +-----+-----------+--------------------------------------------------------------------------------------+
+   | Col | Field     | Description                                                                          |
+   +=====+===========+======================================================================================+
+   | 1   | CHROM     | Chromosome name                                                                      |
+   +-----+-----------+--------------------------------------------------------------------------------------+
+   | 2   | POS       | 1-based position. For an indel, this is the position preceding the indel.            |
+   +-----+-----------+--------------------------------------------------------------------------------------+
+   | 3   + ID        | Variant identifier. Usually the dbSNP rsID.                                          |
+   +-----+-----------+--------------------------------------------------------------------------------------+
+   | 4   | REF       | Reference sequence at POS involved in the variant. For a SNP, it is a single base.   |
+   +-----+-----------+--------------------------------------------------------------------------------------+
+   | 5   | ALT       | Comma delimited list of alternative seuqence(s).                                     |
+   +-----+-----------+--------------------------------------------------------------------------------------+
+   | 6   | QUAL      | Phred-scaled probability of all samples being homozygous reference.                  |
+   +-----+-----------+--------------------------------------------------------------------------------------+
+   | 7   | FILTER    | Semicolon delimited list of filters that the variant fails to pass.                  |
+   +-----+-----------+--------------------------------------------------------------------------------------+
+   | 8   | INFO      | Semicolon delimited list of variant information.                                     |
+   +-----+-----------+--------------------------------------------------------------------------------------+
+   | 9   | FORMAT    | Colon delimited list of the format of individual genotypes in the following fields.  |
+   +-----+-----------+--------------------------------------------------------------------------------------+ 
+   | 10+ | Sample(s) | Individual genotype information defined by FORMAT.                                   |
+   +-----+-----------+--------------------------------------------------------------------------------------+
+
+
+          
 Statistics and filter
 ~~~~~~~~~~~~~~~~~~~~~
 
 Now we can use it to do some statistics and filter our variant calls.
-          
+
+First, to prepare out vcf-file for querying we need to index it with ``tabix``:
+
+.. rst-class:: sebcode
+
+   tabix -p vcf variants/|fileevol|.mpileup.vcf.gz
+
+
+- ``-p vcf``: input format 
+
+
+We can get some quick stats with ``rtg vcfstats``:
+
+
 .. rst-class:: sebcode
                
-          # get statistics
-          rtg vcfstats variants/|fileevol|.freebayes.vcf
+   rtg vcfstats variants/|fileevol|.mpileup.vcf.gz
 
-          
+   
+Example output from ``rtg vcfstats``:
+
+
+.. code::
+
+   Location                     : variants/evolved-6.mpileup.vcf.gz
+   Failed Filters               : 0
+   Passed Filters               : 516
+   SNPs                         : 399
+   MNPs                         : 0
+   Insertions                   : 104
+   Deletions                    : 13
+   Indels                       : 0
+   Same as reference            : 0
+   SNP Transitions/Transversions: 1.87 (286/153)
+   Total Het/Hom ratio          : 3.20 (393/123)
+   SNP Het/Hom ratio            : 8.98 (359/40)
+   MNP Het/Hom ratio            : - (0/0)
+   Insertion Het/Hom ratio      : 0.30 (24/80)
+   Deletion Het/Hom ratio       : 3.33 (10/3)
+   Indel Het/Hom ratio          : - (0/0)
+   Insertion/Deletion ratio     : 8.00 (104/13)
+   Indel/SNP+MNP ratio          : 0.29 (117/399)
+   
+
+   
+However, we can also run |bcftools| to extract more detailed statistics about our variant calls:
+   
+
 .. rst-class:: sebcode
-          
-          # only keep entries with qual of min 30
-          rtg vcffilter -q 30 -i variants/|fileevol|.freebayes.vcf -o variants/|fileevol|.freebayes-q30.vcf
+               
+   bcftools stats -F assembly/spades-final/scaffolds.fasta -s - variants/|fileevol|.mpileup.vcf.gz > variants/|fileevol|.mpileup.vcf.gz.stats
 
-          
+
+- ``-s -``: list of samples for sample stats, "-" to include all samples
+- ``-F FILE``: faidx indexed reference sequence file to determine INDEL context
+
+  
+Now we take the stats and make some plots (e.g. :numref:`fig-vcfstats`) which are particular of interest if having multiple samples, as one can easily compare them. However, we are only working with one here:
+
+
 .. rst-class:: sebcode
-          
-          # look at stats for filtered
-          rtg vcfstats variants/|fileevol|.freebayes-q30.vcf
-          
+   
+   mkdir variants/plots
+   plot-vcfstats -p variants/plots/ variants/|fileevol|.vcf.gz.stats
 
+   
+- ``-p``: The output files prefix, add a slash to create new directory.
+   
+
+.. _fig-vcfstats:
+.. figure:: images/vcfstats.png
+            
+    Example of ``plot-vcfstats`` output.
+
+
+Next, we filter out low quality reads.
+We only include variants that have quality > 30.
+
+
+.. rst-class:: sebcode
+
+   # use rtg vcfffilter
+   rtg vcffilter -q 30 -i variants/|fileevol|.mpileup.vcf.gz -o variants/|fileevol|.mpileup.q30.vcf.gz
+
+
+- ``-i FILE``: input file
+- ``-o FILE``: output file
+- ``-q FLOAT``: minimal allowed quality in output.
+  
+   
+or use |bcftools|:
+
+.. rst-class:: sebcode
+
+   # or use bcftools
+   bcftools filter -O z -o variants/|fileevol|.mpileup.q30.vcf.gz -i'%QUAL>=30' variants/|fileevol|.mpileup.vcf.gz
+   # bcftools filter does not index output, so we need to do it again
+   tabix -p vcf variants/|fileevol|.mpileup.q30.vcf.gz
+      
+
+- ``-i'%QUAL>=30'``: we only include variants that have been called with quality >= 30.
+
+
+Quick stats for the filtered variants:
+  
+.. rst-class:: sebcode 
+          
+   # look at stats for filtered 
+   rtg vcfstats variants/|fileevol|.mpileup.q30.vcf.gz
+  
+  
+.. todo::
+    
+   Look at the statistics. One ratio that is mentioned in the statistics is transition transversion ratio (*ts/tv*). Explain what this ratio is and why the observed ratio makes sense. 
+
+
+   
 Finding variants of interest (VAI)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -209,14 +344,21 @@ Things to consider when looking for VAI:
     
 - The mapping quality score.
   
-  * How confident are we that the reads where mapped here correctly?
+  * How confident are we that the reads were mapped at the position correctly?
+    
 - The location of the SNP.
   
-  * SNPs in larger contigs probably more interesting than in tiny contigs.
+  * SNPs in larger contigs are probably more interesting than in tiny contigs.
   * Does the SNP overlap a coding region in the genome annotation?
     
 - The type of SNP.
- 
-          
+
+  * substitutions vs. indels 
+
+    
 Overlap variants with genes
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. todo::
+
+   SEB: Write this section.

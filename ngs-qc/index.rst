@@ -141,7 +141,7 @@ Install a tool called `fastq-mcf <https://github.com/ExpressionAnalysis/ea-utils
 
 .. todo::
 
-   Write this section.
+   SEB: Write this section.
    
 
 Quality assessment of sequencing reads (SolexaQA++)
