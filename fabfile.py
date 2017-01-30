@@ -143,10 +143,10 @@ def deploy(msg, br='master'):
 
     puts(yellow("[Push gh-pages to github]"))
     puts(red("Will NOT add newly created content. Only already tracked content."))
-    with lcd("~/projects/github/203341/build/html"):
-        run("git add -u")
-        run('git commit -m "%s"'%(msg))
-        run("git push origin gh-pages")
+    with lcd("../build/html"):
+        local("git add -u")
+        local('git commit -m "%s"'%(msg))
+        local("git push origin gh-pages")
 
     puts(green("DONE."))
 
