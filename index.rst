@@ -24,10 +24,6 @@ To this end, you will learn to:
 
 A printable PDF version of this tutorial can be downloaded `here <_static/Genomics.pdf>`__.
 
-  
-  
-Contents
---------
 
 .. toctree::
    :numbered:

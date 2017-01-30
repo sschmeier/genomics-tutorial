@@ -268,11 +268,11 @@ htmlhelp_basename = 'Genomicsdoc'
 latex_elements = {
      # The paper size ('letterpaper' or 'a4paper').
      #
-     # 'papersize': 'letterpaper',
+     'papersize': 'a4paper',
 
      # The font size ('10pt', '11pt' or '12pt').
      #
-     # 'pointsize': '10pt',
+     'pointsize': '10pt',
 
      # Additional stuff for the LaTeX preamble.
      #
@@ -280,7 +280,7 @@ latex_elements = {
 
      # Latex figure (float) alignment
      #
-     # 'figure_align': 'htbp',
+     #'figure_align': 'htbp',
 }
 
 # Grouping the document tree into LaTeX files. List of tuples
@@ -294,12 +294,12 @@ latex_documents = [
 # The name of an image file (relative to this directory) to place at the top of
 # the title page.
 #
-# latex_logo = None
+latex_logo = 'images/icon-latex.png'
 
 # For "manual" documents, if this is true, then toplevel headings are parts,
 # not chapters.
 #
-# latex_use_parts = False
+latex_use_parts = False
 
 # If true, show page references after internal links.
 #
@@ -307,7 +307,7 @@ latex_documents = [
 
 # If true, show URL addresses after external links.
 #
-# latex_show_urls = False
+#latex_show_urls = True
 
 # Documents to append as an appendix to all manuals.
 #
@@ -359,7 +359,7 @@ texinfo_documents = [
 
 # How to display URL addresses: 'footnote', 'no', or 'inline'.
 #
-# texinfo_show_urls = 'footnote'
+#texinfo_show_urls = 'footnote'
 
 # If true, do not generate a @detailmenu in the "Top" node's menu.
 #

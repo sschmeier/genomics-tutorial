@@ -5,7 +5,12 @@ Should be executed from `develop` branch.
 from __future__ import with_statement
 from fabric.api import *
 from fabric.colors import *
+from fabric.context_managers import cd
+
 import os.path
+
+
+
 
 HOST = '' # e.g. seb@bla.com
 REMOTE_BASE_DIR = '/webapps/seb_django/www'  # absolute path, where project/repo lives
@@ -138,10 +143,11 @@ def deploy(msg, br='master'):
 
     puts(yellow("[Push gh-pages to github]"))
     puts(red("Will NOT add newly created content. Only already tracked content."))
-    with cd("../build/html"):
+    with cd("~/projects/github/203341/build/html"):
         run("git add -u")
         run('git commit -m "%s"'%(msg))
         run("git push origin gh-pages")
-    
+
+    puts(green("DONE."))
 
 
