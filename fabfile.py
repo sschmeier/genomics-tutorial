@@ -120,7 +120,7 @@ def deploy(msg, br='master'):
 
     # create new pdf
     puts(yellow('[Make latexpdf]'))
-    local("make latexpdf")
+    local("make latexpdf > /tmp/latex")
 
     puts(yellow('[Copy pdf]'))
     local("cp ../build/latex/*.pdf _static/")
@@ -147,7 +147,4 @@ def deploy(msg, br='master'):
         local("git add -u")
         local('git commit -m "%s"'%(msg))
         local("git push origin gh-pages")
-
-    puts(green("DONE."))
-
 

@@ -161,7 +161,7 @@ html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
 # The name for this set of Sphinx documents.
 # "<project> v<release> documentation" by default.
 #
-html_title = u'Documentation'
+html_title = u''
 
 # A shorter title for the navigation bar.  Default is the same as html_title.
 #
@@ -303,11 +303,11 @@ latex_use_parts = False
 
 # If true, show page references after internal links.
 #
-# latex_show_pagerefs = False
+latex_show_pagerefs = True
 
 # If true, show URL addresses after external links.
 #
-#latex_show_urls = True
+latex_show_urls = True
 
 # Documents to append as an appendix to all manuals.
 #

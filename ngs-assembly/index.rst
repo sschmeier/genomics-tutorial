@@ -11,9 +11,7 @@ genome assembly from sequencing data.
 
 There is an accompanying lecture for this tutorial:
 
--  `Genome Assembly: An Introduction <https://dx.doi.org/10.6084/m9.figshare.2972323.v1>`__ available at
-   `figshare <https://dx.doi.org/10.6084/m9.figshare.2972323.v1>`__
-   (https://dx.doi.org/10.6084/m9.figshare.2972323.v1).
+-  `Genome Assembly: An Introduction <https://dx.doi.org/10.6084/m9.figshare.2972323.v1>`__.
 
 .. NOTE::
 
@@ -77,8 +75,8 @@ It is also simple to install and use.
           conda install spades
 
           
-|spades| usage
-~~~~~~~~~~~~~~
+SPAdes usage
+~~~~~~~~~~~~
 
 .. code:: bash
 
@@ -126,8 +124,7 @@ Assembly statistics
 -  genes and operons covered
 
 It is easy with |quast| to compare these measures among several assemblies.
-The program can be used on their website (`http://quast.bioinf.spbau.ru/
-<http://quast.bioinf.spbau.ru/>`__).
+The program can be used on their `website <http://quast.bioinf.spbau.ru/>`__.
 
 We can install it locally with:
 
