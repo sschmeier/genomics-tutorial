@@ -1,8 +1,0 @@
-# create dir
-mkdir trimmed-fastqc
-
-# Run fastqc 
-fastqc -o trimmed-fastqc trimmed/ancestor-R1.fastq.trimmed.gz trimmed/ancestor-R2.fastq.trimmed.gz trimmed/evolved-6-R1.fastq.trimmed.gz trimmed/evolved-6-R2.fastq.trimmed.gz
-
-# open html webpages
-firefox trimmed-fastqc/*.html

@@ -107,7 +107,7 @@ The two files we need to submit to |spades| are two paired-end read files.
 
 .. hint::
 
-   Should you not get it right, try these commands `here <../_static/code/assembly1.txt>`__.
+   Should you not get it right, try the commands in :ref:`code-assembly1`.
 
    
 Assembly quality assessment
