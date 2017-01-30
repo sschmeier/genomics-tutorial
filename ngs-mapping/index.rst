@@ -117,7 +117,7 @@ Creating a reference index for mapping
 
 .. hint::
 
-   Should you not get it right, try these commands `here <../_static/code/mapping-bowtie1.txt>`__.
+   Should you not get it right, try the commands in :ref:`code-bowtie1`.
 
 
 
@@ -133,7 +133,7 @@ Now that we have created our index, it is time to map the filtered and trimmed s
 
 .. hint::
 
-   Should you not get it right, try these commands `here <../_static/code/mapping-bowtie2.txt>`__.
+   Should you not get it right, try the commands in :ref:`code-bowtie2`.
 
           
 |bwa|
@@ -179,7 +179,7 @@ Creating a reference index for mapping
 
 .. hint::
 
-   Should you not get it right, try these commands `here <../_static/code/mapping-bwa1.txt>`__.
+   Should you not get it right, try the commands in :ref:`code-bwa1`.
 
 
 Mapping reads in a paired-end manner
@@ -194,10 +194,7 @@ Now that we have created our index, it is time to map the filtered and trimmed s
 
 .. hint::
 
-   Should you not get it right, try these commands `here <../_static/code/mapping-bwa2.txt>`__.
-
-
-
+   Should you not get it right, try the commands in :ref:`code-bwa2`.
 
    
 The sam mapping file-format
@@ -451,3 +448,5 @@ Lets extract the fastq sequence of the unmapped reads for read1 and read2.
 .. rst-class:: sebcode
 
     bamToFastq -i |fileevol|.sorted.unmapped.bam -fq mappings/|fileevol|.sorted.unmapped.R1.fastq -fq2  mappings/|fileevol|.sorted.unmapped.R2.fastq
+
+

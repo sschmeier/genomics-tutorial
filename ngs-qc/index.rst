@@ -239,7 +239,7 @@ We will use |solexaqa| dynamic trim the reads, to chop of nucleotides witha a ba
 
 .. hint::
 
-   Should you not get 1 and/or 2 right, try these commands `here <../_static/code/qc-solexaqa1.txt>`__.
+   Should you not get 1 and/or 2 right, try the commands in :ref:`code-qc2`.
 
    
 SolexaQA++ analysis on trimmed data
@@ -255,7 +255,7 @@ SolexaQA++ analysis on trimmed data
 
 .. hint::
 
-   Should you not get 1 and/or 2 it right, try these commands `here <../_static/code/qc-solexaqa2.txt>`__ 
+   Should you not get 1 and/or 2 it right, try the commands in :ref:`code-qc3`.
 
 
 .. _solexaqa_quality_bad:
@@ -400,7 +400,7 @@ Run FastQC on the untrimmed and trimmed data
       
 .. hint::
 
-   Should you not get it right, try these commands `here <../_static/code/qc-fastqc.txt>`__.
+   Should you not get it right, try the commands in :ref:`code-qc1`.
 
    
 .. _fastqc-bad1:

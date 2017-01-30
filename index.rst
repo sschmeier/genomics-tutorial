@@ -42,5 +42,6 @@ Contents
    ngs-mapping/index
    ngs-variantcalling/index
    general/quickref
+   general/code
    general/downloads
    general/references
