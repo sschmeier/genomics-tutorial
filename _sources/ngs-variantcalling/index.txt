@@ -103,8 +103,8 @@ Calling variants
 ----------------
 
 
-|samtools| mpileup
-~~~~~~~~~~~~~~~~~~
+SAMtools mpileup
+~~~~~~~~~~~~~~~~
 
 We use the sorted bam-file that we produced in the mapping step before.
 
@@ -116,8 +116,8 @@ We use the sorted bam-file that we produced in the mapping step before.
           bcftools view -c -v variants/|fileevol|.mpileup.bcf > variants/|fileevol|.mpileup.vcf
 
           
-|Freebayes|
-~~~~~~~~~~~
+freebayes
+~~~~~~~~~
 
 Now we can do some variant calling with another tool called |freebayes|.
 Given a reference genome scaffold file in fasta-format, e.g. ``scaffolds.fasta`` and the index in ``.fai`` format and a mapping file (e.g. "|fileevol|.sorted.bam") and a mapping index, we can call |freebayes| like so:

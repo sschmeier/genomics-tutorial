@@ -21,8 +21,10 @@ To this end, you will learn to:
 - Call genome variations/mutations in the evolved lines
 - Identify the genes responsible for the observed evolved phenotypes
 
+  
+.. only:: builder_html
 
-A printable PDF version of this tutorial can be downloaded `here <_static/Genomics.pdf>`__.
+   A printable PDF version of this tutorial can be downloaded :download:`here <_static/Genomics.pdf>`.
 
 
 .. toctree::

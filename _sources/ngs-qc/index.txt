@@ -9,9 +9,7 @@ command-line interface to deal with the task of investigating the quality and cl
 
 There is an accompanying lectures for this tutorial:
 
--  `Next-generation sequencing and quality control: An introduction <https://dx.doi.org/10.6084/m9.figshare.2972320.v1>`__
-   is available at `figshare <https://dx.doi.org/10.6084/m9.figshare.2972320.v1>`__
-   (`https://dx.doi.org/10.6084/m9.figshare.2972320.v1 <https://dx.doi.org/10.6084/m9.figshare.2972320.v1>`__).
+-  `Next-generation sequencing and quality control: An introduction <https://dx.doi.org/10.6084/m9.figshare.2972320.v1>`__.
 
 .. NOTE::
 
@@ -146,7 +144,7 @@ Install a tool called `fastq-mcf <https://github.com/ExpressionAnalysis/ea-utils
    Write this section.
    
 
-Quality assessment of sequencing reads (|solexaqa|)
+Quality assessment of sequencing reads (SolexaQA++)
 ---------------------------------------------------
 
 To assess the sequence read quality of the Illumina run we make use of a program called |solexaqa| [COX2010]_.
@@ -280,8 +278,8 @@ SolexaQA++ analysis on trimmed data
 
 
    
-|sickle| for dynamic trimming (alternative to |solexaqa|)
----------------------------------------------------------
+Sickle for dynamic trimming (alternative to SolexaQA++)
+-------------------------------------------------------
 
 
 Should the dynamic trimming not work with |solexaqa|, you can alternatively use |sickle|.
@@ -313,12 +311,12 @@ Now we are going to run the program on our paired-end data:
    Should you be unable to run |sickle| or |solexaqa| at all to trim the data. You can download the trimmed dataset `here <http://compbio.massey.ac.nz/data/203341/trimmed.tar.gz>`__. Unarchive and uncompress the files with ``tar -xvzf trimmed.tar.gz``.
 
 
-Quality assessment of sequencing reads (|fastqc|)
--------------------------------------------------
+Quality assessment of sequencing reads (FastQC)
+-----------------------------------------------
 
       
-Installing |fastqc|
-~~~~~~~~~~~~~~~~~~~
+Installing FastQC
+~~~~~~~~~~~~~~~~~
 
 .. code-block:: bash
 

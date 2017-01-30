@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>8. NGS - Variant calling &mdash; Documentation</title>
+  <title>8. NGS - Variant calling</title>
   
 
   
@@ -37,7 +37,7 @@
         <link rel="index" title="Index"
               href="../genindex.html"/>
         <link rel="search" title="Search" href="../search.html"/>
-    <link rel="top" title="Documentation" href="../index.html"/>
+    <link rel="top" title="" href="../index.html"/>
         <link rel="next" title="9. Quick command reference" href="../general/quickref.html"/>
         <link rel="prev" title="7. NGS - Read mapping" href="../ngs-mapping/index.html"/> 
 
@@ -244,7 +244,7 @@ located ina  directory <code class="docutils literal"><span class="pre">assembly
 <div class="section" id="calling-variants">
 <h2>8.6. Calling variants<a class="headerlink" href="#calling-variants" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="samtools-mpileup">
-<h3>8.6.1. <a class="reference external" href="http://samtools.sourceforge.net/">SAMtools</a> mpileup<a class="headerlink" href="#samtools-mpileup" title="Permalink to this headline">¶</a></h3>
+<h3>8.6.1. SAMtools mpileup<a class="headerlink" href="#samtools-mpileup" title="Permalink to this headline">¶</a></h3>
 <p>We use the sorted bam-file that we produced in the mapping step before.</p>
 <p class="sebcode"># We first pile up all the reads
 samtools mpileup -g -f assembly/spades_final/scaffolds.fasta mappings/evolved-6.sorted.bam &gt; variants/evolved-6.mpileup.bcf
@@ -252,7 +252,7 @@ samtools mpileup -g -f assembly/spades_final/scaffolds.fasta mappings/evolved-6.
 bcftools view -c -v variants/evolved-6.mpileup.bcf &gt; variants/evolved-6.mpileup.vcf</p>
 </div>
 <div class="section" id="freebayes">
-<h3>8.6.2. <a class="reference external" href="https://github.com/ekg/freebayes">freebayes</a><a class="headerlink" href="#freebayes" title="Permalink to this headline">¶</a></h3>
+<h3>8.6.2. freebayes<a class="headerlink" href="#freebayes" title="Permalink to this headline">¶</a></h3>
 <p>Now we can do some variant calling with another tool called <a class="reference external" href="https://github.com/ekg/freebayes">freebayes</a>.
 Given a reference genome scaffold file in fasta-format, e.g. <code class="docutils literal"><span class="pre">scaffolds.fasta</span></code> and the index in <code class="docutils literal"><span class="pre">.fai</span></code> format and a mapping file (e.g. &quot;evolved-6.sorted.bam&quot;) and a mapping index, we can call <a class="reference external" href="https://github.com/ekg/freebayes">freebayes</a> like so:</p>
 <p class="sebcode"># Now we call variants and pipe the results into a new file

@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>3. NGS - Quality control &mdash; Documentation</title>
+  <title>3. NGS - Quality control</title>
   
 
   
@@ -37,7 +37,7 @@
         <link rel="index" title="Index"
               href="../genindex.html"/>
         <link rel="search" title="Search" href="../search.html"/>
-    <link rel="top" title="Documentation" href="../index.html"/>
+    <link rel="top" title="" href="../index.html"/>
         <link rel="next" title="4. NGS - Taxonomic investigation" href="../ngs-taxonomic-investigation/index.html"/>
         <link rel="prev" title="2. NGS - Tool installation" href="../ngs-tools/index.html"/> 
 
@@ -181,9 +181,7 @@
 command-line interface to deal with the task of investigating the quality and cleaning sequencing data.</p>
 <p>There is an accompanying lectures for this tutorial:</p>
 <ul class="simple">
-<li><a class="reference external" href="https://dx.doi.org/10.6084/m9.figshare.2972320.v1">Next-generation sequencing and quality control: An introduction</a>
-is available at <a class="reference external" href="https://dx.doi.org/10.6084/m9.figshare.2972320.v1">figshare</a>
-(<a class="reference external" href="https://dx.doi.org/10.6084/m9.figshare.2972320.v1">https://dx.doi.org/10.6084/m9.figshare.2972320.v1</a>).</li>
+<li><a class="reference external" href="https://dx.doi.org/10.6084/m9.figshare.2972320.v1">Next-generation sequencing and quality control: An introduction</a>.</li>
 </ul>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
@@ -297,7 +295,7 @@ conda install ea-utils
 </div>
 </div>
 <div class="section" id="quality-assessment-of-sequencing-reads-solexaqa">
-<h2>3.8. Quality assessment of sequencing reads (<a class="reference external" href="http://solexaqa.sourceforge.net">SolexaQA++</a>)<a class="headerlink" href="#quality-assessment-of-sequencing-reads-solexaqa" title="Permalink to this headline">¶</a></h2>
+<h2>3.8. Quality assessment of sequencing reads (SolexaQA++)<a class="headerlink" href="#quality-assessment-of-sequencing-reads-solexaqa" title="Permalink to this headline">¶</a></h2>
 <p>To assess the sequence read quality of the Illumina run we make use of a program called <a class="reference external" href="http://solexaqa.sourceforge.net">SolexaQA++</a> <a class="reference internal" href="../general/references.html#cox2010" id="id2">[COX2010]</a>.
 <a class="reference external" href="http://solexaqa.sourceforge.net">SolexaQA++</a> was originally developed to work with Solexa data (since bought by Illumina), but long since working with Illumina data.
 It produces nice graphics that intuitively show the quality of the sequences. it is also able to dynamically trim the bad quality ends off the reads.</p>
@@ -410,7 +408,7 @@ and discard files based on a user-defined length cutoff.</p>
 </div>
 </div>
 <div class="section" id="sickle-for-dynamic-trimming-alternative-to-solexaqa">
-<h2>3.9. <a class="reference external" href="https://github.com/najoshi/sickle">Sickle</a> for dynamic trimming (alternative to <a class="reference external" href="http://solexaqa.sourceforge.net">SolexaQA++</a>)<a class="headerlink" href="#sickle-for-dynamic-trimming-alternative-to-solexaqa" title="Permalink to this headline">¶</a></h2>
+<h2>3.9. Sickle for dynamic trimming (alternative to SolexaQA++)<a class="headerlink" href="#sickle-for-dynamic-trimming-alternative-to-solexaqa" title="Permalink to this headline">¶</a></h2>
 <p>Should the dynamic trimming not work with <a class="reference external" href="http://solexaqa.sourceforge.net">SolexaQA++</a>, you can alternatively use <a class="reference external" href="https://github.com/najoshi/sickle">Sickle</a>.</p>
 <div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="n">source</span> <span class="n">activate</span> <span class="n">ngs</span>
 <span class="n">conda</span> <span class="n">install</span> <span class="n">sickle</span><span class="o">-</span><span class="n">trim</span>
@@ -431,9 +429,9 @@ sickle pe -g -t sanger -f data/ancestor-R1.fastq.gz -r data/ancestor-R2.fastq.gz
 </div>
 </div>
 <div class="section" id="quality-assessment-of-sequencing-reads-fastqc">
-<h2>3.10. Quality assessment of sequencing reads (<a class="reference external" href="http://www.bioinformatics.babraham.ac.uk/projects/fastqc/">FastQC</a>)<a class="headerlink" href="#quality-assessment-of-sequencing-reads-fastqc" title="Permalink to this headline">¶</a></h2>
+<h2>3.10. Quality assessment of sequencing reads (FastQC)<a class="headerlink" href="#quality-assessment-of-sequencing-reads-fastqc" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="installing-fastqc">
-<h3>3.10.1. Installing <a class="reference external" href="http://www.bioinformatics.babraham.ac.uk/projects/fastqc/">FastQC</a><a class="headerlink" href="#installing-fastqc" title="Permalink to this headline">¶</a></h3>
+<h3>3.10.1. Installing FastQC<a class="headerlink" href="#installing-fastqc" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-bash"><div class="highlight"><pre><span></span><span class="nb">source</span> activate ngs
 conda install fastqc
 

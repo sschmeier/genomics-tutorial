@@ -20,7 +20,7 @@ Common flavors of Linux ready for download are e.g. `Ubuntu <https://help.ubuntu
 thinking of going the bioinformatics route,
 `BioLinux <http://environmentalomics.org/bio-linux/>`__, which includes many pre-installed bioinformatics tools (this is also the distribution we will be using).
 
-An accompanying lecture for this tutorial is available at `figshare <http://dx.doi.org/10.6084/m9.figshare.1506799>`__ (http://dx.doi.org/10.6084/m9.figshare.1506799).
+An accompanying lecture for this tutorial is available at `figshare <http://dx.doi.org/10.6084/m9.figshare.1506799>`__.
 
 Learning outcomes
 -----------------
@@ -153,6 +153,6 @@ However, since 2016 we will be using the excellent material from the `Software C
 I am a SWC affiliated volunteer instructor and we are teaching basic computer skills to scientists, with the goal of general computational up-skilling in the sciences.
 The material is created in a collaborative manner and tested over and over in many workshops.
 
-Please follow the link to the material at the `Software Carpentry <http://swcarpentry.github.io/shell-novice>`__ (http://swcarpentry.github.io/shell-novice) and have the webpage open.
+Please follow the link to the material at the `Software Carpentry <http://swcarpentry.github.io/shell-novice>`__ and have the webpage open.
 Otherwise you will work in the terminal window aka the shell.
 

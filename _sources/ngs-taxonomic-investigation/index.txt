@@ -151,7 +151,7 @@ However, this is impractical as we are dealing potentially with many sequences.
 
 
 kraken-report
-^^^^^^^^^^^^^
+~~~~~~~~~~~~~
 
 First, we generate a sample-wide report of all taxa found.
 This can be achieved with the tool ``kranken-report``.
@@ -196,7 +196,7 @@ The columns are the same as in the former report, however, we have more rows and
 
 
 kraken-translate
-^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~
    
 For every sequence in our sample and its predicted taxonomic identifier,
 we can attach the taxonomic names with ``kraken-translate``.
@@ -218,7 +218,7 @@ Taxonomy assignments above the superkingdom (**d**) rank are represented as just
 
 
 Visualisation
-^^^^^^^^^^^^^
+~~~~~~~~~~~~~
 
 We use the |krona| tools to create a nice interactive visualisation of the taxa content of our sample [ONDOV2011]_.
 :numref:`fig-krona` shows an example (albeit an artificial one) snapshot of the visualisation |krona| provides.

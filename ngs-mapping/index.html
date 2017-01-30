@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>7. NGS - Read mapping &mdash; Documentation</title>
+  <title>7. NGS - Read mapping</title>
   
 
   
@@ -37,7 +37,7 @@
         <link rel="index" title="Index"
               href="../genindex.html"/>
         <link rel="search" title="Search" href="../search.html"/>
-    <link rel="top" title="Documentation" href="../index.html"/>
+    <link rel="top" title="" href="../index.html"/>
         <link rel="next" title="8. NGS - Variant calling" href="../ngs-variantcalling/index.html"/>
         <link rel="prev" title="6. NGS - Genome annotation" href="../ngs-annotation/index.html"/> 
 
@@ -106,7 +106,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#installing-the-software">7.4.1. Installing the software</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#bowtie">7.5. Bowtie2</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#bowtie2">7.5. Bowtie2</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#overview">7.5.1. Overview</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#creating-a-reference-index-for-mapping">7.5.2. Creating a reference index for mapping</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#mapping-reads-in-a-paired-end-manner">7.5.3. Mapping reads in a paired-end manner</a></li>
@@ -191,9 +191,7 @@
 reads from the evolved line to our ancestral reference genome.</p>
 <p>There is an accompanying lecture for this tutorial:</p>
 <ul class="simple">
-<li><a class="reference external" href="https://dx.doi.org/10.6084/m9.figshare.2972323.v1">Genome Assembly: An Introduction</a> available at
-<a class="reference external" href="https://dx.doi.org/10.6084/m9.figshare.2972323.v1">figshare</a>
-(<a class="reference external" href="https://dx.doi.org/10.6084/m9.figshare.2972323.v1">https://dx.doi.org/10.6084/m9.figshare.2972323.v1</a>).</li>
+<li><a class="reference external" href="https://dx.doi.org/10.6084/m9.figshare.2972323.v1">Genome Assembly: An Introduction</a>.</li>
 </ul>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
@@ -252,8 +250,8 @@ We are going to use the quality trimmed forward and backward DNA sequences of th
 </div>
 </div>
 </div>
-<div class="section" id="bowtie">
-<h2>7.5. <a class="reference external" href="http://bowtie-bio.sourceforge.net/bowtie2/index.shtml">Bowtie2</a><a class="headerlink" href="#bowtie" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="bowtie2">
+<h2>7.5. Bowtie2<a class="headerlink" href="#bowtie2" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="overview">
 <h3>7.5.1. Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference external" href="http://bowtie-bio.sourceforge.net/bowtie2/index.shtml">Bowtie2</a> is a short read aligner, that can take a reference genome and map single- or paired-end data to it.
@@ -298,7 +296,7 @@ The general command structure of the <a class="reference external" href="http://
 </div>
 </div>
 <div class="section" id="bwa">
-<h2>7.6. <a class="reference external" href="http://bio-bwa.sourceforge.net/">BWA</a><a class="headerlink" href="#bwa" title="Permalink to this headline">¶</a></h2>
+<h2>7.6. BWA<a class="headerlink" href="#bwa" title="Permalink to this headline">¶</a></h2>
 <div class="admonition attention">
 <p class="first admonition-title">Attention</p>
 <p class="last">If the mapping did not succeed with <a class="reference external" href="http://bowtie-bio.sourceforge.net/bowtie2/index.shtml">Bowtie2</a>. We can use the aligner <a class="reference external" href="http://bio-bwa.sourceforge.net/">BWA</a> explained in this section. If the mapping with <a class="reference external" href="http://bowtie-bio.sourceforge.net/bowtie2/index.shtml">Bowtie2</a> did work, you can jump this section.</p>
@@ -460,7 +458,7 @@ samtools sort -O bam -o evolved-6.sorted.bam evolved-6.fixmate.bam</p>
 <div class="section" id="mapping-statistics">
 <h2>7.9. Mapping statistics<a class="headerlink" href="#mapping-statistics" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="stats-with-samtools">
-<h3>7.9.1. Stats with <a class="reference external" href="http://samtools.sourceforge.net/">SAMtools</a><a class="headerlink" href="#stats-with-samtools" title="Permalink to this headline">¶</a></h3>
+<h3>7.9.1. Stats with SAMtools<a class="headerlink" href="#stats-with-samtools" title="Permalink to this headline">¶</a></h3>
 <p>Lets get an mapping overview:</p>
 <p class="sebcode">samtools flagstat mappings/evolved-6.sorted.bam</p>
 <div class="admonition-todo admonition" id="index-5">
@@ -508,7 +506,7 @@ Open a <a class="reference external" href="https://www.r-project.org/">R</a> she
 </div>
 </div>
 <div class="section" id="stats-with-qualimap">
-<h3>7.9.2. Stats with <a class="reference external" href="http://qualimap.bioinfo.cipf.es/">QualiMap</a><a class="headerlink" href="#stats-with-qualimap" title="Permalink to this headline">¶</a></h3>
+<h3>7.9.2. Stats with QualiMap<a class="headerlink" href="#stats-with-qualimap" title="Permalink to this headline">¶</a></h3>
 <p>For a more in depth analysis of the mappings, one can use <a class="reference external" href="http://qualimap.bioinfo.cipf.es/">QualiMap</a>.</p>
 <p><a class="reference external" href="http://qualimap.bioinfo.cipf.es/">QualiMap</a> examines sequencing alignment data in SAM/BAM files according to the features of the mapped reads and provides an overall view of the data that helps to the detect biases in the sequencing and/or mapping of the data and eases decision-making for further analysis.</p>
 <p>Installation:</p>

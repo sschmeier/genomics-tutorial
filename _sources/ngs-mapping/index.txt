@@ -11,9 +11,7 @@ reads from the evolved line to our ancestral reference genome.
 
 There is an accompanying lecture for this tutorial:
 
--  `Genome Assembly: An Introduction <https://dx.doi.org/10.6084/m9.figshare.2972323.v1>`__ available at
-   `figshare <https://dx.doi.org/10.6084/m9.figshare.2972323.v1>`__
-   (https://dx.doi.org/10.6084/m9.figshare.2972323.v1).
+-  `Genome Assembly: An Introduction <https://dx.doi.org/10.6084/m9.figshare.2972323.v1>`__.
 
 .. NOTE::
 
@@ -81,8 +79,8 @@ It is simple to install and use.
           conda install bwa
 
           
-|bowtie|
---------
+Bowtie2
+-------
 
 Overview
 ~~~~~~~~
@@ -136,8 +134,8 @@ Now that we have created our index, it is time to map the filtered and trimmed s
    Should you not get it right, try the commands in :ref:`code-bowtie2`.
 
           
-|bwa|
------
+BWA
+---
 
 .. Attention::
 
@@ -242,6 +240,7 @@ One line of a mapped read can be seen here:
 
 It basically defines, the read and the position in the reference genome where the read mapped and a quality of the map.
 
+
 Mapping post-processing
 -----------------------
 
@@ -299,8 +298,8 @@ We are going to use |samtools| again to sort the bam-file into coordinate order:
 Mapping statistics
 ------------------
 
-Stats with |samtools|
-~~~~~~~~~~~~~~~~~~~~~
+Stats with SAMtools
+~~~~~~~~~~~~~~~~~~~
 
 Lets get an mapping overview:
 
@@ -372,8 +371,8 @@ The result plot will be looking similar to the one in :numref:`coverage`
    Look at the created plot. Explain why it makes sense that you find relatively bad coverage at the beginning and the end of the contig.
 
 
-Stats with |qualimap|
-~~~~~~~~~~~~~~~~~~~~~
+Stats with QualiMap
+~~~~~~~~~~~~~~~~~~~
 
 For a more in depth analysis of the mappings, one can use |qualimap|.
 

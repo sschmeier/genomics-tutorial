@@ -6,8 +6,8 @@ QC
 
 .. _code-qc1:
 
-Code: |fastqc| 
-~~~~~~~~~~~~~~
+Code: FastQC 
+~~~~~~~~~~~~
 
 *Create directory:*
 
@@ -32,7 +32,7 @@ Code: |fastqc|
 
 .. _code-qc2:
 
-Code: |solexaqa| trimming
+Code: SolexaQA++ trimming
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Create directory for result-files:*
@@ -57,7 +57,7 @@ Code: |solexaqa| trimming
 
 .. _code-qc3:
 
-Code: |solexaqa| qc
+Code: SolexaQA++ qc
 ~~~~~~~~~~~~~~~~~~~
 
 *Create directory for result-files:*
@@ -85,8 +85,8 @@ Assembly
 
 .. _code-assembly1:
 
-Code: |spades| assembly
-~~~~~~~~~~~~~~~~~~~~~~~
+Code: SPAdes assembly
+~~~~~~~~~~~~~~~~~~~~~
 
 .. rst-class:: sebcode
 
@@ -99,8 +99,8 @@ Mapping
 
 .. _code-bowtie1:
 
-Code: |bowtie| indexing
-~~~~~~~~~~~~~~~~~~~~~~~
+Code: Bowtie2 indexing
+~~~~~~~~~~~~~~~~~~~~~~
 
 *Build the index:*
 
@@ -111,7 +111,7 @@ Code: |bowtie| indexing
 
 .. _code-bowtie2:
 
-Code: |bowtie| mapping
+Code: Bowtie2 mapping
 ~~~~~~~~~~~~~~~~~~~~~~
    
 *Map to the genome. Use a max fragemnt length of 1000 bp:*
@@ -123,7 +123,7 @@ Code: |bowtie| mapping
    
 .. _code-bwa1: 
 
-Code: |bwa| indexing 
+Code: BWA indexing 
 ~~~~~~~~~~~~~~~~~~~~
 
 *Index the genome assembly:*
@@ -135,7 +135,7 @@ Code: |bwa| indexing
 
 .. _code-bwa2:
 
-Code: |bwa| mapping 
+Code: BWA mapping 
 ~~~~~~~~~~~~~~~~~~~
 
 *Run bwa mem:*
