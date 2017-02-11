@@ -17,7 +17,16 @@ There is an accompanying lecture for this tutorial:
 
    You will encounter some **To-do** sections at times. Write the solutions and answers into a text-file.   
 
+   
+Overview
+--------
 
+.. _fig-workflow-assembly:
+.. figure:: images/workflow.png
+
+   The part of the workflow we will work on in this section.
+   
+   
 Learning outcomes
 -----------------
 

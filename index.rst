@@ -11,7 +11,16 @@ You will learn how to analyse next-generation sequencing (NGS) data.
 The data you will be using is actual research data.
 The final aim is to identify the genome variations in evolved lines of wild yeast that can explain the observed biological phenotypes.
 
-To this end, you will learn to:
+The tutorial workflow is summarised in :numref:`fig-workflow`.
+
+.. _fig-workflow:
+.. figure:: images/workflow.png
+
+   The tutorial will follow this workflow.
+
+
+
+During this tutorial you will learn to:
 
 - Make use of a UNIX-based computer environment
 - Check the data quality of an NGS experiment
@@ -20,7 +29,6 @@ To this end, you will learn to:
 - Map NGS reads of evolved lines to the ancestral reference genome
 - Call genome variations/mutations in the evolved lines
 - Identify the genes responsible for the observed evolved phenotypes
-
 
 .. .. only:: builder_html
 
