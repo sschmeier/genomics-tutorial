@@ -16,6 +16,15 @@ We will use the tool |kraken| to assign taxonomic classifications to our sequenc
 Let us see if we can id some sequences from other species.
 
 
+Overview
+--------
+
+.. _fig-workflow-taxa:
+.. figure:: images/workflow.png
+
+   The part of the workflow we will work on in this section.
+
+
 Kraken
 ------
 

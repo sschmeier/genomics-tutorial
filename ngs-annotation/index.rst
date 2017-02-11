@@ -2,6 +2,19 @@ NGS - Genome annotation
 =======================
 
 
+Preface
+-------
+
+Blah
+
+Overview
+--------
+
+.. _fig-workflow-anno:
+.. figure:: images/workflow.png
+
+   The part of the workflow we will work on in this section.
+
 
 Genome annotation
 -----------------
