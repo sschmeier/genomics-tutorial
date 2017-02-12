@@ -21,10 +21,12 @@ There is an accompanying lecture for this tutorial:
 Overview
 --------
 
+The part of the workflow we will work on in this section can be viewed in :numref:`fig-workflow-assembly`.
+
 .. _fig-workflow-assembly:
 .. figure:: images/workflow.png
 
-   The part of the workflow we will work on in this section.
+   The part of the workflow we will work on in this section marked in red.
    
    
 Learning outcomes
