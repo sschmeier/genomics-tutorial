@@ -353,7 +353,7 @@ Quick stats for the filtered variants:
    Look at the statistics. One ratio that is mentioned in the statistics is transition transversion ratio (*ts/tv*). Explain what this ratio is and why the observed ratio makes sense. 
 
 
-Several more elaborate filtering strategies have been explored, e.g.  http://genome.cshlp.org/content/early/2012/02/02/gr.129684.111.full.pdf+html
+Several more elaborate filtering strategies have been explored, e.g. `here <https://github.com/ekg/freebayes#observation-filters-and-qualities>`__.
 
 
 Finding variants of interest (VOI)
