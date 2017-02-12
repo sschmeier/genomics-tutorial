@@ -42,10 +42,10 @@ During this tutorial you will learn to:
    cli/index
    ngs-tools/index
    ngs-qc/index
-   ngs-taxonomic-investigation/index
    ngs-assembly/index
    ngs-annotation/index
    ngs-mapping/index
+   ngs-taxonomic-investigation/index
    ngs-variantcalling/index
    general/quickref
    general/code
