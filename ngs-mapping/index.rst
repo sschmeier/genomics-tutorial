@@ -52,7 +52,6 @@ Lets see how our directory structure looks so far:
           annotation/
           assembly/
           data/
-          kraken/
           SolexaQA/
           SolexaQA++
           trimmed/
