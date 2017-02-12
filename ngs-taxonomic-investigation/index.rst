@@ -19,11 +19,13 @@ Let us see if we can id some sequences from other species.
 Overview
 --------
 
+The part of the workflow we will work on in this section can be viewed in :numref:`fig-workflow-taxa`.
+
 .. _fig-workflow-taxa:
 .. figure:: images/workflow.png
 
-   The part of the workflow we will work on in this section.
-
+   The part of the workflow we will work on in this section marked in red.
+   
 
 Kraken
 ------

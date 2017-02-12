@@ -19,10 +19,12 @@ There is an accompanying lectures for this tutorial:
 Overview
 --------
 
+The part of the workflow we will work on in this section can be viewed in :numref:`fig-workflow-qc`.
+
 .. _fig-workflow-qc:
 .. figure:: images/workflow.png
 
-   The part of the workflow we will work on in this section.
+   The part of the workflow we will work on in this section marked in red.
    
 
 Learning outcomes
