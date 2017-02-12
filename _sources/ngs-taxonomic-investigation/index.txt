@@ -9,11 +9,20 @@ Preface
 
 We want to investate if there are sequences of other species in our collection of sequenced DNA pieces.
 We hope that most of them are from our species that we try to study, i.e. the DNA that we have extracted and amplified.
-However, lets investigate if we find sequences from other species in our sequence set.
-Maybe they got into the sample through contamination.
+This might be a way of quality control, e.g. have the samples been contaminated?
+Lets investigate if we find sequences from other species in our sequence set.
 
 We will use the tool |kraken| to assign taxonomic classifications to our sequence reads.
 Let us see if we can id some sequences from other species.
+
+
+Overview
+--------
+
+.. _fig-workflow-taxa:
+.. figure:: images/workflow.png
+
+   The part of the workflow we will work on in this section.
 
 
 Kraken
@@ -37,8 +46,11 @@ Lets see how our directory structure looks so far:
           ls -1F
 
 .. code:: bash
-          
+
+          annotation/
+          assembly/
           data/
+          mappings/
           SolexaQA/
           SolexaQA++
           trimmed/
@@ -97,28 +109,34 @@ Usage
 Now that we have installed |kraken| and downloaded and extracted the minikraken database, we can attempt to investigate the sequences we got back from the sequencing provider for other species as the one it should contain.
 We call the |kraken| tool and specify the database and fasta-file with the sequences it should use. The general command structure looks like this:
 
+
 .. rst-class:: sebcode
 
    kraken --only-classified-output --db minikraken_20141208 example.fa > example.kraken
 
-However, we may have compressed fastq-files, so we need to use two additional option switches, ``--gzip-compressed`` which allows us to input compressed files and ``--fastq-input`` which tells |kraken| that it is dealing with fastq-formated files.
-Here, we are investigating one of the Paired-end read files of the ancestor.
+   
+However, we may have fastq-files, so we need to use ``--fastq-input`` which tells |kraken| that it is dealing with fastq-formated files.
+Here, we are investigating one of the unmapped paired-end read files of the evolved line.
+
 
 .. rst-class:: sebcode
 
-   kraken --only-classified-output --db minikraken_20141208 --gzip-compressed --fastq-input ../data/|fileanc1|.fastq.trimmed.gz > |fileanc1|.kraken
+   kraken --only-classified-output --db minikraken_20141208 --fastq-input ../mappings/|fileevol1|.sorted.unmapped.R1.fastq > |fileevol1|.kraken
           
 
 .. NOTE::
    We are for now only interested in the portion of sequeuces that can be classified, that is why we supplied the option ``--only-classified-output`` to the |kraken| command.
 
+   
 This classification may take a while, depending on how many sequences we are going to classify.
-The resulting content of the file |fileanc1|.kraken looks similar to the following example:
+The resulting content of the file "|fileevol1|.kraken" looks similar to the following example:
+
 
 .. include:: example-kraken.txt
    :literal:
    :end-line: 5
 
+              
 Each sequence classified by |kraken| results in a single line of output.
 Output lines contain five tab-delimited fields; from left to right, they are:
 
@@ -159,10 +177,10 @@ This can be achieved with the tool ``kranken-report``.
 
 .. rst-class:: sebcode 
 
-   kraken-report --db minikraken_20141208 |fileanc1|.kraken > |fileanc1|.kraken.report
+   kraken-report --db minikraken_20141208 |fileevol1|.kraken > |fileevol1|.kraken.report
 
 
-The first few lines of and example report are shown below.
+The first few lines of an example report are shown below.
    
 .. include:: example-kraken-report.txt 
    :literal:
@@ -181,15 +199,19 @@ The fields of the output, from left-to-right, are as follows:
 
 
    
-.. NOTE:: If you want to compare the taxa content of different samples to another, one can create a report whose structure is always the same for all samples, disregarding which taxa are found (obviously the percentages and numbers will be different).
+.. NOTE::
+   If you want to compare the taxa content of different samples to another, one can create a report whose structure is always the same for all samples, disregarding which taxa are found (obviously the percentages and numbers will be different).
+
           
 We can cerate such a report using the option ``--show-zeros`` which will print out all taxa (instead of only those found).
 We then sort the taxa according to taxa-ids (column 5), e.g. ``sort -n -k5``.
 
+
 .. rst-class:: sebcode 
 
-   kraken-report *--show-zeros* --db minikraken_20141208 |fileanc1|.kraken | **sort -n -k5** > |fileanc1|.kraken.report.sorted
+   kraken-report *--show-zeros* --db minikraken_20141208 |fileevol1|.kraken | **sort -n -k5** > |fileevol1|.kraken.report.sorted
 
+   
 The report is not ordered according to taxa ids and contains all taxa in the database, even if they have not been found in our sample and are thus zero.
 The columns are the same as in the former report, however, we have more rows and they are now differently sorted, according to the |ncbitax| id.
 
@@ -204,14 +226,16 @@ we can attach the taxonomic names with ``kraken-translate``.
 
 .. rst-class:: sebcode 
 
-   kraken-translate --mpa-format --db minikraken_20141208 |fileanc1|.kraken > |fileanc1|.kraken.names
+   kraken-translate --mpa-format --db minikraken_20141208 |fileevol1|.kraken > |fileevol1|.kraken.names
 
 
 An example output looks like this:
-   
+
+
 .. include:: example-kraken-translate.txt 
    :literal: 
 
+      
 Here, each sequence that got classified is present in one row.
 The nomenclature for the names is preceded with an letter according to its rank, e.g. **(d)omain, (k)ingdom, (p)hylum, (c)lass, (o)rder, (f)amily (g)enus, or (s)pecies**.
 Taxonomy assignments above the superkingdom (**d**) rank are represented as just **root**. 
@@ -251,7 +275,7 @@ Do not worry to much about what is happening here.
    # now we make a symbolic link to that directory 
    ln -s ~/krona/taxonomy ~/miniconda3/envs/ngs/opt/krona/taxonomy
    
-   # now we copy some scripts around, this is neccaesayry as krona installation fails to do this
+   # now we copy some scripts around, this is necessary as krona installation fails to do this
    cp -r ~/miniconda3/envs/ngs/opt/krona/scripts ~/miniconda3/envs/py3-kraken/bin/
 
 
@@ -286,8 +310,8 @@ Now we use the tool ``ktImportTaxonomy`` from the |krona| tools to crate the htm
 
 .. rst-class:: sebcode 
 
-   cat |fileanc1|.kraken | cut -f 2,3 > |fileanc1|.kraken.krona
-   ktImportTaxonomy |fileanc1|.kraken.krona
+   cat |fileevol1|.kraken | cut -f 2,3 > |fileevol1|.kraken.krona
+   ktImportTaxonomy |fileevol1|.kraken.krona
    firefox taxonomy.krona.html
 
 What happens here is that we extract the second and third column from the |kraken| results.

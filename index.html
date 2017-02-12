@@ -94,10 +94,10 @@
 <li class="toctree-l1"><a class="reference internal" href="cli/index.html">1. Command-line interface introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ngs-tools/index.html">2. NGS - Tool installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ngs-qc/index.html">3. NGS - Quality control</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ngs-taxonomic-investigation/index.html">4. NGS - Taxonomic investigation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ngs-assembly/index.html">5. NGS - Genome assembly</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ngs-annotation/index.html">6. NGS - Genome annotation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ngs-mapping/index.html">7. NGS - Read mapping</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ngs-assembly/index.html">4. NGS - Genome assembly</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ngs-annotation/index.html">5. NGS - Genome annotation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ngs-mapping/index.html">6. NGS - Read mapping</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ngs-taxonomic-investigation/index.html">7. NGS - Taxonomic investigation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ngs-variantcalling/index.html">8. NGS - Variant calling</a></li>
 <li class="toctree-l1"><a class="reference internal" href="general/quickref.html">9. Quick command reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="general/code.html">10. Coding solutions</a></li>
@@ -151,7 +151,12 @@
 You will learn how to analyse next-generation sequencing (NGS) data.
 The data you will be using is actual research data.
 The final aim is to identify the genome variations in evolved lines of wild yeast that can explain the observed biological phenotypes.</p>
-<p>To this end, you will learn to:</p>
+<p>The tutorial workflow is summarised in <a class="reference internal" href="#fig-workflow"><span class="std std-numref">Fig. 1</span></a>.</p>
+<div class="figure" id="id1">
+<span id="fig-workflow"></span><img alt="_images/workflow.png" src="_images/workflow.png" />
+<p class="caption"><span class="caption-number">Fig. 1 </span><span class="caption-text">The tutorial will follow this workflow.</span></p>
+</div>
+<p>During this tutorial you will learn to:</p>
 <ul class="simple">
 <li>Make use of a UNIX-based computer environment</li>
 <li>Check the data quality of an NGS experiment</li>
@@ -183,64 +188,71 @@ The final aim is to identify the genome variations in evolved lines of wild yeas
 </li>
 <li class="toctree-l1"><a class="reference internal" href="ngs-qc/index.html">3. NGS - Quality control</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="ngs-qc/index.html#preface">3.1. Preface</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ngs-qc/index.html#learning-outcomes">3.2. Learning outcomes</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ngs-qc/index.html#the-data">3.3. The data</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ngs-qc/index.html#the-fastq-file-format">3.4. The fastq file format</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ngs-qc/index.html#the-qc-process">3.5. The QC process</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ngs-qc/index.html#phix-genome">3.6. PhiX genome</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ngs-qc/index.html#adapter-trimming">3.7. Adapter trimming</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ngs-qc/index.html#quality-assessment-of-sequencing-reads-solexaqa">3.8. Quality assessment of sequencing reads (SolexaQA++)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ngs-qc/index.html#sickle-for-dynamic-trimming-alternative-to-solexaqa">3.9. Sickle for dynamic trimming (alternative to SolexaQA++)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ngs-qc/index.html#quality-assessment-of-sequencing-reads-fastqc">3.10. Quality assessment of sequencing reads (FastQC)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ngs-qc/index.html#web-links">3.11. Web links</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ngs-qc/index.html#overview">3.2. Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ngs-qc/index.html#learning-outcomes">3.3. Learning outcomes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ngs-qc/index.html#the-data">3.4. The data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ngs-qc/index.html#the-fastq-file-format">3.5. The fastq file format</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ngs-qc/index.html#the-qc-process">3.6. The QC process</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ngs-qc/index.html#phix-genome">3.7. PhiX genome</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ngs-qc/index.html#adapter-trimming">3.8. Adapter trimming</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ngs-qc/index.html#quality-assessment-of-sequencing-reads-solexaqa">3.9. Quality assessment of sequencing reads (SolexaQA++)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ngs-qc/index.html#sickle-for-dynamic-trimming-alternative-to-solexaqa">3.10. Sickle for dynamic trimming (alternative to SolexaQA++)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ngs-qc/index.html#quality-assessment-of-sequencing-reads-fastqc">3.11. Quality assessment of sequencing reads (FastQC)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ngs-qc/index.html#web-links">3.12. Web links</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="ngs-taxonomic-investigation/index.html">4. NGS - Taxonomic investigation</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="ngs-taxonomic-investigation/index.html#preface">4.1. Preface</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ngs-taxonomic-investigation/index.html#kraken">4.2. Kraken</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ngs-taxonomic-investigation/index.html#before-we-start">4.3. Before we start</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ngs-taxonomic-investigation/index.html#installation">4.4. Installation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ngs-taxonomic-investigation/index.html#usage">4.5. Usage</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ngs-taxonomic-investigation/index.html#investigate-taxa">4.6. Investigate taxa</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ngs-assembly/index.html">4. NGS - Genome assembly</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ngs-assembly/index.html#preface">4.1. Preface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ngs-assembly/index.html#overview">4.2. Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ngs-assembly/index.html#learning-outcomes">4.3. Learning outcomes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ngs-assembly/index.html#before-we-start">4.4. Before we start</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ngs-assembly/index.html#creating-a-genome-assembly">4.5. Creating a genome assembly</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ngs-assembly/index.html#assembly-quality-assessment">4.6. Assembly quality assessment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ngs-assembly/index.html#assemblathon">4.7. Assemblathon</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ngs-assembly/index.html#further-reading">4.8. Further reading</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ngs-assembly/index.html#web-links">4.9. Web links</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="ngs-assembly/index.html">5. NGS - Genome assembly</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="ngs-assembly/index.html#preface">5.1. Preface</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ngs-assembly/index.html#learning-outcomes">5.2. Learning outcomes</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ngs-assembly/index.html#before-we-start">5.3. Before we start</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ngs-assembly/index.html#creating-a-genome-assembly">5.4. Creating a genome assembly</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ngs-assembly/index.html#assembly-quality-assessment">5.5. Assembly quality assessment</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ngs-assembly/index.html#assemblathon">5.6. Assemblathon</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ngs-assembly/index.html#further-reading">5.7. Further reading</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ngs-assembly/index.html#web-links">5.8. Web links</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ngs-annotation/index.html">5. NGS - Genome annotation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ngs-annotation/index.html#preface">5.1. Preface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ngs-annotation/index.html#overview">5.2. Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ngs-annotation/index.html#genome-annotation">5.3. Genome annotation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ngs-annotation/index.html#web-links">5.4. Web links</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="ngs-annotation/index.html">6. NGS - Genome annotation</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="ngs-annotation/index.html#genome-annotation">6.1. Genome annotation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ngs-annotation/index.html#web-links">6.2. Web links</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ngs-mapping/index.html">6. NGS - Read mapping</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ngs-mapping/index.html#preface">6.1. Preface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ngs-mapping/index.html#overview">6.2. Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ngs-mapping/index.html#learning-outcomes">6.3. Learning outcomes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ngs-mapping/index.html#before-we-start">6.4. Before we start</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ngs-mapping/index.html#mapping-sequence-reads-to-a-reference-genome">6.5. Mapping sequence reads to a reference genome</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ngs-mapping/index.html#bowtie2">6.6. Bowtie2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ngs-mapping/index.html#bwa">6.7. BWA</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ngs-mapping/index.html#the-sam-mapping-file-format">6.8. The sam mapping file-format</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ngs-mapping/index.html#mapping-post-processing">6.9. Mapping post-processing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ngs-mapping/index.html#mapping-statistics">6.10. Mapping statistics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ngs-mapping/index.html#sub-selecting-reads">6.11. Sub-selecting reads</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="ngs-mapping/index.html">7. NGS - Read mapping</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="ngs-mapping/index.html#preface">7.1. Preface</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ngs-mapping/index.html#learning-outcomes">7.2. Learning outcomes</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ngs-mapping/index.html#before-we-start">7.3. Before we start</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ngs-mapping/index.html#mapping-sequence-reads-to-a-reference-genome">7.4. Mapping sequence reads to a reference genome</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ngs-mapping/index.html#bowtie2">7.5. Bowtie2</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ngs-mapping/index.html#bwa">7.6. BWA</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ngs-mapping/index.html#the-sam-mapping-file-format">7.7. The sam mapping file-format</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ngs-mapping/index.html#mapping-post-processing">7.8. Mapping post-processing</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ngs-mapping/index.html#mapping-statistics">7.9. Mapping statistics</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ngs-mapping/index.html#sub-selecting-reads">7.10. Sub-selecting reads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ngs-taxonomic-investigation/index.html">7. NGS - Taxonomic investigation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ngs-taxonomic-investigation/index.html#preface">7.1. Preface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ngs-taxonomic-investigation/index.html#overview">7.2. Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ngs-taxonomic-investigation/index.html#kraken">7.3. Kraken</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ngs-taxonomic-investigation/index.html#before-we-start">7.4. Before we start</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ngs-taxonomic-investigation/index.html#installation">7.5. Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ngs-taxonomic-investigation/index.html#usage">7.6. Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ngs-taxonomic-investigation/index.html#investigate-taxa">7.7. Investigate taxa</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="ngs-variantcalling/index.html">8. NGS - Variant calling</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="ngs-variantcalling/index.html#preface">8.1. Preface</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ngs-variantcalling/index.html#before-we-start">8.2. Before we start</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ngs-variantcalling/index.html#overview">8.2. Overview</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ngs-variantcalling/index.html#learning-outcomes">8.3. Learning outcomes</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ngs-variantcalling/index.html#installing-necessary-software">8.4. Installing necessary software</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ngs-variantcalling/index.html#preprocessing">8.5. Preprocessing</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ngs-variantcalling/index.html#calling-variants">8.6. Calling variants</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ngs-variantcalling/index.html#post-processing">8.7. Post-processing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ngs-variantcalling/index.html#before-we-start">8.4. Before we start</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ngs-variantcalling/index.html#installing-necessary-software">8.5. Installing necessary software</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ngs-variantcalling/index.html#preprocessing">8.6. Preprocessing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ngs-variantcalling/index.html#calling-variants">8.7. Calling variants</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ngs-variantcalling/index.html#post-processing">8.8. Post-processing</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="general/quickref.html">9. Quick command reference</a><ul>

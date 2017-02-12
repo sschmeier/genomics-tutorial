@@ -15,7 +15,26 @@ There is an accompanying lecture for this tutorial:
 
    You will encounter some **To-do** sections at times. Write the solutions and answers into a text-file.   
 
-   
+
+Overview
+--------
+
+.. _fig-workflow-var:
+.. figure:: images/workflow.png
+
+   The part of the workflow we will work on in this section.
+
+     
+Learning outcomes
+-----------------
+
+After studying this tutorial you should be able to:
+
+#. Use tools to call variants based on a reference genome.
+#. Identify variants of interests.
+#. Understand how the variants might affect the observed biology.
+
+
 Before we start
 ---------------
 
@@ -38,16 +57,6 @@ Lets see how our directory structure looks so far:
           trimmed/
           trimmed-fastqc/
           trimmed-solexaqa/
-
-  
-Learning outcomes
------------------
-
-After studying this tutorial you should be able to:
-
-#. Use tools to call variants based on a reference genome.
-#. Identify variants of interests.
-#. Understand how the variants might affect the observed biology.
 
    
 Installing necessary software
