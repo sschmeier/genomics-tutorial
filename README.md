@@ -124,6 +124,45 @@ $ git remote add gitlab git@gitlab.com:username/myproject.git
 $ git push gitlab master
 ```
 
-Done!
+## Fabric
 
+Use the fabric commands for git branch integration and deployment.
+
+### Branches
+
+This fabric command will merge the branch `new_feature` into `master`.
+
+```bash
+$ fab git:br='new_feature',v='v1.2.5'
+```
+
+The steps that will be performed are:
+
+ - `git checkout master`
+ - `git merge new_feature --no-ff`
+ - change version numer in VERSION.txt to v1.2.5
+ - `git add VERSION.txt`
+ - `git commit -m "Bumped version"`
+ - `git tag -a v1.2.5`
+
+
+### Deploy
+
+Deploy `master` branch to github and gitlab.
+
+```bash
+fab deploy:msg="New deployment."
+```
+
+The steps that will be performed are:
+
+ - make latexpdf
+ - copy pdf to _static.
+ - Safe conda packages of used env in package-list.txt
+ - commit changes.
+ - push master to gitlab remote.
+ - push master to origin (github)
+ - make clean; make html
+ - commit html to gh-pages in build directory
+ - push gh-pages to github/gh-pages
 

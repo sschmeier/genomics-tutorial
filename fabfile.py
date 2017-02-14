@@ -99,7 +99,8 @@ def git(br, to_br='master', v=None):
 def deploy(msg, br='master'):
     """ 
     - make latexpdf
-    - copy pdf to _static. 
+    - copy pdf to _static.
+    - Safe conda packages of used env in package-list.txt
     - commit changes.
     - push master to gitlab remote.
     - push master to origin (github)
@@ -124,7 +125,11 @@ def deploy(msg, br='master'):
 
     puts(yellow('[Copy pdf]'))
     local("cp ../build/latex/*.pdf _static/")
-    
+
+    # save package list
+    puts(yellow('[Conda package list]'))
+    local("conda list --export > package-list.txt")
+
     puts(yellow('[git stage/commit changes]'))
     local("git add -u")
     local('git commit -m "%s"' %(msg))
