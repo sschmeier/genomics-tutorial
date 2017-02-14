@@ -99,7 +99,8 @@ def git(br, to_br='master', v=None):
 def deploy(msg, br='master'):
     """ 
     - make latexpdf
-    - copy pdf to _static. 
+    - copy pdf to _static.
+    - Safe conda packages of used env in package-list.txt
     - commit changes.
     - push master to gitlab remote.
     - push master to origin (github)
