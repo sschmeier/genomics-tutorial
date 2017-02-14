@@ -124,7 +124,11 @@ def deploy(msg, br='master'):
 
     puts(yellow('[Copy pdf]'))
     local("cp ../build/latex/*.pdf _static/")
-    
+
+    # save package list
+    puts(yellow('[Conda package list]'))
+    local("conda list --export > package-list.txt")
+
     puts(yellow('[git stage/commit changes]'))
     local("git add -u")
     local('git commit -m "%s"' %(msg))
