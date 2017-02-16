@@ -1,5 +1,5 @@
-NGS - Variants of interest identification
-=========================================
+NGS - Variants-of-interest
+==========================
 
 Preface
 -------
@@ -70,8 +70,8 @@ Tools we are going to use in this section and how to intall them if you not have
           # if not already installed
         
 
-Finding variants of interest (VOI)
-----------------------------------
+Identification of variants-of-interest (VOI)
+--------------------------------------------
 
 
 Things to consider when looking for VOI:
