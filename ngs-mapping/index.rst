@@ -32,7 +32,7 @@ The part of the workflow we will work on in this section can be viewed in :numre
 Learning outcomes
 -----------------
 
-After studying this tutorial you should be able to:
+After studying this section of the tutorial you should be able to:
 
 #. Explain the process of sequence read mapping.
 #. Use bioinformatics tools to map sequencing reads to a reference genome.
@@ -51,7 +51,6 @@ Lets see how our directory structure looks so far:
 
 .. code:: bash
           
-          annotation/
           assembly/
           data/
           SolexaQA/
