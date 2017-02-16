@@ -289,7 +289,7 @@ Now we take the stats and make some plots (e.g. :numref:`fig-vcfstats`) which ar
 .. rst-class:: sebcode
    
    mkdir variants/plots
-   plot-vcfstats -p variants/plots/ variants/|fileevol|.vcf.gz.stats
+   plot-vcfstats -p variants/plots/ variants/|fileevol|.mpileup.vcf.gz.stats
 
    
 - ``-p``: The output files prefix, add a slash to create new directory.
