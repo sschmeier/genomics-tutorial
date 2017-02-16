@@ -17,6 +17,39 @@ The part of the workflow we will work on in this section can be viewed in :numre
 
    The part of the workflow we will work on in this section marked in red.
 
+
+Learning outcomes
+-----------------
+
+After studying this section of the tutorial you should be able to:
+
+#. Be able to describe the principles of how to annotate a genome.
+
+
+Before we start
+---------------
+
+Lets see how our directory structure looks so far:
+
+.. code:: bash
+
+          cd ~/analysis
+          ls -1F
+
+.. code:: bash
+
+         assembly/
+         data/
+         kraken/
+         mappings/
+         SolexaQA/
+         SolexaQA++
+         trimmed/
+         trimmed-fastqc/
+         trimmed-solexaqa/
+         variants/
+
+   
 Genome annotation
 -----------------
 

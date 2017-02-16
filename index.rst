@@ -48,10 +48,11 @@ During this tutorial you will learn to:
    ngs-tools/index
    ngs-qc/index
    ngs-assembly/index
-   ngs-annotation/index
    ngs-mapping/index
    ngs-taxonomic-investigation/index
    ngs-variantcalling/index
+   ngs-annotation/index
+   ngs-voi/index
    general/quickref
    general/code
    general/downloads

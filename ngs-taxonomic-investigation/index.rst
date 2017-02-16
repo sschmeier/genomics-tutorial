@@ -49,7 +49,6 @@ Lets see how our directory structure looks so far:
 
 .. code:: bash
 
-          annotation/
           assembly/
           data/
           mappings/
