@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>6. NGS - Read mapping</title>
+  <title>5. NGS - Read mapping</title>
   
 
   
@@ -38,8 +38,8 @@
               href="../genindex.html"/>
         <link rel="search" title="Search" href="../search.html"/>
     <link rel="top" title="" href="../index.html"/>
-        <link rel="next" title="7. NGS - Taxonomic investigation" href="../ngs-taxonomic-investigation/index.html"/>
-        <link rel="prev" title="5. NGS - Genome annotation" href="../ngs-annotation/index.html"/> 
+        <link rel="next" title="6. NGS - Taxonomic investigation" href="../ngs-taxonomic-investigation/index.html"/>
+        <link rel="prev" title="4. NGS - Genome assembly" href="../ngs-assembly/index.html"/> 
 
   
   <script src="../_static/js/modernizr.min.js"></script>
@@ -96,52 +96,54 @@
 <li class="toctree-l1"><a class="reference internal" href="../ngs-tools/index.html">2. NGS - Tool installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../ngs-qc/index.html">3. NGS - Quality control</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../ngs-assembly/index.html">4. NGS - Genome assembly</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../ngs-annotation/index.html">5. NGS - Genome annotation</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">6. NGS - Read mapping</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#preface">6.1. Preface</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#overview">6.2. Overview</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#learning-outcomes">6.3. Learning outcomes</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#before-we-start">6.4. Before we start</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#mapping-sequence-reads-to-a-reference-genome">6.5. Mapping sequence reads to a reference genome</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#installing-the-software">6.5.1. Installing the software</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">5. NGS - Read mapping</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#preface">5.1. Preface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#overview">5.2. Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#learning-outcomes">5.3. Learning outcomes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#before-we-start">5.4. Before we start</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#mapping-sequence-reads-to-a-reference-genome">5.5. Mapping sequence reads to a reference genome</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#installing-the-software">5.5.1. Installing the software</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#bowtie2">6.6. Bowtie2</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id1">6.6.1. Overview</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#creating-a-reference-index-for-mapping">6.6.2. Creating a reference index for mapping</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#mapping-reads-in-a-paired-end-manner">6.6.3. Mapping reads in a paired-end manner</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#bowtie2">5.6. Bowtie2</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">5.6.1. Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#creating-a-reference-index-for-mapping">5.6.2. Creating a reference index for mapping</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#mapping-reads-in-a-paired-end-manner">5.6.3. Mapping reads in a paired-end manner</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#bwa">6.7. BWA</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id2">6.7.1. Overview</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id3">6.7.2. Creating a reference index for mapping</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id4">6.7.3. Mapping reads in a paired-end manner</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#bwa">5.7. BWA</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id2">5.7.1. Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">5.7.2. Creating a reference index for mapping</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">5.7.3. Mapping reads in a paired-end manner</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#the-sam-mapping-file-format">6.8. The sam mapping file-format</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#mapping-post-processing">6.9. Mapping post-processing</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#fix-mates-and-compress">6.9.1. Fix mates and compress</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#sorting">6.9.2. Sorting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#the-sam-mapping-file-format">5.8. The sam mapping file-format</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#mapping-post-processing">5.9. Mapping post-processing</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#fix-mates-and-compress">5.9.1. Fix mates and compress</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sorting">5.9.2. Sorting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#remove-duplicates">5.9.3. Remove duplicates</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#mapping-statistics">6.10. Mapping statistics</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#stats-with-samtools">6.10.1. Stats with SAMtools</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#stats-with-qualimap">6.10.2. Stats with QualiMap</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#mapping-statistics">5.10. Mapping statistics</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#stats-with-samtools">5.10.1. Stats with SAMtools</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#stats-with-qualimap">5.10.2. Stats with QualiMap</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#sub-selecting-reads">6.11. Sub-selecting reads</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#concordant-reads">6.11.1. Concordant reads</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#unmapped-reads">6.11.2. Unmapped reads</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#sub-selecting-reads">5.11. Sub-selecting reads</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#concordant-reads">5.11.1. Concordant reads</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#unmapped-reads">5.11.2. Unmapped reads</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../ngs-taxonomic-investigation/index.html">7. NGS - Taxonomic investigation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../ngs-variantcalling/index.html">8. NGS - Variant calling</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../general/quickref.html">9. Quick command reference</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../general/code.html">10. Coding solutions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../general/downloads.html">11. Downloads</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../general/references.html">12. Bibliography</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ngs-taxonomic-investigation/index.html">6. NGS - Taxonomic investigation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ngs-variantcalling/index.html">7. NGS - Variant calling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ngs-annotation/index.html">8. NGS - Genome annotation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ngs-voi/index.html">9. NGS - Variants-of-interest</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../general/quickref.html">10. Quick command reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../general/code.html">11. Coding solutions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../general/downloads.html">12. Downloads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../general/references.html">13. Bibliography</a></li>
 </ul>
 
             
@@ -172,7 +174,7 @@
   <ul class="wy-breadcrumbs">
     <li><a href="../index.html">Docs</a> &raquo;</li>
       
-    <li>6. NGS - Read mapping</li>
+    <li>5. NGS - Read mapping</li>
       <li class="wy-breadcrumbs-aside">
         
           
@@ -185,9 +187,9 @@
            <div itemprop="articleBody">
             
   <div class="section" id="ngs-read-mapping">
-<span id="ngs-mapping"></span><h1>6. NGS - Read mapping<a class="headerlink" href="#ngs-read-mapping" title="Permalink to this headline">¶</a></h1>
+<span id="ngs-mapping"></span><h1>5. NGS - Read mapping<a class="headerlink" href="#ngs-read-mapping" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="preface">
-<h2>6.1. Preface<a class="headerlink" href="#preface" title="Permalink to this headline">¶</a></h2>
+<h2>5.1. Preface<a class="headerlink" href="#preface" title="Permalink to this headline">¶</a></h2>
 <p>In this section we will use our skill on the command-line interface to map our
 reads from the evolved line to our ancestral reference genome.</p>
 <p>There is an accompanying lecture for this tutorial:</p>
@@ -200,16 +202,16 @@ reads from the evolved line to our ancestral reference genome.</p>
 </div>
 </div>
 <div class="section" id="overview">
-<h2>6.2. Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
-<p>The part of the workflow we will work on in this section can be viewed in <a class="reference internal" href="#fig-workflow-map"><span class="std std-numref">Fig. 6.1</span></a>.</p>
+<h2>5.2. Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
+<p>The part of the workflow we will work on in this section can be viewed in <a class="reference internal" href="#fig-workflow-map"><span class="std std-numref">Fig. 5.1</span></a>.</p>
 <div class="figure" id="id5">
 <span id="fig-workflow-map"></span><img alt="../_images/workflow3.png" src="../_images/workflow3.png" />
-<p class="caption"><span class="caption-number">Fig. 6.1 </span><span class="caption-text">The part of the workflow we will work on in this section marked in red.</span></p>
+<p class="caption"><span class="caption-number">Fig. 5.1 </span><span class="caption-text">The part of the workflow we will work on in this section marked in red.</span></p>
 </div>
 </div>
 <div class="section" id="learning-outcomes">
-<h2>6.3. Learning outcomes<a class="headerlink" href="#learning-outcomes" title="Permalink to this headline">¶</a></h2>
-<p>After studying this tutorial you should be able to:</p>
+<h2>5.3. Learning outcomes<a class="headerlink" href="#learning-outcomes" title="Permalink to this headline">¶</a></h2>
+<p>After studying this section of the tutorial you should be able to:</p>
 <ol class="arabic simple">
 <li>Explain the process of sequence read mapping.</li>
 <li>Use bioinformatics tools to map sequencing reads to a reference genome.</li>
@@ -217,14 +219,13 @@ reads from the evolved line to our ancestral reference genome.</p>
 </ol>
 </div>
 <div class="section" id="before-we-start">
-<h2>6.4. Before we start<a class="headerlink" href="#before-we-start" title="Permalink to this headline">¶</a></h2>
+<h2>5.4. Before we start<a class="headerlink" href="#before-we-start" title="Permalink to this headline">¶</a></h2>
 <p>Lets see how our directory structure looks so far:</p>
 <div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~/</span><span class="n">analysis</span>
 <span class="n">ls</span> <span class="o">-</span><span class="mi">1</span><span class="n">F</span>
 </pre></div>
 </div>
-<div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="n">annotation</span><span class="o">/</span>
-<span class="n">assembly</span><span class="o">/</span>
+<div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="n">assembly</span><span class="o">/</span>
 <span class="n">data</span><span class="o">/</span>
 <span class="n">SolexaQA</span><span class="o">/</span>
 <span class="n">SolexaQA</span><span class="o">++</span>
@@ -235,7 +236,7 @@ reads from the evolved line to our ancestral reference genome.</p>
 </div>
 </div>
 <div class="section" id="mapping-sequence-reads-to-a-reference-genome">
-<h2>6.5. Mapping sequence reads to a reference genome<a class="headerlink" href="#mapping-sequence-reads-to-a-reference-genome" title="Permalink to this headline">¶</a></h2>
+<h2>5.5. Mapping sequence reads to a reference genome<a class="headerlink" href="#mapping-sequence-reads-to-a-reference-genome" title="Permalink to this headline">¶</a></h2>
 <p>We want to map the sequencing reads to the ancestral reference genome we created in the section <a class="reference internal" href="../ngs-assembly/index.html#ngs-assembly"><span class="std std-ref">NGS - Genome assembly</span></a>.
 We are going to use the quality trimmed forward and backward DNA sequences of the evolved line and use a program called <a class="reference external" href="http://bio-bwa.sourceforge.net/">BWA</a> to map the reads.</p>
 <div class="admonition-todo admonition" id="index-0">
@@ -245,7 +246,7 @@ We are going to use the quality trimmed forward and backward DNA sequences of th
 </ol>
 </div>
 <div class="section" id="installing-the-software">
-<h3>6.5.1. Installing the software<a class="headerlink" href="#installing-the-software" title="Permalink to this headline">¶</a></h3>
+<h3>5.5.1. Installing the software<a class="headerlink" href="#installing-the-software" title="Permalink to this headline">¶</a></h3>
 <p>We are going to use a program called <a class="reference external" href="http://bio-bwa.sourceforge.net/">BWA</a> fo map our reads to a genome.</p>
 <p>It is simple to install and use.</p>
 <div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="n">source</span> <span class="n">activate</span> <span class="n">ngs</span>
@@ -254,14 +255,15 @@ We are going to use the quality trimmed forward and backward DNA sequences of th
 <span class="n">conda</span> <span class="n">install</span> <span class="n">bedtools</span>
 <span class="n">conda</span> <span class="n">install</span> <span class="n">bowtie2</span>
 <span class="n">conda</span> <span class="n">install</span> <span class="n">bwa</span>
+<span class="n">conda</span> <span class="n">install</span> <span class="n">picard</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="section" id="bowtie2">
-<h2>6.6. Bowtie2<a class="headerlink" href="#bowtie2" title="Permalink to this headline">¶</a></h2>
+<h2>5.6. Bowtie2<a class="headerlink" href="#bowtie2" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="id1">
-<h3>6.6.1. Overview<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<h3>5.6.1. Overview<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference external" href="http://bowtie-bio.sourceforge.net/bowtie2/index.shtml">Bowtie2</a> is a short read aligner, that can take a reference genome and map single- or paired-end data to it.
 It requires an indexing step in which one supplies the reference genome and <a class="reference external" href="http://bowtie-bio.sourceforge.net/bowtie2/index.shtml">Bowtie2</a> will create an index that in the subsequent steps will be used for aligning the reads to the reference genome.
 The general command structure of the <a class="reference external" href="http://bowtie-bio.sourceforge.net/bowtie2/index.shtml">Bowtie2</a> tools we are going to use are shown below:</p>
@@ -280,7 +282,7 @@ The general command structure of the <a class="reference external" href="http://
 </ul>
 </div>
 <div class="section" id="creating-a-reference-index-for-mapping">
-<h3>6.6.2. Creating a reference index for mapping<a class="headerlink" href="#creating-a-reference-index-for-mapping" title="Permalink to this headline">¶</a></h3>
+<h3>5.6.2. Creating a reference index for mapping<a class="headerlink" href="#creating-a-reference-index-for-mapping" title="Permalink to this headline">¶</a></h3>
 <div class="admonition-todo admonition" id="index-1">
 <p class="first admonition-title">Todo</p>
 <p class="last">Create an <a class="reference external" href="http://bowtie-bio.sourceforge.net/bowtie2/index.shtml">Bowtie2</a> index for our reference genome assembly. Attention! Remember which file you need to submit to <a class="reference external" href="http://bowtie-bio.sourceforge.net/bowtie2/index.shtml">Bowtie2</a>.</p>
@@ -291,7 +293,7 @@ The general command structure of the <a class="reference external" href="http://
 </div>
 </div>
 <div class="section" id="mapping-reads-in-a-paired-end-manner">
-<h3>6.6.3. Mapping reads in a paired-end manner<a class="headerlink" href="#mapping-reads-in-a-paired-end-manner" title="Permalink to this headline">¶</a></h3>
+<h3>5.6.3. Mapping reads in a paired-end manner<a class="headerlink" href="#mapping-reads-in-a-paired-end-manner" title="Permalink to this headline">¶</a></h3>
 <p>Now that we have created our index, it is time to map the filtered and trimmed sequencing reads of our evolved line to the reference genome.</p>
 <div class="admonition-todo admonition" id="index-2">
 <p class="first admonition-title">Todo</p>
@@ -304,13 +306,13 @@ The general command structure of the <a class="reference external" href="http://
 </div>
 </div>
 <div class="section" id="bwa">
-<h2>6.7. BWA<a class="headerlink" href="#bwa" title="Permalink to this headline">¶</a></h2>
+<h2>5.7. BWA<a class="headerlink" href="#bwa" title="Permalink to this headline">¶</a></h2>
 <div class="admonition attention">
 <p class="first admonition-title">Attention</p>
 <p class="last">If the mapping did not succeed with <a class="reference external" href="http://bowtie-bio.sourceforge.net/bowtie2/index.shtml">Bowtie2</a>. We can use the aligner <a class="reference external" href="http://bio-bwa.sourceforge.net/">BWA</a> explained in this section. If the mapping with <a class="reference external" href="http://bowtie-bio.sourceforge.net/bowtie2/index.shtml">Bowtie2</a> did work, you can jump this section.</p>
 </div>
 <div class="section" id="id2">
-<h3>6.7.1. Overview<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<h3>5.7.1. Overview<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference external" href="http://bio-bwa.sourceforge.net/">BWA</a> is a short read aligner, that can take a reference genome and map single- or paired-end data to it.
 It requires an indexing step in which one supplies the reference genome and <a class="reference external" href="http://bio-bwa.sourceforge.net/">BWA</a> will create an index that in the subsequent steps will be used for aligning the reads to the reference genome.
 The general command structure of the <a class="reference external" href="http://bio-bwa.sourceforge.net/">BWA</a> tools we are going to use are shown below:</p>
@@ -332,7 +334,7 @@ The general command structure of the <a class="reference external" href="http://
 </div>
 </div>
 <div class="section" id="id3">
-<h3>6.7.2. Creating a reference index for mapping<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<h3>5.7.2. Creating a reference index for mapping<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
 <div class="admonition-todo admonition" id="index-3">
 <p class="first admonition-title">Todo</p>
 <p class="last">Create an <a class="reference external" href="http://bio-bwa.sourceforge.net/">BWA</a> index for our reference genome assembly. Attention! Remember which file you need to submit to <a class="reference external" href="http://bio-bwa.sourceforge.net/">BWA</a>.</p>
@@ -343,7 +345,7 @@ The general command structure of the <a class="reference external" href="http://
 </div>
 </div>
 <div class="section" id="id4">
-<h3>6.7.3. Mapping reads in a paired-end manner<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<h3>5.7.3. Mapping reads in a paired-end manner<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
 <p>Now that we have created our index, it is time to map the filtered and trimmed sequencing reads of our evolved line to the reference genome.</p>
 <div class="admonition-todo admonition" id="index-4">
 <p class="first admonition-title">Todo</p>
@@ -356,13 +358,13 @@ The general command structure of the <a class="reference external" href="http://
 </div>
 </div>
 <div class="section" id="the-sam-mapping-file-format">
-<h2>6.8. The sam mapping file-format<a class="headerlink" href="#the-sam-mapping-file-format" title="Permalink to this headline">¶</a></h2>
+<h2>5.8. The sam mapping file-format<a class="headerlink" href="#the-sam-mapping-file-format" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="http://bio-bwa.sourceforge.net/">BWA</a> will produce a mapping file in sam-format. Have a look into the sam-file that was created by <a class="reference external" href="http://bio-bwa.sourceforge.net/">BWA</a>.
 A quick overview of the sam-format can be found <a class="reference external" href="http://bio-bwa.sourceforge.net/bwa.shtml#4">here</a> and even more information can be found <a class="reference external" href="http://samtools.github.io/hts-specs/SAMv1.pdf">here</a>.
 Briefly, first there are a lot of header lines. Then, for each read, that mapped to the reference, there is one line.</p>
-<p>The columns of such a line in the mapping file are described in <a class="reference internal" href="#table-sam"><span class="std std-numref">Table 6.1</span></a>.</p>
+<p>The columns of such a line in the mapping file are described in <a class="reference internal" href="#table-sam"><span class="std std-numref">Table 5.1</span></a>.</p>
 <table border="1" class="docutils" id="id6">
-<span id="table-sam"></span><caption><span class="caption-number">Table 6.1 </span><span class="caption-text">The sam-file format fields.</span><a class="headerlink" href="#id6" title="Permalink to this table">¶</a></caption>
+<span id="table-sam"></span><caption><span class="caption-number">Table 5.1 </span><span class="caption-text">The sam-file format fields.</span><a class="headerlink" href="#id6" title="Permalink to this table">¶</a></caption>
 <colgroup>
 <col width="7%" />
 <col width="12%" />
@@ -432,12 +434,12 @@ Briefly, first there are a lot of header lines. Then, for each read, that mapped
 <p>It basically defines, the read and the position in the reference genome where the read mapped and a quality of the map.</p>
 </div>
 <div class="section" id="mapping-post-processing">
-<h2>6.9. Mapping post-processing<a class="headerlink" href="#mapping-post-processing" title="Permalink to this headline">¶</a></h2>
+<h2>5.9. Mapping post-processing<a class="headerlink" href="#mapping-post-processing" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="fix-mates-and-compress">
-<h3>6.9.1. Fix mates and compress<a class="headerlink" href="#fix-mates-and-compress" title="Permalink to this headline">¶</a></h3>
+<h3>5.9.1. Fix mates and compress<a class="headerlink" href="#fix-mates-and-compress" title="Permalink to this headline">¶</a></h3>
 <p>Because aligners can sometimes leave unusual <a class="reference external" href="http://bio-bwa.sourceforge.net/bwa.shtml#4">SAM flag</a> information on SAM records, it is helpful when working with many tools to first clean up read pairing information and flags with <a class="reference external" href="http://samtools.sourceforge.net/">SAMtools</a>.
 We are going to produce also compressed bam output for efficient storing of and access to the mapped reads.</p>
-<p class="sebcode">samtools fixmate -O bam evolved-6.sam evolved-6.fixmate.bam</p>
+<p class="sebcode">samtools fixmate -O bam mappings/evolved-6.sam mappings/evolved-6.fixmate.bam</p>
 <ul class="simple">
 <li><code class="docutils literal"><span class="pre">-O</span> <span class="pre">bam</span></code>: specifies that we want compressed bam output</li>
 </ul>
@@ -454,31 +456,40 @@ We are going to produce also compressed bam output for efficient storing of and 
 <p class="sebcode">rm mappings/evolved-6.sam</p>
 </div>
 <div class="section" id="sorting">
-<h3>6.9.2. Sorting<a class="headerlink" href="#sorting" title="Permalink to this headline">¶</a></h3>
+<h3>5.9.2. Sorting<a class="headerlink" href="#sorting" title="Permalink to this headline">¶</a></h3>
 <p>We are going to use <a class="reference external" href="http://samtools.sourceforge.net/">SAMtools</a> again to sort the bam-file into coordinate order:</p>
 <p class="sebcode"># convert to bam file and sort
-samtools sort -O bam -o evolved-6.sorted.bam evolved-6.fixmate.bam</p>
+samtools sort -O bam -o mappings/evolved-6.sorted.bam mappings/evolved-6.fixmate.bam</p>
 <ul class="simple">
 <li><code class="docutils literal"><span class="pre">-o</span></code>: specifies the name of the output file.</li>
 <li><code class="docutils literal"><span class="pre">-O</span> <span class="pre">bam</span></code>: specifies that the output will be bam-format</li>
 </ul>
 </div>
+<div class="section" id="remove-duplicates">
+<h3>5.9.3. Remove duplicates<a class="headerlink" href="#remove-duplicates" title="Permalink to this headline">¶</a></h3>
+<p>In this step we remove duplicate reads. The main purpose of removing duplicates is to mitigate the effects of PCR amplification bias introduced during library construction.</p>
+<p class="sebcode">picard MarkDuplicates REMOVE_DUPLICATES=true METRICS_FILE=mappings/evolved-6.marked_dup_metrics.txt INPUT=mappings/evolved-6.sorted.bam OUTPUT=mappings/evolved-6.sorted.dedup.bam</p>
+<div class="admonition-todo admonition" id="index-5">
+<p class="first admonition-title">Todo</p>
+<p class="last">Figure out what &quot;PCR amplification bias&quot; means.</p>
+</div>
+</div>
 </div>
 <div class="section" id="mapping-statistics">
-<h2>6.10. Mapping statistics<a class="headerlink" href="#mapping-statistics" title="Permalink to this headline">¶</a></h2>
+<h2>5.10. Mapping statistics<a class="headerlink" href="#mapping-statistics" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="stats-with-samtools">
-<h3>6.10.1. Stats with SAMtools<a class="headerlink" href="#stats-with-samtools" title="Permalink to this headline">¶</a></h3>
+<h3>5.10.1. Stats with SAMtools<a class="headerlink" href="#stats-with-samtools" title="Permalink to this headline">¶</a></h3>
 <p>Lets get an mapping overview:</p>
-<p class="sebcode">samtools flagstat mappings/evolved-6.sorted.bam</p>
-<div class="admonition-todo admonition" id="index-5">
+<p class="sebcode">samtools flagstat mappings/evolved-6.sorted.dedup.bam</p>
+<div class="admonition-todo admonition" id="index-6">
 <p class="first admonition-title">Todo</p>
 <p class="last">Look at the mapping statistics and understand <a class="reference external" href="https://www.biostars.org/p/12475/">their meaning</a>. Discuss your results.
 Explain why we may find mapped reads that have their mate mapped to a different chromosome/contig?
 Can they be used for something?</p>
 </div>
 <p>For the sorted bam-file we can get read depth for at all positions of the reference genome, e.g. how many reads are overlapping the genomic position.</p>
-<p class="sebcode">samtools depth mappings/evolved-6.sorted.bam | gzip &gt; mappings/evolved-6.depth.txt.gz</p>
-<div class="admonition-todo admonition" id="index-6">
+<p class="sebcode">samtools depth mappings/evolved-6.sorted.dedup.bam | gzip &gt; mappings/evolved-6.depth.txt.gz</p>
+<div class="admonition-todo admonition" id="index-7">
 <p class="first admonition-title">Todo</p>
 <p class="last">Extract the depth values for contig 20 and load the data into R, calculate some statistics of our scaffold.</p>
 </div>
@@ -504,39 +515,48 @@ Open a <a class="reference external" href="https://www.r-project.org/">R</a> she
 <span class="n">dev</span><span class="o">.</span><span class="n">off</span><span class="p">()</span>
 </pre></div>
 </div>
-<p>The result plot will be looking similar to the one in <a class="reference internal" href="#coverage"><span class="std std-numref">Fig. 6.2</span></a></p>
+<p>The result plot will be looking similar to the one in <a class="reference internal" href="#coverage"><span class="std std-numref">Fig. 5.2</span></a></p>
 <div class="figure" id="id7">
 <span id="coverage"></span><img alt="../_images/covNODE20.png" src="../_images/covNODE20.png" />
-<p class="caption"><span class="caption-number">Fig. 6.2 </span><span class="caption-text">A example coverage plot for a contig with highlighted in red regions with a coverage below 20 reads.</span></p>
+<p class="caption"><span class="caption-number">Fig. 5.2 </span><span class="caption-text">A example coverage plot for a contig with highlighted in red regions with a coverage below 20 reads.</span></p>
 </div>
-<div class="admonition-todo admonition" id="index-7">
+<div class="admonition-todo admonition" id="index-8">
 <p class="first admonition-title">Todo</p>
 <p class="last">Look at the created plot. Explain why it makes sense that you find relatively bad coverage at the beginning and the end of the contig.</p>
 </div>
 </div>
 <div class="section" id="stats-with-qualimap">
-<h3>6.10.2. Stats with QualiMap<a class="headerlink" href="#stats-with-qualimap" title="Permalink to this headline">¶</a></h3>
+<h3>5.10.2. Stats with QualiMap<a class="headerlink" href="#stats-with-qualimap" title="Permalink to this headline">¶</a></h3>
 <p>For a more in depth analysis of the mappings, one can use <a class="reference external" href="http://qualimap.bioinfo.cipf.es/">QualiMap</a>.</p>
 <p><a class="reference external" href="http://qualimap.bioinfo.cipf.es/">QualiMap</a> examines sequencing alignment data in SAM/BAM files according to the features of the mapped reads and provides an overall view of the data that helps to the detect biases in the sequencing and/or mapping of the data and eases decision-making for further analysis.</p>
 <p>Installation:</p>
 <div class="code highlight-default"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">install</span> <span class="n">qualimap</span>
 </pre></div>
 </div>
+<p>Run <a class="reference external" href="http://qualimap.bioinfo.cipf.es/">QualiMap</a> with:</p>
+<p class="sebcode">qualimap bamqc -bam mappings/evolved-6.sorted.dedup.bam</p>
+<p>This will create a report in the mapping folder.
+See this <a class="reference external" href="http://qualimap.bioinfo.cipf.es/doc_html/analysis.html#output">webpage</a> to get help on the sections in the report.</p>
+<div class="admonition-todo admonition" id="index-9">
+<p class="first admonition-title">Todo</p>
+<p class="last">Install <a class="reference external" href="http://qualimap.bioinfo.cipf.es/">QualiMap</a> and investigate the mapping of the evolved sample. Write
+down your observations.</p>
+</div>
 </div>
 </div>
 <div class="section" id="sub-selecting-reads">
-<h2>6.11. Sub-selecting reads<a class="headerlink" href="#sub-selecting-reads" title="Permalink to this headline">¶</a></h2>
+<h2>5.11. Sub-selecting reads<a class="headerlink" href="#sub-selecting-reads" title="Permalink to this headline">¶</a></h2>
 <p>It is important to remember that the mapping commands we used above, without additional parameter to sub-select specific alignments (e.g. for <a class="reference external" href="http://bowtie-bio.sourceforge.net/bowtie2/index.shtml">Bowtie2</a> there are options like <code class="docutils literal"><span class="pre">--no-mixed</span></code>, which suppresses unpaired alignments for paired reads or <code class="docutils literal"><span class="pre">--no-discordant</span></code>, which suppresses discordant alignments for paired reads, etc.), is going to output all reads, including unmapped reads, multi-mapping reads, unpaired reads, discordant read pairs, etc. in one file. We can sub-select from the output reads we want to analyse further using <a class="reference external" href="http://samtools.sourceforge.net/">SAMtools</a>.</p>
-<div class="admonition-todo admonition" id="index-8">
+<div class="admonition-todo admonition" id="index-10">
 <p class="first admonition-title">Todo</p>
 <p class="last">Explain what concordant and discordant read pairs are? Look at the <a class="reference external" href="http://bowtie-bio.sourceforge.net/bowtie2/index.shtml">Bowtie2</a> manual.</p>
 </div>
 <div class="section" id="concordant-reads">
-<h3>6.11.1. Concordant reads<a class="headerlink" href="#concordant-reads" title="Permalink to this headline">¶</a></h3>
+<h3>5.11.1. Concordant reads<a class="headerlink" href="#concordant-reads" title="Permalink to this headline">¶</a></h3>
 <p>Here, we select the reads <strong>we will be using for subsequent analyses</strong>.
 Frist off, we select reads with a mapping quality of at least 20.
 Furthermore, we select read-pair that have been mapped in a correct manner (same chromosome/contig, correct orientation to each other).</p>
-<p class="sebcode">samtools view -h -b -q 20 -f 2 mappings/evolved-6.sorted.bam &gt; mappings/evolved-6.sorted.concordant.q20.bam</p>
+<p class="sebcode">samtools view -h -b -q 20 -f 2 mappings/evolved-6.sorted.dedup.bam &gt; mappings/evolved-6.sorted.concordant.q20.bam</p>
 <ul class="simple">
 <li><code class="docutils literal"><span class="pre">-h</span></code>: Include the sam header</li>
 <li><code class="docutils literal"><span class="pre">-b</span></code>: Output will be bam-format</li>
@@ -549,10 +569,10 @@ Furthermore, we select read-pair that have been mapped in a correct manner (same
 </div>
 </div>
 <div class="section" id="unmapped-reads">
-<h3>6.11.2. Unmapped reads<a class="headerlink" href="#unmapped-reads" title="Permalink to this headline">¶</a></h3>
+<h3>5.11.2. Unmapped reads<a class="headerlink" href="#unmapped-reads" title="Permalink to this headline">¶</a></h3>
 <p>We could decide to use <a class="reference external" href="https://ccb.jhu.edu/software/kraken/">Kraken</a> like in section <a class="reference internal" href="../ngs-taxonomic-investigation/index.html#taxonomic-investigation"><span class="std std-ref">NGS - Taxonomic investigation</span></a> to classify all unmapped sequence reads and identify the species they are coming from and test for contamination.</p>
 <p>Lets see how we can get the unmapped portion of the reads from the bam-file:</p>
-<p class="sebcode">samtools view -b -f 4 mappings/evolved-6.sorted.bam &gt; mappings/evolved-6.sorted.unmapped.bam</p>
+<p class="sebcode">samtools view -b -f 4 mappings/evolved-6.sorted.dedup.bam &gt; mappings/evolved-6.sorted.unmapped.bam</p>
 <p class="sebcode"># count them
 samtools view -c mappings/evolved-6.sorted.unmapped.bam</p>
 <ul class="simple">
@@ -573,10 +593,10 @@ samtools view -c mappings/evolved-6.sorted.unmapped.bam</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../ngs-taxonomic-investigation/index.html" class="btn btn-neutral float-right" title="7. NGS - Taxonomic investigation" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="../ngs-taxonomic-investigation/index.html" class="btn btn-neutral float-right" title="6. NGS - Taxonomic investigation" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="../ngs-annotation/index.html" class="btn btn-neutral" title="5. NGS - Genome annotation" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="../ngs-assembly/index.html" class="btn btn-neutral" title="4. NGS - Genome assembly" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -586,7 +606,7 @@ samtools view -c mappings/evolved-6.sorted.unmapped.bam</p>
   <div role="contentinfo">
     <p>
         &copy; Copyright 2016-2017, Sebastian Schmeier.
-      Last updated on Feb 15, 2017.
+      Last updated on Feb 16, 2017.
 
     </p>
   </div>

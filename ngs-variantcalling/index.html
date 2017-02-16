@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>8. NGS - Variant calling</title>
+  <title>7. NGS - Variant calling</title>
   
 
   
@@ -38,8 +38,8 @@
               href="../genindex.html"/>
         <link rel="search" title="Search" href="../search.html"/>
     <link rel="top" title="" href="../index.html"/>
-        <link rel="next" title="9. Quick command reference" href="../general/quickref.html"/>
-        <link rel="prev" title="7. NGS - Taxonomic investigation" href="../ngs-taxonomic-investigation/index.html"/> 
+        <link rel="next" title="8. NGS - Genome annotation" href="../ngs-annotation/index.html"/>
+        <link rel="prev" title="6. NGS - Taxonomic investigation" href="../ngs-taxonomic-investigation/index.html"/> 
 
   
   <script src="../_static/js/modernizr.min.js"></script>
@@ -96,35 +96,34 @@
 <li class="toctree-l1"><a class="reference internal" href="../ngs-tools/index.html">2. NGS - Tool installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../ngs-qc/index.html">3. NGS - Quality control</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../ngs-assembly/index.html">4. NGS - Genome assembly</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../ngs-annotation/index.html">5. NGS - Genome annotation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../ngs-mapping/index.html">6. NGS - Read mapping</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../ngs-taxonomic-investigation/index.html">7. NGS - Taxonomic investigation</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">8. NGS - Variant calling</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#preface">8.1. Preface</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#overview">8.2. Overview</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#learning-outcomes">8.3. Learning outcomes</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#before-we-start">8.4. Before we start</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#installing-necessary-software">8.5. Installing necessary software</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#preprocessing">8.6. Preprocessing</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#calling-variants">8.7. Calling variants</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#samtools-mpileup">8.7.1. SAMtools mpileup</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#freebayes">8.7.2. Freebayes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ngs-mapping/index.html">5. NGS - Read mapping</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ngs-taxonomic-investigation/index.html">6. NGS - Taxonomic investigation</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">7. NGS - Variant calling</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#preface">7.1. Preface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#overview">7.2. Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#learning-outcomes">7.3. Learning outcomes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#before-we-start">7.4. Before we start</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#installing-necessary-software">7.5. Installing necessary software</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#preprocessing">7.6. Preprocessing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#calling-variants">7.7. Calling variants</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#samtools-mpileup">7.7.1. SAMtools mpileup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#freebayes">7.7.2. Freebayes</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#post-processing">8.8. Post-processing</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#understanding-the-output-files-vcf">8.8.1. Understanding the output files (.vcf)</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#statistics">8.8.2. Statistics</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#variant-filtration">8.8.3. Variant filtration</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#finding-variants-of-interest-voi">8.8.4. Finding variants of interest (VOI)</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#overlap-variants-with-genes">8.8.5. Overlap variants with genes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#post-processing">7.8. Post-processing</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#understanding-the-output-files-vcf">7.8.1. Understanding the output files (.vcf)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#statistics">7.8.2. Statistics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#variant-filtration">7.8.3. Variant filtration</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../general/quickref.html">9. Quick command reference</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../general/code.html">10. Coding solutions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../general/downloads.html">11. Downloads</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../general/references.html">12. Bibliography</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ngs-annotation/index.html">8. NGS - Genome annotation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ngs-voi/index.html">9. NGS - Variants-of-interest</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../general/quickref.html">10. Quick command reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../general/code.html">11. Coding solutions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../general/downloads.html">12. Downloads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../general/references.html">13. Bibliography</a></li>
 </ul>
 
             
@@ -155,7 +154,7 @@
   <ul class="wy-breadcrumbs">
     <li><a href="../index.html">Docs</a> &raquo;</li>
       
-    <li>8. NGS - Variant calling</li>
+    <li>7. NGS - Variant calling</li>
       <li class="wy-breadcrumbs-aside">
         
           
@@ -168,9 +167,9 @@
            <div itemprop="articleBody">
             
   <div class="section" id="ngs-variant-calling">
-<h1>8. NGS - Variant calling<a class="headerlink" href="#ngs-variant-calling" title="Permalink to this headline">¶</a></h1>
+<h1>7. NGS - Variant calling<a class="headerlink" href="#ngs-variant-calling" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="preface">
-<h2>8.1. Preface<a class="headerlink" href="#preface" title="Permalink to this headline">¶</a></h2>
+<h2>7.1. Preface<a class="headerlink" href="#preface" title="Permalink to this headline">¶</a></h2>
 <p>In this section we will use our genome assembly based on the ancestor and call
 genetic variants in the evolved line.</p>
 <p>There is an accompanying lecture for this tutorial:</p>
@@ -183,24 +182,21 @@ genetic variants in the evolved line.</p>
 </div>
 </div>
 <div class="section" id="overview">
-<h2>8.2. Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
-<p>The part of the workflow we will work on in this section can be viewed in <a class="reference internal" href="#fig-workflow-var"><span class="std std-numref">Fig. 8.1</span></a>.</p>
+<h2>7.2. Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
+<p>The part of the workflow we will work on in this section can be viewed in <a class="reference internal" href="#fig-workflow-var"><span class="std std-numref">Fig. 7.1</span></a>.</p>
 <div class="figure" id="id1">
 <span id="fig-workflow-var"></span><img alt="../_images/workflow6.png" src="../_images/workflow6.png" />
-<p class="caption"><span class="caption-number">Fig. 8.1 </span><span class="caption-text">The part of the workflow we will work on in this section marked in red.</span></p>
+<p class="caption"><span class="caption-number">Fig. 7.1 </span><span class="caption-text">The part of the workflow we will work on in this section marked in red.</span></p>
 </div>
 </div>
 <div class="section" id="learning-outcomes">
-<h2>8.3. Learning outcomes<a class="headerlink" href="#learning-outcomes" title="Permalink to this headline">¶</a></h2>
-<p>After studying this tutorial you should be able to:</p>
-<ol class="arabic simple">
-<li>Use tools to call variants based on a reference genome.</li>
-<li>Identify variants of interests.</li>
-<li>Understand how the variants might affect the observed biology.</li>
-</ol>
+<h2>7.3. Learning outcomes<a class="headerlink" href="#learning-outcomes" title="Permalink to this headline">¶</a></h2>
+<p>After studying this tutorial section you should be able to:</p>
+<p>#. Use tools to call variants based on a reference genome.
+#, Be able to describe what influences the calling of variants.</p>
 </div>
 <div class="section" id="before-we-start">
-<h2>8.4. Before we start<a class="headerlink" href="#before-we-start" title="Permalink to this headline">¶</a></h2>
+<h2>7.4. Before we start<a class="headerlink" href="#before-we-start" title="Permalink to this headline">¶</a></h2>
 <p>Lets see how our directory structure looks so far:</p>
 <div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~/</span><span class="n">analysis</span>
 <span class="n">ls</span> <span class="o">-</span><span class="mi">1</span><span class="n">F</span>
@@ -220,7 +216,7 @@ genetic variants in the evolved line.</p>
 </div>
 </div>
 <div class="section" id="installing-necessary-software">
-<h2>8.5. Installing necessary software<a class="headerlink" href="#installing-necessary-software" title="Permalink to this headline">¶</a></h2>
+<h2>7.5. Installing necessary software<a class="headerlink" href="#installing-necessary-software" title="Permalink to this headline">¶</a></h2>
 <p>Tools we are going to use in this section and how to intall them if you not have done it yet.</p>
 <div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="c1"># activate the env</span>
 <span class="n">source</span> <span class="n">activate</span> <span class="n">ngs</span>
@@ -237,7 +233,7 @@ genetic variants in the evolved line.</p>
 </div>
 </div>
 <div class="section" id="preprocessing">
-<h2>8.6. Preprocessing<a class="headerlink" href="#preprocessing" title="Permalink to this headline">¶</a></h2>
+<h2>7.6. Preprocessing<a class="headerlink" href="#preprocessing" title="Permalink to this headline">¶</a></h2>
 <p>We first need to make an index of our reference genome as this is required by the SNP caller.
 Given a scaffold/contig file in fasta-format, e.g. <code class="docutils literal"><span class="pre">scaffolds.fasta</span></code> which is located in the directory <code class="docutils literal"><span class="pre">assembly/spades_final</span></code>, use <a class="reference external" href="http://samtools.sourceforge.net/">SAMtools</a> to do this:</p>
 <div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="n">samtools</span> <span class="n">faidx</span> <span class="n">assembly</span><span class="o">/</span><span class="n">spades</span><span class="o">-</span><span class="n">final</span><span class="o">/</span><span class="n">scaffolds</span><span class="o">.</span><span class="n">fasta</span>
@@ -251,9 +247,9 @@ Given a scaffold/contig file in fasta-format, e.g. <code class="docutils literal
 </div>
 </div>
 <div class="section" id="calling-variants">
-<h2>8.7. Calling variants<a class="headerlink" href="#calling-variants" title="Permalink to this headline">¶</a></h2>
+<h2>7.7. Calling variants<a class="headerlink" href="#calling-variants" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="samtools-mpileup">
-<h3>8.7.1. SAMtools mpileup<a class="headerlink" href="#samtools-mpileup" title="Permalink to this headline">¶</a></h3>
+<h3>7.7.1. SAMtools mpileup<a class="headerlink" href="#samtools-mpileup" title="Permalink to this headline">¶</a></h3>
 <p>We use the sorted filtered bam-file that we produced in the mapping step before.</p>
 <p class="sebcode"># We first pile up all the reads and then call variants
 samtools mpileup -u -g -f assembly/spades-final/scaffolds.fasta mappings/evolved-6.sorted.concordant.q20.bam | bcftools call -v -m -O z -o variants/evolved-6.mpileup.vcf.gz</p>
@@ -272,7 +268,7 @@ samtools mpileup -u -g -f assembly/spades-final/scaffolds.fasta mappings/evolved
 </ul>
 </div>
 <div class="section" id="freebayes">
-<h3>8.7.2. Freebayes<a class="headerlink" href="#freebayes" title="Permalink to this headline">¶</a></h3>
+<h3>7.7.2. Freebayes<a class="headerlink" href="#freebayes" title="Permalink to this headline">¶</a></h3>
 <p>As an alternative we can do some variant calling with another tool called <a class="reference external" href="https://github.com/ekg/freebayes">freebayes</a>.
 Given a reference genome scaffold file in fasta-format, e.g. <code class="docutils literal"><span class="pre">scaffolds.fasta</span></code> and the index in <code class="docutils literal"><span class="pre">.fai</span></code> format and a mapping file (.bam file) and a mapping index (.bai file), we can call variants with <a class="reference external" href="https://github.com/ekg/freebayes">freebayes</a> like so:</p>
 <p class="sebcode"># Now we call variants and pipe the results into a new file
@@ -280,9 +276,9 @@ freebayes -f assembly/spades-final/scaffolds.fasta mappings/evolved-6.sorted.con
 </div>
 </div>
 <div class="section" id="post-processing">
-<h2>8.8. Post-processing<a class="headerlink" href="#post-processing" title="Permalink to this headline">¶</a></h2>
+<h2>7.8. Post-processing<a class="headerlink" href="#post-processing" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="understanding-the-output-files-vcf">
-<h3>8.8.1. Understanding the output files (.vcf)<a class="headerlink" href="#understanding-the-output-files-vcf" title="Permalink to this headline">¶</a></h3>
+<h3>7.8.1. Understanding the output files (.vcf)<a class="headerlink" href="#understanding-the-output-files-vcf" title="Permalink to this headline">¶</a></h3>
 <p>Lets look at a vcf-file:</p>
 <p class="sebcode"># first 10 lines, which are part of the header
 zcat variants/evolved-6.mpileup.vcf.gz | head</p>
@@ -308,9 +304,9 @@ zcat variants/evolved-6.mpileup.vcf.gz | egrep -v '##' | head -4</p>
 <span class="n">NODE_1_length_1419525_cov_15</span><span class="o">.</span><span class="mi">3898</span>       <span class="mi">162469</span>  <span class="o">.</span>       <span class="n">T</span>       <span class="n">C</span>       <span class="mf">19.609</span>  <span class="o">.</span>       <span class="n">DP</span><span class="o">=</span><span class="mi">16</span><span class="p">;</span><span class="n">VDB</span><span class="o">=</span><span class="mf">0.045681</span><span class="p">;</span><span class="n">SGB</span><span class="o">=-</span><span class="mf">0.511536</span><span class="p">;</span><span class="n">RPB</span><span class="o">=</span><span class="mf">0.032027</span><span class="p">;</span><span class="n">MQB</span><span class="o">=</span><span class="mf">0.832553</span><span class="p">;</span><span class="n">BQB</span><span class="o">=</span><span class="mf">0.130524</span><span class="p">;</span><span class="n">MQ0F</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">ICB</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">HOB</span><span class="o">=</span><span class="mf">0.5</span><span class="p">;</span><span class="n">AC</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">AN</span><span class="o">=</span><span class="mi">2</span><span class="p">;</span><span class="n">DP4</span><span class="o">=</span><span class="mi">13</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">0</span><span class="p">;</span><span class="n">MQ</span><span class="o">=</span><span class="mi">39</span>        <span class="n">GT</span><span class="p">:</span><span class="n">PL</span>   <span class="mi">0</span><span class="o">/</span><span class="mi">1</span><span class="p">:</span><span class="mi">54</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">155</span>
 </pre></div>
 </div>
-<p>The fields in a vcf-file are described in he table (<a class="reference internal" href="#table-vcf"><span class="std std-numref">Table 8.1</span></a>) below:</p>
+<p>The fields in a vcf-file are described in he table (<a class="reference internal" href="#table-vcf"><span class="std std-numref">Table 7.1</span></a>) below:</p>
 <table border="1" class="docutils" id="id2">
-<span id="table-vcf"></span><caption><span class="caption-number">Table 8.1 </span><span class="caption-text">The vcf-file format fields.</span><a class="headerlink" href="#id2" title="Permalink to this table">¶</a></caption>
+<span id="table-vcf"></span><caption><span class="caption-number">Table 7.1 </span><span class="caption-text">The vcf-file format fields.</span><a class="headerlink" href="#id2" title="Permalink to this table">¶</a></caption>
 <colgroup>
 <col width="5%" />
 <col width="11%" />
@@ -367,7 +363,7 @@ zcat variants/evolved-6.mpileup.vcf.gz | egrep -v '##' | head -4</p>
 </table>
 </div>
 <div class="section" id="statistics">
-<h3>8.8.2. Statistics<a class="headerlink" href="#statistics" title="Permalink to this headline">¶</a></h3>
+<h3>7.8.2. Statistics<a class="headerlink" href="#statistics" title="Permalink to this headline">¶</a></h3>
 <p>Now we can use it to do some statistics and filter our variant calls.</p>
 <p>First, to prepare out vcf-file for querying we need to index it with <code class="docutils literal"><span class="pre">tabix</span></code>:</p>
 <p class="sebcode">tabix -p vcf variants/evolved-6.mpileup.vcf.gz</p>
@@ -403,7 +399,7 @@ zcat variants/evolved-6.mpileup.vcf.gz | egrep -v '##' | head -4</p>
 <li><code class="docutils literal"><span class="pre">-s</span> <span class="pre">-</span></code>: list of samples for sample stats, &quot;-&quot; to include all samples</li>
 <li><code class="docutils literal"><span class="pre">-F</span> <span class="pre">FILE</span></code>: faidx indexed reference sequence file to determine INDEL context</li>
 </ul>
-<p>Now we take the stats and make some plots (e.g. <a class="reference internal" href="#fig-vcfstats"><span class="std std-numref">Fig. 8.2</span></a>) which are particular of interest if having multiple samples, as one can easily compare them. However, we are only working with one here:</p>
+<p>Now we take the stats and make some plots (e.g. <a class="reference internal" href="#fig-vcfstats"><span class="std std-numref">Fig. 7.2</span></a>) which are particular of interest if having multiple samples, as one can easily compare them. However, we are only working with one here:</p>
 <p class="sebcode">mkdir variants/plots
 plot-vcfstats -p variants/plots/ variants/evolved-6.vcf.gz.stats</p>
 <ul class="simple">
@@ -411,11 +407,11 @@ plot-vcfstats -p variants/plots/ variants/evolved-6.vcf.gz.stats</p>
 </ul>
 <div class="figure" id="id3">
 <span id="fig-vcfstats"></span><img alt="../_images/vcfstats.png" src="../_images/vcfstats.png" />
-<p class="caption"><span class="caption-number">Fig. 8.2 </span><span class="caption-text">Example of <code class="docutils literal"><span class="pre">plot-vcfstats</span></code> output.</span></p>
+<p class="caption"><span class="caption-number">Fig. 7.2 </span><span class="caption-text">Example of <code class="docutils literal"><span class="pre">plot-vcfstats</span></code> output.</span></p>
 </div>
 </div>
 <div class="section" id="variant-filtration">
-<h3>8.8.3. Variant filtration<a class="headerlink" href="#variant-filtration" title="Permalink to this headline">¶</a></h3>
+<h3>7.8.3. Variant filtration<a class="headerlink" href="#variant-filtration" title="Permalink to this headline">¶</a></h3>
 <p>Variant filtration is a big topic in itself.
 There is no consens yet and research on how to best filter variants is ongoing.</p>
 <p>We will do some simple filtration procedures here.
@@ -443,37 +439,7 @@ rtg vcfstats variants/evolved-6.mpileup.q30.vcf.gz</p>
 <p class="first admonition-title">Todo</p>
 <p class="last">Look at the statistics. One ratio that is mentioned in the statistics is transition transversion ratio (<em>ts/tv</em>). Explain what this ratio is and why the observed ratio makes sense.</p>
 </div>
-<p>Several more elaborate filtering strategies have been explored, e.g.  <a class="reference external" href="http://genome.cshlp.org/content/early/2012/02/02/gr.129684.111.full.pdf+html">http://genome.cshlp.org/content/early/2012/02/02/gr.129684.111.full.pdf+html</a></p>
-</div>
-<div class="section" id="finding-variants-of-interest-voi">
-<h3>8.8.4. Finding variants of interest (VOI)<a class="headerlink" href="#finding-variants-of-interest-voi" title="Permalink to this headline">¶</a></h3>
-<p>Things to consider when looking for VOI:</p>
-<ul class="simple">
-<li>The quality score of the variant call.<ul>
-<li>Do we call the variant with a higher then normal score?</li>
-</ul>
-</li>
-<li>The mapping quality score.<ul>
-<li>How confident are we that the reads were mapped at the position correctly?</li>
-</ul>
-</li>
-<li>The location of the SNP.<ul>
-<li>SNPs in larger contigs are probably more interesting than in tiny contigs.</li>
-<li>Does the SNP overlap a coding region in the genome annotation?</li>
-</ul>
-</li>
-<li>The type of SNP.<ul>
-<li>substitutions vs. indels</li>
-</ul>
-</li>
-</ul>
-</div>
-<div class="section" id="overlap-variants-with-genes">
-<h3>8.8.5. Overlap variants with genes<a class="headerlink" href="#overlap-variants-with-genes" title="Permalink to this headline">¶</a></h3>
-<div class="admonition-todo admonition" id="index-1">
-<p class="first admonition-title">Todo</p>
-<p class="last">SEB: Write this section.</p>
-</div>
+<p>Several more elaborate filtering strategies have been explored, e.g. <a class="reference external" href="https://github.com/ekg/freebayes#observation-filters-and-qualities">here</a>.</p>
 </div>
 </div>
 </div>
@@ -485,10 +451,10 @@ rtg vcfstats variants/evolved-6.mpileup.q30.vcf.gz</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../general/quickref.html" class="btn btn-neutral float-right" title="9. Quick command reference" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="../ngs-annotation/index.html" class="btn btn-neutral float-right" title="8. NGS - Genome annotation" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="../ngs-taxonomic-investigation/index.html" class="btn btn-neutral" title="7. NGS - Taxonomic investigation" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="../ngs-taxonomic-investigation/index.html" class="btn btn-neutral" title="6. NGS - Taxonomic investigation" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -498,7 +464,7 @@ rtg vcfstats variants/evolved-6.mpileup.q30.vcf.gz</p>
   <div role="contentinfo">
     <p>
         &copy; Copyright 2016-2017, Sebastian Schmeier.
-      Last updated on Feb 15, 2017.
+      Last updated on Feb 16, 2017.
 
     </p>
   </div>
