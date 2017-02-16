@@ -30,11 +30,10 @@ The part of the workflow we will work on in this section can be viewed in :numre
 Learning outcomes
 -----------------
 
-After studying this tutorial you should be able to:
+After studying this tutorial section you should be able to:
 
 #. Use tools to call variants based on a reference genome.
-#. Identify variants of interests.
-#. Understand how the variants might affect the observed biology.
+#, Be able to describe what influences the calling of variants.
 
 
 Before we start
@@ -356,34 +355,3 @@ Quick stats for the filtered variants:
 Several more elaborate filtering strategies have been explored, e.g. `here <https://github.com/ekg/freebayes#observation-filters-and-qualities>`__.
 
 
-Finding variants of interest (VOI)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-
-Things to consider when looking for VOI:
-
-- The quality score of the variant call.
-  
-  * Do we call the variant with a higher then normal score?
-    
-- The mapping quality score.
-  
-  * How confident are we that the reads were mapped at the position correctly?
-    
-- The location of the SNP.
-  
-  * SNPs in larger contigs are probably more interesting than in tiny contigs.
-  * Does the SNP overlap a coding region in the genome annotation?
-    
-- The type of SNP.
-
-  * substitutions vs. indels 
-
-
-    
-Overlap variants with genes
-~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-.. todo::
-
-   SEB: Write this section.
