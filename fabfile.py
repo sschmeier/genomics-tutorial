@@ -17,7 +17,7 @@ REMOTE_BASE_DIR = '/webapps/seb_django/www'  # absolute path, where project/repo
 REMOTE_ERR_FILE = '/webapps/seb_django/logs/00UPDATE_203341.err'  # absolute path
 REMOTE_LOG_FILE = '/webapps/seb_django/logs/00UPDATE_203341.log'  # absolute path
 REPO_NAME = '203341'  # basename of project
-REPO_URL = 'git@github.com:sschmeier/203341.git'  # e.g. github url
+REPO_URL = 'git@github.com:sschmeier/genomics-tutorial.git'  # e.g. github url
 REPO_BRANCH = 'gh-pages'  # this is the branch to clone on hosts
 
 
@@ -40,7 +40,7 @@ def deploylocal(activate_env=True, conda=None):
             puts(yellow("[Activate conda env]"))
             run('source activate %s' %(conda))
         else:
-            puts(yellow("[Activate env in through ~/bin/activate]"))
+            puts(yellow("[Activate env through ~/bin/activate]"))
             run('source ~/bin/activate')
 
     with settings(warn_only=True):
