@@ -87,6 +87,7 @@ It is simple to install and use.
           conda install bedtools
           conda install bowtie2
           conda install bwa
+          conda install picard
 
           
 Bowtie2
@@ -266,7 +267,7 @@ We are going to produce also compressed bam output for efficient storing of and 
 
 .. rst-class:: sebcode
                
-   samtools fixmate -O bam |fileevol|.sam |fileevol|.fixmate.bam
+   samtools fixmate -O bam mappings/|fileevol|.sam mappings/|fileevol|.fixmate.bam
 
    
 - ``-O bam``: specifies that we want compressed bam output
@@ -301,11 +302,26 @@ We are going to use |samtools| again to sort the bam-file into coordinate order:
 .. rst-class:: sebcode
 
     # convert to bam file and sort
-    samtools sort -O bam -o |fileevol|.sorted.bam |fileevol|.fixmate.bam
+    samtools sort -O bam -o mappings/|fileevol|.sorted.bam mappings/|fileevol|.fixmate.bam
     
 
 - ``-o``: specifies the name of the output file.
 - ``-O bam``: specifies that the output will be bam-format
+
+
+Remove duplicates
+~~~~~~~~~~~~~~~~~
+
+In this step we remove duplicate reads. The main purpose of removing duplicates is to mitigate the effects of PCR amplification bias introduced during library construction. 
+
+.. rst-class:: sebcode
+
+    picard MarkDuplicates REMOVE_DUPLICATES=true METRICS_FILE=mappings/|fileevol|.marked_dup_metrics.txt INPUT=mappings/|fileevol|.sorted.bam OUTPUT=mappings/|fileevol|.sorted.dedup.bam
+
+
+.. todo::
+
+   Figure out what "PCR amplification bias" means.
     
 
 Mapping statistics
@@ -318,7 +334,7 @@ Lets get an mapping overview:
 
 .. rst-class:: sebcode
 
-    samtools flagstat mappings/|fileevol|.sorted.bam
+    samtools flagstat mappings/|fileevol|.sorted.dedup.bam
 
     
 .. todo::
@@ -334,7 +350,7 @@ For the sorted bam-file we can get read depth for at all positions of the refere
 
 .. rst-class:: sebcode
 
-    samtools depth mappings/|fileevol|.sorted.bam | gzip > mappings/|fileevol|.depth.txt.gz
+    samtools depth mappings/|fileevol|.sorted.dedup.bam | gzip > mappings/|fileevol|.depth.txt.gz
 
 
 .. todo::
@@ -393,9 +409,29 @@ For a more in depth analysis of the mappings, one can use |qualimap|.
 
 Installation:
 
+
 .. code::
 
    conda install qualimap
+
+
+Run |qualimap| with:
+
+
+.. rst-class:: sebcode
+
+   qualimap bamqc -bam mappings/|fileevol|.sorted.dedup.bam
+
+
+This will create a report in the mapping folder.
+See this `webpage <http://qualimap.bioinfo.cipf.es/doc_html/analysis.html#output>`__ to get help on the sections in the report.
+
+   
+.. todo::
+
+   Install |qualimap| and investigate the mapping of the evolved sample. Write
+   down your observations.
+    
    
    
 Sub-selecting reads
@@ -419,7 +455,7 @@ Furthermore, we select read-pair that have been mapped in a correct manner (same
 
 .. rst-class:: sebcode
                
-   samtools view -h -b -q 20 -f 2 mappings/|fileevol|.sorted.bam > mappings/|fileevol|.sorted.concordant.q20.bam
+   samtools view -h -b -q 20 -f 2 mappings/|fileevol|.sorted.dedup.bam > mappings/|fileevol|.sorted.concordant.q20.bam
 
 
 - ``-h``: Include the sam header
@@ -443,7 +479,7 @@ Lets see how we can get the unmapped portion of the reads from the bam-file:
 
 .. rst-class:: sebcode
                
-    samtools view -b -f 4 mappings/|fileevol|.sorted.bam > mappings/|fileevol|.sorted.unmapped.bam
+    samtools view -b -f 4 mappings/|fileevol|.sorted.dedup.bam > mappings/|fileevol|.sorted.unmapped.bam
     
     # count them
     samtools view -c mappings/|fileevol|.sorted.unmapped.bam
