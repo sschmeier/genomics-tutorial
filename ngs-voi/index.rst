@@ -1,5 +1,5 @@
-NGS - Identification of variants of interest
-============================================
+NGS - Variants of interest identification
+=========================================
 
 Preface
 -------
@@ -104,3 +104,7 @@ Overlap variants with genes
    
 Visualise variants on the reference genome
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. todo::
+
+   OLIN: Write this section.
