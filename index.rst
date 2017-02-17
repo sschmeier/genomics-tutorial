@@ -36,9 +36,9 @@ During this tutorial you will learn to:
 - Identify the genes responsible for the observed evolved phenotypes
 
   
-.. .. only:: builder_html
+.. only:: builder_html
 
-..   A printable PDF version of this tutorial can be downloaded :download:`here <_static/Genomics.pdf>`.
+   A printable PDF version of this tutorial can be downloaded :download:`here <_static/Genomics.pdf>`.
 
 
 
