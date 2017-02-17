@@ -12,6 +12,8 @@ Genomics Tutorial
 
 This is an introductory tutorial for learning genomics mostly on the command-line. You will learn how to analyse next-generation sequencing (NGS) data. The data you will be using is actual research data. The final aim is to identify the genome variations in evolved lines of wild yeast that can explain the observed biological phenotype.
 
+.. figure:: /images/workflow.png
+
 .. only:: builder_html
 
    .. note::
