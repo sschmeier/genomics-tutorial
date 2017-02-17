@@ -195,7 +195,7 @@ Unfortunately, currently we cannot install |solexaqa| with |conda|.
 
 .. note::
 
-   Should the download fail, download manually from :doc:`../general/downloads`.
+   Should the download fail, download manually from :doc:`../downloads`.
 
     
 SolexaQA++ manual

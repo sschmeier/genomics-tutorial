@@ -38,7 +38,7 @@ Close shell/terminal, **re-open** new shell/terminal.
     
 .. ATTENTION::
    Should the conda installer download fail. Please find links to alternative locations on the
-   :doc:`../general/downloads` page.
+   :doc:`../downloads` page.
    
 
 Create environment
