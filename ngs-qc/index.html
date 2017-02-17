@@ -120,7 +120,6 @@
 <li class="toctree-l3"><a class="reference internal" href="#run-fastqc-on-the-untrimmed-and-trimmed-data">3.11.3. Run FastQC on the untrimmed and trimmed data</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#web-links">3.12. Web links</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../ngs-assembly/index.html">4. NGS - Genome assembly</a></li>
@@ -132,7 +131,6 @@
 <li class="toctree-l1"><a class="reference internal" href="../general/quickref.html">10. Quick command reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../general/code.html">11. Coding solutions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../general/downloads.html">12. Downloads</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../general/references.html">13. Bibliography</a></li>
 </ul>
 
             
@@ -278,7 +276,7 @@ investigate the files in <code class="docutils literal"><span class="pre">data</
 PhiX is used as a quality and calibration control for <a class="reference external" href="http://www.illumina.com/products/by-type/sequencing-kits/cluster-gen-sequencing-reagents/phix-control-v3.html">sequencing runs</a>.
 PhiX is often added at a low known concentration, spiked in the same lane along with the sample or used as a separate lane.
 As the concentration of the genome is known, one can calibrate the instruments.
-Thus, PhiX genomic sequences need to be removed before processing your data further as this constitutes a deliberate contamination <a class="reference internal" href="../general/references.html#mukherjee2015" id="id1">[MUKHERJEE2015]</a>.
+Thus, PhiX genomic sequences need to be removed before processing your data further as this constitutes a deliberate contamination <a class="reference internal" href="#mukherjee2015" id="id1">[MUKHERJEE2015]</a>.
 The steps involve mapping all reads to the &quot;known&quot; PhiX genome, and removing all of those sequence reads from the data.</p>
 <p>However, your sequencing provider might not have used PhiX, thus you need to read the protocol carefully, or just do this step in any case.</p>
 <div class="admonition note">
@@ -306,7 +304,7 @@ conda install ea-utils
 </div>
 <div class="section" id="quality-assessment-of-sequencing-reads-solexaqa">
 <h2>3.9. Quality assessment of sequencing reads (SolexaQA++)<a class="headerlink" href="#quality-assessment-of-sequencing-reads-solexaqa" title="Permalink to this headline">¶</a></h2>
-<p>To assess the sequence read quality of the Illumina run we make use of a program called <a class="reference external" href="http://solexaqa.sourceforge.net">SolexaQA++</a> <a class="reference internal" href="../general/references.html#cox2010" id="id2">[COX2010]</a>.
+<p>To assess the sequence read quality of the Illumina run we make use of a program called <a class="reference external" href="http://solexaqa.sourceforge.net">SolexaQA++</a> <a class="reference internal" href="#cox2010" id="id2">[COX2010]</a>.
 <a class="reference external" href="http://solexaqa.sourceforge.net">SolexaQA++</a> was originally developed to work with Solexa data (since bought by Illumina), but long since working with Illumina data.
 It produces nice graphics that intuitively show the quality of the sequences. it is also able to dynamically trim the bad quality ends off the reads.</p>
 <p>From the webpage:</p>
@@ -390,7 +388,7 @@ and discard files based on a user-defined length cutoff.</p>
 <p class="first admonition-title">Todo</p>
 <ol class="last arabic simple">
 <li>Create a directory for the result-files --&gt; <strong>trimmed-solexaqa</strong>.</li>
-<li>use <a class="reference external" href="http://solexaqa.sourceforge.net">SolexaQA++</a> to do the quality assessment with the trimmed data-set.</li>
+<li>Use <a class="reference external" href="http://solexaqa.sourceforge.net">SolexaQA++</a> to do the quality assessment with the trimmed data-set.</li>
 <li>Compare your results to the examples of a particularly bad MiSeq run (<a class="reference internal" href="#solexaqa-heatmap-bad"><span class="std std-numref">Fig. 3.6</span></a> to <a class="reference internal" href="#solexaqa-heatmap-bad"><span class="std std-numref">Fig. 3.6</span></a>, taken from <a class="reference external" href="http://solexaqa.sourceforge.net">SolexaQA++</a> website). Write down your observations.</li>
 <li>What elements in these example figures (<a class="reference internal" href="#solexaqa-quality-bad"><span class="std std-numref">Fig. 3.3</span></a> to <a class="reference internal" href="#solexaqa-heatmap-bad"><span class="std std-numref">Fig. 3.6</span></a>) indicate that the show a bad run? Write down your explanations.</li>
 </ol>
@@ -524,16 +522,20 @@ which you should be aware before doing any further analysis.&quot;</div></blockq
 <span id="fastqc-bad3"></span><img alt="../_images/fastqc_bad3.png" src="../_images/fastqc_bad3.png" />
 <p class="caption"><span class="caption-number">Fig. 3.9 </span><span class="caption-text">GC distribution over all sequences.</span></p>
 </div>
+<p class="rubric">References</p>
+<table class="docutils citation" frame="void" id="mukherjee2015" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id1">[MUKHERJEE2015]</a></td><td>Mukherjee S, Huntemann M, Ivanova N, Kyrpides NC and Pati A. Large-scale contamination of microbial isolate genomes by Illumina PhiX control. <a class="reference external" href="https://standardsingenomics.biomedcentral.com/articles/10.1186/1944-3277-10-18">Standards in Genomic Sciences, 2015, 10:18. DOI: 10.1186/1944-3277-10-18</a></td></tr>
+</tbody>
+</table>
+<table class="docutils citation" frame="void" id="cox2010" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id2">[COX2010]</a></td><td>Cox MP, Peterson DA and Biggs PJ. SolexaQA: At-a-glance quality assessment of Illumina second-generation sequencing data. <a class="reference external" href="http://www.biomedcentral.com/1471-2105/11/485">BMC Bioinformatics, 2010, 11:485. DOI: 10.1186/1471-2105-11-485</a></td></tr>
+</tbody>
+</table>
 </div>
-</div>
-<div class="section" id="web-links">
-<h2>3.12. Web links<a class="headerlink" href="#web-links" title="Permalink to this headline">¶</a></h2>
-<ul class="simple">
-<li>Lectures for this topic: <a class="reference external" href="https://dx.doi.org/10.6084/m9.figshare.2972320.v1">Next-generation sequencing and quality control: An introduction</a></li>
-<li><a class="reference external" href="http://www.illumina.com/technology/next-generation-sequencing/paired-end-sequencing_assay.html">Illumina paired-end sequencing</a></li>
-<li><a class="reference external" href="http://www.bioinformatics.babraham.ac.uk/projects/fastqc/">FastQC</a></li>
-<li><a class="reference external" href="http://solexaqa.sourceforge.net">SolexaQA++</a></li>
-</ul>
 </div>
 </div>
 
@@ -557,7 +559,7 @@ which you should be aware before doing any further analysis.&quot;</div></blockq
   <div role="contentinfo">
     <p>
         &copy; Copyright 2016-2017, Sebastian Schmeier.
-      Last updated on Feb 16, 2017.
+      Last updated on Feb 17, 2017.
 
     </p>
   </div>

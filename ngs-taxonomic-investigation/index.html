@@ -118,7 +118,6 @@
 <li class="toctree-l1"><a class="reference internal" href="../general/quickref.html">10. Quick command reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../general/code.html">11. Coding solutions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../general/downloads.html">12. Downloads</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../general/references.html">13. Bibliography</a></li>
 </ul>
 
             
@@ -182,7 +181,7 @@ Let us see if we can id some sequences from other species.</p>
 </div>
 <div class="section" id="kraken">
 <h2>6.3. Kraken<a class="headerlink" href="#kraken" title="Permalink to this headline">¶</a></h2>
-<p>We will be using a tool called <a class="reference external" href="https://ccb.jhu.edu/software/kraken/">Kraken</a> <a class="reference internal" href="../general/references.html#wood2014" id="id1">[WOOD2014]</a>.
+<p>We will be using a tool called <a class="reference external" href="https://ccb.jhu.edu/software/kraken/">Kraken</a> <a class="reference internal" href="#wood2014" id="id1">[WOOD2014]</a>.
 This tool uses k-mers to assign a taxonomic labels in form of <a class="reference external" href="https://www.ncbi.nlm.nih.gov/taxonomy">NCBI Taxonomy</a> to the sequence (if possible).
 The taxonomic label is assigned based on similar k-mer content of the sequence in question to the k-mer content of reference genome sequence.
 The result is a classification of the sequence in question to the most likely taxonomic label.
@@ -360,7 +359,7 @@ Taxonomy assignments above the superkingdom (<strong>d</strong>) rank are repres
 </div>
 <div class="section" id="visualisation">
 <h3>6.7.3. Visualisation<a class="headerlink" href="#visualisation" title="Permalink to this headline">¶</a></h3>
-<p>We use the <a class="reference external" href="https://github.com/marbl/Krona/wiki">Krona</a> tools to create a nice interactive visualisation of the taxa content of our sample <a class="reference internal" href="../general/references.html#ondov2011" id="id2">[ONDOV2011]</a>.
+<p>We use the <a class="reference external" href="https://github.com/marbl/Krona/wiki">Krona</a> tools to create a nice interactive visualisation of the taxa content of our sample <a class="reference internal" href="#ondov2011" id="id2">[ONDOV2011]</a>.
 <a class="reference internal" href="#fig-krona"><span class="std std-numref">Fig. 6.2</span></a> shows an example (albeit an artificial one) snapshot of the visualisation <a class="reference external" href="https://github.com/marbl/Krona/wiki">Krona</a> provides.
 <a class="reference internal" href="#fig-krona"><span class="std std-numref">Fig. 6.2</span></a> is a snapshot of the <a class="reference external" href="../_static/taxonomy.krona.html">interactive web-page</a> similar to the one we try to create.</p>
 <div class="figure" id="id4">
@@ -415,6 +414,19 @@ firefox taxonomy.krona.html</p>
 <p>What happens here is that we extract the second and third column from the <a class="reference external" href="https://ccb.jhu.edu/software/kraken/">Kraken</a> results.
 Afterwards, we input these to the <a class="reference external" href="https://github.com/marbl/Krona/wiki">Krona</a> script, and open the resulting web-page in a bowser.
 Done!</p>
+<p class="rubric">References</p>
+<table class="docutils citation" frame="void" id="ondov2011" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id2">[ONDOV2011]</a></td><td>Ondov BD, Bergman NH, and Phillippy AM. Interactive metagenomic visualization in a Web browser. <a class="reference external" href="http://www.ncbi.nlm.nih.gov/pubmed/21961884">BMC Bioinformatics, 2011, 12(1):385.</a></td></tr>
+</tbody>
+</table>
+<table class="docutils citation" frame="void" id="wood2014" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id1">[WOOD2014]</a></td><td>Wood DE and Steven L Salzberg SL. Kraken: ultrafast metagenomic sequence classification using exact alignments. <a class="reference external" href="http://genomebiology.biomedcentral.com/articles/10.1186/gb-2014-15-3-r46">Genome Biology, 2014, 15:R46. DOI: 10.1186/gb-2014-15-3-r46</a>.</td></tr>
+</tbody>
+</table>
 </div>
 </div>
 </div>
@@ -439,7 +451,7 @@ Done!</p>
   <div role="contentinfo">
     <p>
         &copy; Copyright 2016-2017, Sebastian Schmeier.
-      Last updated on Feb 16, 2017.
+      Last updated on Feb 17, 2017.
 
     </p>
   </div>

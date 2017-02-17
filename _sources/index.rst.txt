@@ -35,15 +35,17 @@ During this tutorial you will learn to:
 - Call genome variations/mutations in the evolved lines
 - Identify the genes responsible for the observed evolved phenotypes
 
+  
 .. .. only:: builder_html
 
 ..   A printable PDF version of this tutorial can be downloaded :download:`here <_static/Genomics.pdf>`.
 
 
+
 .. toctree::
    :numbered:
    :maxdepth: 2
-
+              
    cli/index
    ngs-tools/index
    ngs-qc/index
@@ -56,4 +58,3 @@ During this tutorial you will learn to:
    general/quickref
    general/code
    general/downloads
-   general/references

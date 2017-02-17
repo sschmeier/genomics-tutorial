@@ -126,7 +126,6 @@
 <li class="toctree-l1"><a class="reference internal" href="../general/quickref.html">10. Quick command reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../general/code.html">11. Coding solutions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../general/downloads.html">12. Downloads</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../general/references.html">13. Bibliography</a></li>
 </ul>
 
             
@@ -232,7 +231,7 @@ reference genome as opposed to the evolved line.</li>
 <h3>4.5.1. Installing the software<a class="headerlink" href="#installing-the-software" title="Permalink to this headline">¶</a></h3>
 <p>We are going to use a program called <a class="reference external" href="http://bioinf.spbau.ru/spades">SPAdes</a> fo assembling our genome.
 In a recent evaluation of assembly software, <a class="reference external" href="http://bioinf.spbau.ru/spades">SPAdes</a> was found to be a good
-choice for fungal genomes <a class="reference internal" href="../general/references.html#abbas2014" id="id1">[ABBAS2014]</a>.
+choice for fungal genomes <a class="reference internal" href="#abbas2014" id="id1">[ABBAS2014]</a>.
 It is also simple to install and use.</p>
 <div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="n">source</span> <span class="n">activate</span> <span class="n">ngs</span>
 <span class="n">conda</span> <span class="n">install</span> <span class="n">spades</span>
@@ -271,7 +270,7 @@ It is also simple to install and use.</p>
 <h2>4.6. Assembly quality assessment<a class="headerlink" href="#assembly-quality-assessment" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="assembly-statistics">
 <h3>4.6.1. Assembly statistics<a class="headerlink" href="#assembly-statistics" title="Permalink to this headline">¶</a></h3>
-<p><a class="reference external" href="http://quast.bioinf.spbau.ru/">Quast</a> (QUality ASsesment Tool) <a class="reference internal" href="../general/references.html#gurevich2013" id="id2">[GUREVICH2013]</a>, evaluates genome assemblies by computing various metrics, including:</p>
+<p><a class="reference external" href="http://quast.bioinf.spbau.ru/">Quast</a> (QUality ASsesment Tool) <a class="reference internal" href="#gurevich2013" id="id2">[GUREVICH2013]</a>, evaluates genome assemblies by computing various metrics, including:</p>
 <ul class="simple">
 <li>N50: length for which the collection of all contigs of that length or
 longer covers at least 50% of assembly length</li>
@@ -318,15 +317,15 @@ The program can be used on their <a class="reference external" href="http://quas
 <div class="section" id="background-on-genome-assemblies">
 <h3>4.8.1. Background on Genome Assemblies<a class="headerlink" href="#background-on-genome-assemblies" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li>How to apply de Bruijn graphs to genome assembly. <a class="reference internal" href="../general/references.html#compeau2011" id="id3">[COMPEAU2011]</a></li>
-<li>Sequence assembly demystified. <a class="reference internal" href="../general/references.html#nagarajan2013" id="id4">[NAGARAJAN2013]</a></li>
+<li>How to apply de Bruijn graphs to genome assembly. <a class="reference internal" href="#compeau2011" id="id3">[COMPEAU2011]</a></li>
+<li>Sequence assembly demystified. <a class="reference internal" href="#nagarajan2013" id="id4">[NAGARAJAN2013]</a></li>
 </ul>
 </div>
 <div class="section" id="evaluation-of-genome-assembly-software">
 <h3>4.8.2. Evaluation of Genome Assembly Software<a class="headerlink" href="#evaluation-of-genome-assembly-software" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li>GAGE: A critical evaluation of genome assemblies and assembly algorithms. <a class="reference internal" href="../general/references.html#salzberg2012" id="id5">[SALZBERG2012]</a></li>
-<li>Assessment of de novo assemblers for draft genomes: a case study with fungal genomes. <a class="reference internal" href="../general/references.html#abbas2014" id="id6">[ABBAS2014]</a></li>
+<li>GAGE: A critical evaluation of genome assemblies and assembly algorithms. <a class="reference internal" href="#salzberg2012" id="id5">[SALZBERG2012]</a></li>
+<li>Assessment of de novo assemblers for draft genomes: a case study with fungal genomes. <a class="reference internal" href="#abbas2014" id="id6">[ABBAS2014]</a></li>
 </ul>
 </div>
 </div>
@@ -336,8 +335,45 @@ The program can be used on their <a class="reference external" href="http://quas
 <li>Lectures for this topic: <a class="reference external" href="https://dx.doi.org/10.6084/m9.figshare.2972323.v1">Genome Assembly: An Introduction</a></li>
 <li><a class="reference external" href="http://bioinf.spbau.ru/spades">SPAdes</a></li>
 <li><a class="reference external" href="http://quast.bioinf.spbau.ru/">Quast</a></li>
-<li><a class="reference external" href="https://rrwick.github.io/Bandage/">Bandage</a> (Bioinformatics Application for Navigating De novo Assembly Graphs Easily) is a program that visualizes a genome assembly as a graph <a class="reference internal" href="../general/references.html#wick2015" id="id7">[WICK2015]</a>.</li>
+<li><a class="reference external" href="https://rrwick.github.io/Bandage/">Bandage</a> (Bioinformatics Application for Navigating De novo Assembly Graphs Easily) is a program that visualizes a genome assembly as a graph <a class="reference internal" href="#wick2015" id="id7">[WICK2015]</a>.</li>
 </ul>
+<p class="rubric">References</p>
+<table class="docutils citation" frame="void" id="abbas2014" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label">[ABBAS2014]</td><td><em>(<a class="fn-backref" href="#id1">1</a>, <a class="fn-backref" href="#id6">2</a>)</em> Abbas MM, Malluhi QM, Balakrishnan P. Assessment of de novo assemblers for draft genomes: a case study with fungal genomes. <a class="reference external" href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4290589/">BMC Genomics. 2014;15 Suppl 9:S10.</a> doi: 10.1186/1471-2164-15-S9-S10. Epub 2014 Dec 8.</td></tr>
+</tbody>
+</table>
+<table class="docutils citation" frame="void" id="compeau2011" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id3">[COMPEAU2011]</a></td><td>Compeau PE, Pevzner PA, Tesler G. How to apply de Bruijn graphs to genome assembly. <a class="reference external" href="http://dx.doi.org/10.1038/nbt.2023">Nat Biotechnol. 2011 Nov 8;29(11):987-91</a></td></tr>
+</tbody>
+</table>
+<table class="docutils citation" frame="void" id="gurevich2013" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id2">[GUREVICH2013]</a></td><td>Gurevich A, Saveliev V, Vyahhi N and Tesler G. QUAST: quality assessment tool for genome assemblies. <a class="reference external" href="http://bioinformatics.oxfordjournals.org/content/29/8/1072">Bioinformatics 2013, 29(8), 1072-1075</a></td></tr>
+</tbody>
+</table>
+<table class="docutils citation" frame="void" id="nagarajan2013" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id4">[NAGARAJAN2013]</a></td><td>Nagarajan N, Pop M. Sequence assembly demystified. <a class="reference external" href="http://dx.doi.org/10.1038/nrg3367">Nat Rev Genet. 2013 Mar;14(3):157-67</a></td></tr>
+</tbody>
+</table>
+<table class="docutils citation" frame="void" id="salzberg2012" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id5">[SALZBERG2012]</a></td><td>Salzberg SL, Phillippy AM, Zimin A, Puiu D, Magoc T, Koren S, Treangen TJ, Schatz MC, Delcher AL, Roberts M, Marçais G, Pop M, Yorke JA. GAGE: A critical evaluation of genome assemblies and assembly algorithms. <a class="reference external" href="http://genome.cshlp.org/content/22/3/557.full?sid=59ea80f7-b408-4a38-9888-3737bc670876">Genome Res. 2012 Mar;22(3):557-67</a></td></tr>
+</tbody>
+</table>
+<table class="docutils citation" frame="void" id="wick2015" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id7">[WICK2015]</a></td><td>Wick RR, Schultz MB, Zobel J and Holt KE. Bandage: interactive visualization of de novo genome assemblies. <a class="reference external" href="http://bioinformatics.oxfordjournals.org/content/early/2015/07/11/bioinformatics.btv383.long">Bioinformatics 2015, 10.1093/bioinformatics/btv383</a></td></tr>
+</tbody>
+</table>
 </div>
 </div>
 
@@ -361,7 +397,7 @@ The program can be used on their <a class="reference external" href="http://quas
   <div role="contentinfo">
     <p>
         &copy; Copyright 2016-2017, Sebastian Schmeier.
-      Last updated on Feb 16, 2017.
+      Last updated on Feb 17, 2017.
 
     </p>
   </div>

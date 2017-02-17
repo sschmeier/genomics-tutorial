@@ -123,7 +123,6 @@
 <li class="toctree-l1"><a class="reference internal" href="../general/quickref.html">10. Quick command reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../general/code.html">11. Coding solutions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../general/downloads.html">12. Downloads</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../general/references.html">13. Bibliography</a></li>
 </ul>
 
             
@@ -401,9 +400,9 @@ zcat variants/evolved-6.mpileup.vcf.gz | egrep -v '##' | head -4</p>
 </ul>
 <p>Now we take the stats and make some plots (e.g. <a class="reference internal" href="#fig-vcfstats"><span class="std std-numref">Fig. 7.2</span></a>) which are particular of interest if having multiple samples, as one can easily compare them. However, we are only working with one here:</p>
 <p class="sebcode">mkdir variants/plots
-plot-vcfstats -p variants/plots/ variants/evolved-6.vcf.gz.stats</p>
+plot-vcfstats -p variants/plots/ variants/evolved-6.mpileup.vcf.gz.stats</p>
 <ul class="simple">
-<li><code class="docutils literal"><span class="pre">-p</span></code>: The output files prefix, add a slash to create new directory.</li>
+<li><code class="docutils literal"><span class="pre">-p</span></code>: The output files prefix, add a slash at the end to create a new directory.</li>
 </ul>
 <div class="figure" id="id3">
 <span id="fig-vcfstats"></span><img alt="../_images/vcfstats.png" src="../_images/vcfstats.png" />
@@ -437,9 +436,11 @@ tabix -p vcf variants/evolved-6.mpileup.q30.vcf.gz</p>
 rtg vcfstats variants/evolved-6.mpileup.q30.vcf.gz</p>
 <div class="admonition-todo admonition" id="index-0">
 <p class="first admonition-title">Todo</p>
-<p class="last">Look at the statistics. One ratio that is mentioned in the statistics is transition transversion ratio (<em>ts/tv</em>). Explain what this ratio is and why the observed ratio makes sense.</p>
+<p class="last">Look at the statistics. One ratio that is mentioned in the statistics is transition transversion ratio (<em>ts/tv</em>).
+Explain what this ratio is and why the observed ratio makes sense.</p>
 </div>
-<p>Several more elaborate filtering strategies have been explored, e.g. <a class="reference external" href="https://github.com/ekg/freebayes#observation-filters-and-qualities">here</a>.</p>
+<p>This strategy used here will do for our purposes.
+However, several more elaborate filtering strategies have been explored, e.g. <a class="reference external" href="https://github.com/ekg/freebayes#observation-filters-and-qualities">here</a>.</p>
 </div>
 </div>
 </div>
@@ -464,7 +465,7 @@ rtg vcfstats variants/evolved-6.mpileup.q30.vcf.gz</p>
   <div role="contentinfo">
     <p>
         &copy; Copyright 2016-2017, Sebastian Schmeier.
-      Last updated on Feb 16, 2017.
+      Last updated on Feb 17, 2017.
 
     </p>
   </div>
