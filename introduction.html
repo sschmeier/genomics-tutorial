@@ -1,0 +1,253 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>1. Introduction</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="_static/css/seb.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="" href="index.html"/>
+        <link rel="next" title="2. The Command-line interface (CLI)" href="cli/index.html"/>
+        <link rel="prev" title="Genomics Tutorial" href="index.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Genomics Tutorial
+          
+
+          
+            
+            <img src="_static/icon.png" class="logo" />
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                2017.2beta
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">1. Introduction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#the-workflow">1.1. The workflow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#learning-outcomes">1.2. Learning outcomes</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="cli/index.html">2. The Command-line interface (CLI)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ngs-tools/index.html">3. NGS - Tool installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ngs-qc/index.html">4. NGS - Quality control</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ngs-assembly/index.html">5. NGS - Genome assembly</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ngs-mapping/index.html">6. NGS - Read mapping</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ngs-taxonomic-investigation/index.html">7. NGS - Taxonomic investigation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ngs-variantcalling/index.html">8. NGS - Variant calling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ngs-annotation/index.html">9. NGS - Genome annotation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ngs-voi/index.html">10. NGS - Variants-of-interest</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quickref.html">11. Quick command reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="code.html">12. Coding solutions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="downloads.html">13. Downloads</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">Genomics Tutorial</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+    <li>1. Introduction</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="introduction">
+<h1>1. Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h1>
+<p>This is an introductory tutorial for learning genomics mostly on the command-line.
+You will learn how to analyse next-generation sequencing (NGS) data.
+The data you will be using is actual research data.
+The final aim is to identify the genome variations in evolved lines of wild yeast that can explain the observed biological phenotype.</p>
+<div class="section" id="the-workflow">
+<h2>1.1. The workflow<a class="headerlink" href="#the-workflow" title="Permalink to this headline">¶</a></h2>
+<p>The tutorial workflow is summarised in <a class="reference internal" href="#fig-workflow"><span class="std std-numref">Fig. 1.1</span></a>.</p>
+<div class="figure" id="id1">
+<span id="fig-workflow"></span><img alt="_images/workflow.png" src="_images/workflow.png" />
+<p class="caption"><span class="caption-number">Fig. 1.1 </span><span class="caption-text">The tutorial will follow this workflow.</span></p>
+</div>
+</div>
+<div class="section" id="learning-outcomes">
+<h2>1.2. Learning outcomes<a class="headerlink" href="#learning-outcomes" title="Permalink to this headline">¶</a></h2>
+<p>During this tutorial you will learn to:</p>
+<ul class="simple">
+<li>Make use of a UNIX-based computer environment</li>
+<li>Check the data quality of an NGS experiment</li>
+<li>Create a genome assembly of the ancestor based on NGS data</li>
+<li>Map NGS reads of evolved lines to the created ancestral reference genome</li>
+<li>Call genome variations/mutations in the evolved lines</li>
+<li>Annotate a newly derived reference genome</li>
+<li>Find variants of interest that may be responsible for the observed evolved phenotype</li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="cli/index.html" class="btn btn-neutral float-right" title="2. The Command-line interface (CLI)" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral" title="Genomics Tutorial" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016-2017, Sebastian Schmeier.
+      Last updated on Feb 17, 2017.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'2017.2beta',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
