@@ -90,9 +90,10 @@ language = None
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
 # This patterns also effect to html_static_path and html_extra_path
-exclude_patterns = ['**/*references*']
-if tags.has('allmode'):
-    exclude_patterns = []
+exclude_patterns = []
+# if you want to exclude certain section bsed on a tag on "sphinx build -t restrictivemode ..."
+#if tags.has('restictivemode'):
+#    exclude_patterns = ['**/*bla*']
 
 # The reST default role (used for this markup: `text`) to use for all
 # documents.
@@ -313,7 +314,7 @@ latex_show_pagerefs = True
 # 'footnote' – display URLs in footnotes
 # 'inline' – display URLs inline in parentheses
 
-latex_show_urls = 'footnote'
+latex_show_urls = 'inline'
 
 # Documents to append as an appendix to all manuals.
 #
