@@ -1,5 +1,5 @@
 Sphinx course doc
-===========
+=================
 
 ## GITHUB
 
@@ -68,7 +68,7 @@ clean:
     rm -rf $(BUILDDIR)/html/*
 ```
 
-### The workflow
+### The github workflow
 
 Make changes in the source directory `source`. Commit changes made here to the
 `master`-branch and commit freely. Push to remote `origin/master` if required.
@@ -92,8 +92,6 @@ $ git commit -m "New html-build"
 # on first push use -u
 $ git push origin gh-pages 
 ```
-
-Done!
 
 ## GITLAB
 
@@ -124,7 +122,36 @@ $ git remote add gitlab git@gitlab.com:username/myproject.git
 $ git push gitlab master
 ```
 
-## Fabric
+
+## General Git Workflow
+Pretty much similar to workflow at: [http://scottchacon.com/2011/08/31/github-flow.html](http://scottchacon.com/2011/08/31/github-flow.html). 
+
+1. Create branchces for new features
+2. Merge branches often to `master` 
+3. Everything in `master` is deployable
+
+To work on a new feature (e.g. `new_feature`) merge of `master`:
+
+```
+git checkout -b new_feature
+```
+
+
+Make changes and add branch to `origin` if desired
+
+```
+git push origin new_feature
+```
+
+If `master` is going forward too much, merge `master` changes into feature branch (e.g. `new_feature`):
+
+```
+git checkout new_feature
+git merge master
+```
+
+
+### Deploy  with fabric
 
 Use the fabric commands for git branch integration and deployment.
 
@@ -166,3 +193,11 @@ The steps that will be performed are:
  - commit html to gh-pages in build directory
  - push gh-pages to github/gh-pages
 
+
+### Delete branch if not required anymore
+
+Once branch (e.g. `new_feature`) has been merged and is not longer required:
+
+```
+git branch -D new_feature
+git push origin --delete new_feature
