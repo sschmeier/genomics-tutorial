@@ -1,5 +1,5 @@
-Command-line interface introduction
-===================================
+The Command-line interface (CLI)
+================================
 
 Preface
 -------

@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>11. Coding solutions</title>
+  <title>12. Coding solutions</title>
   
 
   
@@ -38,8 +38,8 @@
               href="../genindex.html"/>
         <link rel="search" title="Search" href="../search.html"/>
     <link rel="top" title="" href="../index.html"/>
-        <link rel="next" title="12. Downloads" href="downloads.html"/>
-        <link rel="prev" title="10. Quick command reference" href="quickref.html"/> 
+        <link rel="next" title="13. Downloads" href="downloads.html"/>
+        <link rel="prev" title="11. Quick command reference" href="quickref.html"/> 
 
   
   <script src="../_static/js/modernizr.min.js"></script>
@@ -92,37 +92,38 @@
             
             
                 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../cli/index.html">1. Command-line interface introduction</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../ngs-tools/index.html">2. NGS - Tool installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../ngs-qc/index.html">3. NGS - Quality control</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../ngs-assembly/index.html">4. NGS - Genome assembly</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../ngs-mapping/index.html">5. NGS - Read mapping</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../ngs-taxonomic-investigation/index.html">6. NGS - Taxonomic investigation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../ngs-variantcalling/index.html">7. NGS - Variant calling</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../ngs-annotation/index.html">8. NGS - Genome annotation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../ngs-voi/index.html">9. NGS - Variants-of-interest</a></li>
-<li class="toctree-l1"><a class="reference internal" href="quickref.html">10. Quick command reference</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">11. Coding solutions</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#qc">11.1. QC</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#code-fastqc">11.1.1. Code: FastQC</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#code-solexaqa-trimming">11.1.2. Code: SolexaQA++ trimming</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#code-solexaqa-qc">11.1.3. Code: SolexaQA++ qc</a></li>
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">1. Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cli/index.html">2. The Command-line interface (CLI)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ngs-tools/index.html">3. NGS - Tool installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ngs-qc/index.html">4. NGS - Quality control</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ngs-assembly/index.html">5. NGS - Genome assembly</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ngs-mapping/index.html">6. NGS - Read mapping</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ngs-taxonomic-investigation/index.html">7. NGS - Taxonomic investigation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ngs-variantcalling/index.html">8. NGS - Variant calling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ngs-annotation/index.html">9. NGS - Genome annotation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ngs-voi/index.html">10. NGS - Variants-of-interest</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quickref.html">11. Quick command reference</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">12. Coding solutions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#qc">12.1. QC</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#code-fastqc">12.1.1. Code: FastQC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#code-solexaqa-trimming">12.1.2. Code: SolexaQA++ trimming</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#code-solexaqa-qc">12.1.3. Code: SolexaQA++ qc</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#assembly">11.2. Assembly</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#code-spades-assembly">11.2.1. Code: SPAdes assembly</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#assembly">12.2. Assembly</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#code-spades-assembly">12.2.1. Code: SPAdes assembly</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#mapping">11.3. Mapping</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#code-bowtie2-indexing">11.3.1. Code: Bowtie2 indexing</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#code-bowtie2-mapping">11.3.2. Code: Bowtie2 mapping</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#code-bwa-indexing">11.3.3. Code: BWA indexing</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#code-bwa-mapping">11.3.4. Code: BWA mapping</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#mapping">12.3. Mapping</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#code-bowtie2-indexing">12.3.1. Code: Bowtie2 indexing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#code-bowtie2-mapping">12.3.2. Code: Bowtie2 mapping</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#code-bwa-indexing">12.3.3. Code: BWA indexing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#code-bwa-mapping">12.3.4. Code: BWA mapping</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="downloads.html">12. Downloads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="downloads.html">13. Downloads</a></li>
 </ul>
 
             
@@ -153,7 +154,7 @@
   <ul class="wy-breadcrumbs">
     <li><a href="../index.html">Docs</a> &raquo;</li>
       
-    <li>11. Coding solutions</li>
+    <li>12. Coding solutions</li>
       <li class="wy-breadcrumbs-aside">
         
           
@@ -166,11 +167,11 @@
            <div itemprop="articleBody">
             
   <div class="section" id="coding-solutions">
-<h1>11. Coding solutions<a class="headerlink" href="#coding-solutions" title="Permalink to this headline">¶</a></h1>
+<h1>12. Coding solutions<a class="headerlink" href="#coding-solutions" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="qc">
-<h2>11.1. QC<a class="headerlink" href="#qc" title="Permalink to this headline">¶</a></h2>
+<h2>12.1. QC<a class="headerlink" href="#qc" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="code-fastqc">
-<span id="code-qc1"></span><h3>11.1.1. Code: FastQC<a class="headerlink" href="#code-fastqc" title="Permalink to this headline">¶</a></h3>
+<span id="code-qc1"></span><h3>12.1.1. Code: FastQC<a class="headerlink" href="#code-fastqc" title="Permalink to this headline">¶</a></h3>
 <p><em>Create directory:</em></p>
 <p class="sebcode">mkdir trimmed-fastqc</p>
 <p><em>Run FastQC:</em></p>
@@ -179,7 +180,7 @@
 <p class="sebcode">firefox trimmed-fastqc/*.html</p>
 </div>
 <div class="section" id="code-solexaqa-trimming">
-<span id="code-qc2"></span><h3>11.1.2. Code: SolexaQA++ trimming<a class="headerlink" href="#code-solexaqa-trimming" title="Permalink to this headline">¶</a></h3>
+<span id="code-qc2"></span><h3>12.1.2. Code: SolexaQA++ trimming<a class="headerlink" href="#code-solexaqa-trimming" title="Permalink to this headline">¶</a></h3>
 <p><em>Create directory for result-files:</em></p>
 <p class="sebcode">mkdir trimmed</p>
 <p><em>Run SolexaQA++:</em></p>
@@ -189,7 +190,7 @@
 <p class="sebcode">./SolexaQA++ dynamictrim -p 0.01 -d trimmed/ data/evolved-6-R2.fastq.gz</p>
 </div>
 <div class="section" id="code-solexaqa-qc">
-<span id="code-qc3"></span><h3>11.1.3. Code: SolexaQA++ qc<a class="headerlink" href="#code-solexaqa-qc" title="Permalink to this headline">¶</a></h3>
+<span id="code-qc3"></span><h3>12.1.3. Code: SolexaQA++ qc<a class="headerlink" href="#code-solexaqa-qc" title="Permalink to this headline">¶</a></h3>
 <p><em>Create directory for result-files:</em></p>
 <p class="sebcode">mkdir trimmed-solexaqa/</p>
 <p><em>Run SolexaQA++:</em></p>
@@ -200,31 +201,31 @@
 </div>
 </div>
 <div class="section" id="assembly">
-<h2>11.2. Assembly<a class="headerlink" href="#assembly" title="Permalink to this headline">¶</a></h2>
+<h2>12.2. Assembly<a class="headerlink" href="#assembly" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="code-spades-assembly">
-<span id="code-assembly1"></span><h3>11.2.1. Code: SPAdes assembly<a class="headerlink" href="#code-spades-assembly" title="Permalink to this headline">¶</a></h3>
+<span id="code-assembly1"></span><h3>12.2.1. Code: SPAdes assembly<a class="headerlink" href="#code-spades-assembly" title="Permalink to this headline">¶</a></h3>
 <p class="sebcode">spades.py -o assembly/spades-150/ -k 21,33,55,77 --careful  -1 trimmed/ancestor-R1.fastq.trimmed.gz -2 trimmed/ancestor-R2.fastq.trimmed.gz</p>
 </div>
 </div>
 <div class="section" id="mapping">
-<h2>11.3. Mapping<a class="headerlink" href="#mapping" title="Permalink to this headline">¶</a></h2>
+<h2>12.3. Mapping<a class="headerlink" href="#mapping" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="code-bowtie2-indexing">
-<span id="code-bowtie1"></span><h3>11.3.1. Code: Bowtie2 indexing<a class="headerlink" href="#code-bowtie2-indexing" title="Permalink to this headline">¶</a></h3>
+<span id="code-bowtie1"></span><h3>12.3.1. Code: Bowtie2 indexing<a class="headerlink" href="#code-bowtie2-indexing" title="Permalink to this headline">¶</a></h3>
 <p><em>Build the index:</em></p>
 <p class="sebcode">bowtie2-build assembly/spades-final/scaffolds.fasta assembly/spades-final/scaffolds</p>
 </div>
 <div class="section" id="code-bowtie2-mapping">
-<span id="code-bowtie2"></span><h3>11.3.2. Code: Bowtie2 mapping<a class="headerlink" href="#code-bowtie2-mapping" title="Permalink to this headline">¶</a></h3>
+<span id="code-bowtie2"></span><h3>12.3.2. Code: Bowtie2 mapping<a class="headerlink" href="#code-bowtie2-mapping" title="Permalink to this headline">¶</a></h3>
 <p><em>Map to the genome. Use a max fragemnt length of 1000 bp:</em></p>
 <p class="sebcode">bowtie2 -X 1000 -x assembly/spades-final/scaffolds -1 trimmed/evolved-6-R1.fastq.trimmed.gz -2 trimmed/evolved-6-R2.fastq.trimmed.gz -S mappings/evolved-6.sam</p>
 </div>
 <div class="section" id="code-bwa-indexing">
-<span id="code-bwa1"></span><h3>11.3.3. Code: BWA indexing<a class="headerlink" href="#code-bwa-indexing" title="Permalink to this headline">¶</a></h3>
+<span id="code-bwa1"></span><h3>12.3.3. Code: BWA indexing<a class="headerlink" href="#code-bwa-indexing" title="Permalink to this headline">¶</a></h3>
 <p><em>Index the genome assembly:</em></p>
 <p class="sebcode">bwa index assembly/spades-final/scaffolds.fasta</p>
 </div>
 <div class="section" id="code-bwa-mapping">
-<span id="code-bwa2"></span><h3>11.3.4. Code: BWA mapping<a class="headerlink" href="#code-bwa-mapping" title="Permalink to this headline">¶</a></h3>
+<span id="code-bwa2"></span><h3>12.3.4. Code: BWA mapping<a class="headerlink" href="#code-bwa-mapping" title="Permalink to this headline">¶</a></h3>
 <p><em>Run bwa mem:</em></p>
 <p class="sebcode">bwa mem assembly/spades-final/scaffolds.fasta trimmed/evolved-6-R1.fastq.trimmed.gz trimmed/evolved-6-R2.fastq.trimmed.gz &gt; mappings/evolved-6.sam</p>
 </div>
@@ -238,10 +239,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="downloads.html" class="btn btn-neutral float-right" title="12. Downloads" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="downloads.html" class="btn btn-neutral float-right" title="13. Downloads" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="quickref.html" class="btn btn-neutral" title="10. Quick command reference" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="quickref.html" class="btn btn-neutral" title="11. Quick command reference" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
