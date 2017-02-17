@@ -292,7 +292,7 @@ Now we take the stats and make some plots (e.g. :numref:`fig-vcfstats`) which ar
    plot-vcfstats -p variants/plots/ variants/|fileevol|.mpileup.vcf.gz.stats
 
    
-- ``-p``: The output files prefix, add a slash to create new directory.
+- ``-p``: The output files prefix, add a slash at the end to create a new directory.
    
 
 .. _fig-vcfstats:
@@ -349,9 +349,11 @@ Quick stats for the filtered variants:
   
 .. todo::
     
-   Look at the statistics. One ratio that is mentioned in the statistics is transition transversion ratio (*ts/tv*). Explain what this ratio is and why the observed ratio makes sense. 
+   Look at the statistics. One ratio that is mentioned in the statistics is transition transversion ratio (*ts/tv*).
+   Explain what this ratio is and why the observed ratio makes sense. 
 
 
-Several more elaborate filtering strategies have been explored, e.g. `here <https://github.com/ekg/freebayes#observation-filters-and-qualities>`__.
+This strategy used here will do for our purposes.
+However, several more elaborate filtering strategies have been explored, e.g. `here <https://github.com/ekg/freebayes#observation-filters-and-qualities>`__.
 
 
