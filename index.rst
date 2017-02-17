@@ -40,10 +40,11 @@ During this tutorial you will learn to:
 ..   A printable PDF version of this tutorial can be downloaded :download:`here <_static/Genomics.pdf>`.
 
 
+
 .. toctree::
    :numbered:
    :maxdepth: 2
-
+              
    cli/index
    ngs-tools/index
    ngs-qc/index

@@ -45,18 +45,20 @@ help:
 	@echo "  coverage   to run coverage check of the documentation (if enabled)"
 	@echo "  dummy      to check syntax errors of document sources"
 	@echo "  view       open build html in new window"	
+	@echo "  viewtex    open build latexpdf in new window"	
 
-.PHONY: view
-view:
-	open $(BUILDDIR)/html/index.html
+.PHONY: viewtex
+viewtex:
+	open $(BUILDDIR)/latex/*.pdf
 
 .PHONY: clean
 clean:
 	rm -rf $(BUILDDIR)/html/*
+	rm -rf $(BUILDDIR)/latex/*
 
 .PHONY: html
 html:
-	$(SPHINXBUILD) -b html $(ALLSPHINXOPTS) $(BUILDDIR)/html
+	$(SPHINXBUILD) -b html -t allmode $(ALLSPHINXOPTS) $(BUILDDIR)/html
 	@echo
 	@echo "Build finished. The HTML pages are in $(BUILDDIR)/html."
 

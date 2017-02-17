@@ -90,7 +90,9 @@ language = None
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
 # This patterns also effect to html_static_path and html_extra_path
-exclude_patterns = []
+exclude_patterns = ['**/*references*']
+if tags.has('allmode'):
+    exclude_patterns = []
 
 # The reST default role (used for this markup: `text`) to use for all
 # documents.
@@ -287,7 +289,7 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-    (master_doc, 'Genomics.tex', u'Genomics Tutorial Documentation',
+    (master_doc, 'Genomics.tex', u'Genomics Tutorial',
      u'Sebastian Schmeier', 'manual'),
 ]
 
@@ -306,8 +308,12 @@ latex_use_parts = False
 latex_show_pagerefs = True
 
 # If true, show URL addresses after external links.
-#
-latex_show_urls = 'inline'
+# one of:
+# 'no' – do not display URLs (default)
+# 'footnote' – display URLs in footnotes
+# 'inline' – display URLs inline in parentheses
+
+latex_show_urls = 'footnote'
 
 # Documents to append as an appendix to all manuals.
 #
