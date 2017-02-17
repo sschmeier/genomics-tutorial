@@ -10,42 +10,22 @@ Genomics Tutorial
    **THIS TUTORIAL IS CURRENTLY UNDER ACTIVE DEVELOPMENT SO EXPECT CONTENT
    TO CHANGE**
 
-
-This is an introductory tutorial for learning genomics mostly on the command-line.
-You will learn how to analyse next-generation sequencing (NGS) data.
-The data you will be using is actual research data.
-The final aim is to identify the genome variations in evolved lines of wild yeast that can explain the observed biological phenotypes.
-
-The tutorial workflow is summarised in :numref:`fig-workflow`.
-
-.. _fig-workflow:
-.. figure:: images/workflow.png
-
-   The tutorial will follow this workflow.
+   
+.. figure:: /images/workflow.png
 
 
-
-During this tutorial you will learn to:
-
-- Make use of a UNIX-based computer environment
-- Check the data quality of an NGS experiment
-- Create a genome assembly of the ancestor based on NGS data
-- Annotate a newly derived genome
-- Map NGS reads of evolved lines to the ancestral reference genome
-- Call genome variations/mutations in the evolved lines
-- Identify the genes responsible for the observed evolved phenotypes
-
-  
 .. only:: builder_html
 
-   A printable PDF version of this tutorial can be downloaded :download:`here <_static/Genomics.pdf>`.
-
-
+   .. note::
+      
+      **A PDF-version of this tutorial can be downloaded** :download:`here <_static/Genomics.pdf>`.
+            
 
 .. toctree::
    :numbered:
    :maxdepth: 2
-              
+
+   general/introduction
    cli/index
    ngs-tools/index
    ngs-qc/index
@@ -58,3 +38,5 @@ During this tutorial you will learn to:
    general/quickref
    general/code
    general/downloads
+
+
