@@ -10,9 +10,7 @@ Genomics Tutorial
    **THIS TUTORIAL IS CURRENTLY UNDER ACTIVE DEVELOPMENT SO EXPECT CONTENT
    TO CHANGE**
 
-   
-.. figure:: /images/workflow.png
-
+This is an introductory tutorial for learning genomics mostly on the command-line. You will learn how to analyse next-generation sequencing (NGS) data. The data you will be using is actual research data. The final aim is to identify the genome variations in evolved lines of wild yeast that can explain the observed biological phenotype.
 
 .. only:: builder_html
 
@@ -25,7 +23,7 @@ Genomics Tutorial
    :numbered:
    :maxdepth: 2
 
-   general/introduction
+   introduction
    cli/index
    ngs-tools/index
    ngs-qc/index
@@ -35,8 +33,8 @@ Genomics Tutorial
    ngs-variantcalling/index
    ngs-annotation/index
    ngs-voi/index
-   general/quickref
-   general/code
-   general/downloads
+   quickref
+   code
+   downloads
 
 
