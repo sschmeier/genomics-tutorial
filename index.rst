@@ -18,7 +18,10 @@ This is an introductory tutorial for learning genomics mostly on the command-lin
 
    .. note::
       
-      **A PDF-version of this tutorial can be downloaded** :download:`here <_static/Genomics.pdf>`.
+      A PDF-version of this tutorial can be downloaded :download:`here
+      <_static/Genomics.pdf>`. **(Expect the PDF-version to change)**
+
+   
             
 
 .. toctree::
