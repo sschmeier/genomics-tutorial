@@ -1,29 +1,24 @@
 """
-Use to do two things: 1. Locally for git workflow, 2. Updates remote servers
-Should be executed from `develop` branch.
+Used for two things: 1. Locally for git workflow, 2. Update remote servers.
 """
 from __future__ import with_statement
 from fabric.api import *
 from fabric.colors import *
 from fabric.context_managers import cd, lcd
-
 import os.path
-
-
-
 
 HOST = '' # e.g. seb@bla.com
 REMOTE_BASE_DIR = '/webapps/seb_django/www'  # absolute path, where project/repo lives
 REMOTE_ERR_FILE = '/webapps/seb_django/logs/00UPDATE_203341.err'  # absolute path
 REMOTE_LOG_FILE = '/webapps/seb_django/logs/00UPDATE_203341.log'  # absolute path
-REPO_NAME = '203341'  # basename of project
+REPO_NAME = 'genomics-tutorial'  # basename of project
 REPO_URL = 'git@github.com:sschmeier/genomics-tutorial.git'  # e.g. github url
-REPO_BRANCH = 'gh-pages'  # this is the branch to clone on hosts
+REPO_BRANCH = 'gh-pages'  # this is the branch to clone on servers
 
 
 @hosts('seb@vm010865.massey.ac.nz', 'seb@vm010944.massey.ac.nz') # only for deploy
 def logs():
-    """ Reading remote log files and print to stdout. """
+    """ Reading Massey server log-files and print to stdout."""
     puts(yellow("[Reading log-file]"))
     run("cat %s" % REMOTE_LOG_FILE)
     puts(yellow("[Reading err-file]"))
@@ -31,8 +26,8 @@ def logs():
 
 
 @hosts('seb@vm010865.massey.ac.nz', 'seb@vm010944.massey.ac.nz') # only for deploy
-def deploylocal(activate_env=True, conda=None):
-    """ Deploy project to remote hosts. """
+def deploymassey(activate_env=True, conda=None):
+    """ Deploy project to Massey servers."""
     remote_dir = os.path.abspath(os.path.join(REMOTE_BASE_DIR, REPO_NAME))
     
     if activate_env:
@@ -97,7 +92,7 @@ def git(br, to_br='master', v=None):
 
 
 def deploy(msg, br='master'):
-    """ 
+    """Deploy master to remotes.
     - make latexpdf
     - copy pdf to _static.
     - Safe conda packages of used env in package-list.txt
