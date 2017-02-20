@@ -20,23 +20,29 @@ Data
 Software
 --------
 
-
 .. code-block:: bash
    
-   conda install fastqc     # quality assessment
-   conda install sickle
+   conda install ea-utils
+   conda install sickle-trim
+   conda install fastqc
 
    conda install spades     # assembler
    conda install quast      # QA assemblies
-   
-   conda install bwa        # mapper
 
-   conda install samtools   # Working with mapping files
-   conda install bamtools   # Working with mapping files
-   conda install freebayes  # SNP caller
-   conda install bcftools   # working with SNP files
-   conda install igvtools   # for visualisation
-   conda install krona
+   conda install samtools
+   conda install bamtools
+   conda install bedtools
+   conda install bowtie2
+   conda install bwa
+   conda install picard
+   conda install qualimap
+   
    conda install kraken-all
+   conda install krona
 
-   
+   conda install samtools
+   conda install bamtools
+   conda install bcftools
+   conda install freebayes
+   conda install rtg-tools
+   conda install bedtools
