@@ -546,7 +546,7 @@ down your observations.</p>
 </div>
 <div class="section" id="sub-selecting-reads">
 <h2>6.11. Sub-selecting reads<a class="headerlink" href="#sub-selecting-reads" title="Permalink to this headline">¶</a></h2>
-<p>It is important to remember that the mapping commands we used above, without additional parameter to sub-select specific alignments (e.g. for <a class="reference external" href="http://bowtie-bio.sourceforge.net/bowtie2/index.shtml">Bowtie2</a> there are options like <code class="docutils literal"><span class="pre">--no-mixed</span></code>, which suppresses unpaired alignments for paired reads or <code class="docutils literal"><span class="pre">--no-discordant</span></code>, which suppresses discordant alignments for paired reads, etc.), is going to output all reads, including unmapped reads, multi-mapping reads, unpaired reads, discordant read pairs, etc. in one file. We can sub-select from the output reads we want to analyse further using <a class="reference external" href="http://samtools.sourceforge.net/">SAMtools</a>.</p>
+<p>It is important to remember that the mapping commands we used above, without additional parameters to sub-select specific alignments (e.g. for <a class="reference external" href="http://bowtie-bio.sourceforge.net/bowtie2/index.shtml">Bowtie2</a> there are options like <code class="docutils literal"><span class="pre">--no-mixed</span></code>, which suppresses unpaired alignments for paired reads or <code class="docutils literal"><span class="pre">--no-discordant</span></code>, which suppresses discordant alignments for paired reads, etc.), are going to output all reads, including unmapped reads, multi-mapping reads, unpaired reads, discordant read pairs, etc. in one file. We can sub-select from the output reads we want to analyse further using <a class="reference external" href="http://samtools.sourceforge.net/">SAMtools</a>.</p>
 <div class="admonition-todo admonition" id="index-10">
 <p class="first admonition-title">Todo</p>
 <p class="last">Explain what concordant and discordant read pairs are? Look at the <a class="reference external" href="http://bowtie-bio.sourceforge.net/bowtie2/index.shtml">Bowtie2</a> manual.</p>
@@ -606,7 +606,7 @@ samtools view -c mappings/evolved-6.sorted.unmapped.bam</p>
   <div role="contentinfo">
     <p>
         &copy; Copyright 2016-2017, Sebastian Schmeier.
-      Last updated on Feb 17, 2017.
+      Last updated on Feb 21, 2017.
 
     </p>
   </div>
