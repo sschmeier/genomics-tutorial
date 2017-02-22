@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>5. NGS - Genome assembly</title>
+  <title>4. NGS - Genome assembly</title>
   
 
   
@@ -38,8 +38,8 @@
               href="../genindex.html"/>
         <link rel="search" title="Search" href="../search.html"/>
     <link rel="top" title="" href="../index.html"/>
-        <link rel="next" title="6. NGS - Read mapping" href="../ngs-mapping/index.html"/>
-        <link rel="prev" title="4. NGS - Quality control" href="../ngs-qc/index.html"/> 
+        <link rel="next" title="5. NGS - Read mapping" href="../ngs-mapping/index.html"/>
+        <link rel="prev" title="3. NGS - Quality control" href="../ngs-qc/index.html"/> 
 
   
   <script src="../_static/js/modernizr.min.js"></script>
@@ -93,40 +93,39 @@
             
                 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../introduction.html">1. Introduction</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../cli/index.html">2. The Command-line interface (CLI)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../ngs-tools/index.html">3. NGS - Tool installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../ngs-qc/index.html">4. NGS - Quality control</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">5. NGS - Genome assembly</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#preface">5.1. Preface</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#overview">5.2. Overview</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#learning-outcomes">5.3. Learning outcomes</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#before-we-start">5.4. Before we start</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#creating-a-genome-assembly">5.5. Creating a genome assembly</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#installing-the-software">5.5.1. Installing the software</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#spades-usage">5.5.2. SPAdes usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ngs-tools/index.html">2. NGS - Tool installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ngs-qc/index.html">3. NGS - Quality control</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">4. NGS - Genome assembly</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#preface">4.1. Preface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#overview">4.2. Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#learning-outcomes">4.3. Learning outcomes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#before-we-start">4.4. Before we start</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#creating-a-genome-assembly">4.5. Creating a genome assembly</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#installing-the-software">4.5.1. Installing the software</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#spades-usage">4.5.2. SPAdes usage</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#assembly-quality-assessment">5.6. Assembly quality assessment</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#assembly-statistics">5.6.1. Assembly statistics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#assembly-quality-assessment">4.6. Assembly quality assessment</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#assembly-statistics">4.6.1. Assembly statistics</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#assemblathon">5.7. Assemblathon</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#further-reading">5.8. Further reading</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#background-on-genome-assemblies">5.8.1. Background on Genome Assemblies</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#evaluation-of-genome-assembly-software">5.8.2. Evaluation of Genome Assembly Software</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#assemblathon">4.7. Assemblathon</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#further-reading">4.8. Further reading</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#background-on-genome-assemblies">4.8.1. Background on Genome Assemblies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#evaluation-of-genome-assembly-software">4.8.2. Evaluation of Genome Assembly Software</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#web-links">5.9. Web links</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#web-links">4.9. Web links</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../ngs-mapping/index.html">6. NGS - Read mapping</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../ngs-taxonomic-investigation/index.html">7. NGS - Taxonomic investigation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../ngs-variantcalling/index.html">8. NGS - Variant calling</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../ngs-annotation/index.html">9. NGS - Genome annotation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../ngs-voi/index.html">10. NGS - Variants-of-interest</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../quickref.html">11. Quick command reference</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../code.html">12. Coding solutions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../downloads.html">13. Downloads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ngs-mapping/index.html">5. NGS - Read mapping</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ngs-taxonomic-investigation/index.html">6. NGS - Taxonomic investigation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ngs-variantcalling/index.html">7. NGS - Variant calling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ngs-annotation/index.html">8. NGS - Genome annotation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ngs-voi/index.html">9. NGS - Variants-of-interest</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quickref.html">10. Quick command reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../code.html">11. Coding solutions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../downloads.html">12. Downloads</a></li>
 </ul>
 
             
@@ -157,7 +156,7 @@
   <ul class="wy-breadcrumbs">
     <li><a href="../index.html">Docs</a> &raquo;</li>
       
-    <li>5. NGS - Genome assembly</li>
+    <li>4. NGS - Genome assembly</li>
       <li class="wy-breadcrumbs-aside">
         
           
@@ -170,9 +169,9 @@
            <div itemprop="articleBody">
             
   <div class="section" id="ngs-genome-assembly">
-<span id="ngs-assembly"></span><h1>5. NGS - Genome assembly<a class="headerlink" href="#ngs-genome-assembly" title="Permalink to this headline">¶</a></h1>
+<span id="ngs-assembly"></span><h1>4. NGS - Genome assembly<a class="headerlink" href="#ngs-genome-assembly" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="preface">
-<h2>5.1. Preface<a class="headerlink" href="#preface" title="Permalink to this headline">¶</a></h2>
+<h2>4.1. Preface<a class="headerlink" href="#preface" title="Permalink to this headline">¶</a></h2>
 <p>In this section we will use our skill on the command-line interface to create a
 genome assembly from sequencing data.</p>
 <p>There is an accompanying lecture for this tutorial:</p>
@@ -185,15 +184,15 @@ genome assembly from sequencing data.</p>
 </div>
 </div>
 <div class="section" id="overview">
-<h2>5.2. Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
-<p>The part of the workflow we will work on in this section can be viewed in <a class="reference internal" href="#fig-workflow-assembly"><span class="std std-numref">Fig. 5.1</span></a>.</p>
+<h2>4.2. Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
+<p>The part of the workflow we will work on in this section can be viewed in <a class="reference internal" href="#fig-workflow-assembly"><span class="std std-numref">Fig. 4.1</span></a>.</p>
 <div class="figure" id="id8">
 <span id="fig-workflow-assembly"></span><img alt="../_images/workflow2.png" src="../_images/workflow2.png" />
-<p class="caption"><span class="caption-number">Fig. 5.1 </span><span class="caption-text">The part of the workflow we will work on in this section marked in red.</span></p>
+<p class="caption"><span class="caption-number">Fig. 4.1 </span><span class="caption-text">The part of the workflow we will work on in this section marked in red.</span></p>
 </div>
 </div>
 <div class="section" id="learning-outcomes">
-<h2>5.3. Learning outcomes<a class="headerlink" href="#learning-outcomes" title="Permalink to this headline">¶</a></h2>
+<h2>4.3. Learning outcomes<a class="headerlink" href="#learning-outcomes" title="Permalink to this headline">¶</a></h2>
 <p>After studying this tutorial you should be able to:</p>
 <ol class="arabic simple">
 <li>Compute and interpret a whole genome assembly.</li>
@@ -201,7 +200,7 @@ genome assembly from sequencing data.</p>
 </ol>
 </div>
 <div class="section" id="before-we-start">
-<h2>5.4. Before we start<a class="headerlink" href="#before-we-start" title="Permalink to this headline">¶</a></h2>
+<h2>4.4. Before we start<a class="headerlink" href="#before-we-start" title="Permalink to this headline">¶</a></h2>
 <p>Lets see how our directory structure looks so far:</p>
 <div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~/</span><span class="n">analysis</span>
 <span class="n">ls</span> <span class="o">-</span><span class="mi">1</span><span class="n">F</span>
@@ -217,7 +216,7 @@ genome assembly from sequencing data.</p>
 </div>
 </div>
 <div class="section" id="creating-a-genome-assembly">
-<h2>5.5. Creating a genome assembly<a class="headerlink" href="#creating-a-genome-assembly" title="Permalink to this headline">¶</a></h2>
+<h2>4.5. Creating a genome assembly<a class="headerlink" href="#creating-a-genome-assembly" title="Permalink to this headline">¶</a></h2>
 <p>We want to create a genome assembly for our ancestor.
 We are going to use the quality trimmed forward and backward DNA sequences and
 use a program called <a class="reference external" href="http://bioinf.spbau.ru/spades">SPAdes</a> to build a genome assembly.</p>
@@ -229,7 +228,7 @@ reference genome as opposed to the evolved line.</li>
 </ol>
 </div>
 <div class="section" id="installing-the-software">
-<h3>5.5.1. Installing the software<a class="headerlink" href="#installing-the-software" title="Permalink to this headline">¶</a></h3>
+<h3>4.5.1. Installing the software<a class="headerlink" href="#installing-the-software" title="Permalink to this headline">¶</a></h3>
 <p>We are going to use a program called <a class="reference external" href="http://bioinf.spbau.ru/spades">SPAdes</a> fo assembling our genome.
 In a recent evaluation of assembly software, <a class="reference external" href="http://bioinf.spbau.ru/spades">SPAdes</a> was found to be a good
 choice for fungal genomes <a class="reference internal" href="#abbas2014" id="id1">[ABBAS2014]</a>.
@@ -240,7 +239,7 @@ It is also simple to install and use.</p>
 </div>
 </div>
 <div class="section" id="spades-usage">
-<h3>5.5.2. SPAdes usage<a class="headerlink" href="#spades-usage" title="Permalink to this headline">¶</a></h3>
+<h3>4.5.2. SPAdes usage<a class="headerlink" href="#spades-usage" title="Permalink to this headline">¶</a></h3>
 <div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="c1"># change to your analysis root folder</span>
 <span class="n">cd</span> <span class="o">~/</span><span class="n">analysis</span>
 
@@ -268,9 +267,9 @@ It is also simple to install and use.</p>
 </div>
 </div>
 <div class="section" id="assembly-quality-assessment">
-<h2>5.6. Assembly quality assessment<a class="headerlink" href="#assembly-quality-assessment" title="Permalink to this headline">¶</a></h2>
+<h2>4.6. Assembly quality assessment<a class="headerlink" href="#assembly-quality-assessment" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="assembly-statistics">
-<h3>5.6.1. Assembly statistics<a class="headerlink" href="#assembly-statistics" title="Permalink to this headline">¶</a></h3>
+<h3>4.6.1. Assembly statistics<a class="headerlink" href="#assembly-statistics" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference external" href="http://quast.bioinf.spbau.ru/">Quast</a> (QUality ASsesment Tool) <a class="reference internal" href="#gurevich2013" id="id2">[GUREVICH2013]</a>, evaluates genome assemblies by computing various metrics, including:</p>
 <ul class="simple">
 <li>N50: length for which the collection of all contigs of that length or
@@ -303,7 +302,7 @@ The program can be used on their <a class="reference external" href="http://quas
 </div>
 </div>
 <div class="section" id="assemblathon">
-<h2>5.7. Assemblathon<a class="headerlink" href="#assemblathon" title="Permalink to this headline">¶</a></h2>
+<h2>4.7. Assemblathon<a class="headerlink" href="#assemblathon" title="Permalink to this headline">¶</a></h2>
 <div class="admonition-todo admonition" id="index-3">
 <p class="first admonition-title">Todo</p>
 <p class="last">Now that you know the basics for assembling a genome and judging their quality, play with the <a class="reference external" href="http://bioinf.spbau.ru/spades">SPAdes</a> parameters to create the best assembly possible.</p>
@@ -314,16 +313,16 @@ The program can be used on their <a class="reference external" href="http://quas
 </div>
 </div>
 <div class="section" id="further-reading">
-<h2>5.8. Further reading<a class="headerlink" href="#further-reading" title="Permalink to this headline">¶</a></h2>
+<h2>4.8. Further reading<a class="headerlink" href="#further-reading" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="background-on-genome-assemblies">
-<h3>5.8.1. Background on Genome Assemblies<a class="headerlink" href="#background-on-genome-assemblies" title="Permalink to this headline">¶</a></h3>
+<h3>4.8.1. Background on Genome Assemblies<a class="headerlink" href="#background-on-genome-assemblies" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li>How to apply de Bruijn graphs to genome assembly. <a class="reference internal" href="#compeau2011" id="id3">[COMPEAU2011]</a></li>
 <li>Sequence assembly demystified. <a class="reference internal" href="#nagarajan2013" id="id4">[NAGARAJAN2013]</a></li>
 </ul>
 </div>
 <div class="section" id="evaluation-of-genome-assembly-software">
-<h3>5.8.2. Evaluation of Genome Assembly Software<a class="headerlink" href="#evaluation-of-genome-assembly-software" title="Permalink to this headline">¶</a></h3>
+<h3>4.8.2. Evaluation of Genome Assembly Software<a class="headerlink" href="#evaluation-of-genome-assembly-software" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li>GAGE: A critical evaluation of genome assemblies and assembly algorithms. <a class="reference internal" href="#salzberg2012" id="id5">[SALZBERG2012]</a></li>
 <li>Assessment of de novo assemblers for draft genomes: a case study with fungal genomes. <a class="reference internal" href="#abbas2014" id="id6">[ABBAS2014]</a></li>
@@ -331,7 +330,7 @@ The program can be used on their <a class="reference external" href="http://quas
 </div>
 </div>
 <div class="section" id="web-links">
-<h2>5.9. Web links<a class="headerlink" href="#web-links" title="Permalink to this headline">¶</a></h2>
+<h2>4.9. Web links<a class="headerlink" href="#web-links" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li>Lectures for this topic: <a class="reference external" href="https://dx.doi.org/10.6084/m9.figshare.2972323.v1">Genome Assembly: An Introduction</a></li>
 <li><a class="reference external" href="http://bioinf.spbau.ru/spades">SPAdes</a></li>
@@ -385,10 +384,10 @@ The program can be used on their <a class="reference external" href="http://quas
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../ngs-mapping/index.html" class="btn btn-neutral float-right" title="6. NGS - Read mapping" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="../ngs-mapping/index.html" class="btn btn-neutral float-right" title="5. NGS - Read mapping" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="../ngs-qc/index.html" class="btn btn-neutral" title="4. NGS - Quality control" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="../ngs-qc/index.html" class="btn btn-neutral" title="3. NGS - Quality control" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -398,7 +397,7 @@ The program can be used on their <a class="reference external" href="http://quas
   <div role="contentinfo">
     <p>
         &copy; Copyright 2016-2017, Sebastian Schmeier.
-      Last updated on Feb 21, 2017.
+      Last updated on Feb 23, 2017.
 
     </p>
   </div>

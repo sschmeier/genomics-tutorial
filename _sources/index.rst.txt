@@ -29,7 +29,6 @@ This is an introductory tutorial for learning genomics mostly on the command-lin
    :maxdepth: 2
 
    introduction
-   cli/index
    ngs-tools/index
    ngs-qc/index
    ngs-assembly/index
