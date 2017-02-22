@@ -1,8 +1,10 @@
 Introduction
 ============
 
-This is an introductory tutorial for learning genomics mostly on the command-line.
-You will learn how to analyse next-generation sequencing (NGS) data.
+This is an introductory tutorial for learning genomics mostly on the Linux command-line.
+Should you need to refresh your knowledge about either Linux or the command-line, have a look `here <http://linux.sschmeier.com/>`__.
+
+In this tutorial you will learn how to analyse next-generation sequencing (NGS) data.
 The data you will be using is actual research data.
 The final aim is to identify the genome variations in evolved lines of wild yeast that can explain the observed biological phenotype.
 
@@ -22,7 +24,6 @@ Learning outcomes
 
 During this tutorial you will learn to:
 
-- Make use of a UNIX-based computer environment
 - Check the data quality of an NGS experiment
 - Create a genome assembly of the ancestor based on NGS data
 - Map NGS reads of evolved lines to the created ancestral reference genome

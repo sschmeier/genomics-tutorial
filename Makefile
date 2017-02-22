@@ -51,6 +51,11 @@ help:
 viewtex:
 	open $(BUILDDIR)/latex/*.pdf
 
+.PHONY: view
+view:
+	open $(BUILDDIR)/build/index.html
+
+
 .PHONY: clean
 clean:
 	rm -rf $(BUILDDIR)/html/*
