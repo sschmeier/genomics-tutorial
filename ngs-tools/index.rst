@@ -13,13 +13,13 @@ to install it first to be able to use it.
 .. code-block:: bash
 
     # download latest conda installer
-    curl -O https://repo.continuum.io/miniconda/Miniconda2-latest-Linux-x86_64.sh
+    curl -O https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh
 
     # run the installer
-    bash Miniconda2-latest-MacOSX-x86_64.sh
+    bash Miniconda3-latest-Linux-x86_64.sh
     
     # delete the installer after successful run
-    rm Miniconda2-latest-MacOSX-x86_64.sh
+    rm Miniconda3-latest-Linux-x86_64.sh
 
     # Install some conda channels
     # A channel is where conda looks for packages
@@ -51,7 +51,7 @@ numbers later on.
 
 .. code-block:: bash
 
-    conda create -n ngs python=2
+    conda create -n ngs python=3
     # activate the environment
     source activate ngs
 

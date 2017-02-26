@@ -53,7 +53,7 @@ viewtex:
 
 .PHONY: view
 view:
-	open $(BUILDDIR)/build/index.html
+	open $(BUILDDIR)/html/index.html
 
 
 .PHONY: clean
