@@ -70,7 +70,7 @@
             
             
               <div class="version">
-                2017.2beta
+                2017.3beta
               </div>
             
           
@@ -100,19 +100,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../ngs-taxonomic-investigation/index.html">6. NGS - Taxonomic investigation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../ngs-variantcalling/index.html">7. NGS - Variant calling</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../ngs-annotation/index.html">8. NGS - Genome annotation</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">9. NGS - Variants-of-interest</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#preface">9.1. Preface</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#overview">9.2. Overview</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#learning-outcomes">9.3. Learning outcomes</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#before-we-start">9.4. Before we start</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#installing-necessary-software">9.5. Installing necessary software</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#identification-of-variants-of-interest-voi">9.6. Identification of variants-of-interest (VOI)</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#overlap-variants-with-genes">9.6.1. Overlap variants with genes</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#visualise-variants-on-the-reference-genome">9.6.2. Visualise variants on the reference genome</a></li>
-</ul>
-</li>
-</ul>
-</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">9. NGS - Variants-of-interest</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../quickref.html">10. Quick command reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../code.html">11. Coding solutions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../downloads.html">12. Downloads</a></li>
@@ -160,98 +148,10 @@
             
   <div class="section" id="ngs-variants-of-interest">
 <h1>9. NGS - Variants-of-interest<a class="headerlink" href="#ngs-variants-of-interest" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="preface">
-<h2>9.1. Preface<a class="headerlink" href="#preface" title="Permalink to this headline">¶</a></h2>
-<p>In this section we will use our genome annotation of the reference and our genome variants in the evolved line to find variants that are interesting in terms of the observed biology.</p>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">You will encounter some <strong>To-do</strong> sections at times. Write the solutions and answers into a text-file.</p>
-</div>
-</div>
-<div class="section" id="overview">
-<h2>9.2. Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
-<p>The part of the workflow we will work on in this section can be viewed in <a class="reference internal" href="#fig-workflow-voi"><span class="std std-numref">Fig. 9.1</span></a>.</p>
-<div class="figure" id="id1">
-<span id="fig-workflow-voi"></span><img alt="../_images/workflow7.png" src="../_images/workflow7.png" />
-<p class="caption"><span class="caption-number">Fig. 9.1 </span><span class="caption-text">The part of the workflow we will work on in this section marked in red.</span></p>
-</div>
-</div>
-<div class="section" id="learning-outcomes">
-<h2>9.3. Learning outcomes<a class="headerlink" href="#learning-outcomes" title="Permalink to this headline">¶</a></h2>
-<p>After studying this section of the tutorial you should be able to:</p>
-<ol class="arabic simple">
-<li>Identify variants of interests.</li>
-<li>Understand how the variants might affect the observed biology.</li>
-</ol>
-</div>
-<div class="section" id="before-we-start">
-<h2>9.4. Before we start<a class="headerlink" href="#before-we-start" title="Permalink to this headline">¶</a></h2>
-<p>Lets see how our directory structure looks so far:</p>
-<div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~/</span><span class="n">analysis</span>
-<span class="n">ls</span> <span class="o">-</span><span class="mi">1</span><span class="n">F</span>
-</pre></div>
-</div>
-<div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="n">annotation</span><span class="o">/</span>
-<span class="n">assembly</span><span class="o">/</span>
-<span class="n">data</span><span class="o">/</span>
-<span class="n">kraken</span><span class="o">/</span>
-<span class="n">mappings</span><span class="o">/</span>
-<span class="n">SolexaQA</span><span class="o">/</span>
-<span class="n">SolexaQA</span><span class="o">++</span>
-<span class="n">trimmed</span><span class="o">/</span>
-<span class="n">trimmed</span><span class="o">-</span><span class="n">fastqc</span><span class="o">/</span>
-<span class="n">trimmed</span><span class="o">-</span><span class="n">solexaqa</span><span class="o">/</span>
-<span class="n">variants</span><span class="o">/</span>
-</pre></div>
-</div>
-</div>
-<div class="section" id="installing-necessary-software">
-<h2>9.5. Installing necessary software<a class="headerlink" href="#installing-necessary-software" title="Permalink to this headline">¶</a></h2>
-<p>Tools we are going to use in this section and how to intall them if you not have done it yet.</p>
-<div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="c1"># activate the env</span>
-<span class="n">source</span> <span class="n">activate</span> <span class="n">ngs</span>
-
-<span class="c1"># Install these tools into the conda environment</span>
-<span class="c1"># if not already installed</span>
-</pre></div>
-</div>
-</div>
-<div class="section" id="identification-of-variants-of-interest-voi">
-<h2>9.6. Identification of variants-of-interest (VOI)<a class="headerlink" href="#identification-of-variants-of-interest-voi" title="Permalink to this headline">¶</a></h2>
-<p>Things to consider when looking for VOI:</p>
-<ul class="simple">
-<li>The quality score of the variant call.<ul>
-<li>Do we call the variant with a higher then normal score?</li>
-</ul>
-</li>
-<li>The mapping quality score.<ul>
-<li>How confident are we that the reads were mapped at the position correctly?</li>
-</ul>
-</li>
-<li>The location of the SNP.<ul>
-<li>SNPs in larger contigs are probably more interesting than in tiny contigs.</li>
-<li>Does the SNP overlap a coding region in the genome annotation?</li>
-</ul>
-</li>
-<li>The type of SNP.<ul>
-<li>substitutions vs. indels</li>
-</ul>
-</li>
-</ul>
-<div class="section" id="overlap-variants-with-genes">
-<h3>9.6.1. Overlap variants with genes<a class="headerlink" href="#overlap-variants-with-genes" title="Permalink to this headline">¶</a></h3>
-<div class="admonition-todo admonition" id="index-0">
-<p class="first admonition-title">Todo</p>
-<p class="last">OLIN: Write this section.</p>
-</div>
-</div>
-<div class="section" id="visualise-variants-on-the-reference-genome">
-<h3>9.6.2. Visualise variants on the reference genome<a class="headerlink" href="#visualise-variants-on-the-reference-genome" title="Permalink to this headline">¶</a></h3>
-<div class="admonition-todo admonition" id="index-1">
-<p class="first admonition-title">Todo</p>
-<p class="last">OLIN: Write this section.</p>
-</div>
-</div>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last"><strong>THIS PART OF THE TUTORIAL IS CURRENTLY UNDER ACTIVE DEVELOPMENT SO EXPECT CONTENT
+TO CHANGE</strong></p>
 </div>
 </div>
 
@@ -297,7 +197,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'2017.2beta',
+            VERSION:'2017.3beta',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true
