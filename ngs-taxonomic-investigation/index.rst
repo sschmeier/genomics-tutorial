@@ -15,6 +15,11 @@ Lets investigate if we find sequences from other species in our sequence set.
 We will use the tool |kraken| to assign taxonomic classifications to our sequence reads.
 Let us see if we can id some sequences from other species.
 
+.. NOTE::
+
+   You will encounter some **To-do** sections at times. Write the solutions and answers into a text-file.   
+
+
 
 Overview
 --------

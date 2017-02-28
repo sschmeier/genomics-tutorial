@@ -7,9 +7,7 @@ Preface
 In this section we will use our genome assembly based on the ancestor and call
 genetic variants in the evolved line.
 
-There is an accompanying lecture for this tutorial:
-
-- `SNPs - GWAS - eQTLs introduction <http://dx.doi.org/10.6084/m9.figshare.1515026>`__
+.. There is an accompanying lecture for this tutorial (`SNPs - GWAS - eQTLs introduction <http://dx.doi.org/10.6084/m9.figshare.1515026>`__).
 
 .. NOTE::
 

@@ -7,9 +7,7 @@ Preface
 In this quality control section we will use our skill on the
 command-line interface to deal with the task of investigating the quality and cleaning sequencing data.
 
-There is an accompanying lectures for this tutorial:
-
--  `Next-generation sequencing and quality control: An introduction <https://dx.doi.org/10.6084/m9.figshare.2972320.v1>`__.
+.. There is an accompanying lectures for this tutorial (`Next-generation sequencing and quality control: An introduction <https://dx.doi.org/10.6084/m9.figshare.2972320.v1>`__).
 
 .. NOTE::
 
