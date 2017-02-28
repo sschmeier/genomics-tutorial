@@ -9,7 +9,7 @@ Preface
 In this section we will use our skill on the command-line interface to map our
 reads from the evolved line to our ancestral reference genome.
 
-The first part of the following lecture is of importance to this tutorial (`ChIP - An Introduction <https://doi.org/10.6084/m9.figshare.1554130.v1>`__).
+.. The first part of the following lecture is of importance to this tutorial (`ChIP - An Introduction <https://doi.org/10.6084/m9.figshare.1554130.v1>`__).
 
 .. NOTE::
 

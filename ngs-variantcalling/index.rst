@@ -4,12 +4,9 @@ NGS - Variant calling
 Preface
 -------
 
-In this section we will use our genome assembly based on the ancestor and call
-genetic variants in the evolved line.
+In this section we will use our genome assembly based on the ancestor and call genetic variants in the evolved line [NIELSEN2011]_.
 
-There is an accompanying lecture for this tutorial:
-
-- `SNPs - GWAS - eQTLs introduction <http://dx.doi.org/10.6084/m9.figshare.1515026>`__
+.. There is an accompanying lecture for this tutorial (`SNPs - GWAS - eQTLs introduction <http://dx.doi.org/10.6084/m9.figshare.1515026>`__).
 
 .. NOTE::
 
@@ -305,7 +302,7 @@ Variant filtration
 ~~~~~~~~~~~~~~~~~~
 
 
-Variant filtration is a big topic in itself.
+Variant filtration is a big topic in itself [OLSEN2015]_.
 There is no consens yet and research on how to best filter variants is ongoing.
 
 We will do some simple filtration procedures here.
@@ -357,3 +354,11 @@ This strategy used here will do for our purposes.
 However, several more elaborate filtering strategies have been explored, e.g. `here <https://github.com/ekg/freebayes#observation-filters-and-qualities>`__.
 
 
+
+.. only:: html
+
+   .. rubric:: References
+
+.. [NIELSEN2011] Nielsen R, Paul JS, Albrechtsen A, Song YS. Genotype and SNP calling from next-generation sequencing data. `Nat Rev Genetics, 2011, 12:433-451 <http://doi.org/10.1038/nrg2986>`__
+
+.. [OLSEN2015] Olsen ND et al. Best practices for evaluating single nucleotide variant calling methods for microbial genomics. `Front. Genet., 2015, 6:235. <https://doi.org/10.3389/fgene.2015.00235>`__

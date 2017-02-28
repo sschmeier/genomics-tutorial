@@ -4,12 +4,12 @@ NGS - Quality control
 Preface
 -------
 
+There are many sources of errors that can influence the quality of your sequencing run [ROBASKY2014]_.
 In this quality control section we will use our skill on the
-command-line interface to deal with the task of investigating the quality and cleaning sequencing data.
+command-line interface to deal with the task of investigating the quality and cleaning sequencing data [KIRCHNER2014]_.
 
-There is an accompanying lectures for this tutorial:
 
--  `Next-generation sequencing and quality control: An introduction <https://dx.doi.org/10.6084/m9.figshare.2972320.v1>`__.
+.. There is an accompanying lectures for this tutorial (`Next-generation sequencing and quality control: An introduction <https://dx.doi.org/10.6084/m9.figshare.2972320.v1>`__).
 
 .. NOTE::
 
@@ -59,8 +59,8 @@ First, we are going to download the data we will analyse. Open a shell/terminal.
    tar -xvzf data.tar.gz
 
 
-The data is from a paired-end sequencing run data (see :numref:`fig-pairedend`), thus we have two files, one
-for each end of the read. 
+The data is from a paired-end sequencing run data (see :numref:`fig-pairedend`) from an Illumina MiSeq [GLENN2011]_.
+Thus, we have two files, one for each end of the read. 
 
 .. _fig-pairedend:
 .. figure:: images/pairedend.png
@@ -436,6 +436,13 @@ Run FastQC on the untrimmed and trimmed data
    .. rubric:: References
 
                
-.. [MUKHERJEE2015] Mukherjee S, Huntemann M, Ivanova N, Kyrpides NC and Pati A. Large-scale contamination of microbial isolate genomes by Illumina PhiX control. `Standards in Genomic Sciences, 2015, 10:18. DOI: 10.1186/1944-3277-10-18 <https://standardsingenomics.biomedcentral.com/articles/10.1186/1944-3277-10-18>`__
 
-.. [COX2010] Cox MP, Peterson DA and Biggs PJ. SolexaQA: At-a-glance quality assessment of Illumina second-generation sequencing data. `BMC Bioinformatics, 2010, 11:485. DOI: 10.1186/1471-2105-11-485 <http://www.biomedcentral.com/1471-2105/11/485>`__
+.. [COX2010] Cox MP, Peterson DA and Biggs PJ. SolexaQA: At-a-glance quality assessment of Illumina second-generation sequencing data. `BMC Bioinformatics, 2010, 11:485. DOI: 10.1186/1471-2105-11-485 <http://doi.org/10.1186/1471-2105-11-485>`__
+
+.. [GLENN2011] Glenn T. Field guide to next-generation DNA sequencers. `Molecular Ecology Resources (2011) 11, 759–769 doi: 10.1111/j.1755-0998.2011.03024.x <http://doi.org/10.1111/j.1755-0998.2011.03024.x>`__
+
+.. [KIRCHNER2014] Kirchner et al. Addressing challenges in the production and analysis of Illumina sequencing data. `BMC Genomics (2011) 12:382 <http://doi.org/10.1186/1471-2164-12-382>`__
+
+.. [MUKHERJEE2015] Mukherjee S, Huntemann M, Ivanova N, Kyrpides NC and Pati A. Large-scale contamination of microbial isolate genomes by Illumina PhiX control. `Standards in Genomic Sciences, 2015, 10:18. DOI: 10.1186/1944-3277-10-18 <http://doi.org/10.1186/1944-3277-10-18>`__
+
+.. [ROBASKY2014] Robasky et al. The role of replicates for error mitigation in next-generation sequencing. `Nature Reviews Genetics (2014) 15, 56-62 <http://doi.org/10.1038/nrg3655>`__

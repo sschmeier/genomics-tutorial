@@ -9,9 +9,7 @@ Preface
 In this section we will use our skill on the command-line interface to create a
 genome assembly from sequencing data.
 
-There is an accompanying lecture for this tutorial:
-
--  `Genome Assembly: An Introduction <https://dx.doi.org/10.6084/m9.figshare.2972323.v1>`__.
+.. There is an accompanying lecture for this tutorial (`Genome Assembly: An Introduction <https://dx.doi.org/10.6084/m9.figshare.2972323.v1>`__).
 
 .. NOTE::
 

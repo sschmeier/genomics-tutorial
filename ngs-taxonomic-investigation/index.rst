@@ -15,6 +15,11 @@ Lets investigate if we find sequences from other species in our sequence set.
 We will use the tool |kraken| to assign taxonomic classifications to our sequence reads.
 Let us see if we can id some sequences from other species.
 
+.. NOTE::
+
+   You will encounter some **To-do** sections at times. Write the solutions and answers into a text-file.   
+
+
 
 Overview
 --------
@@ -327,5 +332,5 @@ Done!
                
 .. [ONDOV2011] Ondov BD, Bergman NH, and Phillippy AM. Interactive metagenomic visualization in a Web browser. `BMC Bioinformatics, 2011, 12(1):385. <http://www.ncbi.nlm.nih.gov/pubmed/21961884>`__
                   
-.. [WOOD2014] Wood DE and Steven L Salzberg SL. Kraken: ultrafast metagenomic sequence classification using exact alignments. `Genome Biology, 2014, 15:R46. DOI: 10.1186/gb-2014-15-3-r46 <http://genomebiology.biomedcentral.com/articles/10.1186/gb-2014-15-3-r46>`__.
+.. [WOOD2014] Wood DE and Steven L Salzberg SL. Kraken: ultrafast metagenomic sequence classification using exact alignments. `Genome Biology, 2014, 15:R46. DOI: 10.1186/gb-2014-15-3-r46 <http://doi.org/10.1186/gb-2014-15-3-r46>`__.
 
