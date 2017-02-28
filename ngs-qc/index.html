@@ -177,12 +177,9 @@
 <h1>3. NGS - Quality control<a class="headerlink" href="#ngs-quality-control" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="preface">
 <h2>3.1. Preface<a class="headerlink" href="#preface" title="Permalink to this headline">¶</a></h2>
-<p>In this quality control section we will use our skill on the
-command-line interface to deal with the task of investigating the quality and cleaning sequencing data.</p>
-<p>There is an accompanying lectures for this tutorial:</p>
-<ul class="simple">
-<li><a class="reference external" href="https://dx.doi.org/10.6084/m9.figshare.2972320.v1">Next-generation sequencing and quality control: An introduction</a>.</li>
-</ul>
+<p>There are many sources of errors that can influence the quality of your sequencing run <a class="reference internal" href="#robasky2014" id="id1">[ROBASKY2014]</a>.
+In this quality control section we will use our skill on the
+command-line interface to deal with the task of investigating the quality and cleaning sequencing data <a class="reference internal" href="#kirchner2014" id="id2">[KIRCHNER2014]</a>.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last">You will encounter some <strong>To-do</strong> sections at times. Write the solutions and answers into a text-file.</p>
@@ -191,7 +188,7 @@ command-line interface to deal with the task of investigating the quality and cl
 <div class="section" id="overview">
 <h2>3.2. Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
 <p>The part of the workflow we will work on in this section can be viewed in <a class="reference internal" href="#fig-workflow-qc"><span class="std std-numref">Fig. 3.1</span></a>.</p>
-<div class="figure" id="id3">
+<div class="figure" id="id6">
 <span id="fig-workflow-qc"></span><img alt="../_images/workflow4.png" src="../_images/workflow4.png" />
 <p class="caption"><span class="caption-number">Fig. 3.1 </span><span class="caption-text">The part of the workflow we will work on in this section marked in red.</span></p>
 </div>
@@ -223,9 +220,9 @@ curl -O http://compbio.massey.ac.nz/data/203341/data.tar.gz
 tar -xvzf data.tar.gz
 </pre></div>
 </div>
-<p>The data is from a paired-end sequencing run data (see <a class="reference internal" href="#fig-pairedend"><span class="std std-numref">Fig. 3.2</span></a>), thus we have two files, one
-for each end of the read.</p>
-<div class="figure" id="id4">
+<p>The data is from a paired-end sequencing run data (see <a class="reference internal" href="#fig-pairedend"><span class="std std-numref">Fig. 3.2</span></a>) from an Illumina MiSeq <a class="reference internal" href="#glenn2011" id="id3">[GLENN2011]</a>.
+Thus, we have two files, one for each end of the read.</p>
+<div class="figure" id="id7">
 <span id="fig-pairedend"></span><img alt="../_images/pairedend.png" src="../_images/pairedend.png" />
 <p class="caption"><span class="caption-number">Fig. 3.2 </span><span class="caption-text">Illustration of single-end (SE) versus paired-end (PE) sequencing.</span></p>
 </div>
@@ -276,7 +273,7 @@ investigate the files in <code class="docutils literal"><span class="pre">data</
 PhiX is used as a quality and calibration control for <a class="reference external" href="http://www.illumina.com/products/by-type/sequencing-kits/cluster-gen-sequencing-reagents/phix-control-v3.html">sequencing runs</a>.
 PhiX is often added at a low known concentration, spiked in the same lane along with the sample or used as a separate lane.
 As the concentration of the genome is known, one can calibrate the instruments.
-Thus, PhiX genomic sequences need to be removed before processing your data further as this constitutes a deliberate contamination <a class="reference internal" href="#mukherjee2015" id="id1">[MUKHERJEE2015]</a>.
+Thus, PhiX genomic sequences need to be removed before processing your data further as this constitutes a deliberate contamination <a class="reference internal" href="#mukherjee2015" id="id4">[MUKHERJEE2015]</a>.
 The steps involve mapping all reads to the &quot;known&quot; PhiX genome, and removing all of those sequence reads from the data.</p>
 <p>However, your sequencing provider might not have used PhiX, thus you need to read the protocol carefully, or just do this step in any case.</p>
 <div class="admonition note">
@@ -304,7 +301,7 @@ conda install ea-utils
 </div>
 <div class="section" id="quality-assessment-of-sequencing-reads-solexaqa">
 <h2>3.9. Quality assessment of sequencing reads (SolexaQA++)<a class="headerlink" href="#quality-assessment-of-sequencing-reads-solexaqa" title="Permalink to this headline">¶</a></h2>
-<p>To assess the sequence read quality of the Illumina run we make use of a program called <a class="reference external" href="http://solexaqa.sourceforge.net">SolexaQA++</a> <a class="reference internal" href="#cox2010" id="id2">[COX2010]</a>.
+<p>To assess the sequence read quality of the Illumina run we make use of a program called <a class="reference external" href="http://solexaqa.sourceforge.net">SolexaQA++</a> <a class="reference internal" href="#cox2010" id="id5">[COX2010]</a>.
 <a class="reference external" href="http://solexaqa.sourceforge.net">SolexaQA++</a> was originally developed to work with Solexa data (since bought by Illumina), but long since working with Illumina data.
 It produces nice graphics that intuitively show the quality of the sequences. it is also able to dynamically trim the bad quality ends off the reads.</p>
 <p>From the webpage:</p>
@@ -397,19 +394,19 @@ and discard files based on a user-defined length cutoff.</p>
 <p class="first admonition-title">Hint</p>
 <p class="last">Should you not get 1 and/or 2 it right, try the commands in <a class="reference internal" href="../code.html#code-qc3"><span class="std std-ref">Code: SolexaQA++ qc</span></a>.</p>
 </div>
-<div class="figure" id="id5">
+<div class="figure" id="id8">
 <span id="solexaqa-quality-bad"></span><img alt="../_images/solexaqa_quality_bad.png" src="../_images/solexaqa_quality_bad.png" />
 <p class="caption"><span class="caption-number">Fig. 3.3 </span><span class="caption-text">SolexaQA++ example quality plot along reads of a bad MiSeq run</span></p>
 </div>
-<div class="figure" id="id6">
+<div class="figure" id="id9">
 <span id="solexaqa-hist-bad"></span><img alt="../_images/solexaqa_hist_bad.png" src="../_images/solexaqa_hist_bad.png" />
 <p class="caption"><span class="caption-number">Fig. 3.4 </span><span class="caption-text">SolexaQA++ example histogram plot of a bad MiSeq run.</span></p>
 </div>
-<div class="figure" id="id7">
+<div class="figure" id="id10">
 <span id="solexaqa-cumulative-bad"></span><img alt="../_images/solexaqa_cumulative_bad.png" src="../_images/solexaqa_cumulative_bad.png" />
 <p class="caption"><span class="caption-number">Fig. 3.5 </span><span class="caption-text">SolexaQA++ example cumulative plot of a bad MiSeq run.</span></p>
 </div>
-<div class="figure" id="id8">
+<div class="figure" id="id11">
 <span id="solexaqa-heatmap-bad"></span><img alt="../_images/solexaqa_heatmap_bad.png" src="../_images/solexaqa_heatmap_bad.png" />
 <p class="caption"><span class="caption-number">Fig. 3.6 </span><span class="caption-text">SolexaQA++ example quality heatmap of a bad MiSeq run.</span></p>
 </div>
@@ -510,29 +507,47 @@ which you should be aware before doing any further analysis.&quot;</div></blockq
 <p class="first admonition-title">Hint</p>
 <p class="last">Should you not get it right, try the commands in <a class="reference internal" href="../code.html#code-qc1"><span class="std std-ref">Code: FastQC</span></a>.</p>
 </div>
-<div class="figure" id="id9">
+<div class="figure" id="id12">
 <span id="fastqc-bad1"></span><img alt="../_images/fastqc_bad1.png" src="../_images/fastqc_bad1.png" />
 <p class="caption"><span class="caption-number">Fig. 3.7 </span><span class="caption-text">Quality score across bases.</span></p>
 </div>
-<div class="figure" id="id10">
+<div class="figure" id="id13">
 <span id="fastqc-bad2"></span><img alt="../_images/fastqc_bad2.png" src="../_images/fastqc_bad2.png" />
 <p class="caption"><span class="caption-number">Fig. 3.8 </span><span class="caption-text">Quality per tile.</span></p>
 </div>
-<div class="figure" id="id11">
+<div class="figure" id="id14">
 <span id="fastqc-bad3"></span><img alt="../_images/fastqc_bad3.png" src="../_images/fastqc_bad3.png" />
 <p class="caption"><span class="caption-number">Fig. 3.9 </span><span class="caption-text">GC distribution over all sequences.</span></p>
 </div>
 <p class="rubric">References</p>
-<table class="docutils citation" frame="void" id="mukherjee2015" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id1">[MUKHERJEE2015]</a></td><td>Mukherjee S, Huntemann M, Ivanova N, Kyrpides NC and Pati A. Large-scale contamination of microbial isolate genomes by Illumina PhiX control. <a class="reference external" href="https://standardsingenomics.biomedcentral.com/articles/10.1186/1944-3277-10-18">Standards in Genomic Sciences, 2015, 10:18. DOI: 10.1186/1944-3277-10-18</a></td></tr>
-</tbody>
-</table>
 <table class="docutils citation" frame="void" id="cox2010" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id2">[COX2010]</a></td><td>Cox MP, Peterson DA and Biggs PJ. SolexaQA: At-a-glance quality assessment of Illumina second-generation sequencing data. <a class="reference external" href="http://www.biomedcentral.com/1471-2105/11/485">BMC Bioinformatics, 2010, 11:485. DOI: 10.1186/1471-2105-11-485</a></td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id5">[COX2010]</a></td><td>Cox MP, Peterson DA and Biggs PJ. SolexaQA: At-a-glance quality assessment of Illumina second-generation sequencing data. <a class="reference external" href="http://doi.org/10.1186/1471-2105-11-485">BMC Bioinformatics, 2010, 11:485. DOI: 10.1186/1471-2105-11-485</a></td></tr>
+</tbody>
+</table>
+<table class="docutils citation" frame="void" id="glenn2011" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id3">[GLENN2011]</a></td><td>Glenn T. Field guide to next-generation DNA sequencers. <a class="reference external" href="http://doi.org/10.1111/j.1755-0998.2011.03024.x">Molecular Ecology Resources (2011) 11, 759–769 doi: 10.1111/j.1755-0998.2011.03024.x</a></td></tr>
+</tbody>
+</table>
+<table class="docutils citation" frame="void" id="kirchner2014" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id2">[KIRCHNER2014]</a></td><td>Kirchner et al. Addressing challenges in the production and analysis of Illumina sequencing data. <a class="reference external" href="http://doi.org/10.1186/1471-2164-12-382">BMC Genomics (2011) 12:382</a></td></tr>
+</tbody>
+</table>
+<table class="docutils citation" frame="void" id="mukherjee2015" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id4">[MUKHERJEE2015]</a></td><td>Mukherjee S, Huntemann M, Ivanova N, Kyrpides NC and Pati A. Large-scale contamination of microbial isolate genomes by Illumina PhiX control. <a class="reference external" href="http://doi.org/10.1186/1944-3277-10-18">Standards in Genomic Sciences, 2015, 10:18. DOI: 10.1186/1944-3277-10-18</a></td></tr>
+</tbody>
+</table>
+<table class="docutils citation" frame="void" id="robasky2014" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id1">[ROBASKY2014]</a></td><td>Robasky et al. The role of replicates for error mitigation in next-generation sequencing. <a class="reference external" href="http://doi.org/10.1038/nrg3655">Nature Reviews Genetics (2014) 15, 56-62</a></td></tr>
 </tbody>
 </table>
 </div>
@@ -559,7 +574,7 @@ which you should be aware before doing any further analysis.&quot;</div></blockq
   <div role="contentinfo">
     <p>
         &copy; Copyright 2016-2017, Sebastian Schmeier.
-      Last updated on Feb 26, 2017.
+      Last updated on Feb 28, 2017.
 
     </p>
   </div>

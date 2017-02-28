@@ -112,9 +112,9 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#bwa">5.7. BWA</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id2">5.7.1. Overview</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id3">5.7.2. Creating a reference index for mapping</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id4">5.7.3. Mapping reads in a paired-end manner</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">5.7.1. Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">5.7.2. Creating a reference index for mapping</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">5.7.3. Mapping reads in a paired-end manner</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#the-sam-mapping-file-format">5.8. The sam mapping file-format</a></li>
@@ -191,10 +191,6 @@
 <h2>5.1. Preface<a class="headerlink" href="#preface" title="Permalink to this headline">¶</a></h2>
 <p>In this section we will use our skill on the command-line interface to map our
 reads from the evolved line to our ancestral reference genome.</p>
-<p>There is an accompanying lecture for this tutorial:</p>
-<ul class="simple">
-<li><a class="reference external" href="https://dx.doi.org/10.6084/m9.figshare.2972323.v1">Genome Assembly: An Introduction</a>.</li>
-</ul>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last">You will encounter some <strong>To-do</strong> sections at times. Write the solutions and answers into a text-file.</p>
@@ -203,7 +199,7 @@ reads from the evolved line to our ancestral reference genome.</p>
 <div class="section" id="overview">
 <h2>5.2. Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
 <p>The part of the workflow we will work on in this section can be viewed in <a class="reference internal" href="#fig-workflow-map"><span class="std std-numref">Fig. 5.1</span></a>.</p>
-<div class="figure" id="id5">
+<div class="figure" id="id6">
 <span id="fig-workflow-map"></span><img alt="../_images/workflow3.png" src="../_images/workflow3.png" />
 <p class="caption"><span class="caption-number">Fig. 5.1 </span><span class="caption-text">The part of the workflow we will work on in this section marked in red.</span></p>
 </div>
@@ -263,7 +259,7 @@ We are going to use the quality trimmed forward and backward DNA sequences of th
 <h2>5.6. Bowtie2<a class="headerlink" href="#bowtie2" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="id1">
 <h3>5.6.1. Overview<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
-<p><a class="reference external" href="http://bowtie-bio.sourceforge.net/bowtie2/index.shtml">Bowtie2</a> is a short read aligner, that can take a reference genome and map single- or paired-end data to it.
+<p><a class="reference external" href="http://bowtie-bio.sourceforge.net/bowtie2/index.shtml">Bowtie2</a> is a short read aligner, that can take a reference genome and map single- or paired-end data to it <a class="reference internal" href="#trapnell2009" id="id2">[TRAPNELL2009]</a>.
 It requires an indexing step in which one supplies the reference genome and <a class="reference external" href="http://bowtie-bio.sourceforge.net/bowtie2/index.shtml">Bowtie2</a> will create an index that in the subsequent steps will be used for aligning the reads to the reference genome.
 The general command structure of the <a class="reference external" href="http://bowtie-bio.sourceforge.net/bowtie2/index.shtml">Bowtie2</a> tools we are going to use are shown below:</p>
 <div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="c1"># bowtie2 help</span>
@@ -310,8 +306,8 @@ The general command structure of the <a class="reference external" href="http://
 <p class="first admonition-title">Attention</p>
 <p class="last">If the mapping did not succeed with <a class="reference external" href="http://bowtie-bio.sourceforge.net/bowtie2/index.shtml">Bowtie2</a>. We can use the aligner <a class="reference external" href="http://bio-bwa.sourceforge.net/">BWA</a> explained in this section. If the mapping with <a class="reference external" href="http://bowtie-bio.sourceforge.net/bowtie2/index.shtml">Bowtie2</a> did work, you can jump this section.</p>
 </div>
-<div class="section" id="id2">
-<h3>5.7.1. Overview<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id3">
+<h3>5.7.1. Overview<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference external" href="http://bio-bwa.sourceforge.net/">BWA</a> is a short read aligner, that can take a reference genome and map single- or paired-end data to it.
 It requires an indexing step in which one supplies the reference genome and <a class="reference external" href="http://bio-bwa.sourceforge.net/">BWA</a> will create an index that in the subsequent steps will be used for aligning the reads to the reference genome.
 The general command structure of the <a class="reference external" href="http://bio-bwa.sourceforge.net/">BWA</a> tools we are going to use are shown below:</p>
@@ -332,8 +328,8 @@ The general command structure of the <a class="reference external" href="http://
 </pre></div>
 </div>
 </div>
-<div class="section" id="id3">
-<h3>5.7.2. Creating a reference index for mapping<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id4">
+<h3>5.7.2. Creating a reference index for mapping<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
 <div class="admonition-todo admonition" id="index-3">
 <p class="first admonition-title">Todo</p>
 <p class="last">Create an <a class="reference external" href="http://bio-bwa.sourceforge.net/">BWA</a> index for our reference genome assembly. Attention! Remember which file you need to submit to <a class="reference external" href="http://bio-bwa.sourceforge.net/">BWA</a>.</p>
@@ -343,8 +339,8 @@ The general command structure of the <a class="reference external" href="http://
 <p class="last">Should you not get it right, try the commands in <a class="reference internal" href="../code.html#code-bwa1"><span class="std std-ref">Code: BWA indexing</span></a>.</p>
 </div>
 </div>
-<div class="section" id="id4">
-<h3>5.7.3. Mapping reads in a paired-end manner<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id5">
+<h3>5.7.3. Mapping reads in a paired-end manner<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
 <p>Now that we have created our index, it is time to map the filtered and trimmed sequencing reads of our evolved line to the reference genome.</p>
 <div class="admonition-todo admonition" id="index-4">
 <p class="first admonition-title">Todo</p>
@@ -362,8 +358,8 @@ The general command structure of the <a class="reference external" href="http://
 A quick overview of the sam-format can be found <a class="reference external" href="http://bio-bwa.sourceforge.net/bwa.shtml#4">here</a> and even more information can be found <a class="reference external" href="http://samtools.github.io/hts-specs/SAMv1.pdf">here</a>.
 Briefly, first there are a lot of header lines. Then, for each read, that mapped to the reference, there is one line.</p>
 <p>The columns of such a line in the mapping file are described in <a class="reference internal" href="#table-sam"><span class="std std-numref">Table 5.1</span></a>.</p>
-<table border="1" class="docutils" id="id6">
-<span id="table-sam"></span><caption><span class="caption-number">Table 5.1 </span><span class="caption-text">The sam-file format fields.</span><a class="headerlink" href="#id6" title="Permalink to this table">¶</a></caption>
+<table border="1" class="docutils" id="id7">
+<span id="table-sam"></span><caption><span class="caption-number">Table 5.1 </span><span class="caption-text">The sam-file format fields.</span><a class="headerlink" href="#id7" title="Permalink to this table">¶</a></caption>
 <colgroup>
 <col width="7%" />
 <col width="12%" />
@@ -515,7 +511,7 @@ Open a <a class="reference external" href="https://www.r-project.org/">R</a> she
 </pre></div>
 </div>
 <p>The result plot will be looking similar to the one in <a class="reference internal" href="#coverage"><span class="std std-numref">Fig. 5.2</span></a></p>
-<div class="figure" id="id7">
+<div class="figure" id="id8">
 <span id="coverage"></span><img alt="../_images/covNODE20.png" src="../_images/covNODE20.png" />
 <p class="caption"><span class="caption-number">Fig. 5.2 </span><span class="caption-text">A example coverage plot for a contig with highlighted in red regions with a coverage below 20 reads.</span></p>
 </div>
@@ -581,6 +577,13 @@ samtools view -c mappings/evolved-6.sorted.unmapped.bam</p>
 </ul>
 <p>Lets extract the fastq sequence of the unmapped reads for read1 and read2.</p>
 <p class="sebcode">bamToFastq -i evolved-6.sorted.unmapped.bam -fq mappings/evolved-6.sorted.unmapped.R1.fastq -fq2  mappings/evolved-6.sorted.unmapped.R2.fastq</p>
+<p class="rubric">References</p>
+<table class="docutils citation" frame="void" id="trapnell2009" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id2">[TRAPNELL2009]</a></td><td>Trapnell C, Salzberg SL. How to map billions of short reads onto genomes. <a class="reference external" href="http://doi.org/10.1038/nbt0509-455">Nat Biotechnol. (2009) 27(5):455-7. doi: 10.1038/nbt0509-455.</a></td></tr>
+</tbody>
+</table>
 </div>
 </div>
 </div>
@@ -605,7 +608,7 @@ samtools view -c mappings/evolved-6.sorted.unmapped.bam</p>
   <div role="contentinfo">
     <p>
         &copy; Copyright 2016-2017, Sebastian Schmeier.
-      Last updated on Feb 26, 2017.
+      Last updated on Feb 28, 2017.
 
     </p>
   </div>
