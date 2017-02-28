@@ -9,9 +9,7 @@ Preface
 In this section we will use our skill on the command-line interface to map our
 reads from the evolved line to our ancestral reference genome.
 
-There is an accompanying lecture for this tutorial:
-
--  `Genome Assembly: An Introduction <https://dx.doi.org/10.6084/m9.figshare.2972323.v1>`__.
+The first part of the following lecture is of importance to this tutorial (`ChIP - An Introduction <https://doi.org/10.6084/m9.figshare.1554130.v1>`__).
 
 .. NOTE::
 
@@ -95,7 +93,7 @@ Bowtie2
 Overview
 ~~~~~~~~
 
-|bowtie| is a short read aligner, that can take a reference genome and map single- or paired-end data to it.
+|bowtie| is a short read aligner, that can take a reference genome and map single- or paired-end data to it [TRAPNELL2009]_.
 It requires an indexing step in which one supplies the reference genome and |bowtie| will create an index that in the subsequent steps will be used for aligning the reads to the reference genome.
 The general command structure of the |bowtie| tools we are going to use are shown below:
 
@@ -497,3 +495,9 @@ Lets extract the fastq sequence of the unmapped reads for read1 and read2.
     bamToFastq -i |fileevol|.sorted.unmapped.bam -fq mappings/|fileevol|.sorted.unmapped.R1.fastq -fq2  mappings/|fileevol|.sorted.unmapped.R2.fastq
 
 
+.. only:: html
+
+   .. rubric:: References
+
+               
+.. [TRAPNELL2009] Trapnell C, Salzberg SL. How to map billions of short reads onto genomes. `Nat Biotechnol. (2009) 27(5):455-7. doi: 10.1038/nbt0509-455. <http://doi.org/10.1038/nbt0509-455>`__
