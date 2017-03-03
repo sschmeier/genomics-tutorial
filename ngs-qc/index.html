@@ -189,7 +189,7 @@ command-line interface to deal with the task of investigating the quality and cl
 <h2>3.2. Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
 <p>The part of the workflow we will work on in this section can be viewed in <a class="reference internal" href="#fig-workflow-qc"><span class="std std-numref">Fig. 3.1</span></a>.</p>
 <div class="figure" id="id6">
-<span id="fig-workflow-qc"></span><img alt="../_images/workflow4.png" src="../_images/workflow4.png" />
+<span id="fig-workflow-qc"></span><img alt="../_images/workflow3.png" src="../_images/workflow3.png" />
 <p class="caption"><span class="caption-number">Fig. 3.1 </span><span class="caption-text">The part of the workflow we will work on in this section marked in red.</span></p>
 </div>
 </div>
@@ -220,19 +220,19 @@ curl -O http://compbio.massey.ac.nz/data/203341/data.tar.gz
 tar -xvzf data.tar.gz
 </pre></div>
 </div>
-<p>The data is from a paired-end sequencing run data (see <a class="reference internal" href="#fig-pairedend"><span class="std std-numref">Fig. 3.2</span></a>) from an Illumina MiSeq <a class="reference internal" href="#glenn2011" id="id3">[GLENN2011]</a>.
+<p>The data is from a paired-end sequencing run data (see <a class="reference internal" href="#fig-pairedend"><span class="std std-numref">Fig. 3.2</span></a>) from an <a class="reference external" href="http://illumina.com">Illumina</a> MiSeq <a class="reference internal" href="#glenn2011" id="id3">[GLENN2011]</a>.
 Thus, we have two files, one for each end of the read.</p>
 <div class="figure" id="id7">
 <span id="fig-pairedend"></span><img alt="../_images/pairedend.png" src="../_images/pairedend.png" />
 <p class="caption"><span class="caption-number">Fig. 3.2 </span><span class="caption-text">Illustration of single-end (SE) versus paired-end (PE) sequencing.</span></p>
 </div>
-<p>If you need to refresh how Illumina paired-end sequencing works have a
+<p>If you need to refresh how <a class="reference external" href="http://illumina.com">Illumina</a> paired-end sequencing works have a
 look at the <a class="reference external" href="http://www.illumina.com/technology/next-generation-sequencing/paired-end-sequencing_assay.html">Illumina
-webpage</a>
+technology webpage</a>
 and this <a class="reference external" href="https://youtu.be/HMyCqWhwB8E">video</a>.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">The data we are using is &quot;almost&quot; raw data coming from the machine. This data has been post-processed in two ways already. All sequences that were identified as belonging to the PhiX genome have been removed. This process requires some skills we will learn in later sections. Illumina adapters have been removed as well already! The process is explained below but we are not going to do it.</p>
+<p class="last">The data we are using is &quot;almost&quot; raw data coming from the machine. This data has been post-processed in two ways already. All sequences that were identified as belonging to the PhiX genome have been removed. This process requires some skills we will learn in later sections. <a class="reference external" href="http://illumina.com">Illumina</a> adapters have been removed as well already! The process is explained below but we are not going to do it.</p>
 </div>
 <div class="section" id="investigate-the-data">
 <h3>3.4.1. Investigate the data<a class="headerlink" href="#investigate-the-data" title="Permalink to this headline">¶</a></h3>
@@ -283,26 +283,34 @@ The steps involve mapping all reads to the &quot;known&quot; PhiX genome, and re
 </div>
 <div class="section" id="adapter-trimming">
 <h2>3.8. Adapter trimming<a class="headerlink" href="#adapter-trimming" title="Permalink to this headline">¶</a></h2>
-<p>The process of sequencing DNA via Illumina technology requires the addition of some adapters to the sequences.
+<p>The process of sequencing DNA via <a class="reference external" href="http://illumina.com">Illumina</a> technology requires the addition of some adapters to the sequences.
 These get sequenced as well and need to be removed as they are artificial and do not belong to the species we try to sequence.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">The process of how to do this is explained here, however we are not going to do this as our sequences have been already adapter-trimmed.</p>
+<p class="last">The process of how to do this is explained here, however we are not going to do this as our sequences have been adapter-trimmed already.</p>
 </div>
-<p>Install a tool called <a class="reference external" href="https://github.com/ExpressionAnalysis/ea-utils/blob/wiki/FastqMcf.md">fastq-mcf</a>  from the <a class="reference external" href="https://expressionanalysis.github.io/ea-utils/">ea-utils suite</a> of tools that is able to do this.</p>
+<p>First, we need to know the adapter sequences that were used during the sequencing of our samples.
+Normally, you should ask your sequencing provider, who should be providing this information to you.
+<a class="reference external" href="http://illumina.com">Illumina</a> itself provides a <a class="reference external" href="https://support.illumina.com/downloads/illumina-customer-sequence-letter.html">document</a> that describes the adapters used for their different technologies.
+Also the <a class="reference external" href="http://www.bioinformatics.babraham.ac.uk/projects/fastqc/">FastQC</a> tool, we will be using later on, provides a <a class="reference external" href="https://github.com/csf-ngs/fastqc/blob/master/Contaminants/contaminant_list.txt">collection of contaminants and adapters</a>.</p>
+<p>Second, we need a tool that takes a list of adapters and scans each sequence read and removes the adapters.
+Install a tool called <a class="reference external" href="https://github.com/ExpressionAnalysis/ea-utils/blob/wiki/FastqMcf.md">fastq-mcf</a>  from the <a class="reference external" href="https://expressionanalysis.github.io/ea-utils/">ea-utils suite</a> of tools that is able to do this.</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span><span class="c1"># install</span>
 conda install ea-utils
 </pre></div>
 </div>
-<div class="admonition-todo admonition" id="index-2">
-<p class="first admonition-title">Todo</p>
-<p class="last">SEB: Write this section.</p>
+<p>Using the tool together with a adapter/contaminants list in fasta-file (here denoted as <code class="docutils literal"><span class="pre">adapters.fa</span></code>):</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>fastq-mcf -o  -o cleaned.R1.fq.gz -o cleaned.R2.fq.gz adapaters.fa infile_R1.fastq infile_R2.fastq
+</pre></div>
 </div>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">-o</span></code>: Specifies the output-files. These are fastq-files for forward and reverse read, with adapters removed.</li>
+</ul>
 </div>
 <div class="section" id="quality-assessment-of-sequencing-reads-solexaqa">
 <h2>3.9. Quality assessment of sequencing reads (SolexaQA++)<a class="headerlink" href="#quality-assessment-of-sequencing-reads-solexaqa" title="Permalink to this headline">¶</a></h2>
-<p>To assess the sequence read quality of the Illumina run we make use of a program called <a class="reference external" href="http://solexaqa.sourceforge.net">SolexaQA++</a> <a class="reference internal" href="#cox2010" id="id5">[COX2010]</a>.
-<a class="reference external" href="http://solexaqa.sourceforge.net">SolexaQA++</a> was originally developed to work with Solexa data (since bought by Illumina), but long since working with Illumina data.
+<p>To assess the sequence read quality of the <a class="reference external" href="http://illumina.com">Illumina</a> run we make use of a program called <a class="reference external" href="http://solexaqa.sourceforge.net">SolexaQA++</a> <a class="reference internal" href="#cox2010" id="id5">[COX2010]</a>.
+<a class="reference external" href="http://solexaqa.sourceforge.net">SolexaQA++</a> was originally developed to work with Solexa data (since bought by <a class="reference external" href="http://illumina.com">Illumina</a>), but long since working with <a class="reference external" href="http://illumina.com">Illumina</a> data.
 It produces nice graphics that intuitively show the quality of the sequences. it is also able to dynamically trim the bad quality ends off the reads.</p>
 <p>From the webpage:</p>
 <blockquote>
@@ -354,7 +362,7 @@ data.&quot;</div></blockquote>
 <p>The three modes are: <code class="docutils literal"><span class="pre">analysis</span></code>, <code class="docutils literal"><span class="pre">dynamictrim</span></code>, and <code class="docutils literal"><span class="pre">lengthsort</span></code>:</p>
 <p><code class="docutils literal"><span class="pre">analysis</span></code> - the primary quality analysis and visualization tool.
 Designed to run on unmodified FASTQ files obtained directly from
-Illumina, Ion Torrent or 454 sequencers.</p>
+<a class="reference external" href="http://illumina.com">Illumina</a>, Ion Torrent or 454 sequencers.</p>
 <p><code class="docutils literal"><span class="pre">dynamictrim</span></code> - a read trimmer that individually crops each read to
 its longest contiguous segment for which quality scores are greater than
 a user-supplied quality cutoff.</p>
@@ -365,7 +373,7 @@ and discard files based on a user-defined length cutoff.</p>
 <div class="section" id="solexaqa-dynamic-trimming">
 <h3>3.9.3. SolexaQA++ dynamic trimming<a class="headerlink" href="#solexaqa-dynamic-trimming" title="Permalink to this headline">¶</a></h3>
 <p>We will use <a class="reference external" href="http://solexaqa.sourceforge.net">SolexaQA++</a> dynamic trim the reads, to chop of nucleotides witha a bad quality score.</p>
-<div class="admonition-todo admonition" id="index-3">
+<div class="admonition-todo admonition" id="index-2">
 <p class="first admonition-title">Todo</p>
 <ol class="last arabic simple">
 <li>Create a directory for the result-files --&gt; <strong>trimmed/</strong>.</li>
@@ -381,7 +389,7 @@ and discard files based on a user-defined length cutoff.</p>
 </div>
 <div class="section" id="solexaqa-analysis-on-trimmed-data">
 <h3>3.9.4. SolexaQA++ analysis on trimmed data<a class="headerlink" href="#solexaqa-analysis-on-trimmed-data" title="Permalink to this headline">¶</a></h3>
-<div class="admonition-todo admonition" id="index-4">
+<div class="admonition-todo admonition" id="index-3">
 <p class="first admonition-title">Todo</p>
 <ol class="last arabic simple">
 <li>Create a directory for the result-files --&gt; <strong>trimmed-solexaqa</strong>.</li>
@@ -493,12 +501,12 @@ which you should be aware before doing any further analysis.&quot;</div></blockq
 </div>
 <div class="section" id="run-fastqc-on-the-untrimmed-and-trimmed-data">
 <h3>3.11.3. Run FastQC on the untrimmed and trimmed data<a class="headerlink" href="#run-fastqc-on-the-untrimmed-and-trimmed-data" title="Permalink to this headline">¶</a></h3>
-<div class="admonition-todo admonition" id="index-5">
+<div class="admonition-todo admonition" id="index-4">
 <p class="first admonition-title">Todo</p>
 <ol class="last arabic simple">
 <li>Create a directory for the results --&gt; <strong>trimmed-fastqc</strong></li>
 <li>Run FastQC on all <strong>trimmed</strong> files.</li>
-<li>Visit the <a class="reference external" href="http://www.bioinformatics.babraham.ac.uk/projects/fastqc/">FastQC</a> website and read about sequencing QC reports for good and bad Illumina sequencing runs.</li>
+<li>Visit the <a class="reference external" href="http://www.bioinformatics.babraham.ac.uk/projects/fastqc/">FastQC</a> website and read about sequencing QC reports for good and bad <a class="reference external" href="http://illumina.com">Illumina</a> sequencing runs.</li>
 <li>Compare your results to these examples (<a class="reference internal" href="#fastqc-bad1"><span class="std std-numref">Fig. 3.7</span></a> to <a class="reference internal" href="#fastqc-bad3"><span class="std std-numref">Fig. 3.9</span></a>) of a particularly bad run (taken from the <a class="reference external" href="http://www.bioinformatics.babraham.ac.uk/projects/fastqc/">FastQC</a> website) and write down your observations with regards to your data.</li>
 <li>What elements in these example figures (<a class="reference internal" href="#fastqc-bad1"><span class="std std-numref">Fig. 3.7</span></a> to <a class="reference internal" href="#fastqc-bad3"><span class="std std-numref">Fig. 3.9</span></a>) indicate that the example is from a bad run?</li>
 </ol>
@@ -523,7 +531,7 @@ which you should be aware before doing any further analysis.&quot;</div></blockq
 <table class="docutils citation" frame="void" id="cox2010" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id5">[COX2010]</a></td><td>Cox MP, Peterson DA and Biggs PJ. SolexaQA: At-a-glance quality assessment of Illumina second-generation sequencing data. <a class="reference external" href="http://doi.org/10.1186/1471-2105-11-485">BMC Bioinformatics, 2010, 11:485. DOI: 10.1186/1471-2105-11-485</a></td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id5">[COX2010]</a></td><td>Cox MP, Peterson DA and Biggs PJ. SolexaQA: At-a-glance quality assessment of <a class="reference external" href="http://illumina.com">Illumina</a> second-generation sequencing data. <a class="reference external" href="http://doi.org/10.1186/1471-2105-11-485">BMC Bioinformatics, 2010, 11:485. DOI: 10.1186/1471-2105-11-485</a></td></tr>
 </tbody>
 </table>
 <table class="docutils citation" frame="void" id="glenn2011" rules="none">
@@ -574,7 +582,7 @@ which you should be aware before doing any further analysis.&quot;</div></blockq
   <div role="contentinfo">
     <p>
         &copy; Copyright 2016-2017, Sebastian Schmeier.
-      Last updated on Feb 28, 2017.
+      Last updated on Mar 03, 2017.
 
     </p>
   </div>
