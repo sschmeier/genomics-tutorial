@@ -400,6 +400,7 @@ rst_epilog = """
 .. |qualimap| replace:: `QualiMap <http://qualimap.bioinfo.cipf.es/>`__
 .. |R| replace:: `R <https://www.r-project.org/>`__
 .. |bcftools| replace:: `BCFtools <http://www.htslib.org/doc/bcftools.html>`__
+.. |illumina| replace:: `Illumina <http://illumina.com>`__
 """
 
 # prolog will be added to the beginning of each file
