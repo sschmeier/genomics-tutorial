@@ -19,8 +19,6 @@ This is an introductory tutorial for learning genomics mostly on the command-lin
       the tutorial are still being written)**
 
    
-            
-
 .. toctree::
    :numbered:
    :maxdepth: 2
@@ -38,4 +36,10 @@ This is an introductory tutorial for learning genomics mostly on the command-lin
    code
    downloads
 
+   
+.. only:: latex
 
+   .. raw:: latex
+                   
+      \listoffigures
+      \listoftables
