@@ -244,8 +244,15 @@ investigate the files in <code class="docutils literal"><span class="pre">data</
 <li>Use the command-line to get some ideas about the file.</li>
 <li>What kind of files are we dealing with?</li>
 <li>How many sequence reads are in the file?</li>
+<li>Assume a genome size of 12MB. Calculate the coverage based on this formula: <code class="docutils literal"><span class="pre">C</span> <span class="pre">=</span> <span class="pre">LN</span> <span class="pre">/</span> <span class="pre">G</span></code></li>
 </ol>
 </div>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">C</span></code>: Coverage</li>
+<li><code class="docutils literal"><span class="pre">G</span></code>: is the haploid genome length in bp</li>
+<li><code class="docutils literal"><span class="pre">L</span></code>: is the read length in bp (e.g. 2x100 paired-end = 200)</li>
+<li><code class="docutils literal"><span class="pre">N</span></code>: is the number of reads sequenced</li>
+</ul>
 </div>
 </div>
 <div class="section" id="the-fastq-file-format">
@@ -582,7 +589,7 @@ which you should be aware before doing any further analysis.&quot;</div></blockq
   <div role="contentinfo">
     <p>
         &copy; Copyright 2016-2017, Sebastian Schmeier.
-      Last updated on Mar 03, 2017.
+      Last updated on Mar 14, 2017.
 
     </p>
   </div>
