@@ -88,6 +88,13 @@ investigate the files in ``data`` folder.
    #. Use the command-line to get some ideas about the file.
    #. What kind of files are we dealing with?
    #. How many sequence reads are in the file?
+   #. Assume a genome size of 12MB. Calculate the coverage based on this formula: ``C = LN / G``
+
+
+- ``C``: Coverage
+- ``G``: is the haploid genome length in bp
+- ``L``: is the read length in bp (e.g. 2x100 paired-end = 200)
+- ``N``: is the number of reads sequenced
       
 
 The fastq file format
