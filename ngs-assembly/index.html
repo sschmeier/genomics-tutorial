@@ -109,13 +109,14 @@
 <li class="toctree-l3"><a class="reference internal" href="#assembly-statistics">4.6.1. Assembly statistics</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#assemblathon">4.7. Assemblathon</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#further-reading">4.8. Further reading</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#background-on-genome-assemblies">4.8.1. Background on Genome Assemblies</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#evaluation-of-genome-assembly-software">4.8.2. Evaluation of Genome Assembly Software</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#compare-the-untrimmed-data">4.7. Compare the untrimmed data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#assemblathon">4.8. Assemblathon</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#further-reading">4.9. Further reading</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#background-on-genome-assemblies">4.9.1. Background on Genome Assemblies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#evaluation-of-genome-assembly-software">4.9.2. Evaluation of Genome Assembly Software</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#web-links">4.9. Web links</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#web-links">4.10. Web links</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../ngs-mapping/index.html">5. NGS - Read mapping</a></li>
@@ -258,7 +259,7 @@ It is also simple to install and use.</p>
 </div>
 <div class="admonition hint">
 <p class="first admonition-title">Hint</p>
-<p class="last">Should you not get it right, try the commands in <a class="reference internal" href="../code.html#code-assembly1"><span class="std std-ref">Code: SPAdes assembly</span></a>.</p>
+<p class="last">Should you not get it right, try the commands in <a class="reference internal" href="../code.html#code-assembly1"><span class="std std-ref">Code: SPAdes assembly (trimmed data)</span></a>.</p>
 </div>
 </div>
 </div>
@@ -297,28 +298,47 @@ The program can be used on their <a class="reference external" href="http://quas
 </div>
 </div>
 </div>
-<div class="section" id="assemblathon">
-<h2>4.7. Assemblathon<a class="headerlink" href="#assemblathon" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="compare-the-untrimmed-data">
+<h2>4.7. Compare the untrimmed data<a class="headerlink" href="#compare-the-untrimmed-data" title="Permalink to this headline">¶</a></h2>
 <div class="admonition-todo admonition" id="index-3">
 <p class="first admonition-title">Todo</p>
-<p class="last">Now that you know the basics for assembling a genome and judging their quality, play with the <a class="reference external" href="http://bioinf.spbau.ru/spades">SPAdes</a> parameters to create the best assembly possible.</p>
+<ol class="last arabic simple">
+<li>To see if our trimming procedure has an influence on our assembly, run the same command you used on the trimmed data on the original untrimmed data.</li>
+<li>Run <a class="reference external" href="http://quast.bioinf.spbau.ru/">Quast</a> on the assembly and compare the statistics to the one derived for the trimmed data set. Write down your observations.</li>
+</ol>
 </div>
+<div class="admonition hint">
+<p class="first admonition-title">Hint</p>
+<p class="last">Should you not get it right, try the commands in <a class="reference internal" href="../code.html#code-assembly2"><span class="std std-ref">Code: SPAdes assembly (original data)</span></a>.</p>
+</div>
+</div>
+<div class="section" id="assemblathon">
+<h2>4.8. Assemblathon<a class="headerlink" href="#assemblathon" title="Permalink to this headline">¶</a></h2>
 <div class="admonition-todo admonition" id="index-4">
 <p class="first admonition-title">Todo</p>
-<p class="last">Once you have your final assembly, rename your assembly directory int <code class="docutils literal"><span class="pre">spades-final</span></code>, e.g. <code class="docutils literal"><span class="pre">mv</span> <span class="pre">assembly/spades-default</span> <span class="pre">assembly/spades-final</span></code>.</p>
+<p class="last">Now that you know the basics for assembling a genome and judging their quality, play with the <a class="reference external" href="http://bioinf.spbau.ru/spades">SPAdes</a> parameters and the <strong>trimmed data</strong> to create the best assembly possible.
+We will compare the assemblies to find out who created the best one.</p>
+</div>
+<div class="admonition-todo admonition" id="index-5">
+<p class="first admonition-title">Todo</p>
+<ol class="last arabic simple">
+<li>Once you have your final assembly, rename your assembly directory int <code class="docutils literal"><span class="pre">spades-final</span></code>, e.g. <code class="docutils literal"><span class="pre">mv</span> <span class="pre">assembly/spades-default</span> <span class="pre">assembly/spades-final</span></code>.</li>
+<li>Write down in your notes the command used to create your final assembly.</li>
+<li>Write down in your notes the assembly statistics derived through <a class="reference external" href="http://quast.bioinf.spbau.ru/">Quast</a></li>
+</ol>
 </div>
 </div>
 <div class="section" id="further-reading">
-<h2>4.8. Further reading<a class="headerlink" href="#further-reading" title="Permalink to this headline">¶</a></h2>
+<h2>4.9. Further reading<a class="headerlink" href="#further-reading" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="background-on-genome-assemblies">
-<h3>4.8.1. Background on Genome Assemblies<a class="headerlink" href="#background-on-genome-assemblies" title="Permalink to this headline">¶</a></h3>
+<h3>4.9.1. Background on Genome Assemblies<a class="headerlink" href="#background-on-genome-assemblies" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li>How to apply de Bruijn graphs to genome assembly. <a class="reference internal" href="#compeau2011" id="id3">[COMPEAU2011]</a></li>
 <li>Sequence assembly demystified. <a class="reference internal" href="#nagarajan2013" id="id4">[NAGARAJAN2013]</a></li>
 </ul>
 </div>
 <div class="section" id="evaluation-of-genome-assembly-software">
-<h3>4.8.2. Evaluation of Genome Assembly Software<a class="headerlink" href="#evaluation-of-genome-assembly-software" title="Permalink to this headline">¶</a></h3>
+<h3>4.9.2. Evaluation of Genome Assembly Software<a class="headerlink" href="#evaluation-of-genome-assembly-software" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li>GAGE: A critical evaluation of genome assemblies and assembly algorithms. <a class="reference internal" href="#salzberg2012" id="id5">[SALZBERG2012]</a></li>
 <li>Assessment of de novo assemblers for draft genomes: a case study with fungal genomes. <a class="reference internal" href="#abbas2014" id="id6">[ABBAS2014]</a></li>
@@ -326,7 +346,7 @@ The program can be used on their <a class="reference external" href="http://quas
 </div>
 </div>
 <div class="section" id="web-links">
-<h2>4.9. Web links<a class="headerlink" href="#web-links" title="Permalink to this headline">¶</a></h2>
+<h2>4.10. Web links<a class="headerlink" href="#web-links" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li>Lectures for this topic: <a class="reference external" href="https://dx.doi.org/10.6084/m9.figshare.2972323.v1">Genome Assembly: An Introduction</a></li>
 <li><a class="reference external" href="http://bioinf.spbau.ru/spades">SPAdes</a></li>
@@ -393,7 +413,7 @@ The program can be used on their <a class="reference external" href="http://quas
   <div role="contentinfo">
     <p>
         &copy; Copyright 2016-2017, Sebastian Schmeier.
-      Last updated on Mar 14, 2017.
+      Last updated on Mar 18, 2017.
 
     </p>
   </div>

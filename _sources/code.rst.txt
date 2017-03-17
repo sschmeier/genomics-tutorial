@@ -85,12 +85,22 @@ Assembly
 
 .. _code-assembly1:
 
-Code: SPAdes assembly
-~~~~~~~~~~~~~~~~~~~~~
+Code: SPAdes assembly (trimmed data)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. rst-class:: sebcode
+.. rst-class:: sebcode 
 
-   spades.py -o assembly/spades-150/ -k 21,33,55,77 --careful  -1 trimmed/|fileanc1|.fastq.trimmed.gz -2 trimmed/|fileanc2|.fastq.trimmed.gz
+   spades.py -o assembly/spades-150/ -k 21,33,55,77 --careful -1 trimmed/|fileanc1|.fastq.trimmed.gz -2 trimmed/|fileanc2|.fastq.trimmed.gz 
+
+
+.. _code-assembly2:
+   
+Code: SPAdes assembly (original data)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. rst-class:: sebcode 
+
+   spades.py -o assembly/spades-original/ -k 21,33,55,77 --careful -1 data/|fileanc1|.fastq.gz -2 data/|fileanc2|.fastq.gz 
 
 
    

@@ -110,7 +110,8 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#assembly">11.2. Assembly</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#code-spades-assembly">11.2.1. Code: SPAdes assembly</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#code-spades-assembly-trimmed-data">11.2.1. Code: SPAdes assembly (trimmed data)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#code-spades-assembly-original-data">11.2.2. Code: SPAdes assembly (original data)</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#mapping">11.3. Mapping</a><ul>
@@ -201,9 +202,13 @@
 </div>
 <div class="section" id="assembly">
 <h2>11.2. Assembly<a class="headerlink" href="#assembly" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="code-spades-assembly">
-<span id="code-assembly1"></span><h3>11.2.1. Code: SPAdes assembly<a class="headerlink" href="#code-spades-assembly" title="Permalink to this headline">¶</a></h3>
-<p class="sebcode">spades.py -o assembly/spades-150/ -k 21,33,55,77 --careful  -1 trimmed/ancestor-R1.fastq.trimmed.gz -2 trimmed/ancestor-R2.fastq.trimmed.gz</p>
+<div class="section" id="code-spades-assembly-trimmed-data">
+<span id="code-assembly1"></span><h3>11.2.1. Code: SPAdes assembly (trimmed data)<a class="headerlink" href="#code-spades-assembly-trimmed-data" title="Permalink to this headline">¶</a></h3>
+<p class="sebcode">spades.py -o assembly/spades-150/ -k 21,33,55,77 --careful -1 trimmed/ancestor-R1.fastq.trimmed.gz -2 trimmed/ancestor-R2.fastq.trimmed.gz</p>
+</div>
+<div class="section" id="code-spades-assembly-original-data">
+<span id="code-assembly2"></span><h3>11.2.2. Code: SPAdes assembly (original data)<a class="headerlink" href="#code-spades-assembly-original-data" title="Permalink to this headline">¶</a></h3>
+<p class="sebcode">spades.py -o assembly/spades-original/ -k 21,33,55,77 --careful -1 data/ancestor-R1.fastq.gz -2 data/ancestor-R2.fastq.gz</p>
 </div>
 </div>
 <div class="section" id="mapping">
@@ -251,7 +256,7 @@
   <div role="contentinfo">
     <p>
         &copy; Copyright 2016-2017, Sebastian Schmeier.
-      Last updated on Mar 14, 2017.
+      Last updated on Mar 18, 2017.
 
     </p>
   </div>
