@@ -157,19 +157,35 @@ Run |quast| with both assembly scaffolds.fasta files to compare the results.
                
    #. Compare the results of |quast| with regards to the two different assemblies.
    #. Which one do you prefer and why?
+
+
+Compare the untrimmed data
+--------------------------
+
+.. todo::
+   #. To see if our trimming procedure has an influence on our assembly, run the same command you used on the trimmed data on the original untrimmed data.
+   #. Run |quast| on the assembly and compare the statistics to the one derived for the trimmed data set. Write down your observations.
+
+
+.. hint::
+
+   Should you not get it right, try the commands in :ref:`code-assembly2`.
+
    
-      
 Assemblathon
 ------------
 
 .. todo::
                 
-   Now that you know the basics for assembling a genome and judging their quality, play with the |spades| parameters to create the best assembly possible. 
+   Now that you know the basics for assembling a genome and judging their quality, play with the |spades| parameters and the **trimmed data** to create the best assembly possible.
+   We will compare the assemblies to find out who created the best one.
 
 
 .. todo::
 
-   Once you have your final assembly, rename your assembly directory int ``spades-final``, e.g. ``mv assembly/spades-default assembly/spades-final``.
+   #. Once you have your final assembly, rename your assembly directory int ``spades-final``, e.g. ``mv assembly/spades-default assembly/spades-final``.
+   #. Write down in your notes the command used to create your final assembly.
+   #. Write down in your notes the assembly statistics derived through |quast|
 
    
 
