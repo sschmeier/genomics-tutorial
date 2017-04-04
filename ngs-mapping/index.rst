@@ -45,12 +45,16 @@ Lets see how our directory structure looks so far:
 .. code:: bash
 
           cd ~/analysis
+          # create a mapping result directory
+          mkdir mappings
           ls -1F
+          
 
 .. code:: bash
           
           assembly/
           data/
+          mappings/
           SolexaQA/
           SolexaQA++
           trimmed/
@@ -146,7 +150,13 @@ Now that we have created our index, it is time to map the filtered and trimmed s
 
    Should you not get it right, try the commands in :ref:`code-bowtie2`.
 
-       
+   
+.. note::
+
+   |bowtie| does give very cryptic error messages without telling much why it did not want to run. The most likely reason is that you specified the paths to the files and result file wrongly. Check this first. Use tab completion a lot!
+
+
+   
 BWA
 ---
 
@@ -218,7 +228,7 @@ Now that we have created our index, it is time to map the filtered and trimmed s
 The sam mapping file-format
 ---------------------------
 
-|bwa| will produce a mapping file in sam-format. Have a look into the sam-file that was created by |bwa|.
+|bowtie| and |bwa| will produce a mapping file in sam-format. Have a look into the sam-file that was created by either program.
 A quick overview of the sam-format can be found `here <http://bio-bwa.sourceforge.net/bwa.shtml#4>`__ and even more information can be found `here <http://samtools.github.io/hts-specs/SAMv1.pdf>`__.
 Briefly, first there are a lot of header lines. Then, for each read, that mapped to the reference, there is one line.
 
