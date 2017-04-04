@@ -521,7 +521,7 @@ Lets extract the fastq sequence of the unmapped reads for read1 and read2.
 
 .. rst-class:: sebcode
 
-    bamToFastq -i |fileevol|.sorted.unmapped.bam -fq mappings/|fileevol|.sorted.unmapped.R1.fastq -fq2  mappings/|fileevol|.sorted.unmapped.R2.fastq
+    bamToFastq -i mappings/|fileevol|.sorted.unmapped.bam -fq mappings/|fileevol|.sorted.unmapped.R1.fastq -fq2  mappings/|fileevol|.sorted.unmapped.R2.fastq
 
 
 .. only:: html
