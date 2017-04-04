@@ -17,6 +17,9 @@ Data
 * Raw data-set [ `MASSEY <http://compbio.massey.ac.nz/data/203341/data.tar.gz>`__ | `DROPBOX <https://www.dropbox.com/s/70gcfqzrqugwcn5/data.tar.gz?dl=0>`__ ]
 * Trimmed data-set [ `MASSEY <http://compbio.massey.ac.nz/data/203341/trimmed.tar.gz>`__ | `DROPBOX <https://www.dropbox.com/s/o6ioadoxfppbjrv/trimmed.tar.gz?dl=0>`__ ]
 * Assembled data-set [ `MASSEY <http://compbio.massey.ac.nz/data/203341/assembly.tar.gz>`__ | `DROPBOX  <https://www.dropbox.com/s/vlyn2fxgkiml5m8/assembly.tar.gz?dl=0>`__ ]
+* Mapping index (bowtie2) [ `MASSEY <http://compbio.massey.ac.nz/data/203341/bowtie2-index.tar.gz>`__ ]
+* Mapping index (bwa) [ `MASSEY <http://compbio.massey.ac.nz/data/203341/bwa-index.tar.gz>`__ ]
+* Mapped data [ `MASSEY <http://compbio.massey.ac.nz/data/203341/evolved-6.sorted.dedup.bam>`__ ]
 
 Software
 --------
