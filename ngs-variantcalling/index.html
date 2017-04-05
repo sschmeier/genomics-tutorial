@@ -219,10 +219,11 @@
 <span class="c1"># if not already installed</span>
 <span class="n">conda</span> <span class="n">install</span> <span class="n">samtools</span>
 <span class="n">conda</span> <span class="n">install</span> <span class="n">bamtools</span>
-<span class="n">conda</span> <span class="n">install</span> <span class="n">bcftools</span>
 <span class="n">conda</span> <span class="n">install</span> <span class="n">freebayes</span>
-<span class="n">conda</span> <span class="n">install</span> <span class="n">rtg</span><span class="o">-</span><span class="n">tools</span>
 <span class="n">conda</span> <span class="n">install</span> <span class="n">bedtools</span>
+<span class="n">conda</span> <span class="n">install</span> <span class="n">vcflib</span>
+<span class="n">conda</span> <span class="n">install</span> <span class="n">rtg</span><span class="o">-</span><span class="n">tools</span>
+<span class="n">conda</span> <span class="n">install</span> <span class="n">bcftools</span>
 </pre></div>
 </div>
 </div>
@@ -418,17 +419,26 @@ rtg vcffilter -q 30 -i variants/evolved-6.mpileup.vcf.gz -o variants/evolved-6.m
 <li><code class="docutils literal"><span class="pre">-o</span> <span class="pre">FILE</span></code>: output file</li>
 <li><code class="docutils literal"><span class="pre">-q</span> <span class="pre">FLOAT</span></code>: minimal allowed quality in output.</li>
 </ul>
-<p>or use <a class="reference external" href="http://www.htslib.org/doc/bcftools.html">BCFtools</a>:</p>
-<p class="sebcode"># or use bcftools
-bcftools filter -O z -o variants/evolved-6.mpileup.q30.vcf.gz -i'%QUAL&gt;=30' variants/evolved-6.mpileup.vcf.gz
-# bcftools filter does not index output, so we need to do it again
-tabix -p vcf variants/evolved-6.mpileup.q30.vcf.gz</p>
+<p>or use <a class="reference external" href="https://github.com/vcflib/vcflib#vcflib">vcflib</a>:</p>
+<p class="sebcode"># or use vcflib
+zcat variants/evolved-6.mpileup.vcf.gz  | vcffilter -f &quot;QUAL &gt;= 30&quot; | gzip &gt; variants/evolved-6.mpileup.q30.vcf.gz z</p>
 <ul class="simple">
-<li><code class="docutils literal"><span class="pre">-i'%QUAL&gt;=30'</span></code>: we only include variants that have been called with quality &gt;= 30.</li>
+<li><code class="docutils literal"><span class="pre">-f</span> <span class="pre">&quot;QUAL</span> <span class="pre">&gt;=</span> <span class="pre">30&quot;</span></code>: we only include variants that have been called with quality &gt;= 30.</li>
 </ul>
 <p>Quick stats for the filtered variants:</p>
 <p class="sebcode"># look at stats for filtered
 rtg vcfstats variants/evolved-6.mpileup.q30.vcf.gz</p>
+<p><a class="reference external" href="https://github.com/ekg/freebayes">freebayes</a> adds some extra information to the vcf-fiels it creates.
+This allows for some more detailed filtering.
+This strategy will NOT work on the <a class="reference external" href="http://samtools.sourceforge.net/">SAMtools</a> mpileup called variants
+Here we filter, based on some recommendation form the developer of <a class="reference external" href="https://github.com/ekg/freebayes">freebayes</a>:</p>
+<p class="sebcode">zcat variants/evolved-6.freebayes.vcf.gz  | vcffilter -f &quot;QUAL &gt; 1 &amp; QUAL / AO &gt; 10 &amp; SAF &gt; 0 &amp; SAR &gt; 0 &amp; RPR &gt; 1 &amp; RPL &gt; 1&quot; | gzip &gt; variants/evolved-6.freebayes.filtered.vcf.gz</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">QUAL</span> <span class="pre">&gt;</span> <span class="pre">1</span></code>: removes really bad sites</li>
+<li><code class="docutils literal"><span class="pre">QUAL</span> <span class="pre">/</span> <span class="pre">AO</span> <span class="pre">&gt;</span> <span class="pre">10</span></code>: additional contribution of each obs should be 10 log units (~ Q10 per read)</li>
+<li><code class="docutils literal"><span class="pre">SAF</span> <span class="pre">&gt;</span> <span class="pre">0</span> <span class="pre">&amp;</span> <span class="pre">SAR</span> <span class="pre">&gt;</span> <span class="pre">0</span></code>: reads on both strands</li>
+<li><code class="docutils literal"><span class="pre">RPR</span> <span class="pre">&gt;</span> <span class="pre">1</span> <span class="pre">&amp;</span> <span class="pre">RPL</span> <span class="pre">&gt;</span> <span class="pre">1</span></code>: at least two reads “balanced” to each side of the site</li>
+</ul>
 <div class="admonition-todo admonition" id="index-0">
 <p class="first admonition-title">Todo</p>
 <p class="last">Look at the statistics. One ratio that is mentioned in the statistics is transition transversion ratio (<em>ts/tv</em>).
@@ -473,7 +483,7 @@ However, several more elaborate filtering strategies have been explored, e.g. <a
   <div role="contentinfo">
     <p>
         &copy; Copyright 2016-2017, Sebastian Schmeier.
-      Last updated on Apr 05, 2017.
+      Last updated on Apr 06, 2017.
 
     </p>
   </div>
