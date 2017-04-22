@@ -10,6 +10,7 @@ Tools
 * Minikraken database [ `EXTERNAL <http://ccb.jhu.edu/software/kraken/dl/minikraken.tgz>`__ | `MASSEY <http://compbio.massey.ac.nz/data/203341/minikraken.tgz>`__ | `DROPBOX <https://www.dropbox.com/s/lje0ykzdxtq3rpk/minikraken.tgz?dl=0>`__ ]
 * |krona| taxonomy database [ `MASSEY <http://compbio.massey.ac.nz/data/203341/taxonomy.tab.gz>`__ | `DROPBOX <https://www.dropbox.com/s/cwf1qc5zyq65yvn/taxonomy.tab.gz?dl=0>`__ ]
 * SolexaQA++ [ `MASSEY <http://compbio.massey.ac.nz/data/203341/SolexaQA.tar.gz>`__ | `DROPBOX <https://www.dropbox.com/s/r9a7hg0tlwe6pk4/SolexaQA.tar.gz?dl=0>`__ ]
+* GeneMark-ES/T [ `MASSEY <http://compbio.massey.ac.nz/data/203341/gm_et_linux_64.zip>`__ ]
 
 Data
 ----
