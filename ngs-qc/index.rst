@@ -59,7 +59,7 @@ First, we are going to download the data we will analyse. Open a shell/terminal.
    tar -xvzf data.tar.gz
 
 
-The data is from a paired-end sequencing run data (see :numref:`fig-pairedend`) from an Illumina MiSeq [GLENN2011]_.
+The data is from a paired-end sequencing run data (see :numref:`fig-pairedend`) from an |illumina| MiSeq [GLENN2011]_.
 Thus, we have two files, one for each end of the read. 
 
 .. _fig-pairedend:
@@ -67,14 +67,14 @@ Thus, we have two files, one for each end of the read.
 
    Illustration of single-end (SE) versus paired-end (PE) sequencing.
 
-If you need to refresh how Illumina paired-end sequencing works have a
+If you need to refresh how |illumina| paired-end sequencing works have a
 look at the `Illumina
-webpage <http://www.illumina.com/technology/next-generation-sequencing/paired-end-sequencing_assay.html>`__
+technology webpage <http://www.illumina.com/technology/next-generation-sequencing/paired-end-sequencing_assay.html>`__
 and this `video <https://youtu.be/HMyCqWhwB8E>`__.
 
 .. note::
 
-   The data we are using is "almost" raw data coming from the machine. This data has been post-processed in two ways already. All sequences that were identified as belonging to the PhiX genome have been removed. This process requires some skills we will learn in later sections. Illumina adapters have been removed as well already! The process is explained below but we are not going to do it.
+   The data we are using is "almost" raw data coming from the machine. This data has been post-processed in two ways already. All sequences that were identified as belonging to the PhiX genome have been removed. This process requires some skills we will learn in later sections. |illumina| adapters have been removed as well already! The process is explained below but we are not going to do it.
 
 
 Investigate the data
@@ -88,6 +88,13 @@ investigate the files in ``data`` folder.
    #. Use the command-line to get some ideas about the file.
    #. What kind of files are we dealing with?
    #. How many sequence reads are in the file?
+   #. Assume a genome size of 12MB. Calculate the coverage based on this formula: ``C = LN / G``
+
+
+- ``C``: Coverage
+- ``G``: is the haploid genome length in bp
+- ``L``: is the read length in bp (e.g. 2x100 paired-end = 200)
+- ``N``: is the number of reads sequenced
       
 
 The fastq file format
@@ -126,6 +133,7 @@ The steps involve mapping all reads to the "known" PhiX genome, and removing all
 
 However, your sequencing provider might not have used PhiX, thus you need to read the protocol carefully, or just do this step in any case.
 
+
 .. note::
 
    We are not going to do this step here, as this has been already done. Please see the :doc:`../ngs-mapping/index` section on how to map reads against a reference genome.
@@ -134,32 +142,47 @@ However, your sequencing provider might not have used PhiX, thus you need to rea
 Adapter trimming
 ----------------
 
-The process of sequencing DNA via Illumina technology requires the addition of some adapters to the sequences.
+The process of sequencing DNA via |illumina| technology requires the addition of some adapters to the sequences.
 These get sequenced as well and need to be removed as they are artificial and do not belong to the species we try to sequence.
+
 
 .. note::
 
-   The process of how to do this is explained here, however we are not going to do this as our sequences have been already adapter-trimmed.
+   The process of how to do this is explained here, however we are not going to do this as our sequences have been adapter-trimmed already.
    
 
+First, we need to know the adapter sequences that were used during the sequencing of our samples.
+Normally, you should ask your sequencing provider, who should be providing this information to you.
+|illumina| itself provides a `document <https://support.illumina.com/downloads/illumina-customer-sequence-letter.html>`__ that describes the adapters used for their different technologies.
+Also the |fastqc| tool, we will be using later on, provides a `collection of contaminants and adapters <https://github.com/csf-ngs/fastqc/blob/master/Contaminants/contaminant_list.txt>`__.
+
+Second, we need a tool that takes a list of adapters and scans each sequence read and removes the adapters.
 Install a tool called `fastq-mcf <https://github.com/ExpressionAnalysis/ea-utils/blob/wiki/FastqMcf.md>`__  from the `ea-utils suite <https://expressionanalysis.github.io/ea-utils/>`__ of tools that is able to do this.
+
 
 .. code-block:: bash
 
    # install
    conda install ea-utils
 
+   
+Using the tool together with a adapter/contaminants list in fasta-file (here denoted as ``adapters.fa``):
 
-.. todo::
 
-   SEB: Write this section.
+.. code-block:: bash
+
+   fastq-mcf -o  -o cleaned.R1.fq.gz -o cleaned.R2.fq.gz adapaters.fa infile_R1.fastq infile_R2.fastq 
+
+   
+- ``-o``: Specifies the output-files. These are fastq-files for forward and reverse read, with adapters removed.
+  
    
 
 Quality assessment of sequencing reads (SolexaQA++)
 ---------------------------------------------------
 
-To assess the sequence read quality of the Illumina run we make use of a program called |solexaqa| [COX2010]_.
-|solexaqa| was originally developed to work with Solexa data (since bought by Illumina), but long since working with Illumina data.
+To assess the sequence read quality of the |illumina| run we make use of a program called |solexaqa| [COX2010]_.
+|solexaqa| was originally developed to work with Solexa data (since bought by |illumina|), but long since working with |illumina| data.
 It produces nice graphics that intuitively show the quality of the sequences. it is also able to dynamically trim the bad quality ends off the reads.
 
 From the webpage:
@@ -223,7 +246,7 @@ The three modes are: ``analysis``, ``dynamictrim``, and ``lengthsort``:
 
 ``analysis`` - the primary quality analysis and visualization tool.
 Designed to run on unmodified FASTQ files obtained directly from
-Illumina, Ion Torrent or 454 sequencers.
+|illumina|, Ion Torrent or 454 sequencers.
 
 ``dynamictrim`` - a read trimmer that individually crops each read to
 its longest contiguous segment for which quality scores are greater than
@@ -402,7 +425,7 @@ Run FastQC on the untrimmed and trimmed data
 
    #. Create a directory for the results --> **trimmed-fastqc**
    #. Run FastQC on all **trimmed** files.
-   #. Visit the |fastqc| website and read about sequencing QC reports for good and bad Illumina sequencing runs.
+   #. Visit the |fastqc| website and read about sequencing QC reports for good and bad |illumina| sequencing runs.
    #. Compare your results to these examples (:numref:`fastqc-bad1` to :numref:`fastqc-bad3`) of a particularly bad run (taken from the |fastqc| website) and write down your observations with regards to your data.
    #. What elements in these example figures (:numref:`fastqc-bad1` to :numref:`fastqc-bad3`) indicate that the example is from a bad run?
 
@@ -437,7 +460,7 @@ Run FastQC on the untrimmed and trimmed data
 
                
 
-.. [COX2010] Cox MP, Peterson DA and Biggs PJ. SolexaQA: At-a-glance quality assessment of Illumina second-generation sequencing data. `BMC Bioinformatics, 2010, 11:485. DOI: 10.1186/1471-2105-11-485 <http://doi.org/10.1186/1471-2105-11-485>`__
+.. [COX2010] Cox MP, Peterson DA and Biggs PJ. SolexaQA: At-a-glance quality assessment of |illumina| second-generation sequencing data. `BMC Bioinformatics, 2010, 11:485. DOI: 10.1186/1471-2105-11-485 <http://doi.org/10.1186/1471-2105-11-485>`__
 
 .. [GLENN2011] Glenn T. Field guide to next-generation DNA sequencers. `Molecular Ecology Resources (2011) 11, 759–769 doi: 10.1111/j.1755-0998.2011.03024.x <http://doi.org/10.1111/j.1755-0998.2011.03024.x>`__
 

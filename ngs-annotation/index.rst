@@ -1,14 +1,8 @@
 NGS - Genome annotation
 =======================
 
-.. warning::
-   **THIS PART OF THE TUTORIAL IS CURRENTLY UNDER ACTIVE DEVELOPMENT SO EXPECT CONTENT
-   TO CHANGE**
-
 Preface
 -------
-
-
 
 Overview
 --------
@@ -26,11 +20,17 @@ Learning outcomes
 
 After studying this section of the tutorial you should be able to:
 
-#. Be able to describe the principles of how to annotate a genome.
+#. Explain how annotation completeness is assessed using orthologues
+#. Use bioinformatics tools to perform gene prediction
+#. Use genome-viewing software to graphically explore genome annotations and NGS data overlays 
 
 
 Before we start
 ---------------
+
+.. Attention:: The annotation process will take up to 90 minutes. Start it as soon
+as possible.
+
 
 Lets see how our directory structure looks so far:
 
@@ -52,36 +52,8 @@ Lets see how our directory structure looks so far:
          trimmed-solexaqa/
          variants/
 
-   
+
+
+         
 Genome annotation
 -----------------
-
-Genome annotation can be facilitated for example with these programs:
-
--  Genome annotation pipeline `RAST <http://rast.nmpdr.org/>`__
-   (http://rast.nmpdr.org/)
-   [`Aziz2008 <http://www.biomedcentral.com/1471-2164/9/75>`__]
--  Phage-specific annotation pipeline
-   `PHAST <http://phast.wishartlab.com/>`__
-   (http://phast.wishartlab.com/)
-   [`Zhou2011 <http://nar.oxfordjournals.org/cgi/pmidlookup?view=long&pmid=21672955>`__]
-
-
-Aziz RK, Bartels D, Best AA, DeJongh M, Disz T, Edwards RA, Formsma K,
-Gerdes S, Glass EM, Kubal M, Meyer F, Olsen GJ, Olson R, Osterman AL,
-Overbeek RA, McNeil LK, Paarmann D, Paczian T, Parrello B, Pusch GD,
-Reich C, Stevens R, Vassieva O, Vonstein V, Wilke A, Zagnitko O. **The
-RAST Server: rapid annotations using subsystems technology.** *`BMC
-Genomics 2008 Feb
-8;9:75 <http://www.biomedcentral.com/1471-2164/9/75>`__*
-
-Zhou Y, Liang Y, Lynch KH, Dennis JJ, Wishart DS. **PHAST: a fast phage
-search tool.** *`Nucleic Acids Res. 2011 Jul;39(Web Server
-issue):W347-52. <http://nar.oxfordjournals.org/cgi/pmidlookup?view=long&pmid=21672955>`__*
-
-
-Web links
----------
-
-- `PHAST <http://phast.wishartlab.com/>`__
-- `RAST <http://rast.nmpdr.org/>`__

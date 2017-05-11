@@ -45,7 +45,6 @@ Lets see how our directory structure looks so far:
 
 .. code:: bash
 
-          annotation/
           assembly/
           data/
           kraken/
@@ -71,10 +70,11 @@ Tools we are going to use in this section and how to intall them if you not have
           # if not already installed
           conda install samtools
           conda install bamtools
-          conda install bcftools
           conda install freebayes
-          conda install rtg-tools
           conda install bedtools
+          conda install vcflib
+          conda install rtg-tools
+          conda install bcftools
 
           
 Preprocessing
@@ -322,18 +322,15 @@ Here, we only include variants that have quality > 30.
 - ``-q FLOAT``: minimal allowed quality in output.
   
    
-or use |bcftools|:
+or use |vcflib|:
 
 
 .. rst-class:: sebcode
 
-   # or use bcftools
-   bcftools filter -O z -o variants/|fileevol|.mpileup.q30.vcf.gz -i'%QUAL>=30' variants/|fileevol|.mpileup.vcf.gz
-   # bcftools filter does not index output, so we need to do it again
-   tabix -p vcf variants/|fileevol|.mpileup.q30.vcf.gz
+   # or use vcflib
+   zcat variants/|fileevol|.mpileup.vcf.gz  | vcffilter -f "QUAL >= 30" | gzip > variants/|fileevol|.mpileup.q30.vcf.gz z
       
-
-- ``-i'%QUAL>=30'``: we only include variants that have been called with quality >= 30.
+- ``-f "QUAL >= 30"``: we only include variants that have been called with quality >= 30.
 
 
 Quick stats for the filtered variants:
@@ -342,7 +339,25 @@ Quick stats for the filtered variants:
           
    # look at stats for filtered 
    rtg vcfstats variants/|fileevol|.mpileup.q30.vcf.gz
-  
+
+
+|freebayes| adds some extra information to the vcf-fiels it creates.
+This allows for some more detailed filtering.
+This strategy will NOT work on the |samtools| mpileup called variants
+Here we filter, based on some recommendation form the developer of |freebayes|:
+
+
+.. rst-class:: sebcode
+
+   zcat variants/|fileevol|.freebayes.vcf.gz  | vcffilter -f "QUAL > 1 & QUAL / AO > 10 & SAF > 0 & SAR > 0 & RPR > 1 & RPL > 1" | gzip > variants/|fileevol|.freebayes.filtered.vcf.gz
+
+
+- ``QUAL > 1``: removes really bad sites
+- ``QUAL / AO > 10``: additional contribution of each obs should be 10 log units (~ Q10 per read)
+- ``SAF > 0 & SAR > 0``: reads on both strands
+- ``RPR > 1 & RPL > 1``: at least two reads “balanced” to each side of the site
+
+   
   
 .. todo::
     
