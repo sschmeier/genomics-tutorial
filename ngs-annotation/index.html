@@ -70,7 +70,7 @@
             
             
               <div class="version">
-                2017.3beta
+                2017.5beta
               </div>
             
           
@@ -99,7 +99,19 @@
 <li class="toctree-l1"><a class="reference internal" href="../ngs-mapping/index.html">5. NGS - Read mapping</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../ngs-taxonomic-investigation/index.html">6. NGS - Taxonomic investigation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../ngs-variantcalling/index.html">7. NGS - Variant calling</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">8. NGS - Genome annotation</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">8. NGS - Genome annotation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#preface">8.1. Preface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#overview">8.2. Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#learning-outcomes">8.3. Learning outcomes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#before-we-start">8.4. Before we start</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#installing-the-software">8.5. Installing the software</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#assessment-of-orthologue-presence-and-absence">8.6. Assessment of orthologue presence and absence</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#annotation">8.7. Annotation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#interactive-viewing">8.8. Interactive viewing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#installing-igv">8.9. Installing IGV</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#assessment-of-orthologue-presence-and-absence-2">8.10. Assessment of orthologue presence and absence (2)</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../ngs-voi/index.html">9. NGS - Variants-of-interest</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../quickref.html">10. Quick command reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../code.html">11. Coding solutions</a></li>
@@ -148,10 +160,195 @@
             
   <div class="section" id="ngs-genome-annotation">
 <h1>8. NGS - Genome annotation<a class="headerlink" href="#ngs-genome-annotation" title="Permalink to this headline">¶</a></h1>
-<div class="admonition warning">
-<p class="first admonition-title">Warning</p>
-<p class="last"><strong>THIS PART OF THE TUTORIAL IS CURRENTLY UNDER ACTIVE DEVELOPMENT SO EXPECT CONTENT
-TO CHANGE</strong></p>
+<div class="section" id="preface">
+<h2>8.1. Preface<a class="headerlink" href="#preface" title="Permalink to this headline">¶</a></h2>
+<p>In this section you will predict genes and assess your assembly using <a class="reference external" href="http://augustus.gobics.de">Augustus</a> and <a class="reference external" href="http://busco.ezlab.org">BUSCO</a>.</p>
+<div class="admonition attention">
+<p class="first admonition-title">Attention</p>
+<p class="last">The annotation process will take up to 90 minutes. Start it as soon as possible.</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">You will encounter some <strong>To-do</strong> sections at times. Write the solutions and answers into a text-file.</p>
+</div>
+</div>
+<div class="section" id="overview">
+<h2>8.2. Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
+<p>The part of the workflow we will work on in this section can be viewed in <a class="reference internal" href="#fig-workflow-anno"><span class="std std-numref">Fig. 8.1</span></a>.</p>
+<div class="figure" id="id3">
+<span id="fig-workflow-anno"></span><img alt="../_images/workflow6.png" src="../_images/workflow6.png" />
+<p class="caption"><span class="caption-number">Fig. 8.1 </span><span class="caption-text">The part of the workflow we will work on in this section marked in red.</span></p>
+</div>
+</div>
+<div class="section" id="learning-outcomes">
+<h2>8.3. Learning outcomes<a class="headerlink" href="#learning-outcomes" title="Permalink to this headline">¶</a></h2>
+<p>After studying this section of the tutorial you should be able to:</p>
+<ol class="arabic simple">
+<li>Explain how annotation completeness is assessed using orthologues</li>
+<li>Use bioinformatics tools to perform gene prediction</li>
+<li>Use genome-viewing software to graphically explore genome annotations and NGS data overlays</li>
+</ol>
+</div>
+<div class="section" id="before-we-start">
+<h2>8.4. Before we start<a class="headerlink" href="#before-we-start" title="Permalink to this headline">¶</a></h2>
+<p>Lets see how our directory structure looks so far:</p>
+<div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~/</span><span class="n">analysis</span>
+<span class="n">ls</span> <span class="o">-</span><span class="mi">1</span><span class="n">F</span>
+</pre></div>
+</div>
+<div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="n">assembly</span><span class="o">/</span>
+<span class="n">data</span><span class="o">/</span>
+<span class="n">kraken</span><span class="o">/</span>
+<span class="n">mappings</span><span class="o">/</span>
+<span class="n">SolexaQA</span><span class="o">/</span>
+<span class="n">SolexaQA</span><span class="o">++</span>
+<span class="n">trimmed</span><span class="o">/</span>
+<span class="n">trimmed</span><span class="o">-</span><span class="n">fastqc</span><span class="o">/</span>
+<span class="n">trimmed</span><span class="o">-</span><span class="n">solexaqa</span><span class="o">/</span>
+<span class="n">variants</span><span class="o">/</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="installing-the-software">
+<h2>8.5. Installing the software<a class="headerlink" href="#installing-the-software" title="Permalink to this headline">¶</a></h2>
+<div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="c1"># activate the env</span>
+<span class="n">source</span> <span class="n">activate</span> <span class="n">ngs</span>
+
+<span class="n">conda</span> <span class="n">install</span> <span class="n">busco</span>
+</pre></div>
+</div>
+<p>This will install both the <a class="reference external" href="http://augustus.gobics.de">Augustus</a> <a class="reference internal" href="#stanke2005" id="id1">[STANKE2005]</a> and the <a class="reference external" href="http://busco.ezlab.org">BUSCO</a> <a class="reference internal" href="#simao2015" id="id2">[SIMAO2015]</a> software, which we will use (separately) for gene prediction and assessment of assembly completeness, respectively.</p>
+<p>Make a directory for the annotation results:</p>
+<div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="n">mkdir</span> <span class="n">annotation</span>
+<span class="n">cd</span> <span class="n">annotation</span>
+</pre></div>
+</div>
+<p>We need to get the database that <a class="reference external" href="http://busco.ezlab.org">BUSCO</a> will use to assess orthologue presence absence in our genome annotation.
+We will use wget for this:</p>
+<div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="n">wget</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">busco</span><span class="o">.</span><span class="n">ezlab</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">datasets</span><span class="o">/</span><span class="n">saccharomycetales_odb9</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span>
+
+<span class="c1"># unpack the archive</span>
+<span class="n">tar</span> <span class="o">-</span><span class="n">xzvf</span> <span class="n">saccharomycetales_odb9</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span>
+</pre></div>
+</div>
+<p>We also need to place the configuration file for this program in a location in which we have &quot;write&quot; privileges.
+Do this recursively for the entire config directory, placing it into your current annotation directory:</p>
+<div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="n">cp</span> <span class="o">-</span><span class="n">r</span> <span class="o">../../</span><span class="n">miniconda3</span><span class="o">/</span><span class="n">envs</span><span class="o">/</span><span class="n">ngs</span><span class="o">/</span><span class="n">config</span><span class="o">/</span> <span class="o">./</span>
+</pre></div>
+</div>
+<p>We next need to specify the <code class="docutils literal"><span class="pre">path</span></code> to this config file so that the program knows where to look now that we have changed the location (note that this is all one line below):</p>
+<div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="n">export</span> <span class="n">AUGUSTUS_CONFIG_PATH</span><span class="o">=</span><span class="s2">&quot;/full_path_to_your_annotation_directory/config/&quot;</span>
+</pre></div>
+</div>
+<p>We next check that we have actually changed the <code class="docutils literal"><span class="pre">path</span></code> correctly.
+Entering this into the command should result in the file location being output on the next line of the command prompt.</p>
+<div class="code bash highlight-default"><div class="highlight"><pre><span></span>echo $AUGUSTUS_CONFIG_PATH
+</pre></div>
+</div>
+</div>
+<div class="section" id="assessment-of-orthologue-presence-and-absence">
+<h2>8.6. Assessment of orthologue presence and absence<a class="headerlink" href="#assessment-of-orthologue-presence-and-absence" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="http://busco.ezlab.org">BUSCO</a> will assess orthologue presence absence using <a class="reference external" href="https://blast.ncbi.nlm.nih.gov/Blast.cgi?PAGE_TYPE=BlastSearch">blastn</a>, a rapid method of finding close matches in large databases (we will discuss this in lecture).
+It uses <a class="reference external" href="https://blast.ncbi.nlm.nih.gov/Blast.cgi?PAGE_TYPE=BlastSearch">blastn</a> to make sure that it does not miss any part of any possible coding sequences. To run the program, we give it</p>
+<ul class="simple">
+<li>A fasta format input file</li>
+<li>A name for the output files</li>
+<li>The name of the lineage database against which we are assessing orthologue presence absence (that we downloaded above)</li>
+<li>An indication of the type of annotation we are doing (genomic, as opposed to transcriptomic or previously annotated protein files).</li>
+</ul>
+<div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="n">busco</span> <span class="o">-</span><span class="n">i</span> <span class="o">../</span><span class="n">assembly</span><span class="o">/</span><span class="n">spades</span><span class="o">-</span><span class="n">final</span><span class="o">/</span><span class="n">scaffolds</span><span class="o">.</span><span class="n">fasta</span> <span class="o">-</span><span class="n">o</span> <span class="n">file_name_of_your_choice</span> <span class="o">-</span><span class="n">l</span> <span class="o">./</span><span class="n">saccharomycetales_odb9</span> <span class="o">-</span><span class="n">m</span> <span class="n">geno</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This should take about 90 minutes to run. So in the meantime do the next step.</p>
+</div>
+</div>
+<div class="section" id="annotation">
+<h2>8.7. Annotation<a class="headerlink" href="#annotation" title="Permalink to this headline">¶</a></h2>
+<p>We will use <a class="reference external" href="http://augustus.gobics.de">Augustus</a> to perform gene prediction.
+This program implements a hidden markov model (HMM) to infer where genes lie in the assembly you have made.
+To run the program you need to give it:</p>
+<ul class="simple">
+<li>Information as to whether you would like the genes called on both strands (or just the forward or reverse strands)</li>
+<li>A “model” organism on which it can base it’s HMM parameters on (in this case we will use S. cerevisiae)</li>
+<li>The location of the assembly file</li>
+<li>A name for the output file, which will be a .gff (general feature format) file.</li>
+<li>We will also tell it to display a progress bar as it moves through the genome assembly.</li>
+</ul>
+<div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="n">augustus</span> <span class="o">--</span><span class="n">progress</span><span class="o">=</span><span class="n">true</span> <span class="o">--</span><span class="n">strand</span><span class="o">=</span><span class="n">both</span> <span class="o">--</span><span class="n">species</span><span class="o">=</span><span class="n">saccharomyces_cerevisiae_S288C</span> <span class="o">../</span><span class="n">assembly</span><span class="o">/</span><span class="n">spades</span><span class="o">-</span><span class="n">final</span><span class="o">/</span><span class="n">scaffolds</span><span class="o">.</span><span class="n">fasta</span> <span class="o">&gt;</span> <span class="n">your_new_fungus</span><span class="o">.</span><span class="n">gff</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="interactive-viewing">
+<h2>8.8. Interactive viewing<a class="headerlink" href="#interactive-viewing" title="Permalink to this headline">¶</a></h2>
+<p>We will use the software <a class="reference external" href="http://software.broadinstitute.org/software/igv/">IGV</a> to view the assembly, the gene predictions you have made, and the variants that you have called, all in one window.</p>
+</div>
+<div class="section" id="installing-igv">
+<h2>8.9. Installing <a class="reference external" href="http://software.broadinstitute.org/software/igv/">IGV</a><a class="headerlink" href="#installing-igv" title="Permalink to this headline">¶</a></h2>
+<p>We will not install this software using <a class="reference external" href="http://conda.pydata.org/miniconda.html">conda</a>.
+Instead, make a new directory in your home directory entitled “software”, and change into this directory.
+You will have to download the software from the Broad Institute:</p>
+<div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="n">mkdir</span> <span class="n">software</span>
+<span class="n">cd</span> <span class="n">software</span>
+<span class="n">wget</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">data</span><span class="o">.</span><span class="n">broadinstitute</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">igv</span><span class="o">/</span><span class="n">projects</span><span class="o">/</span><span class="n">downloads</span><span class="o">/</span><span class="n">IGV_2</span><span class="o">.</span><span class="mf">3.92</span><span class="o">.</span><span class="n">zip</span>
+
+<span class="c1"># unzip the software:</span>
+<span class="n">unzip</span> <span class="n">IGV_2</span><span class="o">.</span><span class="mf">3.92</span><span class="o">.</span><span class="n">zip</span>
+
+<span class="c1"># and change into that directory.</span>
+<span class="n">cd</span> <span class="n">IGV_2</span><span class="o">.</span><span class="mf">3.92</span>
+
+<span class="c1"># To run the interactive GUI, you will need to run the bash script in that directory:</span>
+<span class="n">bash</span> <span class="n">igv</span><span class="o">.</span><span class="n">sh</span>
+</pre></div>
+</div>
+<p>This will open up a new window.
+Navigate to that window and open up your genome assembly:</p>
+<ul class="simple">
+<li>Genome -&gt; load Genome from File</li>
+<li>Load your assembly, not your gff file.</li>
+</ul>
+<p>Load the tracks:</p>
+<ul class="simple">
+<li>File -&gt; Load from file</li>
+<li>Load your <code class="docutils literal"><span class="pre">vcf</span></code> file from last week</li>
+<li>Load your <code class="docutils literal"><span class="pre">gff</span></code> file from this week.</li>
+</ul>
+<p>At this point you should be able to zoom in and out to see regions in which there are SNPs or other types of variants.
+You can also see the predicted genes.
+If you zoom in far enough, you can see the sequence (DNA and protein).</p>
+<p>If you have time and interest, you can right click on the sequence and copy it.
+Open a new browser window and go to the blastn homepage.
+There, you can blast your gene of interest (GOI) and see if blast can assign a function to it.</p>
+<p>The end goal of this lab will be for you to select a variant that you feel is interesting (e.g. due to the gene it falls near or within), and hypothesize as to why that mutation might have increased in frequency in these evolving yeast populations.</p>
+</div>
+<div class="section" id="assessment-of-orthologue-presence-and-absence-2">
+<h2>8.10. Assessment of orthologue presence and absence (2)<a class="headerlink" href="#assessment-of-orthologue-presence-and-absence-2" title="Permalink to this headline">¶</a></h2>
+<p>Hopefully your <a class="reference external" href="http://busco.ezlab.org">BUSCO</a> analysis will have finished by this time.
+Navigate into the output directory you created.
+There are many directories and files in there containing information on the orthologues that were found, but here we are only really interested in one: the summary statistics.
+This is located in the <code class="docutils literal"><span class="pre">short_summary*.txt</span></code> file.
+Look at this file.
+It will note the total number of orthologues found, the number expected, and the number missing.
+This gives an indication of your genome completeness.</p>
+<div class="admonition-todo admonition" id="index-0">
+<p class="first admonition-title">Todo</p>
+<p class="last">Is it necessarily true that your assembly is incomplete if it is missing some orthologues? Why or why not?</p>
+</div>
+<p class="rubric">References</p>
+<table class="docutils citation" frame="void" id="simao2015" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id2">[SIMAO2015]</a></td><td>Simao FA, Waterhouse RM, Ioannidis P, Kriventseva EV and Zdobnov EM. BUSCO: assessing genome assembly and annotation completeness with single-copy orthologs. <a class="reference external" href="http://doi.org/10.1093/bioinformatics/btv351">Bioinformatics, 2015, Oct 1;31(19):3210-2</a></td></tr>
+</tbody>
+</table>
+<table class="docutils citation" frame="void" id="stanke2005" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id1">[STANKE2005]</a></td><td>Stanke M and Morgenstern B. AUGUSTUS: a web server for gene prediction in eukaryotes that allows user-defined constraints. <a class="reference external" href="https://dx.doi.org/10.1093/nar/gki458">Nucleic Acids Res, 2005, 33(Web Server issue): W465–W467.</a></td></tr>
+</tbody>
+</table>
 </div>
 </div>
 
@@ -175,7 +372,7 @@ TO CHANGE</strong></p>
   <div role="contentinfo">
     <p>
         &copy; Copyright 2016-2017, Sebastian Schmeier.
-      Last updated on Apr 23, 2017.
+      Last updated on May 11, 2017.
 
     </p>
   </div>
@@ -197,7 +394,7 @@ TO CHANGE</strong></p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'2017.3beta',
+            VERSION:'2017.5beta',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true
