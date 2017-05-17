@@ -21,7 +21,10 @@ Data
 * Mapping index (bowtie2) [ `MASSEY <http://compbio.massey.ac.nz/data/203341/bowtie2-index.tar.gz>`__ ]
 * Mapping index (bwa) [ `MASSEY <http://compbio.massey.ac.nz/data/203341/bwa-index.tar.gz>`__ ]
 * Mapped data [ `MASSEY <http://compbio.massey.ac.nz/data/203341/evolved-6.sorted.dedup.bam>`__ ]
+* *S. cerevisiase* TEF2 gene [ `MASSEY <http://compbio.massey.ac.nz/data/203341/s_cerev_tef2.fas>`__ ]
+* BLAST file [ `MASSEY <http://compbio.massey.ac.nz/data/203341/blast.fas>`__ ]
 
+  
 Software
 --------
 
@@ -48,3 +51,8 @@ Software
    conda install bcftools
    conda install freebayes
    conda install rtg-tools
+
+   conda install busco
+   
+   conda install blast
+   conda install muscle
