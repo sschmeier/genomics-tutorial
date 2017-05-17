@@ -405,7 +405,10 @@ rst_epilog = """
 .. |augustus| replace:: `Augustus <http://augustus.gobics.de>`__
 .. |busco| replace:: `BUSCO <http://busco.ezlab.org>`__
 .. |blastn| replace:: `blastn <https://blast.ncbi.nlm.nih.gov/Blast.cgi?PAGE_TYPE=BlastSearch>`__
+.. |blast| replace:: `BLAST <https://blast.ncbi.nlm.nih.gov/Blast.cgi>`__
 .. |igv| replace:: `IGV <http://software.broadinstitute.org/software/igv/>`__
+.. |muscle| replace:: `MUSCLE <http://www.ebi.ac.uk/Tools/msa/muscle/>`__
+.. |raxml| replace:: `RAxML-NG <https://github.com/amkozlov/raxml-ng>`__
 """
 
 # prolog will be added to the beginning of each file
