@@ -13,12 +13,12 @@ This is an introductory tutorial for learning genomics mostly on the command-lin
 .. only:: builder_html
 
    .. note::
-      
+
       A PDF-version of this tutorial can be downloaded :download:`here
       <_static/Genomics.pdf>`. **(Expect the PDF-version to change as parts of
       the tutorial are still being written)**
 
-   
+
 .. toctree::
    :numbered:
    :maxdepth: 2
@@ -31,15 +31,16 @@ This is an introductory tutorial for learning genomics mostly on the command-lin
    ngs-taxonomic-investigation/index
    ngs-variantcalling/index
    ngs-annotation/index
+   ngs-orthology/index
    ngs-voi/index
    quickref
    code
    downloads
 
-   
+
 .. only:: latex
 
    .. raw:: latex
-                   
+
       \listoffigures
       \listoftables
