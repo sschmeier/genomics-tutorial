@@ -192,8 +192,10 @@ Again, the syntx of the command is fairly simple, except you must make sure that
 
 The arguments are:
 
-- ``--msa``: an alignment file
-- ``--model``: a model of evolution. In this case we will use a general time reversible model with gamma distributed rates (GTR+G)
+- ``-s``: an alignment file
+- ``-m``: a model of evolution. In this case we will use a general time reversible model with gamma distributed rates (GTR+GAMMA)
+- ``-n``: outfile-name
+- ``-p``: specify a random number seed for the parsimony inferences
 
   
 .. code:: bash
@@ -205,7 +207,7 @@ Visualizing the phylogeny
 -------------------------
 
 We will use the online software `Interactive Tree of Life (iTOL) <http://itol.embl.de/upload.cgi>`__ to visualize the tree.
-Navigate to this homepage (Google is your friend).
+Navigate to this homepage.
 Open the file containing your tree (``*bestTree.out``), copy the contents, and paste into the web page (in the Tree text box).
 
 You should then be able to zoom in and out to see where your yeast taxa is.
