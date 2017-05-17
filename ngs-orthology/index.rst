@@ -94,8 +94,8 @@ repository for it yet. Thus, we need to download it manually.
           rm raxml-ng_v0.3.0b_linux_x86_64.zip
 
 
-Finding orthologues using |blast|
----------------------------------
+Finding orthologues using BLAST
+-------------------------------
 
 We will first make a |blast| database of our current assembly so that we can
 find the orthologous sequence of the *S. cerevisiae* gene.
