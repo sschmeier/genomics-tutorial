@@ -225,7 +225,7 @@ repository for it yet. Thus, we need to download it manually.</p>
 </div>
 </div>
 <div class="section" id="finding-orthologues-using-blast">
-<h2>9.5. Finding orthologues using <a class="reference external" href="https://blast.ncbi.nlm.nih.gov/Blast.cgi">BLAST</a><a class="headerlink" href="#finding-orthologues-using-blast" title="Permalink to this headline">¶</a></h2>
+<h2>9.5. Finding orthologues using BLAST<a class="headerlink" href="#finding-orthologues-using-blast" title="Permalink to this headline">¶</a></h2>
 <p>We will first make a <a class="reference external" href="https://blast.ncbi.nlm.nih.gov/Blast.cgi">BLAST</a> database of our current assembly so that we can
 find the orthologous sequence of the <em>S. cerevisiae</em> gene.
 To do this, we run the command <code class="docutils literal"><span class="pre">makeblastdb</span></code>:</p>
@@ -289,8 +289,10 @@ This uses a maximum likelihood method to infer parameters of evolution and the t
 Again, the syntx of the command is fairly simple, except you must make sure that you are using the directory in which <a class="reference external" href="https://github.com/amkozlov/raxml-ng">RAxML-NG</a> sits.</p>
 <p>The arguments are:</p>
 <ul class="simple">
-<li><code class="docutils literal"><span class="pre">--msa</span></code>: an alignment file</li>
-<li><code class="docutils literal"><span class="pre">--model</span></code>: a model of evolution. In this case we will use a general time reversible model with gamma distributed rates (GTR+G)</li>
+<li><code class="docutils literal"><span class="pre">-s</span></code>: an alignment file</li>
+<li><code class="docutils literal"><span class="pre">-m</span></code>: a model of evolution. In this case we will use a general time reversible model with gamma distributed rates (GTR+GAMMA)</li>
+<li><code class="docutils literal"><span class="pre">-n</span></code>: outfile-name</li>
+<li><code class="docutils literal"><span class="pre">-p</span></code>: specify a random number seed for the parsimony inferences</li>
 </ul>
 <div class="code bash highlight-default"><div class="highlight"><pre><span></span>raxmlHPC -s your_alignment.aln -m GTRGAMMA –n yeast_tree –p 12345
 </pre></div>
@@ -299,7 +301,7 @@ Again, the syntx of the command is fairly simple, except you must make sure that
 <div class="section" id="visualizing-the-phylogeny">
 <h2>9.8. Visualizing the phylogeny<a class="headerlink" href="#visualizing-the-phylogeny" title="Permalink to this headline">¶</a></h2>
 <p>We will use the online software <a class="reference external" href="http://itol.embl.de/upload.cgi">Interactive Tree of Life (iTOL)</a> to visualize the tree.
-Navigate to this homepage (Google is your friend).
+Navigate to this homepage.
 Open the file containing your tree (<code class="docutils literal"><span class="pre">*bestTree.out</span></code>), copy the contents, and paste into the web page (in the Tree text box).</p>
 <p>You should then be able to zoom in and out to see where your yeast taxa is.
 To find out the closest relative, you will have to use the <a class="reference external" href="https://www.ncbi.nlm.nih.gov/Taxonomy/TaxIdentifier/tax_identifier.cgi">NCBI taxa page</a>.</p>
@@ -330,7 +332,7 @@ To find out the closest relative, you will have to use the <a class="reference e
   <div role="contentinfo">
     <p>
         &copy; Copyright 2016-2017, Sebastian Schmeier.
-      Last updated on May 17, 2017.
+      Last updated on May 18, 2017.
 
     </p>
   </div>
