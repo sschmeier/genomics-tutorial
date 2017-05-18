@@ -86,6 +86,7 @@ It is also simple to install and use.
 SPAdes usage
 ~~~~~~~~~~~~
 
+
 .. code:: bash
 
     # change to your analysis root folder
@@ -100,9 +101,10 @@ SPAdes usage
 
 The two files we need to submit to |spades| are two paired-end read files.
 
-.. rst-class:: sebcode
+
+.. code:: bash
                
-    spades.py -o assembly/spades-default/ -1 trimmed/|fileanc1|.fastq.trimmed.gz -2 trimmed/|fileanc2|.fastq.trimmed.gz                   
+    spades.py -o assembly/spades-default/ -1 trimmed/ancestor-R1.fastq.trimmed.gz -2 trimmed/ancestor-R2.fastq.trimmed.gz                   
 
 
 .. todo::
@@ -150,9 +152,9 @@ Run |quast| with both assembly scaffolds.fasta files to compare the results.
 
 
   
-.. rst-class:: sebcode
-
-   quast -o assembly/quast assembly/spades-default/scaffolds.fasta assembly/spades-150/scaffolds.fasta
+.. code:: bash
+          
+          quast -o assembly/quast assembly/spades-default/scaffolds.fasta assembly/spades-150/scaffolds.fasta
    
 
 .. todo::

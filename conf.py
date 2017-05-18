@@ -314,7 +314,7 @@ latex_show_pagerefs = True
 # 'footnote' – display URLs in footnotes
 # 'inline' – display URLs inline in parentheses
 
-latex_show_urls = 'inline'
+latex_show_urls = 'footnote'
 
 # Documents to append as an appendix to all manuals.
 #
