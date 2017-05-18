@@ -1,3 +1,5 @@
+.. _ngs-qc:
+
 NGS - Quality control
 =====================
 
@@ -58,7 +60,13 @@ First, we are going to download the data we will analyse. Open a shell/terminal.
    # uncompress it
    tar -xvzf data.tar.gz
 
+   
+.. note::
 
+   Should the download fail, download manually from :ref:`downloads`.
+
+
+   
 The data is from a paired-end sequencing run data (see :numref:`fig-pairedend`) from an |illumina| MiSeq [GLENN2011]_.
 Thus, we have two files, one for each end of the read. 
 
@@ -218,7 +226,7 @@ Unfortunately, currently we cannot install |solexaqa| with |conda|.
 
 .. note::
 
-   Should the download fail, download manually from :doc:`../downloads`.
+   Should the download fail, download manually from :ref:`downloads`.
 
     
 SolexaQA++ manual

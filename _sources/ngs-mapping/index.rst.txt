@@ -130,9 +130,9 @@ Creating a reference index for mapping
    Should you not get it right, try the commands in :ref:`code-bowtie1`.
 
 
-.. hint::
+.. note::
 
-   Should you be unable to run |bowtie| indexing on the data, you can download the index `here <http://compbio.massey.ac.nz/data/203341/bowtie2-index.tar.gz>`__. Unarchive and uncompress the files with ``tar -xvzf bowtie2-index.tar.gz``.
+   Should you be unable to run |bowtie| indexing on the data, you can download the index from :ref:`downloads`. Unarchive and uncompress the files with ``tar -xvzf bowtie2-index.tar.gz``.
 
    
 
@@ -203,9 +203,9 @@ Creating a reference index for mapping
    Should you not get it right, try the commands in :ref:`code-bwa1`.
 
 
-.. hint::
+.. note::
 
-   Should you be unable to run |bwa| indexing on the data, you can download the index `here <http://compbio.massey.ac.nz/data/203341/bwa-index.tar.gz>`__. Unarchive and uncompress the files with ``tar -xvzf bwa-index.tar.gz``.
+   Should you be unable to run |bwa| indexing on the data, you can download the index from :ref:`downloads`. Unarchive and uncompress the files with ``tar -xvzf bwa-index.tar.gz``.
 
    
    
@@ -343,9 +343,9 @@ In this step we remove duplicate reads. The main purpose of removing duplicates 
    Figure out what "PCR amplification bias" means.
     
 
-.. hint::
+.. note::
 
-   Should you be unable to do the post-processing steps, you can download the mapped reads `here <http://compbio.massey.ac.nz/data/203341/evolved-6.sorted.dedup.bam>`__.
+   Should you be unable to do the post-processing steps, you can download the mapped data from :ref:`downloads`.
 
 
 

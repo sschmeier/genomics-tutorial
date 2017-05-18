@@ -143,11 +143,13 @@ We can install it locally with:
 
 Run |quast| with both assembly scaffolds.fasta files to compare the results.
 
-.. hint::
 
-   Should you be unable to run |spades| on the data, you can download the assemblies `here <http://compbio.massey.ac.nz/data/203341/assembly.tar.gz>`__. Unarchive and uncompress the files with ``tar -xvzf assembly.tar.gz``.
+.. note::
+
+   Should you be unable to run |spades| on the data, you can manually download the assembly from :ref:`downloads`. Unarchive and uncompress the files with ``tar -xvzf assembly.tar.gz``.
 
 
+  
 .. rst-class:: sebcode
 
    quast -o assembly/quast assembly/spades-default/scaffolds.fasta assembly/spades-150/scaffolds.fasta

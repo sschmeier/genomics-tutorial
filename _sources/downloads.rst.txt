@@ -9,50 +9,22 @@ Tools
 * Miniconda installer [ `EXTERNAL <https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh>`__ | `MASSEY <http://compbio.massey.ac.nz/data/203341/Miniconda3-latest-Linux-x86_64.sh>`__ | `DROPBOX <https://www.dropbox.com/s/tz2wocdzjr4grdy/Miniconda3-latest-Linux-x86_64.sh?dl=0>`__ ]
 * Minikraken database [ `EXTERNAL <http://ccb.jhu.edu/software/kraken/dl/minikraken.tgz>`__ | `MASSEY <http://compbio.massey.ac.nz/data/203341/minikraken.tgz>`__ | `DROPBOX <https://www.dropbox.com/s/lje0ykzdxtq3rpk/minikraken.tgz?dl=0>`__ ]
 * |krona| taxonomy database [ `MASSEY <http://compbio.massey.ac.nz/data/203341/taxonomy.tab.gz>`__ | `DROPBOX <https://www.dropbox.com/s/cwf1qc5zyq65yvn/taxonomy.tab.gz?dl=0>`__ ]
-* SolexaQA++ [ `MASSEY <http://compbio.massey.ac.nz/data/203341/SolexaQA.tar.gz>`__ | `DROPBOX <https://www.dropbox.com/s/r9a7hg0tlwe6pk4/SolexaQA.tar.gz?dl=0>`__ ]
-* GeneMark-ES/T [ `MASSEY <http://compbio.massey.ac.nz/data/203341/gm_et_linux_64.zip>`__ ]
+* SolexaQA++ [ `EXTERNAL <https://downloads.sourceforge.net/project/solexaqa/src/SolexaQA%2B%2B_v3.1.7.1.zip?r=https%3A%2F%2Fsourceforge.net%2Fprojects%2Fsolexaqa%2Ffiles%2F&ts=1495062885&use_mirror=iweb>`__ | `MASSEY <http://compbio.massey.ac.nz/data/203341/SolexaQA.tar.gz>`__ | `DROPBOX <https://www.dropbox.com/s/r9a7hg0tlwe6pk4/SolexaQA.tar.gz?dl=0>`__ ]
+* BUSCO Saccharomycetales_odb9 database [ `EXTERNAL <http://busco.ezlab.org/datasets/saccharomycetales_odb9.tar.gz>`__ | `MASSEY <http://compbio.massey.ac.nz/data/203341/saccharomycetales_odb9.tar.gz>`__ ]
+* IGV [ `EXTERNAL <http://data.broadinstitute.org/igv/projects/downloads/IGV_2.3.92.zip>`__ | `MASSEY <http://compbio.massey.ac.nz/data/203341/IGV_2.3.92.zip>`__ ]
+* RAxML-NG [ `EXTERNAL <https://github.com/amkozlov/raxml-ng/releases/download/0.3.0/raxml-ng_v0.3.0b_linux_x86_64.zip>`__  | `MASSEY <http://compbio.massey.ac.nz/data/203341/raxml-ng_v0.3.0b_linux_x86_64.zip>`__ ]
+
 
 Data
 ----
 
-* Raw data-set [ `MASSEY <http://compbio.massey.ac.nz/data/203341/data.tar.gz>`__ | `DROPBOX <https://www.dropbox.com/s/70gcfqzrqugwcn5/data.tar.gz?dl=0>`__ ]
-* Trimmed data-set [ `MASSEY <http://compbio.massey.ac.nz/data/203341/trimmed.tar.gz>`__ | `DROPBOX <https://www.dropbox.com/s/o6ioadoxfppbjrv/trimmed.tar.gz?dl=0>`__ ]
-* Assembled data-set [ `MASSEY <http://compbio.massey.ac.nz/data/203341/assembly.tar.gz>`__ | `DROPBOX  <https://www.dropbox.com/s/vlyn2fxgkiml5m8/assembly.tar.gz?dl=0>`__ ]
-* Mapping index (bowtie2) [ `MASSEY <http://compbio.massey.ac.nz/data/203341/bowtie2-index.tar.gz>`__ ]
-* Mapping index (bwa) [ `MASSEY <http://compbio.massey.ac.nz/data/203341/bwa-index.tar.gz>`__ ]
-* Mapped data [ `MASSEY <http://compbio.massey.ac.nz/data/203341/evolved-6.sorted.dedup.bam>`__ ]
-* *S. cerevisiase* TEF2 gene [ `MASSEY <http://compbio.massey.ac.nz/data/203341/s_cerev_tef2.fas>`__ ]
-* BLAST file [ `MASSEY <http://compbio.massey.ac.nz/data/203341/blast.fas>`__ ]
+* :ref:`ngs-qc`: Raw data-set [ `MASSEY <http://compbio.massey.ac.nz/data/203341/data.tar.gz>`__ | `DROPBOX <https://www.dropbox.com/s/70gcfqzrqugwcn5/data.tar.gz?dl=0>`__ ]
+* :ref:`ngs-qc`: Trimmed data-set [ `MASSEY <http://compbio.massey.ac.nz/data/203341/trimmed.tar.gz>`__ | `DROPBOX <https://www.dropbox.com/s/o6ioadoxfppbjrv/trimmed.tar.gz?dl=0>`__ ]
+* :ref:`ngs-assembly`: Assembled data-set [ `MASSEY <http://compbio.massey.ac.nz/data/203341/assembly.tar.gz>`__ | `DROPBOX  <https://www.dropbox.com/s/vlyn2fxgkiml5m8/assembly.tar.gz?dl=0>`__ ]
+* :ref:`ngs-mapping`: Mapping index (bowtie2) [ `MASSEY <http://compbio.massey.ac.nz/data/203341/bowtie2-index.tar.gz>`__ ]
+* :ref:`ngs-mapping`: Mapping index (bwa) [ `MASSEY <http://compbio.massey.ac.nz/data/203341/bwa-index.tar.gz>`__ ]
+* :ref:`ngs-mapping`: Mapped data [ `MASSEY <http://compbio.massey.ac.nz/data/203341/evolved-6.sorted.dedup.bam>`__ ]
+* :ref:`ngs-orthology`: *S. cerevisiase* TEF2 gene file [ `MASSEY <http://compbio.massey.ac.nz/data/203341/s_cerev_tef2.fas>`__ ]
+* :ref:`ngs-orthology`: BLAST file [ `MASSEY <http://compbio.massey.ac.nz/data/203341/blast.fas>`__ ]
 
   
-Software
---------
-
-.. code-block:: bash
-
-   conda install ea-utils
-   conda install sickle-trim
-   conda install fastqc
-
-   conda install spades
-   conda install quast
-
-   conda install samtools
-   conda install bamtools
-   conda install bedtools
-   conda install bowtie2
-   conda install bwa
-   conda install picard
-   conda install qualimap
-
-   conda install kraken-all
-   conda install krona
-
-   conda install bcftools
-   conda install freebayes
-   conda install rtg-tools
-
-   conda install busco
-   
-   conda install blast
-   conda install muscle

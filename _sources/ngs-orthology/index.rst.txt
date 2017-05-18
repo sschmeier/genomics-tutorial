@@ -1,3 +1,5 @@
+.. _ngs-orthology:
+
 NGS - Orthology and Phylogeny
 =============================
 
@@ -11,6 +13,7 @@ Learning outcomes
 -----------------
 
 After studying this tutorial you should be able to:
+
 #. Use bioinformatics software to find orthologues in the NCBI database.
 #. Use bioinformatics software to perform sequence alignment.
 #. Use bioinformatics software to perform phylogenetic reconstructions.
@@ -57,6 +60,11 @@ Download the fasta file of the *S. cerevisiase* TEF2 gene to the phylogeny folde
           curl -O http://compbio.massey.ac.nz/data/203341/s_cerev_tef2.fas
 
 
+.. note::
+
+   Should the download fail, download manually from :ref:`downloads`.
+
+          
          
 Installing the software
 -----------------------
@@ -165,9 +173,14 @@ Now we will |blast| a remote database to get a list of hits that are already in 
 .. code:: bash
 
            curl -O http://compbio.massey.ac.nz/data/203341/blast.fas
-
-
+           
+           
 Append the fasta file of your yeast sequence to this file, using whatever set of commands you wish/know.
+
+
+.. note::
+
+   Should the download fail, download manually from :ref:`downloads`.
 
 
 Performing an alignment

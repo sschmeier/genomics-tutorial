@@ -160,7 +160,7 @@
            <div itemprop="articleBody">
             
   <div class="section" id="ngs-genome-annotation">
-<h1>8. NGS - Genome annotation<a class="headerlink" href="#ngs-genome-annotation" title="Permalink to this headline">¶</a></h1>
+<span id="ngs-annotation"></span><h1>8. NGS - Genome annotation<a class="headerlink" href="#ngs-genome-annotation" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="preface">
 <h2>8.1. Preface<a class="headerlink" href="#preface" title="Permalink to this headline">¶</a></h2>
 <p>In this section you will predict genes and assess your assembly using <a class="reference external" href="http://augustus.gobics.de">Augustus</a> and <a class="reference external" href="http://busco.ezlab.org">BUSCO</a>.</p>
@@ -231,6 +231,10 @@ We will use wget for this:</p>
 <span class="c1"># unpack the archive</span>
 <span class="n">tar</span> <span class="o">-</span><span class="n">xzvf</span> <span class="n">saccharomycetales_odb9</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span>
 </pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Should the download fail, download manually from <a class="reference internal" href="../downloads.html#downloads"><span class="std std-ref">Downloads</span></a>.</p>
 </div>
 <p>We also need to place the configuration file for this program in a location in which we have &quot;write&quot; privileges.
 Do this recursively for the entire config directory, placing it into your current annotation directory:</p>
@@ -303,6 +307,10 @@ You will have to download the software from the Broad Institute:</p>
 <span class="c1"># To run the interactive GUI, you will need to run the bash script in that directory:</span>
 <span class="n">bash</span> <span class="n">igv</span><span class="o">.</span><span class="n">sh</span>
 </pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Should the download fail, download manually from <a class="reference internal" href="../downloads.html#downloads"><span class="std std-ref">Downloads</span></a>.</p>
 </div>
 <p>This will open up a new window.
 Navigate to that window and open up your genome assembly:</p>

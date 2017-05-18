@@ -1,3 +1,5 @@
+.. _ngs-annotation:
+
 NGS - Genome annotation
 =======================
 
@@ -92,7 +94,13 @@ We will use wget for this:
           # unpack the archive
           tar -xzvf saccharomycetales_odb9.tar.gz
 
+          
+.. note::
 
+   Should the download fail, download manually from :ref:`downloads`.
+
+
+          
 We also need to place the configuration file for this program in a location in which we have "write" privileges.
 Do this recursively for the entire config directory, placing it into your current annotation directory:
 
@@ -186,7 +194,12 @@ You will have to download the software from the Broad Institute:
           # To run the interactive GUI, you will need to run the bash script in that directory:
           bash igv.sh
 
-          
+
+.. note::
+
+   Should the download fail, download manually from :ref:`downloads`.
+
+                
 This will open up a new window.
 Navigate to that window and open up your genome assembly:
 
@@ -194,7 +207,6 @@ Navigate to that window and open up your genome assembly:
 - Load your assembly, not your gff file.
 
 Load the tracks:
-
 
 - File -> Load from file
 - Load your ``vcf`` file from last week
