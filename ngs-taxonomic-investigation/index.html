@@ -253,10 +253,14 @@ What are the implications for us when we are trying to classify our sequences?</
 <h2>6.6. Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h2>
 <p>Now that we have installed <a class="reference external" href="https://ccb.jhu.edu/software/kraken/">Kraken</a> and downloaded and extracted the minikraken database, we can attempt to investigate the sequences we got back from the sequencing provider for other species as the one it should contain.
 We call the <a class="reference external" href="https://ccb.jhu.edu/software/kraken/">Kraken</a> tool and specify the database and fasta-file with the sequences it should use. The general command structure looks like this:</p>
-<p class="sebcode">kraken --only-classified-output --db minikraken_20141208 example.fa &gt; example.kraken</p>
+<div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="n">kraken</span> <span class="o">--</span><span class="n">only</span><span class="o">-</span><span class="n">classified</span><span class="o">-</span><span class="n">output</span> <span class="o">--</span><span class="n">db</span> <span class="n">minikraken_20141208</span> <span class="n">example</span><span class="o">.</span><span class="n">fa</span> <span class="o">&gt;</span> <span class="n">example</span><span class="o">.</span><span class="n">kraken</span>
+</pre></div>
+</div>
 <p>However, we may have fastq-files, so we need to use <code class="docutils literal"><span class="pre">--fastq-input</span></code> which tells <a class="reference external" href="https://ccb.jhu.edu/software/kraken/">Kraken</a> that it is dealing with fastq-formated files.
 Here, we are investigating one of the unmapped paired-end read files of the evolved line.</p>
-<p class="sebcode">kraken --only-classified-output --db minikraken_20141208 --fastq-input ../mappings/evolved-6-R1.sorted.unmapped.R1.fastq &gt; evolved-6-R1.kraken</p>
+<div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="n">kraken</span> <span class="o">--</span><span class="n">only</span><span class="o">-</span><span class="n">classified</span><span class="o">-</span><span class="n">output</span> <span class="o">--</span><span class="n">db</span> <span class="n">minikraken_20141208</span> <span class="o">--</span><span class="n">fastq</span><span class="o">-</span><span class="nb">input</span> <span class="o">../</span><span class="n">mappings</span><span class="o">/</span><span class="n">evolved</span><span class="o">-</span><span class="mf">6.</span><span class="n">sorted</span><span class="o">.</span><span class="n">unmapped</span><span class="o">.</span><span class="n">R1</span><span class="o">.</span><span class="n">fastq</span> <span class="o">&gt;</span> <span class="n">evolved</span><span class="o">-</span><span class="mi">6</span><span class="o">-</span><span class="n">R1</span><span class="o">.</span><span class="n">kraken</span>
+</pre></div>
+</div>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last">We are for now only interested in the portion of sequeuces that can be classified, that is why we supplied the option <code class="docutils literal"><span class="pre">--only-classified-output</span></code> to the <a class="reference external" href="https://ccb.jhu.edu/software/kraken/">Kraken</a> command.</p>
@@ -304,7 +308,9 @@ However, this is impractical as we are dealing potentially with many sequences.
 <h3>6.7.1. kraken-report<a class="headerlink" href="#kraken-report" title="Permalink to this headline">¶</a></h3>
 <p>First, we generate a sample-wide report of all taxa found.
 This can be achieved with the tool <code class="docutils literal"><span class="pre">kranken-report</span></code>.</p>
-<p class="sebcode">kraken-report --db minikraken_20141208 evolved-6-R1.kraken &gt; evolved-6-R1.kraken.report</p>
+<div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="n">kraken</span><span class="o">-</span><span class="n">report</span> <span class="o">--</span><span class="n">db</span> <span class="n">minikraken_20141208</span> <span class="n">evolved</span><span class="o">-</span><span class="mi">6</span><span class="o">-</span><span class="n">R1</span><span class="o">.</span><span class="n">kraken</span> <span class="o">&gt;</span> <span class="n">evolved</span><span class="o">-</span><span class="mi">6</span><span class="o">-</span><span class="n">R1</span><span class="o">.</span><span class="n">kraken</span><span class="o">.</span><span class="n">report</span>
+</pre></div>
+</div>
 <p>The first few lines of an example report are shown below.</p>
 <pre class="literal-block">
   0.00  0       0       U       0       unclassified
@@ -335,7 +341,9 @@ The fields of the output, from left-to-right, are as follows:</p>
 </div>
 <p>We can cerate such a report using the option <code class="docutils literal"><span class="pre">--show-zeros</span></code> which will print out all taxa (instead of only those found).
 We then sort the taxa according to taxa-ids (column 5), e.g. <code class="docutils literal"><span class="pre">sort</span> <span class="pre">-n</span> <span class="pre">-k5</span></code>.</p>
-<p class="sebcode">kraken-report <em>--show-zeros</em> --db minikraken_20141208 evolved-6-R1.kraken | <strong>sort -n -k5</strong> &gt; evolved-6-R1.kraken.report.sorted</p>
+<div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="n">kraken</span><span class="o">-</span><span class="n">report</span> <span class="o">*--</span><span class="n">show</span><span class="o">-</span><span class="n">zeros</span><span class="o">*</span> <span class="o">--</span><span class="n">db</span> <span class="n">minikraken_20141208</span> <span class="n">evolved</span><span class="o">-</span><span class="mi">6</span><span class="o">-</span><span class="n">R1</span><span class="o">.</span><span class="n">kraken</span> <span class="o">|</span> <span class="o">**</span><span class="n">sort</span> <span class="o">-</span><span class="n">n</span> <span class="o">-</span><span class="n">k5</span><span class="o">**</span> <span class="o">&gt;</span> <span class="n">evolved</span><span class="o">-</span><span class="mi">6</span><span class="o">-</span><span class="n">R1</span><span class="o">.</span><span class="n">kraken</span><span class="o">.</span><span class="n">report</span><span class="o">.</span><span class="n">sorted</span>
+</pre></div>
+</div>
 <p>The report is not ordered according to taxa ids and contains all taxa in the database, even if they have not been found in our sample and are thus zero.
 The columns are the same as in the former report, however, we have more rows and they are now differently sorted, according to the <a class="reference external" href="https://www.ncbi.nlm.nih.gov/taxonomy">NCBI Taxonomy</a> id.</p>
 </div>
@@ -343,7 +351,9 @@ The columns are the same as in the former report, however, we have more rows and
 <h3>6.7.2. kraken-translate<a class="headerlink" href="#kraken-translate" title="Permalink to this headline">¶</a></h3>
 <p>For every sequence in our sample and its predicted taxonomic identifier,
 we can attach the taxonomic names with <code class="docutils literal"><span class="pre">kraken-translate</span></code>.</p>
-<p class="sebcode">kraken-translate --mpa-format --db minikraken_20141208 evolved-6-R1.kraken &gt; evolved-6-R1.kraken.names</p>
+<div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="n">kraken</span><span class="o">-</span><span class="n">translate</span> <span class="o">--</span><span class="n">mpa</span><span class="o">-</span><span class="nb">format</span> <span class="o">--</span><span class="n">db</span> <span class="n">minikraken_20141208</span> <span class="n">evolved</span><span class="o">-</span><span class="mi">6</span><span class="o">-</span><span class="n">R1</span><span class="o">.</span><span class="n">kraken</span> <span class="o">&gt;</span> <span class="n">evolved</span><span class="o">-</span><span class="mi">6</span><span class="o">-</span><span class="n">R1</span><span class="o">.</span><span class="n">kraken</span><span class="o">.</span><span class="n">names</span>
+</pre></div>
+</div>
 <p>An example output looks like this:</p>
 <pre class="literal-block">
 M02810:197:000000000-AV55U:1:1101:10078:18384/1 d__Archaea
@@ -413,9 +423,11 @@ mv taxonomy.tab ~/krona/taxonomy
 <p class="last">Should this also fail we can download a pre-build database on the <a class="reference internal" href="../downloads.html#downloads"><span class="std std-ref">Downloads</span></a> page via a browser.</p>
 </div>
 <p>Now we use the tool <code class="docutils literal"><span class="pre">ktImportTaxonomy</span></code> from the <a class="reference external" href="https://github.com/marbl/Krona/wiki">Krona</a> tools to crate the html web-page:</p>
-<p class="sebcode">cat evolved-6-R1.kraken | cut -f 2,3 &gt; evolved-6-R1.kraken.krona
-ktImportTaxonomy evolved-6-R1.kraken.krona
-firefox taxonomy.krona.html</p>
+<div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="n">cat</span> <span class="n">evolved</span><span class="o">-</span><span class="mi">6</span><span class="o">-</span><span class="n">R1</span><span class="o">.</span><span class="n">kraken</span> <span class="o">|</span> <span class="n">cut</span> <span class="o">-</span><span class="n">f</span> <span class="mi">2</span><span class="p">,</span><span class="mi">3</span> <span class="o">&gt;</span> <span class="n">evolved</span><span class="o">-</span><span class="mi">6</span><span class="o">-</span><span class="n">R1</span><span class="o">.</span><span class="n">kraken</span><span class="o">.</span><span class="n">krona</span>
+<span class="n">ktImportTaxonomy</span> <span class="n">evolved</span><span class="o">-</span><span class="mi">6</span><span class="o">-</span><span class="n">R1</span><span class="o">.</span><span class="n">kraken</span><span class="o">.</span><span class="n">krona</span>
+<span class="n">firefox</span> <span class="n">taxonomy</span><span class="o">.</span><span class="n">krona</span><span class="o">.</span><span class="n">html</span>
+</pre></div>
+</div>
 <p>What happens here is that we extract the second and third column from the <a class="reference external" href="https://ccb.jhu.edu/software/kraken/">Kraken</a> results.
 Afterwards, we input these to the <a class="reference external" href="https://github.com/marbl/Krona/wiki">Krona</a> script, and open the resulting web-page in a bowser.
 Done!</p>

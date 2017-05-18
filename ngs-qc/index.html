@@ -440,14 +440,19 @@ and discard files based on a user-defined length cutoff.</p>
 </pre></div>
 </div>
 <p>Now we are going to run the program on our paired-end data:</p>
-<p class="sebcode"># create a new directory
-mkdir trimmed</p>
-<p class="sebcode"># sickle parameters:
-sickle --help</p>
-<p class="sebcode"># as we are dealing with paired-end data you will be using &quot;sickle pe&quot;
-sickle pe --help</p>
-<p class="sebcode"># run sickle like so:
-sickle pe -g -t sanger -f data/ancestor-R1.fastq.gz -r data/ancestor-R2.fastq.gz -o trimmed/ancestor-R1.trimmed.fastq.gz -p trimmed/ancestor-R2.trimmed.fastq.gz</p>
+<div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="c1"># create a new directory</span>
+<span class="n">mkdir</span> <span class="n">trimmed</span>
+
+<span class="c1"># sickle parameters:</span>
+<span class="n">sickle</span> <span class="o">--</span><span class="n">help</span>
+
+<span class="c1"># as we are dealing with paired-end data you will be using &quot;sickle pe&quot;</span>
+<span class="n">sickle</span> <span class="n">pe</span> <span class="o">--</span><span class="n">help</span>
+
+<span class="c1"># run sickle like so:</span>
+<span class="n">sickle</span> <span class="n">pe</span> <span class="o">-</span><span class="n">g</span> <span class="o">-</span><span class="n">t</span> <span class="n">sanger</span> <span class="o">-</span><span class="n">f</span> <span class="n">data</span><span class="o">/</span><span class="n">ancestor</span><span class="o">-</span><span class="n">R1</span><span class="o">.</span><span class="n">fastq</span><span class="o">.</span><span class="n">gz</span> <span class="o">-</span><span class="n">r</span> <span class="n">data</span><span class="o">/</span><span class="n">ancestor</span><span class="o">-</span><span class="n">R2</span><span class="o">.</span><span class="n">fastq</span><span class="o">.</span><span class="n">gz</span> <span class="o">-</span><span class="n">o</span> <span class="n">trimmed</span><span class="o">/</span><span class="n">ancestor</span><span class="o">-</span><span class="n">R1</span><span class="o">.</span><span class="n">trimmed</span><span class="o">.</span><span class="n">fastq</span><span class="o">.</span><span class="n">gz</span> <span class="o">-</span><span class="n">p</span> <span class="n">trimmed</span><span class="o">/</span><span class="n">ancestor</span><span class="o">-</span><span class="n">R2</span><span class="o">.</span><span class="n">trimmed</span><span class="o">.</span><span class="n">fastq</span><span class="o">.</span><span class="n">gz</span>
+</pre></div>
+</div>
 <div class="admonition hint">
 <p class="first admonition-title">Hint</p>
 <p class="last">Should you be unable to run <a class="reference external" href="https://github.com/najoshi/sickle">Sickle</a> or <a class="reference external" href="http://solexaqa.sourceforge.net">SolexaQA++</a> at all to trim the data. You can download the trimmed dataset <a class="reference external" href="http://compbio.massey.ac.nz/data/203341/trimmed.tar.gz">here</a>. Unarchive and uncompress the files with <code class="docutils literal"><span class="pre">tar</span> <span class="pre">-xvzf</span> <span class="pre">trimmed.tar.gz</span></code>.</p>
@@ -499,7 +504,7 @@ pipelines. It provides a modular set of analyses which you can use
 to give a quick impression of whether your data has any problems of
 which you should be aware before doing any further analysis.&quot;</div></blockquote>
 <p>The basic command looks like:</p>
-<div class="code bash highlight-default"><div class="highlight"><pre><span></span>$ fastqc -o RESULT-DIR INPUT-FILE.[txt/fa/fq] ...
+<div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="n">fastqc</span> <span class="o">-</span><span class="n">o</span> <span class="n">RESULT</span><span class="o">-</span><span class="n">DIR</span> <span class="n">INPUT</span><span class="o">-</span><span class="n">FILE</span><span class="o">.</span><span class="p">[</span><span class="n">txt</span><span class="o">/</span><span class="n">fa</span><span class="o">/</span><span class="n">fq</span><span class="p">]</span> <span class="o">...</span>
 </pre></div>
 </div>
 <ul class="simple">
@@ -543,7 +548,7 @@ which you should be aware before doing any further analysis.&quot;</div></blockq
 <table class="docutils citation" frame="void" id="cox2010" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id5">[COX2010]</a></td><td>Cox MP, Peterson DA and Biggs PJ. SolexaQA: At-a-glance quality assessment of <a class="reference external" href="http://illumina.com">Illumina</a> second-generation sequencing data. <a class="reference external" href="http://doi.org/10.1186/1471-2105-11-485">BMC Bioinformatics, 2010, 11:485. DOI: 10.1186/1471-2105-11-485</a></td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id5">[COX2010]</a></td><td>Cox MP, Peterson DA and Biggs PJ. SolexaQA: At-a-glance quality assessment of Illumina second-generation sequencing data. <a class="reference external" href="http://doi.org/10.1186/1471-2105-11-485">BMC Bioinformatics, 2010, 11:485. DOI: 10.1186/1471-2105-11-485</a></td></tr>
 </tbody>
 </table>
 <table class="docutils citation" frame="void" id="glenn2011" rules="none">
