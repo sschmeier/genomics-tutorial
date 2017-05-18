@@ -116,7 +116,7 @@ Now that we have installed |kraken| and downloaded and extracted the minikraken 
 We call the |kraken| tool and specify the database and fasta-file with the sequences it should use. The general command structure looks like this:
 
 
-.. rst-class:: sebcode
+.. code:: bash
 
    kraken --only-classified-output --db minikraken_20141208 example.fa > example.kraken
 
@@ -125,9 +125,9 @@ However, we may have fastq-files, so we need to use ``--fastq-input`` which tell
 Here, we are investigating one of the unmapped paired-end read files of the evolved line.
 
 
-.. rst-class:: sebcode
+.. code:: bash
 
-   kraken --only-classified-output --db minikraken_20141208 --fastq-input ../mappings/|fileevol1|.sorted.unmapped.R1.fastq > |fileevol1|.kraken
+   kraken --only-classified-output --db minikraken_20141208 --fastq-input ../mappings/evolved-6.sorted.unmapped.R1.fastq > evolved-6-R1.kraken
           
 
 .. NOTE::
@@ -135,7 +135,7 @@ Here, we are investigating one of the unmapped paired-end read files of the evol
 
    
 This classification may take a while, depending on how many sequences we are going to classify.
-The resulting content of the file "|fileevol1|.kraken" looks similar to the following example:
+The resulting content of the file "evolved-6-R1.kraken" looks similar to the following example:
 
 
 .. include:: example-kraken.txt
@@ -181,9 +181,9 @@ First, we generate a sample-wide report of all taxa found.
 This can be achieved with the tool ``kranken-report``.
 
 
-.. rst-class:: sebcode 
+.. code:: bash 
 
-   kraken-report --db minikraken_20141208 |fileevol1|.kraken > |fileevol1|.kraken.report
+   kraken-report --db minikraken_20141208 evolved-6-R1.kraken > evolved-6-R1.kraken.report
 
 
 The first few lines of an example report are shown below.
@@ -213,9 +213,9 @@ We can cerate such a report using the option ``--show-zeros`` which will print o
 We then sort the taxa according to taxa-ids (column 5), e.g. ``sort -n -k5``.
 
 
-.. rst-class:: sebcode 
+.. code:: bash 
 
-   kraken-report *--show-zeros* --db minikraken_20141208 |fileevol1|.kraken | **sort -n -k5** > |fileevol1|.kraken.report.sorted
+   kraken-report *--show-zeros* --db minikraken_20141208 evolved-6-R1.kraken | **sort -n -k5** > evolved-6-R1.kraken.report.sorted
 
    
 The report is not ordered according to taxa ids and contains all taxa in the database, even if they have not been found in our sample and are thus zero.
@@ -230,9 +230,9 @@ For every sequence in our sample and its predicted taxonomic identifier,
 we can attach the taxonomic names with ``kraken-translate``.
 
 
-.. rst-class:: sebcode 
+.. code:: bash 
 
-   kraken-translate --mpa-format --db minikraken_20141208 |fileevol1|.kraken > |fileevol1|.kraken.names
+   kraken-translate --mpa-format --db minikraken_20141208 evolved-6-R1.kraken > evolved-6-R1.kraken.names
 
 
 An example output looks like this:
@@ -314,10 +314,10 @@ Now, if this fails, we download a pre-build taxonomy database for krona.
    
 Now we use the tool ``ktImportTaxonomy`` from the |krona| tools to crate the html web-page:
 
-.. rst-class:: sebcode 
+.. code:: bash 
 
-   cat |fileevol1|.kraken | cut -f 2,3 > |fileevol1|.kraken.krona
-   ktImportTaxonomy |fileevol1|.kraken.krona
+   cat evolved-6-R1.kraken | cut -f 2,3 > evolved-6-R1.kraken.krona
+   ktImportTaxonomy evolved-6-R1.kraken.krona
    firefox taxonomy.krona.html
 
 What happens here is that we extract the second and third column from the |kraken| results.

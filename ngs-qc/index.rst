@@ -333,7 +333,7 @@ Should the dynamic trimming not work with |solexaqa|, you can alternatively use 
 
 Now we are going to run the program on our paired-end data:
 
-.. rst-class:: sebcode
+.. code:: bash
 
     # create a new directory
     mkdir trimmed
@@ -345,7 +345,7 @@ Now we are going to run the program on our paired-end data:
     sickle pe --help
 
     # run sickle like so:
-    sickle pe -g -t sanger -f data/|fileanc1|.fastq.gz -r data/|fileanc2|.fastq.gz -o trimmed/|fileanc1|.trimmed.fastq.gz -p trimmed/|fileanc2|.trimmed.fastq.gz 
+    sickle pe -g -t sanger -f data/ancestor-R1.fastq.gz -r data/ancestor-R2.fastq.gz -o trimmed/ancestor-R1.trimmed.fastq.gz -p trimmed/ancestor-R2.trimmed.fastq.gz 
   
 
 .. hint::
@@ -414,7 +414,7 @@ The basic command looks like:
 
 .. code:: bash
 
-    $ fastqc -o RESULT-DIR INPUT-FILE.[txt/fa/fq] ...
+          fastqc -o RESULT-DIR INPUT-FILE.[txt/fa/fq] ...
 
     
 -  ``-o RESULT-DIR`` is the directory where the result files will be written
@@ -468,7 +468,7 @@ Run FastQC on the untrimmed and trimmed data
 
                
 
-.. [COX2010] Cox MP, Peterson DA and Biggs PJ. SolexaQA: At-a-glance quality assessment of |illumina| second-generation sequencing data. `BMC Bioinformatics, 2010, 11:485. DOI: 10.1186/1471-2105-11-485 <http://doi.org/10.1186/1471-2105-11-485>`__
+.. [COX2010] Cox MP, Peterson DA and Biggs PJ. SolexaQA: At-a-glance quality assessment of Illumina second-generation sequencing data. `BMC Bioinformatics, 2010, 11:485. DOI: 10.1186/1471-2105-11-485 <http://doi.org/10.1186/1471-2105-11-485>`__
 
 .. [GLENN2011] Glenn T. Field guide to next-generation DNA sequencers. `Molecular Ecology Resources (2011) 11, 759–769 doi: 10.1111/j.1755-0998.2011.03024.x <http://doi.org/10.1111/j.1755-0998.2011.03024.x>`__
 

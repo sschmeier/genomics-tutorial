@@ -284,9 +284,9 @@ Because aligners can sometimes leave unusual `SAM flag <http://bio-bwa.sourcefor
 We are going to produce also compressed bam output for efficient storing of and access to the mapped reads.
 
 
-.. rst-class:: sebcode
+.. code:: bash
                
-   samtools fixmate -O bam mappings/|fileevol|.sam mappings/|fileevol|.fixmate.bam
+   samtools fixmate -O bam mappings/evolved-6.sam mappings/evolved-6.fixmate.bam
 
    
 - ``-O bam``: specifies that we want compressed bam output
@@ -307,9 +307,9 @@ We will be using the `SAM flag <http://bio-bwa.sourceforge.net/bwa.shtml#4>`__ i
 Once we have bam-file, we can also delete the original sam-file as it requires too much space.
    
   
-.. rst-class:: sebcode
+.. code:: bash
 
-   rm mappings/|fileevol|.sam
+   rm mappings/evolved-6.sam
 
 
 Sorting
@@ -318,10 +318,10 @@ Sorting
 We are going to use |samtools| again to sort the bam-file into coordinate order:
 
 
-.. rst-class:: sebcode
+.. code:: bash
 
     # convert to bam file and sort
-    samtools sort -O bam -o mappings/|fileevol|.sorted.bam mappings/|fileevol|.fixmate.bam
+    samtools sort -O bam -o mappings/evolved-6.sorted.bam mappings/evolved-6.fixmate.bam
     
 
 - ``-o``: specifies the name of the output file.
@@ -333,9 +333,9 @@ Remove duplicates
 
 In this step we remove duplicate reads. The main purpose of removing duplicates is to mitigate the effects of PCR amplification bias introduced during library construction. 
 
-.. rst-class:: sebcode
+.. code:: bash
 
-    picard MarkDuplicates REMOVE_DUPLICATES=true METRICS_FILE=mappings/|fileevol|.marked_dup_metrics.txt INPUT=mappings/|fileevol|.sorted.bam OUTPUT=mappings/|fileevol|.sorted.dedup.bam
+    picard MarkDuplicates REMOVE_DUPLICATES=true METRICS_FILE=mappings/evolved-6.marked_dup_metrics.txt INPUT=mappings/evolved-6.sorted.bam OUTPUT=mappings/evolved-6.sorted.dedup.bam
 
 
 .. todo::
@@ -358,9 +358,10 @@ Stats with SAMtools
 
 Lets get an mapping overview:
 
-.. rst-class:: sebcode
 
-    samtools flagstat mappings/|fileevol|.sorted.dedup.bam
+.. code:: bash
+
+    samtools flagstat mappings/evolved-6.sorted.dedup.bam
 
     
 .. todo::
@@ -374,9 +375,9 @@ Lets get an mapping overview:
 For the sorted bam-file we can get read depth for at all positions of the reference genome, e.g. how many reads are overlapping the genomic position.
 
 
-.. rst-class:: sebcode
+.. code:: bash
 
-    samtools depth mappings/|fileevol|.sorted.dedup.bam | gzip > mappings/|fileevol|.depth.txt.gz
+    samtools depth mappings/evolved-6.sorted.dedup.bam | gzip > mappings/evolved-6.depth.txt.gz
 
 
 .. todo::
@@ -384,7 +385,7 @@ For the sorted bam-file we can get read depth for at all positions of the refere
    Extract the depth values for contig 20 and load the data into R, calculate some statistics of our scaffold.
 
    
-.. rst-class:: sebcode
+.. code:: bash
    
    zcat mappings/evolved-6.depth.txt.gz | egrep '^NODE_20_' | gzip >  mappings/NODE_20.depth.txt.gz
 
@@ -444,9 +445,9 @@ Installation:
 Run |qualimap| with:
 
 
-.. rst-class:: sebcode
+.. code:: bash
 
-   qualimap bamqc -bam mappings/|fileevol|.sorted.dedup.bam
+   qualimap bamqc -bam mappings/evolved-6.sorted.dedup.bam
 
 
 This will create a report in the mapping folder.
@@ -479,9 +480,9 @@ Frist off, we select reads with a mapping quality of at least 20.
 Furthermore, we select read-pair that have been mapped in a correct manner (same chromosome/contig, correct orientation to each other).
 
 
-.. rst-class:: sebcode
+.. code:: bash
                
-   samtools view -h -b -q 20 -f 2 mappings/|fileevol|.sorted.dedup.bam > mappings/|fileevol|.sorted.concordant.q20.bam
+   samtools view -h -b -q 20 -f 2 mappings/evolved-6.sorted.dedup.bam > mappings/evolved-6.sorted.concordant.q20.bam
 
 
 - ``-h``: Include the sam header
@@ -503,12 +504,12 @@ We could decide to use |kraken| like in section :ref:`taxonomic-investigation` t
 Lets see how we can get the unmapped portion of the reads from the bam-file:
 
 
-.. rst-class:: sebcode
+.. code:: bash
                
-    samtools view -b -f 4 mappings/|fileevol|.sorted.dedup.bam > mappings/|fileevol|.sorted.unmapped.bam
+    samtools view -b -f 4 mappings/evolved-6.sorted.dedup.bam > mappings/evolved-6.sorted.unmapped.bam
     
     # count them
-    samtools view -c mappings/|fileevol|.sorted.unmapped.bam
+    samtools view -c mappings/evolved-6.sorted.unmapped.bam
     
     
 - ``-b``: indicates that the output is BAM.
@@ -519,9 +520,9 @@ Lets see how we can get the unmapped portion of the reads from the bam-file:
 Lets extract the fastq sequence of the unmapped reads for read1 and read2.
 
 
-.. rst-class:: sebcode
-
-    bamToFastq -i mappings/|fileevol|.sorted.unmapped.bam -fq mappings/|fileevol|.sorted.unmapped.R1.fastq -fq2  mappings/|fileevol|.sorted.unmapped.R2.fastq
+.. code:: bash
+          
+    bamToFastq -i mappings/evolved-6.sorted.unmapped.bam -fq mappings/evolved-6.sorted.unmapped.R1.fastq -fq2  mappings/evolved-6.sorted.unmapped.R2.fastq
 
 
 .. only:: html
