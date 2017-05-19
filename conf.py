@@ -409,6 +409,7 @@ rst_epilog = """
 .. |igv| replace:: `IGV <http://software.broadinstitute.org/software/igv/>`__
 .. |muscle| replace:: `MUSCLE <http://www.ebi.ac.uk/Tools/msa/muscle/>`__
 .. |raxml| replace:: `RAxML-NG <https://github.com/amkozlov/raxml-ng>`__
+.. |snpeff| replace:: `SnpEff  <http://snpeff.sourceforge.net/index.html>`__
 """
 
 # prolog will be added to the beginning of each file
