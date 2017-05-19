@@ -101,7 +101,20 @@
 <li class="toctree-l1"><a class="reference internal" href="../ngs-variantcalling/index.html">7. NGS - Variant calling</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../ngs-annotation/index.html">8. NGS - Genome annotation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../ngs-orthology/index.html">9. NGS - Orthology and Phylogeny</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">10. NGS - Variants-of-interest</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">10. NGS - Variants-of-interest</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#preface">10.1. Preface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#overview">10.2. Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#learning-outcomes">10.3. Learning outcomes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#before-we-start">10.4. Before we start</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#general-comments-for-identifying-of-variants-of-interest">10.5. General comments for identifying of variants-of-interest</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#snpeff">10.6. SnpEff</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#installing-software">10.6.1. Installing software</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#prepare-snpeff-database">10.6.2. Prepare SnpEff database</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#snp-annotation">10.6.3. SNP annotation</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../quickref.html">11. Quick command reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../code.html">12. Coding solutions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../downloads.html">13. Downloads</a></li>
@@ -154,6 +167,167 @@
 <p class="last"><strong>THIS PART OF THE TUTORIAL IS CURRENTLY UNDER ACTIVE DEVELOPMENT SO EXPECT CONTENT
 TO CHANGE</strong></p>
 </div>
+<div class="section" id="preface">
+<h2>10.1. Preface<a class="headerlink" href="#preface" title="Permalink to this headline">¶</a></h2>
+<p>In this section we will use our genome annotation of our reference and our genome variants in the evolved line to find variants that are interesting in terms of the observed biology.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">You will encounter some <strong>To-do</strong> sections at times. Write the solutions and answers into a text-file.</p>
+</div>
+</div>
+<div class="section" id="overview">
+<h2>10.2. Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
+<p>The part of the workflow we will work on in this section can be viewed in <a class="reference internal" href="#fig-workflow-voi"><span class="std std-numref">Fig. 10.1</span></a>.</p>
+<div class="figure" id="id1">
+<span id="fig-workflow-voi"></span><img alt="../_images/workflow7.png" src="../_images/workflow7.png" />
+<p class="caption"><span class="caption-number">Fig. 10.1 </span><span class="caption-text">The part of the workflow we will work on in this section marked in red.</span></p>
+</div>
+</div>
+<div class="section" id="learning-outcomes">
+<h2>10.3. Learning outcomes<a class="headerlink" href="#learning-outcomes" title="Permalink to this headline">¶</a></h2>
+<p>After studying this section of the tutorial you should be able to:</p>
+<ol class="arabic simple">
+<li>Identify variants of interests.</li>
+<li>Understand how the variants might affect the observed biology in the evolved line.</li>
+</ol>
+</div>
+<div class="section" id="before-we-start">
+<h2>10.4. Before we start<a class="headerlink" href="#before-we-start" title="Permalink to this headline">¶</a></h2>
+<p>Lets see how our directory structure looks so far:</p>
+<div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~/</span><span class="n">analysis</span>
+<span class="n">ls</span> <span class="o">-</span><span class="mi">1</span><span class="n">F</span>
+</pre></div>
+</div>
+<div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="n">annotation</span><span class="o">/</span>
+<span class="n">assembly</span><span class="o">/</span>
+<span class="n">data</span><span class="o">/</span>
+<span class="n">kraken</span><span class="o">/</span>
+<span class="n">mappings</span><span class="o">/</span>
+<span class="n">phylogeny</span><span class="o">/</span>
+<span class="n">SolexaQA</span><span class="o">/</span>
+<span class="n">SolexaQA</span><span class="o">++</span>
+<span class="n">trimmed</span><span class="o">/</span>
+<span class="n">trimmed</span><span class="o">-</span><span class="n">fastqc</span><span class="o">/</span>
+<span class="n">trimmed</span><span class="o">-</span><span class="n">solexaqa</span><span class="o">/</span>
+<span class="n">variants</span><span class="o">/</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="general-comments-for-identifying-of-variants-of-interest">
+<h2>10.5. General comments for identifying of variants-of-interest<a class="headerlink" href="#general-comments-for-identifying-of-variants-of-interest" title="Permalink to this headline">¶</a></h2>
+<p>Things to consider when looking for VOI:</p>
+<ul class="simple">
+<li>The quality score of the variant call.<ul>
+<li>Do we call the variant with a higher then normal score?</li>
+</ul>
+</li>
+<li>The mapping quality score.<ul>
+<li>How confident are we that the reads were mapped at the position correctly?</li>
+</ul>
+</li>
+<li>The location of the SNP.<ul>
+<li>SNPs in larger contigs are probably more interesting than in tiny contigs.</li>
+<li>Does the SNP overlap a coding region in the genome annotation?</li>
+</ul>
+</li>
+<li>The type of SNP.<ul>
+<li>substitutions vs. indels</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="snpeff">
+<h2>10.6. SnpEff<a class="headerlink" href="#snpeff" title="Permalink to this headline">¶</a></h2>
+<p>We will be using <a class="reference external" href="http://snpeff.sourceforge.net/index.html">SnpEff</a> to annotate our identified variants. The tool will tell us on to which genes we should focus further analyses.</p>
+<div class="section" id="installing-software">
+<h3>10.6.1. Installing software<a class="headerlink" href="#installing-software" title="Permalink to this headline">¶</a></h3>
+<p>Tools we are going to use in this section and how to intall them if you not have done it yet.</p>
+<div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="c1"># activate the env</span>
+<span class="n">source</span> <span class="n">activate</span> <span class="n">ngs</span>
+
+<span class="c1"># Install these tools into the conda environment</span>
+<span class="c1"># if not already installed</span>
+<span class="n">conda</span> <span class="n">install</span> <span class="n">snpeff</span>
+</pre></div>
+</div>
+<p>Make a directory for the results (in your analysis directory) and change into
+the directory:</p>
+<div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="n">mkdir</span> <span class="n">voi</span>
+
+<span class="c1"># change into the directory</span>
+<span class="n">cd</span> <span class="n">voi</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="prepare-snpeff-database">
+<h3>10.6.2. Prepare SnpEff database<a class="headerlink" href="#prepare-snpeff-database" title="Permalink to this headline">¶</a></h3>
+<p>We need to create our own config file for <a class="reference external" href="http://snpeff.sourceforge.net/index.html">SnpEff</a>. Where is the <code class="docutils literal"><span class="pre">snpEff.config</span></code>:</p>
+<div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="n">find</span> <span class="o">~</span> <span class="o">-</span><span class="n">name</span> <span class="n">snpEff</span><span class="o">.</span><span class="n">config</span>
+<span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">manager</span><span class="o">/</span><span class="n">miniconda3</span><span class="o">/</span><span class="n">envs</span><span class="o">/</span><span class="n">ngs</span><span class="o">/</span><span class="n">share</span><span class="o">/</span><span class="n">snpeff</span><span class="o">-</span><span class="mf">4.3</span><span class="o">.</span><span class="mi">1</span><span class="n">m</span><span class="o">-</span><span class="mi">0</span><span class="o">/</span><span class="n">snpEff</span><span class="o">.</span><span class="n">config</span>
+</pre></div>
+</div>
+<p>This will give you the path to the config file. It might be loking a bit different then the one shown here.</p>
+<p>Make a local copy of the config file. Edit the config file.</p>
+<div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="n">cp</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">manager</span><span class="o">/</span><span class="n">miniconda3</span><span class="o">/</span><span class="n">envs</span><span class="o">/</span><span class="n">ngs</span><span class="o">/</span><span class="n">share</span><span class="o">/</span><span class="n">snpeff</span><span class="o">-</span><span class="mf">4.3</span><span class="o">.</span><span class="mi">1</span><span class="n">m</span><span class="o">-</span><span class="mi">0</span><span class="o">/</span><span class="n">snpEff</span><span class="o">.</span><span class="n">config</span> <span class="o">.</span>
+<span class="n">nano</span> <span class="n">snpEff</span><span class="o">.</span><span class="n">config</span>
+</pre></div>
+</div>
+<p>Make sure the data directory path in the config file looks like this:</p>
+<div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="n">data</span><span class="o">.</span><span class="n">dir</span> <span class="o">=</span> <span class="o">./</span><span class="n">data</span><span class="o">/</span>
+</pre></div>
+</div>
+<p>There is a section with databases, which starts like this:</p>
+<div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="c1">#-------------------------------------------------------------------------------</span>
+<span class="c1"># Databases &amp; Genomes</span>
+<span class="c1">#</span>
+<span class="c1"># One entry per genome version.</span>
+<span class="c1">#</span>
+<span class="c1"># For genome version &#39;ZZZ&#39; the entries look like</span>
+<span class="c1">#    ZZZ.genome              : Real name for ZZZ (e.g. &#39;Human&#39;)</span>
+<span class="c1">#    ZZZ.reference           : [Optional] Comma separated list of URL to site/s where information for building ZZZ database was extracted.</span>
+<span class="c1">#    ZZZ.chrName.codonTable  : [Optional] Define codon table used for chromosome &#39;chrName&#39; (Default: &#39;codon.Standard&#39;)</span>
+<span class="c1">#</span>
+<span class="c1">#-------------------------------------------------------------------------------</span>
+</pre></div>
+</div>
+<p>Add the following two lines in the database section:</p>
+<div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="c1"># my yeast genome</span>
+<span class="n">yeastanc</span><span class="o">.</span><span class="n">genome</span> <span class="p">:</span> <span class="n">WildYeastAnc</span>
+</pre></div>
+</div>
+<p>Now, we need to create a local data folder called './data/yeastanc'.</p>
+<div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="c1"># create folders</span>
+<span class="n">mkdir</span> <span class="o">-</span><span class="n">p</span> <span class="o">./</span><span class="n">data</span><span class="o">/</span><span class="n">yeastanc</span>
+</pre></div>
+</div>
+<p>Copy our genome assembly to the newly created data folder.
+The name needs to be <code class="docutils literal"><span class="pre">sequences.fa</span></code> or <code class="docutils literal"><span class="pre">yeastanc.fa</span></code>:</p>
+<div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="n">cp</span> <span class="o">../</span><span class="n">assembly</span><span class="o">/</span><span class="n">spades</span><span class="o">-</span><span class="n">final</span><span class="o">/</span><span class="n">scaffolds</span><span class="o">.</span><span class="n">fasta</span> <span class="o">./</span><span class="n">data</span><span class="o">/</span><span class="n">yeastanc</span><span class="o">/</span><span class="n">sequences</span><span class="o">.</span><span class="n">fa</span>
+<span class="n">gzip</span> <span class="o">./</span><span class="n">data</span><span class="o">/</span><span class="n">yeastanc</span><span class="o">/</span><span class="n">sequences</span><span class="o">.</span><span class="n">fa</span>
+</pre></div>
+</div>
+<p>Copy our genome annotation to the data folder.
+The name needs to be <code class="docutils literal"><span class="pre">genes.gff</span></code> (or <code class="docutils literal"><span class="pre">genes.gtf</span></code> for gtf-files).</p>
+<div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="n">cp</span> <span class="o">../</span><span class="n">annotation</span><span class="o">/</span><span class="n">your_new_fungus</span><span class="o">.</span><span class="n">gff</span> <span class="o">./</span><span class="n">data</span><span class="o">/</span><span class="n">yeastanc</span><span class="o">/</span><span class="n">genes</span><span class="o">.</span><span class="n">gff</span>
+<span class="n">gzip</span> <span class="o">./</span><span class="n">data</span><span class="o">/</span><span class="n">yeastanc</span><span class="o">/</span><span class="n">genes</span><span class="o">.</span><span class="n">gff</span>
+</pre></div>
+</div>
+<p>Now we can build a new <a class="reference external" href="http://snpeff.sourceforge.net/index.html">SnpEff</a> database:</p>
+<div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="n">snpEff</span> <span class="n">build</span> <span class="o">-</span><span class="n">c</span> <span class="n">snpEff</span><span class="o">.</span><span class="n">config</span> <span class="o">-</span><span class="n">gff3</span> <span class="o">-</span><span class="n">v</span> <span class="n">yeastanc</span>
+
+<span class="c1"># or for gtf annotation files:</span>
+<span class="n">snpEff</span> <span class="n">build</span> <span class="o">-</span><span class="n">c</span> <span class="n">snpEff</span><span class="o">.</span><span class="n">config</span> <span class="o">-</span><span class="n">gtf22</span> <span class="o">-</span><span class="n">v</span> <span class="n">yeastanc</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="snp-annotation">
+<h3>10.6.3. SNP annotation<a class="headerlink" href="#snp-annotation" title="Permalink to this headline">¶</a></h3>
+<p>Now we can use our new <a class="reference external" href="http://snpeff.sourceforge.net/index.html">SnpEff</a> database to annotate some variants, e.g.:</p>
+<div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="n">snpEff</span> <span class="o">-</span><span class="n">c</span> <span class="n">snpEff</span><span class="o">.</span><span class="n">config</span> <span class="n">yeastanc</span> <span class="o">../</span><span class="n">variants</span><span class="o">/</span><span class="n">evolved</span><span class="o">-</span><span class="mf">6.</span><span class="n">freebayes</span><span class="o">.</span><span class="n">filtered</span><span class="o">.</span><span class="n">vcf</span><span class="o">.</span><span class="n">gz</span> <span class="o">&gt;</span> <span class="n">evolved</span><span class="o">-</span><span class="mf">6.</span><span class="n">freebayes</span><span class="o">.</span><span class="n">filtered</span><span class="o">.</span><span class="n">anno</span><span class="o">.</span><span class="n">vcf</span>
+</pre></div>
+</div>
+</div>
+</div>
 </div>
 
 
@@ -176,7 +350,7 @@ TO CHANGE</strong></p>
   <div role="contentinfo">
     <p>
         &copy; Copyright 2016-2017, Sebastian Schmeier.
-      Last updated on May 18, 2017.
+      Last updated on May 20, 2017.
 
     </p>
   </div>
