@@ -86,6 +86,7 @@ It is also simple to install and use.
 SPAdes usage
 ~~~~~~~~~~~~
 
+
 .. code:: bash
 
     # change to your analysis root folder
@@ -100,9 +101,10 @@ SPAdes usage
 
 The two files we need to submit to |spades| are two paired-end read files.
 
-.. rst-class:: sebcode
+
+.. code:: bash
                
-    spades.py -o assembly/spades-default/ -1 trimmed/|fileanc1|.fastq.trimmed.gz -2 trimmed/|fileanc2|.fastq.trimmed.gz                   
+    spades.py -o assembly/spades-default/ -1 trimmed/ancestor-R1.fastq.trimmed.gz -2 trimmed/ancestor-R2.fastq.trimmed.gz                   
 
 
 .. todo::
@@ -143,33 +145,51 @@ We can install it locally with:
 
 Run |quast| with both assembly scaffolds.fasta files to compare the results.
 
-.. hint::
 
-   Should you be unable to run |spades| on the data, you can download the assemblies `here <http://compbio.massey.ac.nz/data/203341/assembly.tar.gz>`__. Unarchive and uncompress the files with ``tar -xvzf assembly.tar.gz``.
+.. note::
+
+   Should you be unable to run |spades| on the data, you can manually download the assembly from :ref:`downloads`. Unarchive and uncompress the files with ``tar -xvzf assembly.tar.gz``.
 
 
-.. rst-class:: sebcode
-
-   quast -o assembly/quast assembly/spades-default/scaffolds.fasta assembly/spades-150/scaffolds.fasta
+  
+.. code:: bash
+          
+          quast -o assembly/quast assembly/spades-default/scaffolds.fasta assembly/spades-150/scaffolds.fasta
    
 
 .. todo::
                
    #. Compare the results of |quast| with regards to the two different assemblies.
    #. Which one do you prefer and why?
+
+
+Compare the untrimmed data
+--------------------------
+
+.. todo::
+   #. To see if our trimming procedure has an influence on our assembly, run the same command you used on the trimmed data on the original untrimmed data.
+   #. Run |quast| on the assembly and compare the statistics to the one derived for the trimmed data set. Write down your observations.
+
+
+.. hint::
+
+   Should you not get it right, try the commands in :ref:`code-assembly2`.
+
    
-      
 Assemblathon
 ------------
 
 .. todo::
                 
-   Now that you know the basics for assembling a genome and judging their quality, play with the |spades| parameters to create the best assembly possible. 
+   Now that you know the basics for assembling a genome and judging their quality, play with the |spades| parameters and the **trimmed data** to create the best assembly possible.
+   We will compare the assemblies to find out who created the best one.
 
 
 .. todo::
 
-   Once you have your final assembly, rename your assembly directory int ``spades-final``, e.g. ``mv assembly/spades-default assembly/spades-final``.
+   #. Once you have your final assembly, rename your assembly directory int ``spades-final``, e.g. ``mv assembly/spades-default assembly/spades-final``.
+   #. Write down in your notes the command used to create your final assembly.
+   #. Write down in your notes the assembly statistics derived through |quast|
 
    
 

@@ -45,12 +45,16 @@ Lets see how our directory structure looks so far:
 .. code:: bash
 
           cd ~/analysis
+          # create a mapping result directory
+          mkdir mappings
           ls -1F
+          
 
 .. code:: bash
           
           assembly/
           data/
+          mappings/
           SolexaQA/
           SolexaQA++
           trimmed/
@@ -126,6 +130,11 @@ Creating a reference index for mapping
    Should you not get it right, try the commands in :ref:`code-bowtie1`.
 
 
+.. note::
+
+   Should you be unable to run |bowtie| indexing on the data, you can download the index from :ref:`downloads`. Unarchive and uncompress the files with ``tar -xvzf bowtie2-index.tar.gz``.
+
+   
 
 Mapping reads in a paired-end manner
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -141,7 +150,13 @@ Now that we have created our index, it is time to map the filtered and trimmed s
 
    Should you not get it right, try the commands in :ref:`code-bowtie2`.
 
-          
+   
+.. note::
+
+   |bowtie| does give very cryptic error messages without telling much why it did not want to run. The most likely reason is that you specified the paths to the files and result file wrongly. Check this first. Use tab completion a lot!
+
+
+   
 BWA
 ---
 
@@ -188,6 +203,13 @@ Creating a reference index for mapping
    Should you not get it right, try the commands in :ref:`code-bwa1`.
 
 
+.. note::
+
+   Should you be unable to run |bwa| indexing on the data, you can download the index from :ref:`downloads`. Unarchive and uncompress the files with ``tar -xvzf bwa-index.tar.gz``.
+
+   
+   
+
 Mapping reads in a paired-end manner
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -206,7 +228,7 @@ Now that we have created our index, it is time to map the filtered and trimmed s
 The sam mapping file-format
 ---------------------------
 
-|bwa| will produce a mapping file in sam-format. Have a look into the sam-file that was created by |bwa|.
+|bowtie| and |bwa| will produce a mapping file in sam-format. Have a look into the sam-file that was created by either program.
 A quick overview of the sam-format can be found `here <http://bio-bwa.sourceforge.net/bwa.shtml#4>`__ and even more information can be found `here <http://samtools.github.io/hts-specs/SAMv1.pdf>`__.
 Briefly, first there are a lot of header lines. Then, for each read, that mapped to the reference, there is one line.
 
@@ -262,9 +284,9 @@ Because aligners can sometimes leave unusual `SAM flag <http://bio-bwa.sourcefor
 We are going to produce also compressed bam output for efficient storing of and access to the mapped reads.
 
 
-.. rst-class:: sebcode
+.. code:: bash
                
-   samtools fixmate -O bam mappings/|fileevol|.sam mappings/|fileevol|.fixmate.bam
+   samtools fixmate -O bam mappings/evolved-6.sam mappings/evolved-6.fixmate.bam
 
    
 - ``-O bam``: specifies that we want compressed bam output
@@ -285,9 +307,9 @@ We will be using the `SAM flag <http://bio-bwa.sourceforge.net/bwa.shtml#4>`__ i
 Once we have bam-file, we can also delete the original sam-file as it requires too much space.
    
   
-.. rst-class:: sebcode
+.. code:: bash
 
-   rm mappings/|fileevol|.sam
+   rm mappings/evolved-6.sam
 
 
 Sorting
@@ -296,10 +318,10 @@ Sorting
 We are going to use |samtools| again to sort the bam-file into coordinate order:
 
 
-.. rst-class:: sebcode
+.. code:: bash
 
     # convert to bam file and sort
-    samtools sort -O bam -o mappings/|fileevol|.sorted.bam mappings/|fileevol|.fixmate.bam
+    samtools sort -O bam -o mappings/evolved-6.sorted.bam mappings/evolved-6.fixmate.bam
     
 
 - ``-o``: specifies the name of the output file.
@@ -311,9 +333,9 @@ Remove duplicates
 
 In this step we remove duplicate reads. The main purpose of removing duplicates is to mitigate the effects of PCR amplification bias introduced during library construction. 
 
-.. rst-class:: sebcode
+.. code:: bash
 
-    picard MarkDuplicates REMOVE_DUPLICATES=true METRICS_FILE=mappings/|fileevol|.marked_dup_metrics.txt INPUT=mappings/|fileevol|.sorted.bam OUTPUT=mappings/|fileevol|.sorted.dedup.bam
+    picard MarkDuplicates REMOVE_DUPLICATES=true METRICS_FILE=mappings/evolved-6.marked_dup_metrics.txt INPUT=mappings/evolved-6.sorted.bam OUTPUT=mappings/evolved-6.sorted.dedup.bam
 
 
 .. todo::
@@ -321,6 +343,13 @@ In this step we remove duplicate reads. The main purpose of removing duplicates 
    Figure out what "PCR amplification bias" means.
     
 
+.. note::
+
+   Should you be unable to do the post-processing steps, you can download the mapped data from :ref:`downloads`.
+
+
+
+   
 Mapping statistics
 ------------------
 
@@ -329,9 +358,10 @@ Stats with SAMtools
 
 Lets get an mapping overview:
 
-.. rst-class:: sebcode
 
-    samtools flagstat mappings/|fileevol|.sorted.dedup.bam
+.. code:: bash
+
+    samtools flagstat mappings/evolved-6.sorted.dedup.bam
 
     
 .. todo::
@@ -345,9 +375,9 @@ Lets get an mapping overview:
 For the sorted bam-file we can get read depth for at all positions of the reference genome, e.g. how many reads are overlapping the genomic position.
 
 
-.. rst-class:: sebcode
+.. code:: bash
 
-    samtools depth mappings/|fileevol|.sorted.dedup.bam | gzip > mappings/|fileevol|.depth.txt.gz
+    samtools depth mappings/evolved-6.sorted.dedup.bam | gzip > mappings/evolved-6.depth.txt.gz
 
 
 .. todo::
@@ -355,7 +385,7 @@ For the sorted bam-file we can get read depth for at all positions of the refere
    Extract the depth values for contig 20 and load the data into R, calculate some statistics of our scaffold.
 
    
-.. rst-class:: sebcode
+.. code:: bash
    
    zcat mappings/evolved-6.depth.txt.gz | egrep '^NODE_20_' | gzip >  mappings/NODE_20.depth.txt.gz
 
@@ -415,9 +445,9 @@ Installation:
 Run |qualimap| with:
 
 
-.. rst-class:: sebcode
+.. code:: bash
 
-   qualimap bamqc -bam mappings/|fileevol|.sorted.dedup.bam
+   qualimap bamqc -bam mappings/evolved-6.sorted.dedup.bam
 
 
 This will create a report in the mapping folder.
@@ -450,9 +480,9 @@ Frist off, we select reads with a mapping quality of at least 20.
 Furthermore, we select read-pair that have been mapped in a correct manner (same chromosome/contig, correct orientation to each other).
 
 
-.. rst-class:: sebcode
+.. code:: bash
                
-   samtools view -h -b -q 20 -f 2 mappings/|fileevol|.sorted.dedup.bam > mappings/|fileevol|.sorted.concordant.q20.bam
+   samtools view -h -b -q 20 -f 2 mappings/evolved-6.sorted.dedup.bam > mappings/evolved-6.sorted.concordant.q20.bam
 
 
 - ``-h``: Include the sam header
@@ -474,12 +504,12 @@ We could decide to use |kraken| like in section :ref:`taxonomic-investigation` t
 Lets see how we can get the unmapped portion of the reads from the bam-file:
 
 
-.. rst-class:: sebcode
+.. code:: bash
                
-    samtools view -b -f 4 mappings/|fileevol|.sorted.dedup.bam > mappings/|fileevol|.sorted.unmapped.bam
+    samtools view -b -f 4 mappings/evolved-6.sorted.dedup.bam > mappings/evolved-6.sorted.unmapped.bam
     
     # count them
-    samtools view -c mappings/|fileevol|.sorted.unmapped.bam
+    samtools view -c mappings/evolved-6.sorted.unmapped.bam
     
     
 - ``-b``: indicates that the output is BAM.
@@ -490,9 +520,9 @@ Lets see how we can get the unmapped portion of the reads from the bam-file:
 Lets extract the fastq sequence of the unmapped reads for read1 and read2.
 
 
-.. rst-class:: sebcode
-
-    bamToFastq -i |fileevol|.sorted.unmapped.bam -fq mappings/|fileevol|.sorted.unmapped.R1.fastq -fq2  mappings/|fileevol|.sorted.unmapped.R2.fastq
+.. code:: bash
+          
+    bamToFastq -i mappings/evolved-6.sorted.unmapped.bam -fq mappings/evolved-6.sorted.unmapped.R1.fastq -fq2  mappings/evolved-6.sorted.unmapped.R2.fastq
 
 
 .. only:: html

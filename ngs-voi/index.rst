@@ -5,7 +5,6 @@ NGS - Variants-of-interest
    **THIS PART OF THE TUTORIAL IS CURRENTLY UNDER ACTIVE DEVELOPMENT SO EXPECT CONTENT
    TO CHANGE**
 
-
 Preface
 -------
 
@@ -194,3 +193,4 @@ Use snpEff for annotation with local config file:
 .. code:: bash
 
     snpEff -c snpEff.config ...
+

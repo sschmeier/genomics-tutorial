@@ -8,7 +8,7 @@ In this section we will use our genome assembly based on the ancestor and call g
 
 .. There is an accompanying lecture for this tutorial (`SNPs - GWAS - eQTLs introduction <http://dx.doi.org/10.6084/m9.figshare.1515026>`__).
 
-.. NOTE::
+.. NOTE`::
 
    You will encounter some **To-do** sections at times. Write the solutions and answers into a text-file.   
 
@@ -45,7 +45,6 @@ Lets see how our directory structure looks so far:
 
 .. code:: bash
 
-          annotation/
           assembly/
           data/
           kraken/
@@ -71,10 +70,11 @@ Tools we are going to use in this section and how to intall them if you not have
           # if not already installed
           conda install samtools
           conda install bamtools
-          conda install bcftools
           conda install freebayes
-          conda install rtg-tools
           conda install bedtools
+          conda install vcflib
+          conda install rtg-tools
+          conda install bcftools
 
           
 Preprocessing
@@ -92,9 +92,9 @@ Given a scaffold/contig file in fasta-format, e.g. ``scaffolds.fasta`` which is 
 Furthermore we need to pre-process our mapping files a bit further and create a bam-index file (``.bai``) for the bam-file we want to work with:
 
 
-.. rst-class:: sebcode
+.. code:: bash
                
-          bamtools index -in mappings/|fileevol|.sorted.concordant.q20.bam
+          bamtools index -in mappings/evolved-6.sorted.concordant.q20.bam
 
 
 Lets also create a new directory for the variants:
@@ -113,10 +113,10 @@ SAMtools mpileup
 
 We use the sorted filtered bam-file that we produced in the mapping step before.
 
-.. rst-class:: sebcode
+.. code:: bash
 
    # We first pile up all the reads and then call variants
-   samtools mpileup -u -g -f assembly/spades-final/scaffolds.fasta mappings/|fileevol|.sorted.concordant.q20.bam | bcftools call -v -m -O z -o variants/|fileevol|.mpileup.vcf.gz
+   samtools mpileup -u -g -f assembly/spades-final/scaffolds.fasta mappings/evolved-6.sorted.concordant.q20.bam | bcftools call -v -m -O z -o variants/evolved-6.mpileup.vcf.gz
    
 |samtools| mpileup parameter:
 
@@ -138,10 +138,10 @@ Freebayes
 As an alternative we can do some variant calling with another tool called |freebayes|.
 Given a reference genome scaffold file in fasta-format, e.g. ``scaffolds.fasta`` and the index in ``.fai`` format and a mapping file (.bam file) and a mapping index (.bai file), we can call variants with |freebayes| like so:
 
-.. rst-class:: sebcode
+.. code:: bash
 
    # Now we call variants and pipe the results into a new file
-   freebayes -f assembly/spades-final/scaffolds.fasta mappings/|fileevol|.sorted.concordant.q20.bam | gzip > variants/|fileevol|.freebayes.vcf.gz
+   freebayes -f assembly/spades-final/scaffolds.fasta mappings/evolved-6.sorted.concordant.q20.bam | gzip > variants/evolved-6.freebayes.vcf.gz
 
          
 Post-processing
@@ -152,10 +152,10 @@ Understanding the output files (.vcf)
 
 Lets look at a vcf-file:
 
-.. rst-class:: sebcode
+.. code:: bash
 
    # first 10 lines, which are part of the header
-   zcat variants/|fileevol|.mpileup.vcf.gz | head
+   zcat variants/evolved-6.mpileup.vcf.gz | head
 
           
 .. code:: bash
@@ -174,10 +174,10 @@ Lets look at a vcf-file:
 
 Lets look at the variants:
 
-.. rst-class:: sebcode
+.. code:: bash
                
    # remove header lines and look at top 4 entires
-   zcat variants/|fileevol|.mpileup.vcf.gz | egrep -v '##' | head -4
+   zcat variants/evolved-6.mpileup.vcf.gz | egrep -v '##' | head -4
 
           
 .. code:: bash
@@ -226,9 +226,9 @@ Now we can use it to do some statistics and filter our variant calls.
 
 First, to prepare out vcf-file for querying we need to index it with ``tabix``:
 
-.. rst-class:: sebcode
+.. code:: bash
 
-   tabix -p vcf variants/|fileevol|.mpileup.vcf.gz
+   tabix -p vcf variants/evolved-6.mpileup.vcf.gz
 
 
 - ``-p vcf``: input format 
@@ -237,9 +237,9 @@ First, to prepare out vcf-file for querying we need to index it with ``tabix``:
 We can get some quick stats with ``rtg vcfstats``:
 
 
-.. rst-class:: sebcode
+.. code:: bash
                
-   rtg vcfstats variants/|fileevol|.mpileup.vcf.gz
+   rtg vcfstats variants/evolved-6.mpileup.vcf.gz
 
    
 Example output from ``rtg vcfstats``:
@@ -271,9 +271,9 @@ Example output from ``rtg vcfstats``:
 However, we can also run |bcftools| to extract more detailed statistics about our variant calls:
    
 
-.. rst-class:: sebcode
+.. code:: bash
                
-   bcftools stats -F assembly/spades-final/scaffolds.fasta -s - variants/|fileevol|.mpileup.vcf.gz > variants/|fileevol|.mpileup.vcf.gz.stats
+   bcftools stats -F assembly/spades-final/scaffolds.fasta -s - variants/evolved-6.mpileup.vcf.gz > variants/evolved-6.mpileup.vcf.gz.stats
 
 
 - ``-s -``: list of samples for sample stats, "-" to include all samples
@@ -283,10 +283,10 @@ However, we can also run |bcftools| to extract more detailed statistics about ou
 Now we take the stats and make some plots (e.g. :numref:`fig-vcfstats`) which are particular of interest if having multiple samples, as one can easily compare them. However, we are only working with one here:
 
 
-.. rst-class:: sebcode
+.. code:: bash
    
    mkdir variants/plots
-   plot-vcfstats -p variants/plots/ variants/|fileevol|.mpileup.vcf.gz.stats
+   plot-vcfstats -p variants/plots/ variants/evolved-6.mpileup.vcf.gz.stats
 
    
 - ``-p``: The output files prefix, add a slash at the end to create a new directory.
@@ -311,10 +311,10 @@ For one, we can filter out low quality reads.
 Here, we only include variants that have quality > 30.
 
 
-.. rst-class:: sebcode
+.. code:: bash
 
    # use rtg vcfffilter
-   rtg vcffilter -q 30 -i variants/|fileevol|.mpileup.vcf.gz -o variants/|fileevol|.mpileup.q30.vcf.gz
+   rtg vcffilter -q 30 -i variants/evolved-6.mpileup.vcf.gz -o variants/evolved-6.mpileup.q30.vcf.gz
 
 
 - ``-i FILE``: input file
@@ -322,27 +322,42 @@ Here, we only include variants that have quality > 30.
 - ``-q FLOAT``: minimal allowed quality in output.
   
    
-or use |bcftools|:
+or use |vcflib|:
 
 
-.. rst-class:: sebcode
+.. code:: bash
 
-   # or use bcftools
-   bcftools filter -O z -o variants/|fileevol|.mpileup.q30.vcf.gz -i'%QUAL>=30' variants/|fileevol|.mpileup.vcf.gz
-   # bcftools filter does not index output, so we need to do it again
-   tabix -p vcf variants/|fileevol|.mpileup.q30.vcf.gz
+   # or use vcflib
+   zcat variants/evolved-6.mpileup.vcf.gz  | vcffilter -f "QUAL >= 30" | gzip > variants/evolved-6.mpileup.q30.vcf.gz z
       
-
-- ``-i'%QUAL>=30'``: we only include variants that have been called with quality >= 30.
+- ``-f "QUAL >= 30"``: we only include variants that have been called with quality >= 30.
 
 
 Quick stats for the filtered variants:
   
-.. rst-class:: sebcode 
+.. code:: bash 
           
    # look at stats for filtered 
-   rtg vcfstats variants/|fileevol|.mpileup.q30.vcf.gz
-  
+   rtg vcfstats variants/evolved-6.mpileup.q30.vcf.gz
+
+
+|freebayes| adds some extra information to the vcf-fiels it creates.
+This allows for some more detailed filtering.
+This strategy will NOT work on the |samtools| mpileup called variants
+Here we filter, based on some recommendation form the developer of |freebayes|:
+
+
+.. code:: bash
+
+   zcat variants/evolved-6.freebayes.vcf.gz  | vcffilter -f "QUAL > 1 & QUAL / AO > 10 & SAF > 0 & SAR > 0 & RPR > 1 & RPL > 1" | gzip > variants/evolved-6.freebayes.filtered.vcf.gz
+
+
+- ``QUAL > 1``: removes really bad sites
+- ``QUAL / AO > 10``: additional contribution of each obs should be 10 log units (~ Q10 per read)
+- ``SAF > 0 & SAR > 0``: reads on both strands
+- ``RPR > 1 & RPL > 1``: at least two reads “balanced” to each side of the site
+
+   
   
 .. todo::
     

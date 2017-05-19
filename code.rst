@@ -11,21 +11,21 @@ Code: FastQC
 
 *Create directory:*
 
-.. rst-class:: sebcode
+.. code:: bash
 
    mkdir trimmed-fastqc
 
 
 *Run FastQC:*
 
-.. rst-class:: sebcode
+.. code:: bash
 
-   fastqc -o trimmed-fastqc trimmed/|fileanc1|.fastq.trimmed.gz trimmed/|fileanc2|.fastq.trimmed.gz trimmed/|fileevol1|.fastq.trimmed.gz trimmed/|fileevol2|.fastq.trimmed.gz
+   fastqc -o trimmed-fastqc trimmed/ancestor-R1.fastq.trimmed.gz trimmed/ancestor-R2.fastq.trimmed.gz trimmed/evolved-6-R1.fastq.trimmed.gz trimmed/evolved-6-R2.fastq.trimmed.gz
 
 
 *Open html webpages:*
 
-.. rst-class:: sebcode
+.. code:: bash
 
    firefox trimmed-fastqc/\*.html
 
@@ -37,22 +37,22 @@ Code: SolexaQA++ trimming
 
 *Create directory for result-files:*
 
-.. rst-class:: sebcode
+.. code:: bash
 
    mkdir trimmed
 
 
 *Run SolexaQA++:*
 
-.. rst-class:: sebcode
+.. code:: bash
                
-   ./SolexaQA++ dynamictrim -p 0.01 -d trimmed/ data/|fileanc1|.fastq.gz
+   ./SolexaQA++ dynamictrim -p 0.01 -d trimmed/ data/ancestor-R1.fastq.gz
    
-   ./SolexaQA++ dynamictrim -p 0.01 -d trimmed/ data/|fileanc2|.fastq.gz
+   ./SolexaQA++ dynamictrim -p 0.01 -d trimmed/ data/ancestor-R2.fastq.gz
 
-   ./SolexaQA++ dynamictrim -p 0.01 -d trimmed/ data/|fileevol1|.fastq.gz
+   ./SolexaQA++ dynamictrim -p 0.01 -d trimmed/ data/evolved-6-R1.fastq.gz
 
-   ./SolexaQA++ dynamictrim -p 0.01 -d trimmed/ data/|fileevol2|.fastq.gz
+   ./SolexaQA++ dynamictrim -p 0.01 -d trimmed/ data/evolved-6-R2.fastq.gz
 
 
 .. _code-qc3:
@@ -62,22 +62,22 @@ Code: SolexaQA++ qc
 
 *Create directory for result-files:*
 
-.. rst-class:: sebcode
+.. code:: bash
                
    mkdir trimmed-solexaqa/
 
    
 *Run SolexaQA++:*
 
-.. rst-class:: sebcode
+.. code:: bash
                
-   ./SolexaQA++ analysis -d trimmed-solexaqa trimmed/|fileanc1|.fastq.trimmed.gz
+   ./SolexaQA++ analysis -d trimmed-solexaqa trimmed/ancestor-R1.fastq.trimmed.gz
    
-   ./SolexaQA++ analysis -d trimmed-solexaqa trimmed/|fileanc2|.fastq.trimmed.gz
+   ./SolexaQA++ analysis -d trimmed-solexaqa trimmed/ancestor-R2.fastq.trimmed.gz
 
-   ./SolexaQA++ analysis -d trimmed-solexaqa trimmed/|fileevol1|.fastq.trimmed.gz
+   ./SolexaQA++ analysis -d trimmed-solexaqa trimmed/evolved-6-R1.fastq.trimmed.gz
 
-   ./SolexaQA++ analysis -d trimmed-solexaqa trimmed/|fileevol2|.fastq.trimmed.gz
+   ./SolexaQA++ analysis -d trimmed-solexaqa trimmed/evolved-6-R2.fastq.trimmed.gz
 
 
 Assembly
@@ -85,12 +85,22 @@ Assembly
 
 .. _code-assembly1:
 
-Code: SPAdes assembly
-~~~~~~~~~~~~~~~~~~~~~
+Code: SPAdes assembly (trimmed data)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. rst-class:: sebcode
+.. code:: bash 
 
-   spades.py -o assembly/spades-150/ -k 21,33,55,77 --careful  -1 trimmed/|fileanc1|.fastq.trimmed.gz -2 trimmed/|fileanc2|.fastq.trimmed.gz
+   spades.py -o assembly/spades-150/ -k 21,33,55,77 --careful -1 trimmed/ancestor-R1.fastq.trimmed.gz -2 trimmed/ancestor-R2.fastq.trimmed.gz 
+
+
+.. _code-assembly2:
+   
+Code: SPAdes assembly (original data)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. code:: bash 
+
+   spades.py -o assembly/spades-original/ -k 21,33,55,77 --careful -1 data/ancestor-R1.fastq.gz -2 data/ancestor-R2.fastq.gz 
 
 
    
@@ -104,7 +114,7 @@ Code: Bowtie2 indexing
 
 *Build the index:*
 
-.. rst-class:: sebcode
+.. code:: bash
 
    bowtie2-build assembly/spades-final/scaffolds.fasta assembly/spades-final/scaffolds
 
@@ -116,9 +126,9 @@ Code: Bowtie2 mapping
    
 *Map to the genome. Use a max fragemnt length of 1000 bp:*
 
-.. rst-class:: sebcode
+.. code:: bash
 
-   bowtie2 -X 1000 -x assembly/spades-final/scaffolds -1 trimmed/|fileevol1|.fastq.trimmed.gz -2 trimmed/|fileevol2|.fastq.trimmed.gz -S mappings/|fileevol|.sam 
+   bowtie2 -X 1000 -x assembly/spades-final/scaffolds -1 trimmed/evolved-6-R1.fastq.trimmed.gz -2 trimmed/evolved-6-R2.fastq.trimmed.gz -S mappings/evolved-6.sam 
 
    
 .. _code-bwa1: 
@@ -128,7 +138,7 @@ Code: BWA indexing
 
 *Index the genome assembly:*
 
-.. rst-class:: sebcode
+.. code:: bash
                
    bwa index assembly/spades-final/scaffolds.fasta
 
@@ -140,6 +150,6 @@ Code: BWA mapping
 
 *Run bwa mem:*
 
-.. rst-class:: sebcode
+.. code:: bash
 
-   bwa mem assembly/spades-final/scaffolds.fasta trimmed/|fileevol1|.fastq.trimmed.gz trimmed/|fileevol2|.fastq.trimmed.gz > mappings/|fileevol|.sam 
+   bwa mem assembly/spades-final/scaffolds.fasta trimmed/evolved-6-R1.fastq.trimmed.gz trimmed/evolved-6-R2.fastq.trimmed.gz > mappings/evolved-6.sam 
