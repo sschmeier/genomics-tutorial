@@ -52,6 +52,7 @@ Lets see how our directory structure looks so far:
           data/
           kraken/
           mappings/
+          phylogeny/
           SolexaQA/
           SolexaQA++
           trimmed/
@@ -59,23 +60,9 @@ Lets see how our directory structure looks so far:
           trimmed-solexaqa/
           variants/
 
-   
-Installing necessary software
------------------------------
   
-Tools we are going to use in this section and how to intall them if you not have done it yet.
-
-.. code:: bash
-
-          # activate the env
-          source activate ngs
-          
-          # Install these tools into the conda environment
-          # if not already installed
-        
-
-Identification of variants-of-interest (VOI)
---------------------------------------------
+General comments for identifying of variants-of-interest
+--------------------------------------------------------
 
 
 Things to consider when looking for VOI:
@@ -97,100 +84,145 @@ Things to consider when looking for VOI:
 
   * substitutions vs. indels 
 
-    
-Overlap variants with genes
-~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. todo::
+SnpEff
+------
 
-   OLIN: Write this section.
+We will be using |snpeff| to annotate our identified variants. The tool will tell us on to which genes we should focus further analyses.
 
-   
-Visualise variants on the reference genome
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. todo::
+Installing software
+~~~~~~~~~~~~~~~~~~~
+  
+Tools we are going to use in this section and how to intall them if you not have done it yet.
 
-   OLIN: Write this section.
-GET DATA
---------
 
 .. code:: bash
 
-    cp ~/projects_current/203341/assembly/spades-default/scaffolds.fasta .
-    cp ~/projects_current/203341/variants/evolved-6.mpileup.q30.vcf.gz .
+          # activate the env
+          source activate ngs
+          
+          # Install these tools into the conda environment
+          # if not already installed
+          conda install snpeff
 
-ANNOTATE SCAFFOLD GENES/ORFS WITH SNAP
---------------------------------------
+          
+Make a directory for the results (in your analysis directory) and change into
+the directory:
 
-I need a annotation to try snpEFF, SNAP was just quick. Get HMM for
-yeast.
 
 .. code:: bash
 
-    curl -O https://raw.githubusercontent.com/hyphaltip/fungi-gene-prediction-params/master/params/SNAP/saccharomyces_cerevisiae_S288C.hmm
-    curl -O https://raw.githubusercontent.com/hyphaltip/fungi-gene-prediction-params/master/params/SNAP/saccharomyces_cerevisiae_rm11-1a_1.hmm
-    snap saccharomyces_cerevisiae_S288C.hmm scaffolds.fasta -gff | gzip > annotation.gff.gz
+          mkdir voi
 
-This produces gff format. However, ideally I want gtf for building
-snpEFF database and thats why I think it broke the build process below.
+          # change into the directory
+          cd voi
 
-PREPARE SNPEFF DATABASE
------------------------
+         
+Prepare SnpEff database
+~~~~~~~~~~~~~~~~~~~~~~~
 
-Where is snpEff.config:
+We need to create our own config file for |snpeff|. Where is the ``snpEff.config``:
 
 .. code:: bash
 
     find ~ -name snpEff.config
-    /Users/sschmeie/miniconda2/envs/snpeff/share/snpeff-4.3.1m-0/snpEff.config
-    /Users/sschmeie/miniconda2/pkgs/snpeff-4.3.1m-0/share/snpeff-4.3.1m-0/snpEff.config
+    /home/manager/miniconda3/envs/ngs/share/snpeff-4.3.1m-0/snpEff.config
+    
 
-The first one is the riht one as I have an env "snpeff" where I
-installed snpEff into.
+This will give you the path to the config file. It might be loking a bit different then the one shown here.
 
-Make a local copy of the config file. Edit the config file. There is a
-section with databases:
+Make a local copy of the config file. Edit the config file.
 
-``bash  cp /Users/sschmeie/miniconda2/envs/snpeff/share/snpeff-4.3.1m-0/snpEff.config .  emacs snpEff.config``
 
-Make sure data directory looks like this:
+.. code:: bash
 
-data.dir = ./data/
+          cp /home/manager/miniconda3/envs/ngs/share/snpeff-4.3.1m-0/snpEff.config .
+          nano snpEff.config
+
+          
+Make sure the data directory path in the config file looks like this:
+
+
+.. code:: bash
+
+          data.dir = ./data/
+
+          
+There is a section with databases, which starts like this:
+
+.. code:: bash
+
+   #-------------------------------------------------------------------------------
+   # Databases & Genomes
+   #
+   # One entry per genome version. 
+   #
+   # For genome version 'ZZZ' the entries look like
+   #	ZZZ.genome              : Real name for ZZZ (e.g. 'Human')
+   #	ZZZ.reference           : [Optional] Comma separated list of URL to site/s where information for building ZZZ database was extracted.
+   #	ZZZ.chrName.codonTable  : [Optional] Define codon table used for chromosome 'chrName' (Default: 'codon.Standard')
+   #
+   #-------------------------------------------------------------------------------
+
 
 Add the following two lines in the database section:
 
-my genome yeast
-===============
 
-yeast1.genome : Yeast
+.. code:: bash
 
-Now we need to create a local data folder called './data/yeast1'.
+          # my yeast genome
+          yeastanc.genome : WildYeastAnc
+
+          
+Now, we need to create a local data folder called './data/yeastanc'.
+
 
 .. code:: bash
 
     # create folders
-    mkdir -p ./data/yeast1
+    mkdir -p ./data/yeastanc
 
-    # Copy genome to newly created folder, name needs to be sequences.fa or yeast1.fa
-    cp scaffolds.fasta ./data/yeast1/sequences.fa
-    gzip ./data/yeast1/sequences.fa
 
-    # copy annotation to folder, name needs to be genes.gff.gz (or genes.gtf.gz for gtf-files)
-    cp annotation.gff.gz ./data/yeast1/genes.gff.gz
+Copy our genome assembly to the newly created data folder.
+The name needs to be ``sequences.fa`` or ``yeastanc.fa``:
 
-    # now build db
-    snpEff build -c snpEff.config -gff3 -v yeast1
 
-    # or for gtf
-    snpEff build -c snpEff.config -gtf22 -v yeast1
+.. code:: bash
+    
+    cp ../assembly/spades-final/scaffolds.fasta ./data/yeastanc/sequences.fa
+    gzip ./data/yeastanc/sequences.fa
 
-I tried the process with a gff file created above and it failed. If you
-have gtf it might work. If you sent me yours + your genome I try.
+    
+Copy our genome annotation to the data folder.
+The name needs to be ``genes.gff`` (or ``genes.gtf`` for gtf-files).
 
-Use snpEff for annotation with local config file:
 
 .. code:: bash
 
-    snpEff -c snpEff.config ...
+    cp ../annotation/your_new_fungus.gff ./data/yeastanc/genes.gff
+    gzip ./data/yeastanc/genes.gff
+
+
+Now we can build a new |snpeff| database:
+
+
+.. code:: bash
+
+    snpEff build -c snpEff.config -gff3 -v yeastanc
+
+    # or for gtf annotation files:
+    snpEff build -c snpEff.config -gtf22 -v yeastanc
+
+
+SNP annotation
+~~~~~~~~~~~~~~
+
+Now we can use our new |snpeff| database to annotate some variants, e.g.:
+
+
+.. code:: bash
+
+    snpEff -c snpEff.config yeastanc ../variants/evolved-6.freebayes.filtered.vcf.gz > evolved-6.freebayes.filtered.anno.vcf
+
 
