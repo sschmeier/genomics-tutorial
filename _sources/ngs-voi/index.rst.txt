@@ -220,7 +220,8 @@ Now we can build a new |snpeff| database:
 .. code:: bash
 
     # using genometools
-    gt gff3_to_gtf -gzip ../annotation/your_new_fungus.gff -o ./data/yeastanc/genes.gtf.gz
+    gt gff3_to_gtf ../annotation/your_new_fungus.gff -o ./data/yeastanc/genes.gtf
+    gzip ./data/yeastanc/genes.gtf
 
 
 Now, we can use the gtf annotation top build the database:

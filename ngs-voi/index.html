@@ -317,7 +317,8 @@ The name needs to be <code class="docutils literal"><span class="pre">genes.gff<
 <p class="last">Should this fail, due to gff-format of the annotation, we can try to convert the gff to gtf:</p>
 </div>
 <div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="c1"># using genometools</span>
-<span class="n">gt</span> <span class="n">gff3_to_gtf</span> <span class="o">-</span><span class="n">gzip</span> <span class="o">../</span><span class="n">annotation</span><span class="o">/</span><span class="n">your_new_fungus</span><span class="o">.</span><span class="n">gff</span> <span class="o">-</span><span class="n">o</span> <span class="o">./</span><span class="n">data</span><span class="o">/</span><span class="n">yeastanc</span><span class="o">/</span><span class="n">genes</span><span class="o">.</span><span class="n">gtf</span><span class="o">.</span><span class="n">gz</span>
+<span class="n">gt</span> <span class="n">gff3_to_gtf</span> <span class="o">../</span><span class="n">annotation</span><span class="o">/</span><span class="n">your_new_fungus</span><span class="o">.</span><span class="n">gff</span> <span class="o">-</span><span class="n">o</span> <span class="o">./</span><span class="n">data</span><span class="o">/</span><span class="n">yeastanc</span><span class="o">/</span><span class="n">genes</span><span class="o">.</span><span class="n">gtf</span>
+<span class="n">gzip</span> <span class="o">./</span><span class="n">data</span><span class="o">/</span><span class="n">yeastanc</span><span class="o">/</span><span class="n">genes</span><span class="o">.</span><span class="n">gtf</span>
 </pre></div>
 </div>
 <p>Now, we can use the gtf annotation top build the database:</p>
