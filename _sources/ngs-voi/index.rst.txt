@@ -1,5 +1,7 @@
-NGS - Variants-of-interest
-==========================
+.. _ngs-voi:
+
+Variants-of-interest
+====================
 
 Preface
 -------

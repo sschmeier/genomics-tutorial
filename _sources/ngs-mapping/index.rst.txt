@@ -1,7 +1,7 @@
 .. _ngs-mapping:
 
-NGS - Read mapping
-==================
+Read mapping
+============
 
 Preface
 -------

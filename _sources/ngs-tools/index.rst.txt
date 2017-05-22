@@ -1,7 +1,7 @@
 .. _tool-installation:
 
-NGS - Tool installation
-=======================
+Tool installation
+=================
 
 Install the conda package manager
 ---------------------------------

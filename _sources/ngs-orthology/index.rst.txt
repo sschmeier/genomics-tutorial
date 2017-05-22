@@ -1,7 +1,7 @@
 .. _ngs-orthology:
 
-NGS - Orthology and Phylogeny
-=============================
+Orthology and Phylogeny
+=======================
 
 Preface
 -------

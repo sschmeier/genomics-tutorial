@@ -1,7 +1,7 @@
 .. _taxonomic-investigation:
 
-NGS - Taxonomic investigation
-=============================
+Taxonomic investigation
+=======================
 
 
 Preface

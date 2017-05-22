@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>5. NGS - Read mapping</title>
+  <title>5. Read mapping</title>
   
 
   
@@ -38,8 +38,8 @@
               href="../genindex.html"/>
         <link rel="search" title="Search" href="../search.html"/>
     <link rel="top" title="" href="../index.html"/>
-        <link rel="next" title="6. NGS - Taxonomic investigation" href="../ngs-taxonomic-investigation/index.html"/>
-        <link rel="prev" title="4. NGS - Genome assembly" href="../ngs-assembly/index.html"/> 
+        <link rel="next" title="6. Taxonomic investigation" href="../ngs-taxonomic-investigation/index.html"/>
+        <link rel="prev" title="4. Genome assembly" href="../ngs-assembly/index.html"/> 
 
   
   <script src="../_static/js/modernizr.min.js"></script>
@@ -93,10 +93,10 @@
             
                 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../introduction.html">1. Introduction</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../ngs-tools/index.html">2. NGS - Tool installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../ngs-qc/index.html">3. NGS - Quality control</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../ngs-assembly/index.html">4. NGS - Genome assembly</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">5. NGS - Read mapping</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="../ngs-tools/index.html">2. Tool installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ngs-qc/index.html">3. Quality control</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ngs-assembly/index.html">4. Genome assembly</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">5. Read mapping</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#preface">5.1. Preface</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#overview">5.2. Overview</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#learning-outcomes">5.3. Learning outcomes</a></li>
@@ -136,11 +136,11 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../ngs-taxonomic-investigation/index.html">6. NGS - Taxonomic investigation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../ngs-variantcalling/index.html">7. NGS - Variant calling</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../ngs-annotation/index.html">8. NGS - Genome annotation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../ngs-orthology/index.html">9. NGS - Orthology and Phylogeny</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../ngs-voi/index.html">10. NGS - Variants-of-interest</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ngs-taxonomic-investigation/index.html">6. Taxonomic investigation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ngs-variantcalling/index.html">7. Variant calling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ngs-annotation/index.html">8. Genome annotation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ngs-orthology/index.html">9. Orthology and Phylogeny</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ngs-voi/index.html">10. Variants-of-interest</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../quickref.html">11. Quick command reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../code.html">12. Coding solutions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../downloads.html">13. Downloads</a></li>
@@ -174,7 +174,7 @@
   <ul class="wy-breadcrumbs">
     <li><a href="../index.html">Docs</a> &raquo;</li>
       
-    <li>5. NGS - Read mapping</li>
+    <li>5. Read mapping</li>
       <li class="wy-breadcrumbs-aside">
         
           
@@ -186,8 +186,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="ngs-read-mapping">
-<span id="ngs-mapping"></span><h1>5. NGS - Read mapping<a class="headerlink" href="#ngs-read-mapping" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="read-mapping">
+<span id="ngs-mapping"></span><h1>5. Read mapping<a class="headerlink" href="#read-mapping" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="preface">
 <h2>5.1. Preface<a class="headerlink" href="#preface" title="Permalink to this headline">¶</a></h2>
 <p>In this section we will use our skill on the command-line interface to map our
@@ -236,7 +236,7 @@ reads from the evolved line to our ancestral reference genome.</p>
 </div>
 <div class="section" id="mapping-sequence-reads-to-a-reference-genome">
 <h2>5.5. Mapping sequence reads to a reference genome<a class="headerlink" href="#mapping-sequence-reads-to-a-reference-genome" title="Permalink to this headline">¶</a></h2>
-<p>We want to map the sequencing reads to the ancestral reference genome we created in the section <a class="reference internal" href="../ngs-assembly/index.html#ngs-assembly"><span class="std std-ref">NGS - Genome assembly</span></a>.
+<p>We want to map the sequencing reads to the ancestral reference genome we created in the section <a class="reference internal" href="../ngs-assembly/index.html#ngs-assembly"><span class="std std-ref">Genome assembly</span></a>.
 We are going to use the quality trimmed forward and backward DNA sequences of the evolved line and use a program called <a class="reference external" href="http://bio-bwa.sourceforge.net/">BWA</a> to map the reads.</p>
 <div class="admonition-todo admonition" id="index-0">
 <p class="first admonition-title">Todo</p>
@@ -603,7 +603,7 @@ Furthermore, we select read-pair that have been mapped in a correct manner (same
 </div>
 <div class="section" id="unmapped-reads">
 <h3>5.11.2. Unmapped reads<a class="headerlink" href="#unmapped-reads" title="Permalink to this headline">¶</a></h3>
-<p>We could decide to use <a class="reference external" href="https://ccb.jhu.edu/software/kraken/">Kraken</a> like in section <a class="reference internal" href="../ngs-taxonomic-investigation/index.html#taxonomic-investigation"><span class="std std-ref">NGS - Taxonomic investigation</span></a> to classify all unmapped sequence reads and identify the species they are coming from and test for contamination.</p>
+<p>We could decide to use <a class="reference external" href="https://ccb.jhu.edu/software/kraken/">Kraken</a> like in section <a class="reference internal" href="../ngs-taxonomic-investigation/index.html#taxonomic-investigation"><span class="std std-ref">Taxonomic investigation</span></a> to classify all unmapped sequence reads and identify the species they are coming from and test for contamination.</p>
 <p>Lets see how we can get the unmapped portion of the reads from the bam-file:</p>
 <div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="n">samtools</span> <span class="n">view</span> <span class="o">-</span><span class="n">b</span> <span class="o">-</span><span class="n">f</span> <span class="mi">4</span> <span class="n">mappings</span><span class="o">/</span><span class="n">evolved</span><span class="o">-</span><span class="mf">6.</span><span class="n">sorted</span><span class="o">.</span><span class="n">dedup</span><span class="o">.</span><span class="n">bam</span> <span class="o">&gt;</span> <span class="n">mappings</span><span class="o">/</span><span class="n">evolved</span><span class="o">-</span><span class="mf">6.</span><span class="n">sorted</span><span class="o">.</span><span class="n">unmapped</span><span class="o">.</span><span class="n">bam</span>
 
@@ -638,10 +638,10 @@ Furthermore, we select read-pair that have been mapped in a correct manner (same
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../ngs-taxonomic-investigation/index.html" class="btn btn-neutral float-right" title="6. NGS - Taxonomic investigation" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="../ngs-taxonomic-investigation/index.html" class="btn btn-neutral float-right" title="6. Taxonomic investigation" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="../ngs-assembly/index.html" class="btn btn-neutral" title="4. NGS - Genome assembly" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="../ngs-assembly/index.html" class="btn btn-neutral" title="4. Genome assembly" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

@@ -1,5 +1,7 @@
-NGS - Variant calling
-=====================
+.. _ngs-variantcalling:
+
+Variant calling
+===============
 
 Preface
 -------
