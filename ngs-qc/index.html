@@ -235,9 +235,9 @@ Thus, we have two files, one for each end of the read.</p>
 look at the <a class="reference external" href="http://www.illumina.com/technology/next-generation-sequencing/paired-end-sequencing_assay.html">Illumina
 technology webpage</a>
 and this <a class="reference external" href="https://youtu.be/HMyCqWhwB8E">video</a>.</p>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">The data we are using is &quot;almost&quot; raw data coming from the machine. This data has been post-processed in two ways already. All sequences that were identified as belonging to the PhiX genome have been removed. This process requires some skills we will learn in later sections. <a class="reference external" href="http://illumina.com">Illumina</a> adapters have been removed as well already! The process is explained below but we are not going to do it.</p>
+<div class="admonition attention">
+<p class="first admonition-title">Attention</p>
+<p class="last">The data we are using is &quot;almost&quot; raw data as it came from the machine. This data has been post-processed in two ways already. All sequences that were identified as belonging to the PhiX genome have been removed. This process requires some skills we will learn in later sections. <a class="reference external" href="http://illumina.com">Illumina</a> adapters have been removed as well already! The process is explained below but we are <strong>not</strong> going to do it.</p>
 </div>
 <div class="section" id="investigate-the-data">
 <h3>3.4.1. Investigate the data<a class="headerlink" href="#investigate-the-data" title="Permalink to this headline">¶</a></h3>
@@ -288,18 +288,18 @@ As the concentration of the genome is known, one can calibrate the instruments.
 Thus, PhiX genomic sequences need to be removed before processing your data further as this constitutes a deliberate contamination <a class="reference internal" href="#mukherjee2015" id="id4">[MUKHERJEE2015]</a>.
 The steps involve mapping all reads to the &quot;known&quot; PhiX genome, and removing all of those sequence reads from the data.</p>
 <p>However, your sequencing provider might not have used PhiX, thus you need to read the protocol carefully, or just do this step in any case.</p>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">We are not going to do this step here, as this has been already done. Please see the <a class="reference internal" href="../ngs-mapping/index.html"><span class="doc">NGS - Read mapping</span></a> section on how to map reads against a reference genome.</p>
+<div class="admonition attention">
+<p class="first admonition-title">Attention</p>
+<p class="last">We are <strong>not</strong> going to do this step here, as this has been already done. Please see the <a class="reference internal" href="../ngs-mapping/index.html#ngs-mapping"><span class="std std-ref">NGS - Read mapping</span></a> section on how to map reads against a reference genome.</p>
 </div>
 </div>
 <div class="section" id="adapter-trimming">
 <h2>3.8. Adapter trimming<a class="headerlink" href="#adapter-trimming" title="Permalink to this headline">¶</a></h2>
 <p>The process of sequencing DNA via <a class="reference external" href="http://illumina.com">Illumina</a> technology requires the addition of some adapters to the sequences.
 These get sequenced as well and need to be removed as they are artificial and do not belong to the species we try to sequence.</p>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">The process of how to do this is explained here, however we are not going to do this as our sequences have been adapter-trimmed already.</p>
+<div class="admonition attention">
+<p class="first admonition-title">Attention</p>
+<p class="last">The process of how to do this is explained here, however we are <strong>not</strong> going to do this as our sequences have been adapter-trimmed already.</p>
 </div>
 <p>First, we need to know the adapter sequences that were used during the sequencing of our samples.
 Normally, you should ask your sequencing provider, who should be providing this information to you.
@@ -312,7 +312,7 @@ conda install ea-utils
 </pre></div>
 </div>
 <p>Using the tool together with a adapter/contaminants list in fasta-file (here denoted as <code class="docutils literal"><span class="pre">adapters.fa</span></code>):</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>fastq-mcf -o  -o cleaned.R1.fq.gz -o cleaned.R2.fq.gz adapaters.fa infile_R1.fastq infile_R2.fastq
+<div class="highlight-bash"><div class="highlight"><pre><span></span>fastq-mcf -o cleaned.R1.fq.gz -o cleaned.R2.fq.gz adapaters.fa infile_R1.fastq infile_R2.fastq
 </pre></div>
 </div>
 <ul class="simple">
@@ -599,7 +599,7 @@ which you should be aware before doing any further analysis.&quot;</div></blockq
   <div role="contentinfo">
     <p>
         &copy; Copyright 2016-2017, Sebastian Schmeier.
-      Last updated on May 22, 2017.
+      Last updated on May 23, 2017.
 
     </p>
   </div>
