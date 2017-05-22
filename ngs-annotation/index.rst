@@ -1,7 +1,7 @@
 .. _ngs-annotation:
 
-NGS - Genome annotation
-=======================
+Genome annotation
+=================
 
 Preface
 -------

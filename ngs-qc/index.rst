@@ -1,7 +1,7 @@
 .. _ngs-qc:
 
-NGS - Quality control
-=====================
+Quality control
+===============
 
 Preface
 -------
