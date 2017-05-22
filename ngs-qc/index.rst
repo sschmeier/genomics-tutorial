@@ -80,9 +80,9 @@ look at the `Illumina
 technology webpage <http://www.illumina.com/technology/next-generation-sequencing/paired-end-sequencing_assay.html>`__
 and this `video <https://youtu.be/HMyCqWhwB8E>`__.
 
-.. note::
+.. attention::
 
-   The data we are using is "almost" raw data coming from the machine. This data has been post-processed in two ways already. All sequences that were identified as belonging to the PhiX genome have been removed. This process requires some skills we will learn in later sections. |illumina| adapters have been removed as well already! The process is explained below but we are not going to do it.
+   The data we are using is "almost" raw data as it came from the machine. This data has been post-processed in two ways already. All sequences that were identified as belonging to the PhiX genome have been removed. This process requires some skills we will learn in later sections. |illumina| adapters have been removed as well already! The process is explained below but we are **not** going to do it.
 
 
 Investigate the data
@@ -142,9 +142,9 @@ The steps involve mapping all reads to the "known" PhiX genome, and removing all
 However, your sequencing provider might not have used PhiX, thus you need to read the protocol carefully, or just do this step in any case.
 
 
-.. note::
+.. attention::
 
-   We are not going to do this step here, as this has been already done. Please see the :doc:`../ngs-mapping/index` section on how to map reads against a reference genome.
+   We are **not** going to do this step here, as this has been already done. Please see the :ref:`ngs-mapping` section on how to map reads against a reference genome.
 
 
 Adapter trimming
@@ -154,9 +154,9 @@ The process of sequencing DNA via |illumina| technology requires the addition of
 These get sequenced as well and need to be removed as they are artificial and do not belong to the species we try to sequence.
 
 
-.. note::
+.. attention::
 
-   The process of how to do this is explained here, however we are not going to do this as our sequences have been adapter-trimmed already.
+   The process of how to do this is explained here, however we are **not** going to do this as our sequences have been adapter-trimmed already.
    
 
 First, we need to know the adapter sequences that were used during the sequencing of our samples.
@@ -179,7 +179,7 @@ Using the tool together with a adapter/contaminants list in fasta-file (here den
 
 .. code-block:: bash
 
-   fastq-mcf -o  -o cleaned.R1.fq.gz -o cleaned.R2.fq.gz adapaters.fa infile_R1.fastq infile_R2.fastq 
+   fastq-mcf -o cleaned.R1.fq.gz -o cleaned.R2.fq.gz adapaters.fa infile_R1.fastq infile_R2.fastq 
 
    
 - ``-o``: Specifies the output-files. These are fastq-files for forward and reverse read, with adapters removed.
