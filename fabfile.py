@@ -127,7 +127,7 @@ def deploy(msg, br='master'):
 
     # save conda env
     puts(yellow('[Conda env freeze]'))
-    local("conda env export > conda-env-freeze.txt")
+    local("conda env export > conda-env-freeze.yml")
 
     puts(yellow('[git stage/commit changes]'))
     local("git add -u")
