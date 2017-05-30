@@ -165,6 +165,12 @@ To run the program you need to give it:
 .. code:: bash
   
           augustus --progress=true --strand=both --species=saccharomyces_cerevisiae_S288C ../assembly/spades-final/scaffolds.fasta > your_new_fungus.gff
+
+
+.. note:: 
+
+   Should the process of producing your annotation fail, you can download a
+   annotation manually from :ref:`downloads`. Remember to unzip the file.
           
 
 Interactive viewing

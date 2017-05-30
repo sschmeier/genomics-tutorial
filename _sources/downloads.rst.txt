@@ -24,6 +24,7 @@ Data
 * :ref:`ngs-mapping`: Mapping index (bowtie2) [ `MASSEY <http://compbio.massey.ac.nz/data/203341/bowtie2-index.tar.gz>`__ | `DROPBOX <https://www.dropbox.com/s/dcbdsxl5bjhmif8/bowtie2-index.tar.gz?dl=0>`__ ]
 * :ref:`ngs-mapping`: Mapping index (bwa) [ `MASSEY <http://compbio.massey.ac.nz/data/203341/bwa-index.tar.gz>`__ | `DROPBOX <https://www.dropbox.com/s/yidw27u56iast9z/bwa-index.tar.gz?dl=0>`__ ]
 * :ref:`ngs-mapping`: Mapped data [ `MASSEY <http://compbio.massey.ac.nz/data/203341/evolved-6.sorted.dedup.bam>`__ | `DROPBOX <https://www.dropbox.com/s/k1qn63rwnojhmrz/evolved-6.sorted.dedup.bam?dl=0>`__ ]
+* :ref:`ngs-annotation`: GFF annotation file [ `MASSEY <http://compbio.massey.ac.nz/data/203341/your_new_fungus.gff.gz>`__ | `DROPBOX <https://www.dropbox.com/s/6bo9g8h3q6h1x8x/your_new_fungus.gff.gz?dl=0>`__ ]
 * :ref:`ngs-orthology`: *S. cerevisiase* TEF2 gene file [ `MASSEY <http://compbio.massey.ac.nz/data/203341/s_cerev_tef2.fas>`__ | `DROPBOX <https://www.dropbox.com/s/ooxl2q0vp0bzmq3/s_cerev_tef2.fas?dl=0>`__ ]
 * :ref:`ngs-orthology`: BLAST file [ `MASSEY <http://compbio.massey.ac.nz/data/203341/blast_u.fas>`__ | `DROPBOX <https://www.dropbox.com/s/ul4dzx44lfoewzx/blast_u.fas?dl=0>`__ ]
 
