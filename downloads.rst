@@ -29,3 +29,10 @@ Data
 * :ref:`ngs-orthology`: BLAST file [ `MASSEY <http://compbio.massey.ac.nz/data/203341/blast_u.fas>`__ | `DROPBOX <https://www.dropbox.com/s/ul4dzx44lfoewzx/blast_u.fas?dl=0>`__ ]
 * :ref:`ngs-voi`: SnpEff annotated vcf-file [ `MASSEY <http://compbio.massey.ac.nz/data/203341/evolved-6.freebayes.filtered.anno.vcf>`__ | `DROPBOX <https://www.dropbox.com/s/67m45v5fghdh0d3/evolved-6.freebayes.filtered.anno.vcf?dl=0>`__ ]
   
+
+.. only:: builder_html
+
+  Tutorial
+  --------
+
+  * A PDF version of this tutorial is available :download:`here <_static/Genomics.pdf>`.
