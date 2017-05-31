@@ -274,8 +274,7 @@ When expecting the second entry, we find that |snpeff| added annotation informat
 If we look a bit more closely we find that the variant results in a amino acid change from a threonine to a serine (``c.664T>A|p.Ser222Thr``).
 The codon for serine is ``TCN`` and for threonine is ``ACN``, so the variant in the first nucleotide of the codon made the amino acid change.
 
-A quick protein |blast| of the CDS sequence where the variant was found (extracted from the ``genes.gff.gz``) shows that the closest hit is a ddd
-from a species called `Candida dubliniensis <https://en.wikipedia.org/wiki/Candida_dubliniensis>`_ another fungi.
+A quick protein |blast| of the CDS sequence where the variant was found (extracted from the ``genes.gff.gz``) shows that the closest hit is a translation elongation factor from a species called `Candida dubliniensis <https://en.wikipedia.org/wiki/Candida_dubliniensis>`_ another fungi.
 
 
 .. _fig-blast-voi:
