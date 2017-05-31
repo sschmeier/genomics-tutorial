@@ -107,7 +107,7 @@ Do this recursively for the entire config directory, placing it into your curren
 
 .. code:: bash
 
-          cp -r ../../miniconda3/envs/ngs/config/ ./
+          cp -r ~/miniconda3/envs/ngs/config/ ./
 
 
 We next need to specify the ``path`` to this config file so that the program knows where to look now that we have changed the location (note that this is all one line below):

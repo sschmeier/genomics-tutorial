@@ -212,7 +212,7 @@ Now we can build a new |snpeff| database:
 
 .. code:: bash
 
-    snpEff build -c snpEff.config -gff3 -v yeastanc
+    snpEff build -c snpEff.config -gff3 -v yeastanc > snpEff.stdout 2> snpEff.stderr
 
 
 .. note::
@@ -231,7 +231,7 @@ Now, we can use the gtf annotation top build the database:
 
 .. code:: bash
           
-    snpEff build -c snpEff.config -gtf22 -v yeastanc
+    snpEff build -c snpEff.config -gtf22 -v yeastanc > snpEff.stdout 2> snpEff.stderr
 
 
 SNP annotation
@@ -245,3 +245,40 @@ Now we can use our new |snpeff| database to annotate some variants, e.g.:
     snpEff -c snpEff.config yeastanc ../variants/evolved-6.freebayes.filtered.vcf.gz > evolved-6.freebayes.filtered.anno.vcf
 
 
+|snpeff| adds ``ANN`` fields to the vcf-file entries that explain the effect of the variant.
+
+
+.. note::
+
+   If you are unable to do the annotation, you can download an annotated vcf-file from :ref:`downloads`.
+
+
+Example
+~~~~~~~
+
+Lets look at one entry from the original vcf-file and the annotated one.
+We are only interested in the 8th column, which contains information regarding the variant.
+|snpeff| will add fields here :
+
+
+.. code:: bash
+
+    # evolved-6.freebayes.filtered.vcf (the original), column 8
+    AB=0.5;ABP=3.0103;AC=1;AF=0.5;AN=2;AO=56;CIGAR=1X;DP=112;DPB=112;DPRA=0;EPP=3.16541;EPPR=3.16541;GTI=0;LEN=1;MEANALT=1;MQM=42;MQMR=42;NS=1;NUMALT=1;ODDS=331.872;PAIRED=1;PAIREDR=1;PAO=0;PQA=0;PQR=0;PRO=0;QA=2128;QR=2154;RO=56;RPL=35;RPP=10.6105;RPPR=3.63072;RPR=21;RUN=1;SAF=30;SAP=3.63072;SAR=26;SRF=31;SRP=4.40625;SRR=25;TYPE=snp
+
+    # evolved-6.freebayes.filtered.anno.vcf, column 8
+    AB=0.5;ABP=3.0103;AC=1;AF=0.5;AN=2;AO=56;CIGAR=1X;DP=112;DPB=112;DPRA=0;EPP=3.16541;EPPR=3.16541;GTI=0;LEN=1;MEANALT=1;MQM=42;MQMR=42;NS=1;NUMALT=1;ODDS=331.872;PAIRED=1;PAIREDR=1;PAO=0;PQA=0;PQR=0;PRO=0;QA=2128;QR=2154;RO=56;RPL=35;RPP=10.6105;RPPR=3.63072;RPR=21;RUN=1;SAF=30;SAP=3.63072;SAR=26;SRF=31;SRP=4.40625;SRR=25;TYPE=snp;ANN=T|missense_variant|MODERATE|CDS_NODE_40_length_1292_cov_29.5267_1_1292|GENE_CDS_NODE_40_length_1292_cov_29.5267_1_1292|transcript|TRANSCRIPT_CDS_NODE_40_length_1292_cov_29.5267_1_1292|protein_coding|1/1|c.664T>A|p.Ser222Thr|664/1292|664/1292|222/429||WARNING_TRANSCRIPT_INCOMPLETE,T|intragenic_variant|MODIFIER|GENE_NODE_40_length_1292_cov_29.5267_1_1292|GENE_NODE_40_length_1292_cov_29.5267_1_1292|gene_variant|GENE_NODE_40_length_1292_cov_29.5267_1_1292|||n.629A>T||||||  
+
+
+When expecting the second entry, we find that |snpeff| added annotation information starting with ``ANN=T|missense_variant|...``.
+If we look a bit more closely we find that the variant results in a amino acid change from a threonine to a serine (``c.664T>A|p.Ser222Thr``).
+The codon for serine is ``TCN`` and for threonine is ``ACN``, so the variant in the first nucleotide of the codon made the amino acid change.
+
+A quick protein |blast| of the CDS sequence where the variant was found (extracted from the ``genes.gff.gz``) shows that the closest hit is a ddd
+from a species called `Candida dubliniensis <https://en.wikipedia.org/wiki/Candida_dubliniensis>`_ another fungi.
+
+
+.. _fig-blast-voi:
+.. figure:: images/blast.png
+    
+    Results of a |blast| search of the CDS.
