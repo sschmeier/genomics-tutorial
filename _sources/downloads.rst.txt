@@ -27,5 +27,5 @@ Data
 * :ref:`ngs-annotation`: GFF annotation file [ `MASSEY <http://compbio.massey.ac.nz/data/203341/your_new_fungus.gff.gz>`__ | `DROPBOX <https://www.dropbox.com/s/6bo9g8h3q6h1x8x/your_new_fungus.gff.gz?dl=0>`__ ]
 * :ref:`ngs-orthology`: *S. cerevisiase* TEF2 gene file [ `MASSEY <http://compbio.massey.ac.nz/data/203341/s_cerev_tef2.fas>`__ | `DROPBOX <https://www.dropbox.com/s/ooxl2q0vp0bzmq3/s_cerev_tef2.fas?dl=0>`__ ]
 * :ref:`ngs-orthology`: BLAST file [ `MASSEY <http://compbio.massey.ac.nz/data/203341/blast_u.fas>`__ | `DROPBOX <https://www.dropbox.com/s/ul4dzx44lfoewzx/blast_u.fas?dl=0>`__ ]
-
+* :ref:`ngs-voi`: SnpEff annotated vcf-file [ `MASSEY <http://compbio.massey.ac.nz/data/203341/evolved-6.freebayes.filtered.anno.vcf>`__ | `DROPBOX <https://www.dropbox.com/s/67m45v5fghdh0d3/evolved-6.freebayes.filtered.anno.vcf?dl=0>`__ ]
   
