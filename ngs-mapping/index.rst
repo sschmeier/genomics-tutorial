@@ -331,7 +331,11 @@ We are going to use |samtools| again to sort the bam-file into coordinate order:
 Remove duplicates
 ~~~~~~~~~~~~~~~~~
 
-In this step we remove duplicate reads. The main purpose of removing duplicates is to mitigate the effects of PCR amplification bias introduced during library construction. 
+In this step we remove duplicate reads. The main purpose of removing duplicates is to mitigate the effects of PCR amplification bias introduced during library construction.
+**It should be noted that this step is not always recommended.**
+It depends on the research question.
+In SNP calling it is a good idea to remove duplicates, as the statistics used in the tools that call SNPs sub-sequently expect this (most tools anyways).
+However, for other research questions that use mapping, you might not want to remove duplicates, e.g. RNA-seq.
 
 .. code:: bash
 
@@ -348,8 +352,6 @@ In this step we remove duplicate reads. The main purpose of removing duplicates 
    Should you be unable to do the post-processing steps, you can download the mapped data from :ref:`downloads`.
 
 
-
-   
 Mapping statistics
 ------------------
 
@@ -464,8 +466,8 @@ See this `webpage <http://qualimap.bioinfo.cipf.es/doc_html/analysis.html#output
 Sub-selecting reads
 -------------------
 
-It is important to remember that the mapping commands we used above, without additional parameters to sub-select specific alignments (e.g. for |bowtie| there are options like ``--no-mixed``, which suppresses unpaired alignments for paired reads or ``--no-discordant``, which suppresses discordant alignments for paired reads, etc.), are going to output all reads, including unmapped reads, multi-mapping reads, unpaired reads, discordant read pairs, etc. in one file. We can sub-select from the output reads we want to analyse further using |samtools|.
-
+It is important to remember that the mapping commands we used above, without additional parameters to sub-select specific alignments (e.g. for |bowtie| there are options like ``--no-mixed``, which suppresses unpaired alignments for paired reads or ``--no-discordant``, which suppresses discordant alignments for paired reads, etc.), are going to output all reads, including unmapped reads, multi-mapping reads, unpaired reads, discordant read pairs, etc. in one file.
+We can sub-select from the output reads we want to analyse further using |samtools|.
 
 .. todo::
 
@@ -475,27 +477,41 @@ It is important to remember that the mapping commands we used above, without add
 Concordant reads
 ~~~~~~~~~~~~~~~~
 
-Here, we select the reads **we will be using for subsequent analyses**.
-Frist off, we select reads with a mapping quality of at least 20.
-Furthermore, we select read-pair that have been mapped in a correct manner (same chromosome/contig, correct orientation to each other).
+We select read-pair that have been mapped in a correct manner (same chromosome/contig, correct orientation to each other).
 
 
 .. code:: bash
                
-   samtools view -h -b -q 20 -f 2 mappings/evolved-6.sorted.dedup.bam > mappings/evolved-6.sorted.concordant.q20.bam
-
+   samtools view -h -b -f 2 mappings/evolved-6.sorted.dedup.bam > mappings/evolved-6.sorted.concordant.bam
 
 - ``-h``: Include the sam header
 - ``-b``: Output will be bam-format
-- ``-q 20``: Only extract reads with mapping quality >= 20
 - ``-f 2``: Only extract correctly paired reads. ``-f`` extracts alignments with the specified `SAM flag <http://bio-bwa.sourceforge.net/bwa.shtml#4>`__ set.
 
+   
+Quality-based sub-selection
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. attention::
+In this section we want to sub-select reads based on the quality of the mapping.
+It seems a reasonable idea to only keep good mapping reads.
+As the SAM-format contains at column 5 the :math:`MAPQ` value, which we established earlier is the "MAPping Quality" in Phred-scaled, this seems easily achieved.
+The formula to calculate the :math:`MAPQ` value is: :math:`MAPQ=-10*log10(p)`, where :math:`p` is the probability that the read is mapped wrongly.
+However, there is a problem!
+**While the MAPQ information would be very helpful indeed, the way that various tools implement this value differs.**
+A good overview can be found `here <https://sequencing.qcfail.com/articles/mapq-values-are-really-useful-but-their-implementation-is-a-mess/>`__.
+Bottom-line is that we need to be aware that different tools use this value in different ways and the it is good to know the information that is encoded in the value.
+Once you dig deeper into the mechanics of the :math:`MAPQ` implementation it becomes clear that this is not an easy topic.
+If you want to know more about the :math:`MAPQ` topic, please follow the link above.
 
-   The resulting file of this step will be used in the next section for calling variants.
+For the sake of going forward, we will sub-select reads with at least medium quality as defined by |bowtie|:
 
+.. code:: bash
 
+   samtools view -h -b -q 20 mappings/evolved-6.sorted.dedup.concordant.bam > mappings/evolved-6.sorted.concordant.q20.bam
+
+- ``-h``: Include the sam header
+- ``-q 20``: Only extract reads with mapping quality >= 20
+   
 Unmapped reads
 ~~~~~~~~~~~~~~
 
