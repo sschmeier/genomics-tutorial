@@ -137,7 +137,8 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#sub-selecting-reads">5.11. Sub-selecting reads</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#concordant-reads">5.11.1. Concordant reads</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#unmapped-reads">5.11.2. Unmapped reads</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#quality-based-sub-selection">5.11.2. Quality-based sub-selection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#unmapped-reads">5.11.3. Unmapped reads</a></li>
 </ul>
 </li>
 </ul>
@@ -509,7 +510,11 @@ We are going to produce also compressed bam output for efficient storing of and 
 </div>
 <div class="section" id="remove-duplicates">
 <h3>5.9.3. Remove duplicates<a class="headerlink" href="#remove-duplicates" title="Permalink to this headline">¶</a></h3>
-<p>In this step we remove duplicate reads. The main purpose of removing duplicates is to mitigate the effects of PCR amplification bias introduced during library construction.</p>
+<p>In this step we remove duplicate reads. The main purpose of removing duplicates is to mitigate the effects of PCR amplification bias introduced during library construction.
+<strong>It should be noted that this step is not always recommended.</strong>
+It depends on the research question.
+In SNP calling it is a good idea to remove duplicates, as the statistics used in the tools that call SNPs sub-sequently expect this (most tools anyways).
+However, for other research questions that use mapping, you might not want to remove duplicates, e.g. RNA-seq.</p>
 <div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="n">picard</span> <span class="n">MarkDuplicates</span> <span class="n">REMOVE_DUPLICATES</span><span class="o">=</span><span class="n">true</span> <span class="n">METRICS_FILE</span><span class="o">=</span><span class="n">mappings</span><span class="o">/</span><span class="n">evolved</span><span class="o">-</span><span class="mf">6.</span><span class="n">marked_dup_metrics</span><span class="o">.</span><span class="n">txt</span> <span class="n">INPUT</span><span class="o">=</span><span class="n">mappings</span><span class="o">/</span><span class="n">evolved</span><span class="o">-</span><span class="mf">6.</span><span class="n">sorted</span><span class="o">.</span><span class="n">bam</span> <span class="n">OUTPUT</span><span class="o">=</span><span class="n">mappings</span><span class="o">/</span><span class="n">evolved</span><span class="o">-</span><span class="mf">6.</span><span class="n">sorted</span><span class="o">.</span><span class="n">dedup</span><span class="o">.</span><span class="n">bam</span>
 </pre></div>
 </div>
@@ -602,32 +607,47 @@ down your observations.</p>
 </div>
 <div class="section" id="sub-selecting-reads">
 <h2>5.11. Sub-selecting reads<a class="headerlink" href="#sub-selecting-reads" title="Permalink to this headline">¶</a></h2>
-<p>It is important to remember that the mapping commands we used above, without additional parameters to sub-select specific alignments (e.g. for <a class="reference external" href="http://bowtie-bio.sourceforge.net/bowtie2/index.shtml">Bowtie2</a> there are options like <code class="docutils literal"><span class="pre">--no-mixed</span></code>, which suppresses unpaired alignments for paired reads or <code class="docutils literal"><span class="pre">--no-discordant</span></code>, which suppresses discordant alignments for paired reads, etc.), are going to output all reads, including unmapped reads, multi-mapping reads, unpaired reads, discordant read pairs, etc. in one file. We can sub-select from the output reads we want to analyse further using <a class="reference external" href="http://samtools.sourceforge.net/">SAMtools</a>.</p>
+<p>It is important to remember that the mapping commands we used above, without additional parameters to sub-select specific alignments (e.g. for <a class="reference external" href="http://bowtie-bio.sourceforge.net/bowtie2/index.shtml">Bowtie2</a> there are options like <code class="docutils literal"><span class="pre">--no-mixed</span></code>, which suppresses unpaired alignments for paired reads or <code class="docutils literal"><span class="pre">--no-discordant</span></code>, which suppresses discordant alignments for paired reads, etc.), are going to output all reads, including unmapped reads, multi-mapping reads, unpaired reads, discordant read pairs, etc. in one file.
+We can sub-select from the output reads we want to analyse further using <a class="reference external" href="http://samtools.sourceforge.net/">SAMtools</a>.</p>
 <div class="admonition-todo admonition" id="index-10">
 <p class="first admonition-title">Todo</p>
 <p class="last">Explain what concordant and discordant read pairs are? Look at the <a class="reference external" href="http://bowtie-bio.sourceforge.net/bowtie2/index.shtml">Bowtie2</a> manual.</p>
 </div>
 <div class="section" id="concordant-reads">
 <h3>5.11.1. Concordant reads<a class="headerlink" href="#concordant-reads" title="Permalink to this headline">¶</a></h3>
-<p>Here, we select the reads <strong>we will be using for subsequent analyses</strong>.
-Frist off, we select reads with a mapping quality of at least 20.
-Furthermore, we select read-pair that have been mapped in a correct manner (same chromosome/contig, correct orientation to each other).</p>
-<div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="n">samtools</span> <span class="n">view</span> <span class="o">-</span><span class="n">h</span> <span class="o">-</span><span class="n">b</span> <span class="o">-</span><span class="n">q</span> <span class="mi">20</span> <span class="o">-</span><span class="n">f</span> <span class="mi">2</span> <span class="n">mappings</span><span class="o">/</span><span class="n">evolved</span><span class="o">-</span><span class="mf">6.</span><span class="n">sorted</span><span class="o">.</span><span class="n">dedup</span><span class="o">.</span><span class="n">bam</span> <span class="o">&gt;</span> <span class="n">mappings</span><span class="o">/</span><span class="n">evolved</span><span class="o">-</span><span class="mf">6.</span><span class="n">sorted</span><span class="o">.</span><span class="n">concordant</span><span class="o">.</span><span class="n">q20</span><span class="o">.</span><span class="n">bam</span>
+<p>We select read-pair that have been mapped in a correct manner (same chromosome/contig, correct orientation to each other).</p>
+<div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="n">samtools</span> <span class="n">view</span> <span class="o">-</span><span class="n">h</span> <span class="o">-</span><span class="n">b</span> <span class="o">-</span><span class="n">f</span> <span class="mi">2</span> <span class="n">mappings</span><span class="o">/</span><span class="n">evolved</span><span class="o">-</span><span class="mf">6.</span><span class="n">sorted</span><span class="o">.</span><span class="n">dedup</span><span class="o">.</span><span class="n">bam</span> <span class="o">&gt;</span> <span class="n">mappings</span><span class="o">/</span><span class="n">evolved</span><span class="o">-</span><span class="mf">6.</span><span class="n">sorted</span><span class="o">.</span><span class="n">concordant</span><span class="o">.</span><span class="n">bam</span>
 </pre></div>
 </div>
 <ul class="simple">
 <li><code class="docutils literal"><span class="pre">-h</span></code>: Include the sam header</li>
 <li><code class="docutils literal"><span class="pre">-b</span></code>: Output will be bam-format</li>
-<li><code class="docutils literal"><span class="pre">-q</span> <span class="pre">20</span></code>: Only extract reads with mapping quality &gt;= 20</li>
 <li><code class="docutils literal"><span class="pre">-f</span> <span class="pre">2</span></code>: Only extract correctly paired reads. <code class="docutils literal"><span class="pre">-f</span></code> extracts alignments with the specified <a class="reference external" href="http://bio-bwa.sourceforge.net/bwa.shtml#4">SAM flag</a> set.</li>
 </ul>
-<div class="admonition attention">
-<p class="first admonition-title">Attention</p>
-<p class="last">The resulting file of this step will be used in the next section for calling variants.</p>
 </div>
+<div class="section" id="quality-based-sub-selection">
+<h3>5.11.2. Quality-based sub-selection<a class="headerlink" href="#quality-based-sub-selection" title="Permalink to this headline">¶</a></h3>
+<p>In this section we want to sub-select reads based on the quality of the mapping.
+It seems a reasonable idea to only keep good mapping reads.
+As the SAM-format contains at column 5 the <span class="math">\(MAPQ\)</span> value, which we established earlier is the &quot;MAPping Quality&quot; in Phred-scaled, this seems easily achieved.
+The formula to calculate the <span class="math">\(MAPQ\)</span> value is: <span class="math">\(MAPQ=-10*log10(p)\)</span>, where <span class="math">\(p\)</span> is the probability that the read is mapped wrongly.
+However, there is a problem!
+<strong>While the MAPQ information would be very helpful indeed, the way that various tools implement this value differs.</strong>
+A good overview can be found <a class="reference external" href="https://sequencing.qcfail.com/articles/mapq-values-are-really-useful-but-their-implementation-is-a-mess/">here</a>.
+Bottom-line is that we need to be aware that different tools use this value in different ways and the it is good to know the information that is encoded in the value.
+Once you dig deeper into the mechanics of the <span class="math">\(MAPQ\)</span> implementation it becomes clear that this is not an easy topic.
+If you want to know more about the <span class="math">\(MAPQ\)</span> topic, please follow the link above.</p>
+<p>For the sake of going forward, we will sub-select reads with at least medium quality as defined by <a class="reference external" href="http://bowtie-bio.sourceforge.net/bowtie2/index.shtml">Bowtie2</a>:</p>
+<div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="n">samtools</span> <span class="n">view</span> <span class="o">-</span><span class="n">h</span> <span class="o">-</span><span class="n">b</span> <span class="o">-</span><span class="n">q</span> <span class="mi">20</span> <span class="n">mappings</span><span class="o">/</span><span class="n">evolved</span><span class="o">-</span><span class="mf">6.</span><span class="n">sorted</span><span class="o">.</span><span class="n">dedup</span><span class="o">.</span><span class="n">concordant</span><span class="o">.</span><span class="n">bam</span> <span class="o">&gt;</span> <span class="n">mappings</span><span class="o">/</span><span class="n">evolved</span><span class="o">-</span><span class="mf">6.</span><span class="n">sorted</span><span class="o">.</span><span class="n">concordant</span><span class="o">.</span><span class="n">q20</span><span class="o">.</span><span class="n">bam</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">-h</span></code>: Include the sam header</li>
+<li><code class="docutils literal"><span class="pre">-q</span> <span class="pre">20</span></code>: Only extract reads with mapping quality &gt;= 20</li>
+</ul>
 </div>
 <div class="section" id="unmapped-reads">
-<h3>5.11.2. Unmapped reads<a class="headerlink" href="#unmapped-reads" title="Permalink to this headline">¶</a></h3>
+<h3>5.11.3. Unmapped reads<a class="headerlink" href="#unmapped-reads" title="Permalink to this headline">¶</a></h3>
 <p>We could decide to use <a class="reference external" href="https://ccb.jhu.edu/software/kraken/">Kraken</a> like in section <a class="reference internal" href="../ngs-taxonomic-investigation/index.html#taxonomic-investigation"><span class="std std-ref">Taxonomic investigation</span></a> to classify all unmapped sequence reads and identify the species they are coming from and test for contamination.</p>
 <p>Lets see how we can get the unmapped portion of the reads from the bam-file:</p>
 <div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="n">samtools</span> <span class="n">view</span> <span class="o">-</span><span class="n">b</span> <span class="o">-</span><span class="n">f</span> <span class="mi">4</span> <span class="n">mappings</span><span class="o">/</span><span class="n">evolved</span><span class="o">-</span><span class="mf">6.</span><span class="n">sorted</span><span class="o">.</span><span class="n">dedup</span><span class="o">.</span><span class="n">bam</span> <span class="o">&gt;</span> <span class="n">mappings</span><span class="o">/</span><span class="n">evolved</span><span class="o">-</span><span class="mf">6.</span><span class="n">sorted</span><span class="o">.</span><span class="n">unmapped</span><span class="o">.</span><span class="n">bam</span>
@@ -679,7 +699,7 @@ Furthermore, we select read-pair that have been mapped in a correct manner (same
   <div role="contentinfo">
     <p>
         &copy; Copyright 2016-2017, Sebastian Schmeier (https://sschmeier.com).
-      Last updated on Jun 01, 2017.
+      Last updated on Jul 30, 2017.
 
     </p>
   </div>
