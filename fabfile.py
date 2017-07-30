@@ -89,6 +89,9 @@ def git(br, to_br='master', v=None):
             # add tag
             puts(yellow("[Tag new version: %s]"%v))
             local('git tag -a %s'%v)
+            
+    puts(yellow('[Delete dev branch "%s"]'%(br)))
+    local('git branch -D %s'%(br))
 
 
 def deploy(msg, br='master'):
@@ -151,4 +154,4 @@ def deploy(msg, br='master'):
         local("git add -u")
         local('git commit -m "%s"'%(msg))
         local("git push origin gh-pages")
-
+    
