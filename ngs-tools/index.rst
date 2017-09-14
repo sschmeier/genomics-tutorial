@@ -58,16 +58,21 @@ Update ``.bashrc`` and ``.zshrc`` config-files
    echo 'export PATH="/home/manager/miniconda3/bin:$PATH"' >> ~/.bashrc
    echo 'export PATH="/home/manager/miniconda3/bin:$PATH"' >> ~/.zshrc
 
-   
+
 .. Attention::
    The above assumes that your username is "manager", which is the default on a Biolinux install.
    Replace "manager" with your actual username.
    Find out with ``whoami``.
    
 
+So what is actually happening here? We are appending a line to a file (either ``.bashrc`` or ``.zshrc``).
+If we are starting a new command-line shell, either file gets executed first (depending on which shell you are using, either bash or zsh shells).
+What this line does, is to put permanently the directory ``~/miniconda3/bin`` first on your ``PATH`` variable.
+The ``PATH`` variable contains directories in which our computer looks for installed programs, one directory after the other until the program you requested is found (or not, then it will complain).
+Through the addition of the above line we make sure that the program ``conda`` can be found anytime we open a new shell.
    
-Create environment
-------------------
+Create environments
+-------------------
 
 We create a |conda| environment for some tools This is useful to work **reproducible** as we can easily re-create the tool-set with the same version numbers later on.
 
@@ -77,6 +82,22 @@ We create a |conda| environment for some tools This is useful to work **reproduc
     conda create -n ngs python=3
     # activate the environment
     source activate ngs
+
+    
+So what is happening when you type ``source activate ngs`` in a shell.
+The ``PATH`` variable (mentioned above) gets temporarily manipulated and set to:
+
+
+.. code-block:: bash
+                
+   $ source activate ngs
+   # Lets look at the content of the PATH variable
+   (ngs) $ echo $PATH
+   /home/manager/miniconda3/envs/ngs/bin:/home manager/miniconda3/bin:/usr/local/bin: ...
+
+
+Now it will look first in your environment's bin directory but afterwards in the general conda bin (/home/manager/miniconda3/bin).
+So basically everything you install generally with conda (without being in an environment) is also available to you but gets overshadowed if a similar program is in ``/home/manager/miniconda3/envs/ngs/bin`` and you are in the ``ngs`` environment.
 
 
 Install software
