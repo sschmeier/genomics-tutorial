@@ -104,7 +104,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#update-bashrc-and-zshrc-config-files">2.1.1. Update <code class="docutils literal"><span class="pre">.bashrc</span></code> and <code class="docutils literal"><span class="pre">.zshrc</span></code> config-files</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#create-environment">2.2. Create environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#create-environments">2.2. Create environments</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#install-software">2.3. Install software</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#general-conda-commands">2.4. General conda commands</a></li>
 </ul>
@@ -233,16 +233,31 @@ A quick solution for the current shell window is to switch to a bash shell by ty
 Replace &quot;manager&quot; with your actual username.
 Find out with <code class="docutils literal"><span class="pre">whoami</span></code>.</p>
 </div>
+<p>So what is actually happening here? We are appending a line to a file (either <code class="docutils literal"><span class="pre">.bashrc</span></code> or <code class="docutils literal"><span class="pre">.zshrc</span></code>).
+If we are starting a new command-line shell, either file gets executed first (depending on which shell you are using, either bash or zsh shells).
+What this line does, is to put permanently the directory <code class="docutils literal"><span class="pre">~/miniconda3/bin</span></code> first on your <code class="docutils literal"><span class="pre">PATH</span></code> variable.
+The <code class="docutils literal"><span class="pre">PATH</span></code> variable contains directories in which our computer looks for installed programs, one directory after the other until the program you requested is found (or not, then it will complain).
+Through the addition of the above line we make sure that the program <code class="docutils literal"><span class="pre">conda</span></code> can be found anytime we open a new shell.</p>
 </div>
 </div>
-<div class="section" id="create-environment">
-<h2>2.2. Create environment<a class="headerlink" href="#create-environment" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="create-environments">
+<h2>2.2. Create environments<a class="headerlink" href="#create-environments" title="Permalink to this headline">¶</a></h2>
 <p>We create a <a class="reference external" href="http://conda.pydata.org/miniconda.html">conda</a> environment for some tools This is useful to work <strong>reproducible</strong> as we can easily re-create the tool-set with the same version numbers later on.</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>conda create -n ngs <span class="nv">python</span><span class="o">=</span><span class="m">3</span>
 <span class="c1"># activate the environment</span>
 <span class="nb">source</span> activate ngs
 </pre></div>
 </div>
+<p>So what is happening when you type <code class="docutils literal"><span class="pre">source</span> <span class="pre">activate</span> <span class="pre">ngs</span></code> in a shell.
+The <code class="docutils literal"><span class="pre">PATH</span></code> variable (mentioned above) gets temporarily manipulated and set to:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ <span class="nb">source</span> activate ngs
+<span class="c1"># Lets look at the content of the PATH variable</span>
+<span class="o">(</span>ngs<span class="o">)</span> $ <span class="nb">echo</span> <span class="nv">$PATH</span>
+/home/manager/miniconda3/envs/ngs/bin:/home manager/miniconda3/bin:/usr/local/bin: ...
+</pre></div>
+</div>
+<p>Now it will look first in your environment's bin directory but afterwards in the general conda bin (/home/manager/miniconda3/bin).
+So basically everything you install generally with conda (without being in an environment) is also available to you but gets overshadowed if a similar program is in <code class="docutils literal"><span class="pre">/home/manager/miniconda3/envs/ngs/bin</span></code> and you are in the <code class="docutils literal"><span class="pre">ngs</span></code> environment.</p>
 </div>
 <div class="section" id="install-software">
 <h2>2.3. Install software<a class="headerlink" href="#install-software" title="Permalink to this headline">¶</a></h2>
@@ -308,7 +323,7 @@ conda create -n <span class="o">[</span>name<span class="o">]</span> package <sp
   <div role="contentinfo">
     <p>
         &copy; Copyright 2016-2017, Sebastian Schmeier (https://sschmeier.com).
-      Last updated on Jul 30, 2017.
+      Last updated on Sep 14, 2017.
 
     </p>
   </div>
