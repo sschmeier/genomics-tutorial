@@ -511,6 +511,13 @@ For the sake of going forward, we will sub-select reads with at least medium qua
 
 - ``-h``: Include the sam header
 - ``-q 20``: Only extract reads with mapping quality >= 20
+
+  
+.. hint::
+
+   I will repeat here a recommendation given at the source `link <https://sequencing.qcfail.com/articles/mapq-values-are-really-useful-but-their-implementation-is-a-mess/>`__ above, as it is a good one: If you unsure what :math:`MAPQ` scoring scheme is being used in your own data then you can plot out the :math:`MAPQ` distribution in a BAM file using programs like the mentioned |qualimap| or similar programs.
+   This will at least show you the range and frequency with which different :math:`MAPQ` values appear and may help identify a suitable threshold you may want to use.
+
    
 Unmapped reads
 ~~~~~~~~~~~~~~
