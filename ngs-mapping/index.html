@@ -73,7 +73,7 @@
             
             
               <div class="version">
-                2017.6
+                2017.9
               </div>
             
           
@@ -645,6 +645,11 @@ If you want to know more about the <span class="math">\(MAPQ\)</span> topic, ple
 <li><code class="docutils literal"><span class="pre">-h</span></code>: Include the sam header</li>
 <li><code class="docutils literal"><span class="pre">-q</span> <span class="pre">20</span></code>: Only extract reads with mapping quality &gt;= 20</li>
 </ul>
+<div class="admonition hint">
+<p class="first admonition-title">Hint</p>
+<p class="last">I will repeat here a recommendation given at the source <a class="reference external" href="https://sequencing.qcfail.com/articles/mapq-values-are-really-useful-but-their-implementation-is-a-mess/">link</a> above, as it is a good one: If you unsure what <span class="math">\(MAPQ\)</span> scoring scheme is being used in your own data then you can plot out the <span class="math">\(MAPQ\)</span> distribution in a BAM file using programs like the mentioned <a class="reference external" href="http://qualimap.bioinfo.cipf.es/">QualiMap</a> or similar programs.
+This will at least show you the range and frequency with which different <span class="math">\(MAPQ\)</span> values appear and may help identify a suitable threshold you may want to use.</p>
+</div>
 </div>
 <div class="section" id="unmapped-reads">
 <h3>5.11.3. Unmapped reads<a class="headerlink" href="#unmapped-reads" title="Permalink to this headline">¶</a></h3>
@@ -699,7 +704,7 @@ If you want to know more about the <span class="math">\(MAPQ\)</span> topic, ple
   <div role="contentinfo">
     <p>
         &copy; Copyright 2016-2017, Sebastian Schmeier (https://sschmeier.com).
-      Last updated on Sep 14, 2017.
+      Last updated on Sep 18, 2017.
 
     </p>
   </div>
@@ -721,7 +726,7 @@ If you want to know more about the <span class="math">\(MAPQ\)</span> topic, ple
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'2017.6',
+            VERSION:'2017.9',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
