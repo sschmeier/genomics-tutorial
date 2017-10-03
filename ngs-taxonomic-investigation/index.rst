@@ -30,16 +30,6 @@ The part of the workflow we will work on in this section can be viewed in :numre
 .. figure:: images/workflow.png
 
    The part of the workflow we will work on in this section marked in red.
-   
-
-Kraken
-------
-
-We will be using a tool called |kraken| [WOOD2014]_.
-This tool uses k-mers to assign a taxonomic labels in form of |ncbitax| to the sequence (if possible).
-The taxonomic label is assigned based on similar k-mer content of the sequence in question to the k-mer content of reference genome sequence.
-The result is a classification of the sequence in question to the most likely taxonomic label.
-If the k-mer content is not similar to any genomic sequence in the database used, it will not assign any taxonomic label.
 
 
 Before we start
@@ -62,10 +52,20 @@ Lets see how our directory structure looks so far:
           trimmed/
           trimmed-fastqc/
           trimmed-solexaqa/
+          
+
+Kraken
+------
+
+We will be using a tool called |kraken| [WOOD2014]_.
+This tool uses k-mers to assign a taxonomic labels in form of |ncbitax| to the sequence (if possible).
+The taxonomic label is assigned based on similar k-mer content of the sequence in question to the k-mer content of reference genome sequence.
+The result is a classification of the sequence in question to the most likely taxonomic label.
+If the k-mer content is not similar to any genomic sequence in the database used, it will not assign any taxonomic label.
 
 
 Installation
-------------
+^^^^^^^^^^^^
 
 Use conda in the same fashion as before to install |kraken|:
 
@@ -110,7 +110,7 @@ We opt for downloading the pre-build "minikraken" database from the |kraken| web
         
    
 Usage
------
+^^^^^
 
 Now that we have installed |kraken| and downloaded and extracted the minikraken database, we can attempt to investigate the sequences we got back from the sequencing provider for other species as the one it should contain.
 We call the |kraken| tool and specify the database and fasta-file with the sequences it should use. The general command structure looks like this:
@@ -167,7 +167,7 @@ Output lines contain five tab-delimited fields; from left to right, they are:
 
 
 Investigate taxa
-----------------
+^^^^^^^^^^^^^^^^
 
 We can use the webpage `NCBI TaxIdentifier <https://www.ncbi.nlm.nih.gov/Taxonomy/TaxIdentifier/tax_identifier.cgi>`__ to quickly get the names to the taxonomy identifier.
 However, this is impractical as we are dealing potentially with many sequences.
@@ -175,7 +175,7 @@ However, this is impractical as we are dealing potentially with many sequences.
 
 
 kraken-report
-~~~~~~~~~~~~~
+"""""""""""""
 
 First, we generate a sample-wide report of all taxa found.
 This can be achieved with the tool ``kranken-report``.
@@ -222,9 +222,8 @@ The report is not ordered according to taxa ids and contains all taxa in the dat
 The columns are the same as in the former report, however, we have more rows and they are now differently sorted, according to the |ncbitax| id.
 
 
-
 kraken-translate
-~~~~~~~~~~~~~~~~
+""""""""""""""""
    
 For every sequence in our sample and its predicted taxonomic identifier,
 we can attach the taxonomic names with ``kraken-translate``.
@@ -247,8 +246,132 @@ The nomenclature for the names is preceded with an letter according to its rank,
 Taxonomy assignments above the superkingdom (**d**) rank are represented as just **root**. 
 
 
+Centrifuge
+----------
+
+We can also use the successor to |kraken|, a tool called |centrifuge| [KIM2017]_.
+This tool uses a novel indexing scheme based on the Burrows-Wheeler transform (BWT) and the Ferragina-Manzini (FM) index, optimized specifically for the metagenomic classification problem to assign a taxonomic labels in form of |ncbitax| to the sequence (if possible).
+The result is a classification of the sequence in question to the most likely taxonomic label.
+If the search sequence is not similar to any genomic sequence in the database used, it will not assign any taxonomic label.
+
+
+Installation
+^^^^^^^^^^^^
+
+Use conda in the same fashion as before to install |centrifuge|:
+
+.. code-block:: bash
+          
+   source activate ngs
+   conda install centrifuge
+
+Now we create a directory where we are going to do the analysis and we will change into that directory too.
+
+.. code-block:: bash
+
+   # make sure you are in your analysis root folder
+   cd ~/analysis
+
+   # create dir
+   mkdir centrifuge
+   cd centrifuge
+   
+Now we need to create or download a |centrifuge| database that can be used to assign the taxonomic labels to sequences.
+We opt for downloading the pre-build database from the |centrifuge| website:
+
+.. code-block:: bash
+          
+   curl -O ftp://ftp.ccb.jhu.edu/pub/infphilo/centrifuge/data/p_compressed.tar.gz
+
+   # alternatively we can use wget
+   wget ftp://ftp.ccb.jhu.edu/pub/infphilo/centrifuge/data/p_compressed.tar.gz
+   
+   # once the download is finished, we need to extract the archive content
+   # It will extract a few files from the archive and may take a moment to finish.
+   tar -xvzf p_compressed.tar.gz
+
+
+.. ATTENTION::
+   Should the download fail. Please find links to alternative locations on the
+   :ref:`downloads` page.
+
+.. NOTE::
+   The database we will be using was created from bacteria and archaea sequences only.
+   What are the implications for us when we are trying to classify our sequences?
+        
+   
+Usage
+^^^^^
+
+Now that we have installed |centrifuge| and downloaded and extracted the pre-build database, we can attempt to investigate the sequences we got back from the sequencing provider for other species as the one it should contain.
+We call the |centrifuge| tool and specify the database and fasta-file with the sequences it should use. The general command structure looks like this:
+
+
+.. code:: bash
+
+   centrifuge -x p_compressed -U example.fa --report-file report.txt -S results.txt
+
+
+However, if we do not have fastq-files we may have to use the  ``-f`` option, which tells |centrifuge| that it is dealing with a fasta-formated file.
+Here, we are investigating one of the unmapped paired-end read files of the evolved line.
+
+
+.. code:: bash
+
+   centrifuge -x p_compressed -U ../mappings/evolved-6.sorted.unmapped.R1.fastq --report-file evolved-6-R1-report.txt -S evolved-6-R1-results.txt
+
+
+This classification may take a moment, depending on how many sequences we are going to classify.
+The resulting content of the file ``evolved-6-R1-results.txt`` looks similar to the following example:
+
+
+.. include:: example-centrifuge-results.txt
+   :literal:
+   :end-line: 5
+
+
+Each sequence classified by |centrifuge| results in a single line of output.
+Output lines contain five tab-delimited fields; from left to right, they are according to the |centrifuge| website:
+
+1. The read ID from a raw sequencing read.
+2. The sequence ID of the genomic sequence, where the read is classified.
+3. The taxonomic ID of the genomic sequence in the second column.
+4. The score for the classification, which is the weighted sum of hits.
+5. The score for the next best classification.
+6. A pair of two numbers: (1) an approximate number of base pairs of the read that match the genomic sequence and (2) the length of a read or the combined length of mate pairs (e.g., 80 / 80).
+7. A pair of two numbers: (1) an approximate number of base pairs of the read that match the genomic sequence and (2) the length of a read or the combined length of mate pairs (e.g., 80 / 80). 
+8. The  number of classifications for this read, indicating how many assignments were made.
+
+
+Investigate taxa
+^^^^^^^^^^^^^^^^
+
+Centrifuge report
+"""""""""""""""""
+
+The command above create a |centrifuge| report automatically for us.
+It contains a overview of the identified taxa and their abundances:
+
+
+.. include:: example-centrifuge-report.txt
+   :literal:
+   :end-line: 6 
+
+              
+Each line contains seven tab-delimited fields; from left to right, they are
+
+
+1. name
+2. taxID
+3. taxRank
+4. genomeSize
+5. numReads
+6. numUniqueReads
+7. abundance
+              
+
 Visualisation
-~~~~~~~~~~~~~
+-------------
 
 We use the |krona| tools to create a nice interactive visualisation of the taxa content of our sample [ONDOV2011]_.
 :numref:`fig-krona` shows an example (albeit an artificial one) snapshot of the visualisation |krona| provides.
@@ -329,6 +452,9 @@ Done!
 
    .. rubric:: References
 
+
+.. [KIM2017] Kim D, Song L, Breitwieser FP, Salzberg SL. Centrifuge: rapid and
+             sensitive classification of metagenomic sequences. `Genome Res. 2016 Dec;26(12):1721-1729 <https://www.ncbi.nlm.nih.gov/pubmed/27852649>`__
                
 .. [ONDOV2011] Ondov BD, Bergman NH, and Phillippy AM. Interactive metagenomic visualization in a Web browser. `BMC Bioinformatics, 2011, 12(1):385. <http://www.ncbi.nlm.nih.gov/pubmed/21961884>`__
                   

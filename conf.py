@@ -386,6 +386,7 @@ rst_epilog = """
 .. |fileevol2| replace:: evolved-6-R2
 .. |conda| replace:: `conda <http://conda.pydata.org/miniconda.html>`__
 .. |kraken| replace:: `Kraken <https://ccb.jhu.edu/software/kraken/>`__
+.. |centrifuge| replace:: `Centrifuge <http://www.ccb.jhu.edu/software/centrifuge/index.shtml>`__
 .. |ncbitax| replace:: `NCBI Taxonomy <https://www.ncbi.nlm.nih.gov/taxonomy>`__
 .. |spades| replace:: `SPAdes <http://bioinf.spbau.ru/spades>`__
 .. |krona| replace:: `Krona <https://github.com/marbl/Krona/wiki>`__
@@ -416,7 +417,9 @@ rst_epilog = """
 # rst_prolog=""
 
 # to be able to use two dashes in my own blocks I turn off smartypants
-html_use_smartypants=False
+#html_use_smartypants=False
+smart_quotes = False
+
 
 def setup(app):
     app.add_stylesheet('css/seb.css')
