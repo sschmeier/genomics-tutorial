@@ -201,7 +201,7 @@ The fields of the output, from left-to-right, are as follows:
 3. **Number of reads** assigned directly to this taxon
 4. A rank code, indicating **(U)nclassified, (D)omain, (K)ingdom, (P)hylum, (C)lass, (O)rder, (F)amily, (G)enus, or (S)pecies**. All other ranks are simply **"-"**.
 5. |ncbitax| ID
-6. indented scientific name
+6. The indented scientific name
 
 
    
@@ -249,7 +249,7 @@ Taxonomy assignments above the superkingdom (**d**) rank are represented as just
 Centrifuge
 ----------
 
-We can also use the successor to |kraken|, a tool called |centrifuge| [KIM2017]_.
+We can also use the successor to |kraken|, a tool by the same group called |centrifuge| [KIM2017]_.
 This tool uses a novel indexing scheme based on the Burrows-Wheeler transform (BWT) and the Ferragina-Manzini (FM) index, optimized specifically for the metagenomic classification problem to assign a taxonomic labels in form of |ncbitax| to the sequence (if possible).
 The result is a classification of the sequence in question to the most likely taxonomic label.
 If the search sequence is not similar to any genomic sequence in the database used, it will not assign any taxonomic label.
@@ -331,15 +331,15 @@ The resulting content of the file ``evolved-6-R1-results.txt`` looks similar to 
 
 
 Each sequence classified by |centrifuge| results in a single line of output.
-Output lines contain five tab-delimited fields; from left to right, they are according to the |centrifuge| website:
+Output lines contain eight tab-delimited fields; from left to right, they are according to the |centrifuge| website:
 
 1. The read ID from a raw sequencing read.
 2. The sequence ID of the genomic sequence, where the read is classified.
 3. The taxonomic ID of the genomic sequence in the second column.
 4. The score for the classification, which is the weighted sum of hits.
 5. The score for the next best classification.
-6. A pair of two numbers: (1) an approximate number of base pairs of the read that match the genomic sequence and (2) the length of a read or the combined length of mate pairs (e.g., 80 / 80).
-7. A pair of two numbers: (1) an approximate number of base pairs of the read that match the genomic sequence and (2) the length of a read or the combined length of mate pairs (e.g., 80 / 80). 
+6. A pair of two numbers: (1) an approximate number of base pairs of the read that match the genomic sequence and (2) the length of a read or the combined length of mate pairs.
+7. A pair of two numbers: (1) an approximate number of base pairs of the read that match the genomic sequence and (2) the length of a read or the combined length of mate pairs. 
 8. The  number of classifications for this read, indicating how many assignments were made.
 
 
@@ -349,8 +349,8 @@ Investigate taxa
 Centrifuge report
 """""""""""""""""
 
-The command above create a |centrifuge| report automatically for us.
-It contains a overview of the identified taxa and their abundances:
+The command above creates a |centrifuge| report automatically for us.
+It contains an overview of the identified taxa and their abundances in your supplied sequences (normalised to genomic length):
 
 
 .. include:: example-centrifuge-report.txt
@@ -358,16 +358,41 @@ It contains a overview of the identified taxa and their abundances:
    :end-line: 6 
 
               
-Each line contains seven tab-delimited fields; from left to right, they are
+Each line contains seven tab-delimited fields; from left to right, they are according to the |centrifuge| website:
+
+1. The name of a genome, or the name corresponding to a taxonomic ID (the second column) at a rank higher than the strain.
+2. The taxonomic ID.
+3. The taxonomic rank.
+4. The length of the genome sequence.
+5. The number of reads classified to this genomic sequence including multi-classified reads.
+6. The number of reads uniquely classified to this genomic sequence.
+7. The proportion of this genome normalized by its genomic length.
 
 
-1. name
-2. taxID
-3. taxRank
-4. genomeSize
-5. numReads
-6. numUniqueReads
-7. abundance
+Kraken-like report
+""""""""""""""""""
+
+If we would like to generate a report as generated with the former tool |kraken|, we can do it like this:
+
+
+.. code::
+
+   centrifuge-kreport -x p_compressed evolved-6-R1-results.txt > evolved-6-R1-kreport.txt
+
+
+.. include:: example-centrifuge-kreport.txt
+   :literal:
+   :end-line: 20
+
+
+This gives a similar (not the same) report as the |kraken| tool. The report is tab-delimited, with one line per taxon. The fields of the output, from left-to-right, are as follows:
+
+1. Percentage of reads covered by the clade rooted at this taxon
+2. Number of reads covered by the clade rooted at this taxon
+3. Number of reads assigned directly to this taxon
+4. A rank code, indicating (U)nclassified, (D)omain, (K)ingdom, (P)hylum, (C)lass, (O)rder, (F)amily, (G)enus, or (S)pecies. All other ranks are simply “-“.
+5. NCBI Taxonomy ID
+6. The indented scientific name
               
 
 Visualisation
@@ -382,6 +407,9 @@ We use the |krona| tools to create a nice interactive visualisation of the taxa 
 
    Example of an Krona output webpage.
 
+   
+Installation
+^^^^^^^^^^^^
 
 Install |krona| with:
 
@@ -404,10 +432,11 @@ Do not worry to much about what is happening here.
    # now we make a symbolic link to that directory 
    ln -s ~/krona/taxonomy ~/miniconda3/envs/ngs/opt/krona/taxonomy
    
-   # now we copy some scripts around, this is necessary as krona installation fails to do this
-   cp -r ~/miniconda3/envs/ngs/opt/krona/scripts ~/miniconda3/envs/py3-kraken/bin/
 
+Build the taxonomy
+^^^^^^^^^^^^^^^^^^
 
+   
 We need to build a taxonomy database for |krona|.
 However, if this fails we will skip this step and just download a pre-build one.
 Lets first try to build one.
@@ -417,7 +446,8 @@ Lets first try to build one.
           
    ktUpdateTaxonomy.sh ~/krona/taxonomy
 
-Now, if this fails, we download a pre-build taxonomy database for krona.
+   
+Now, if this fails, we download a pre-build taxonomy database for krona:
 
 
 .. code-block:: bash
@@ -430,19 +460,35 @@ Now, if this fails, we download a pre-build taxonomy database for krona.
 
    # we move the unzipped file to our taxonomy directory we specified in the step before.
    mv taxonomy.tab ~/krona/taxonomy
+
    
 .. ATTENTION:: 
    Should this also fail we can download a pre-build database on the :ref:`downloads` page via a browser.
 
-   
-Now we use the tool ``ktImportTaxonomy`` from the |krona| tools to crate the html web-page:
+
+Visualise
+^^^^^^^^^
+
+Now, we use the tool ``ktImportTaxonomy`` from the |krona| tools to create the html web-page.
+We first need build a two column file (``read_id<tab>tax_id``) as input to the ``ktImportTaxonomy`` tool.
+We will do this by cutting the columns out of either the |kraken| or |centrifuge| results:
+
 
 .. code:: bash 
 
+   # Kraken
+   cd kraken
    cat evolved-6-R1.kraken | cut -f 2,3 > evolved-6-R1.kraken.krona
    ktImportTaxonomy evolved-6-R1.kraken.krona
    firefox taxonomy.krona.html
 
+   # Centrifuge
+   cd centrifuge
+   cat evolved-6-R1-results.txt | cut -f 1,3 > evolved-6-R1-results.krona
+   ktImportTaxonomy evolved-6-R1-results.krona
+   firefox taxonomy.krona.html
+
+   
 What happens here is that we extract the second and third column from the |kraken| results.
 Afterwards, we input these to the |krona| script, and open the resulting web-page in a bowser.
 Done!
