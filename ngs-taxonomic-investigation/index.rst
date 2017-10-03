@@ -395,8 +395,8 @@ This gives a similar (not the same) report as the |kraken| tool. The report is t
 6. The indented scientific name
               
 
-Visualisation
--------------
+Visualisation (Krona)
+---------------------
 
 We use the |krona| tools to create a nice interactive visualisation of the taxa content of our sample [ONDOV2011]_.
 :numref:`fig-krona` shows an example (albeit an artificial one) snapshot of the visualisation |krona| provides.
