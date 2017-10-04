@@ -73,7 +73,7 @@
             
             
               <div class="version">
-                2017.9
+                2017.10
               </div>
             
           
@@ -215,7 +215,7 @@ command-line interface to deal with the task of investigating the quality and cl
 <h2>3.2. Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
 <p>The part of the workflow we will work on in this section can be viewed in <a class="reference internal" href="#fig-workflow-qc"><span class="std std-numref">Fig. 3.1</span></a>.</p>
 <div class="figure" id="id6">
-<span id="fig-workflow-qc"></span><img alt="../_images/workflow3.png" src="../_images/workflow3.png" />
+<span id="fig-workflow-qc"></span><img alt="../_images/workflow4.png" src="../_images/workflow4.png" />
 <p class="caption"><span class="caption-number">Fig. 3.1 </span><span class="caption-text">The part of the workflow we will work on in this section marked in red.</span></p>
 </div>
 </div>
@@ -262,7 +262,7 @@ technology webpage</a>
 and this <a class="reference external" href="https://youtu.be/HMyCqWhwB8E">video</a>.</p>
 <div class="admonition attention">
 <p class="first admonition-title">Attention</p>
-<p class="last">The data we are using is &quot;almost&quot; raw data as it came from the machine. This data has been post-processed in two ways already. All sequences that were identified as belonging to the PhiX genome have been removed. This process requires some skills we will learn in later sections. <a class="reference external" href="http://illumina.com">Illumina</a> adapters have been removed as well already! The process is explained below but we are <strong>not</strong> going to do it.</p>
+<p class="last">The data we are using is “almost” raw data as it came from the machine. This data has been post-processed in two ways already. All sequences that were identified as belonging to the PhiX genome have been removed. This process requires some skills we will learn in later sections. <a class="reference external" href="http://illumina.com">Illumina</a> adapters have been removed as well already! The process is explained below but we are <strong>not</strong> going to do it.</p>
 </div>
 <div class="section" id="investigate-the-data">
 <h3>3.4.1. Investigate the data<a class="headerlink" href="#investigate-the-data" title="Permalink to this headline">¶</a></h3>
@@ -311,7 +311,7 @@ PhiX is used as a quality and calibration control for <a class="reference extern
 PhiX is often added at a low known concentration, spiked in the same lane along with the sample or used as a separate lane.
 As the concentration of the genome is known, one can calibrate the instruments.
 Thus, PhiX genomic sequences need to be removed before processing your data further as this constitutes a deliberate contamination <a class="reference internal" href="#mukherjee2015" id="id4">[MUKHERJEE2015]</a>.
-The steps involve mapping all reads to the &quot;known&quot; PhiX genome, and removing all of those sequence reads from the data.</p>
+The steps involve mapping all reads to the “known” PhiX genome, and removing all of those sequence reads from the data.</p>
 <p>However, your sequencing provider might not have used PhiX, thus you need to read the protocol carefully, or just do this step in any case.</p>
 <div class="admonition attention">
 <p class="first admonition-title">Attention</p>
@@ -351,11 +351,11 @@ conda install ea-utils
 It produces nice graphics that intuitively show the quality of the sequences. it is also able to dynamically trim the bad quality ends off the reads.</p>
 <p>From the webpage:</p>
 <blockquote>
-<div>&quot;SolexaQA calculates sequence quality statistics and creates visual
+<div>“SolexaQA calculates sequence quality statistics and creates visual
 representations of data quality for second-generation sequencing
 data. Originally developed for the Illumina system (historically
-known as &quot;Solexa&quot;), SolexaQA now also supports Ion Torrent and 454
-data.&quot;</div></blockquote>
+known as “Solexa”), SolexaQA now also supports Ion Torrent and 454
+data.”</div></blockquote>
 <div class="section" id="install-solexaqa">
 <h3>3.9.1. Install SolexaQA++<a class="headerlink" href="#install-solexaqa" title="Permalink to this headline">¶</a></h3>
 <p>Unfortunately, currently we cannot install <a class="reference external" href="http://solexaqa.sourceforge.net">SolexaQA++</a> with <a class="reference external" href="http://conda.pydata.org/miniconda.html">conda</a>.</p>
@@ -413,7 +413,7 @@ and discard files based on a user-defined length cutoff.</p>
 <div class="admonition-todo admonition" id="index-2">
 <p class="first admonition-title">Todo</p>
 <ol class="last arabic simple">
-<li>Create a directory for the result-files --&gt; <strong>trimmed/</strong>.</li>
+<li>Create a directory for the result-files –&gt; <strong>trimmed/</strong>.</li>
 <li>Run <a class="reference external" href="http://solexaqa.sourceforge.net">SolexaQA++</a> <code class="docutils literal"><span class="pre">dynamictrim</span></code> with the untrimmed data and a probability cutoff of 0.01., and submit result-directory <strong>trimmed/</strong>.</li>
 <li>Investigate the result-files in <strong>trimmed/</strong>, e.g. do the file-sizes change to the original files?</li>
 <li><a class="reference external" href="http://solexaqa.sourceforge.net">SolexaQA++</a> <code class="docutils literal"><span class="pre">dynamictrim</span></code> produces a graphical output. Explain what the graph shows. Find heklp on the <a class="reference external" href="http://solexaqa.sourceforge.net">SolexaQA++</a> website.</li>
@@ -429,7 +429,7 @@ and discard files based on a user-defined length cutoff.</p>
 <div class="admonition-todo admonition" id="index-3">
 <p class="first admonition-title">Todo</p>
 <ol class="last arabic simple">
-<li>Create a directory for the result-files --&gt; <strong>trimmed-solexaqa</strong>.</li>
+<li>Create a directory for the result-files –&gt; <strong>trimmed-solexaqa</strong>.</li>
 <li>Use <a class="reference external" href="http://solexaqa.sourceforge.net">SolexaQA++</a> to do the quality assessment with the trimmed data-set.</li>
 <li>Compare your results to the examples of a particularly bad MiSeq run (<a class="reference internal" href="#solexaqa-heatmap-bad"><span class="std std-numref">Fig. 3.6</span></a> to <a class="reference internal" href="#solexaqa-heatmap-bad"><span class="std std-numref">Fig. 3.6</span></a>, taken from <a class="reference external" href="http://solexaqa.sourceforge.net">SolexaQA++</a> website). Write down your observations.</li>
 <li>What elements in these example figures (<a class="reference internal" href="#solexaqa-quality-bad"><span class="std std-numref">Fig. 3.3</span></a> to <a class="reference internal" href="#solexaqa-heatmap-bad"><span class="std std-numref">Fig. 3.6</span></a>) indicate that the show a bad run? Write down your explanations.</li>
@@ -523,11 +523,11 @@ fastqc --help
 <p><a class="reference external" href="http://www.bioinformatics.babraham.ac.uk/projects/fastqc/">FastQC</a> is a very simple program to run that provides similar and additional information to <a class="reference external" href="http://solexaqa.sourceforge.net">SolexaQA++</a>.</p>
 <p>From the webpage:</p>
 <blockquote>
-<div>&quot;FastQC aims to provide a simple way to do some quality control
+<div>“FastQC aims to provide a simple way to do some quality control
 checks on raw sequence data coming from high throughput sequencing
 pipelines. It provides a modular set of analyses which you can use
 to give a quick impression of whether your data has any problems of
-which you should be aware before doing any further analysis.&quot;</div></blockquote>
+which you should be aware before doing any further analysis.”</div></blockquote>
 <p>The basic command looks like:</p>
 <div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="n">fastqc</span> <span class="o">-</span><span class="n">o</span> <span class="n">RESULT</span><span class="o">-</span><span class="n">DIR</span> <span class="n">INPUT</span><span class="o">-</span><span class="n">FILE</span><span class="o">.</span><span class="p">[</span><span class="n">txt</span><span class="o">/</span><span class="n">fa</span><span class="o">/</span><span class="n">fq</span><span class="p">]</span> <span class="o">...</span>
 </pre></div>
@@ -546,7 +546,7 @@ which you should be aware before doing any further analysis.&quot;</div></blockq
 <div class="admonition-todo admonition" id="index-4">
 <p class="first admonition-title">Todo</p>
 <ol class="last arabic simple">
-<li>Create a directory for the results --&gt; <strong>trimmed-fastqc</strong></li>
+<li>Create a directory for the results –&gt; <strong>trimmed-fastqc</strong></li>
 <li>Run FastQC on all <strong>trimmed</strong> files.</li>
 <li>Visit the <a class="reference external" href="http://www.bioinformatics.babraham.ac.uk/projects/fastqc/">FastQC</a> website and read about sequencing QC reports for good and bad <a class="reference external" href="http://illumina.com">Illumina</a> sequencing runs.</li>
 <li>Compare your results to these examples (<a class="reference internal" href="#fastqc-bad1"><span class="std std-numref">Fig. 3.7</span></a> to <a class="reference internal" href="#fastqc-bad3"><span class="std std-numref">Fig. 3.9</span></a>) of a particularly bad run (taken from the <a class="reference external" href="http://www.bioinformatics.babraham.ac.uk/projects/fastqc/">FastQC</a> website) and write down your observations with regards to your data.</li>
@@ -627,7 +627,7 @@ which you should be aware before doing any further analysis.&quot;</div></blockq
   <div role="contentinfo">
     <p>
         &copy; Copyright 2016-2017, Sebastian Schmeier (https://sschmeier.com).
-      Last updated on Sep 18, 2017.
+      Last updated on Oct 04, 2017.
 
     </p>
   </div>
@@ -649,7 +649,7 @@ which you should be aware before doing any further analysis.&quot;</div></blockq
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'2017.9',
+            VERSION:'2017.10',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
@@ -659,7 +659,7 @@ which you should be aware before doing any further analysis.&quot;</div></blockq
       <script type="text/javascript" src="../_static/jquery.js"></script>
       <script type="text/javascript" src="../_static/underscore.js"></script>
       <script type="text/javascript" src="../_static/doctools.js"></script>
-      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
   
 

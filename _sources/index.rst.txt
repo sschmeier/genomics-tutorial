@@ -3,14 +3,16 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Genomics Tutorial
-=================
+Computational Genomics Tutorial
+===============================
 
-This is an introductory tutorial for learning genomics mostly on the command-line.
+This is an introductory tutorial for learning computational genomics mostly on the Linux command-line.
 You will learn how to analyse next-generation sequencing (NGS) data.
-The data you will be using is actual research data.
-The final aim is to identify genome variations in evolved lines of wild yeast that can explain the observed biological phenotype.
-More information  about other bioinformatics material and research can be found on the webpages of the Schmeier Group (`https://sschmeier.com <https://sschmeier.com>`_).
+The data you will be using is real research data.
+The final aim is to identify genome variations in evolved lines of wild yeast that can explain the observed biological phenotypes.
+Currently `Sebastian <https://sschmeier.com>`__ is teaching this material in the Massey University course `Genetics and Evolution <https://www.massey.ac.nz/massey/learning/programme-course/course.cfm?paper_code=203.341>`__.
+
+More information about other bioinformatics material and our research can be found on the webpages of the `Schmeier Group <https://sschmeier.com>`__ (`https://sschmeier.com <https://sschmeier.com>`_).
 
 .. figure:: /images/workflow.png
 

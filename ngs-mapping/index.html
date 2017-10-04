@@ -73,7 +73,7 @@
             
             
               <div class="version">
-                2017.9
+                2017.10
               </div>
             
           
@@ -227,7 +227,7 @@ reads from the evolved line to our ancestral reference genome.</p>
 <h2>5.2. Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
 <p>The part of the workflow we will work on in this section can be viewed in <a class="reference internal" href="#fig-workflow-map"><span class="std std-numref">Fig. 5.1</span></a>.</p>
 <div class="figure" id="id6">
-<span id="fig-workflow-map"></span><img alt="../_images/workflow2.png" src="../_images/workflow2.png" />
+<span id="fig-workflow-map"></span><img alt="../_images/workflow3.png" src="../_images/workflow3.png" />
 <p class="caption"><span class="caption-number">Fig. 5.1 </span><span class="caption-text">The part of the workflow we will work on in this section marked in red.</span></p>
 </div>
 </div>
@@ -400,8 +400,8 @@ The general command structure of the <a class="reference external" href="http://
 A quick overview of the sam-format can be found <a class="reference external" href="http://bio-bwa.sourceforge.net/bwa.shtml#4">here</a> and even more information can be found <a class="reference external" href="http://samtools.github.io/hts-specs/SAMv1.pdf">here</a>.
 Briefly, first there are a lot of header lines. Then, for each read, that mapped to the reference, there is one line.</p>
 <p>The columns of such a line in the mapping file are described in <a class="reference internal" href="#table-sam"><span class="std std-numref">Table 5.1</span></a>.</p>
-<table border="1" class="docutils" id="id7">
-<span id="table-sam"></span><caption><span class="caption-number">Table 5.1 </span><span class="caption-text">The sam-file format fields.</span><a class="headerlink" href="#id7" title="Permalink to this table">¶</a></caption>
+<span id="table-sam"></span><table border="1" class="docutils" id="id7">
+<caption><span class="caption-number">Table 5.1 </span><span class="caption-text">The sam-file format fields.</span><a class="headerlink" href="#id7" title="Permalink to this table">¶</a></caption>
 <colgroup>
 <col width="7%" />
 <col width="12%" />
@@ -520,7 +520,7 @@ However, for other research questions that use mapping, you might not want to re
 </div>
 <div class="admonition-todo admonition" id="index-5">
 <p class="first admonition-title">Todo</p>
-<p class="last">Figure out what &quot;PCR amplification bias&quot; means.</p>
+<p class="last">Figure out what “PCR amplification bias” means.</p>
 </div>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
@@ -629,7 +629,7 @@ We can sub-select from the output reads we want to analyse further using <a clas
 <h3>5.11.2. Quality-based sub-selection<a class="headerlink" href="#quality-based-sub-selection" title="Permalink to this headline">¶</a></h3>
 <p>In this section we want to sub-select reads based on the quality of the mapping.
 It seems a reasonable idea to only keep good mapping reads.
-As the SAM-format contains at column 5 the <span class="math">\(MAPQ\)</span> value, which we established earlier is the &quot;MAPping Quality&quot; in Phred-scaled, this seems easily achieved.
+As the SAM-format contains at column 5 the <span class="math">\(MAPQ\)</span> value, which we established earlier is the “MAPping Quality” in Phred-scaled, this seems easily achieved.
 The formula to calculate the <span class="math">\(MAPQ\)</span> value is: <span class="math">\(MAPQ=-10*log10(p)\)</span>, where <span class="math">\(p\)</span> is the probability that the read is mapped wrongly.
 However, there is a problem!
 <strong>While the MAPQ information would be very helpful indeed, the way that various tools implement this value differs.</strong>
@@ -704,7 +704,7 @@ This will at least show you the range and frequency with which different <span c
   <div role="contentinfo">
     <p>
         &copy; Copyright 2016-2017, Sebastian Schmeier (https://sschmeier.com).
-      Last updated on Sep 18, 2017.
+      Last updated on Oct 04, 2017.
 
     </p>
   </div>
@@ -726,7 +726,7 @@ This will at least show you the range and frequency with which different <span c
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'2017.9',
+            VERSION:'2017.10',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
@@ -736,7 +736,7 @@ This will at least show you the range and frequency with which different <span c
       <script type="text/javascript" src="../_static/jquery.js"></script>
       <script type="text/javascript" src="../_static/underscore.js"></script>
       <script type="text/javascript" src="../_static/doctools.js"></script>
-      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
   
 
