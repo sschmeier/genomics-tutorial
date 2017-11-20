@@ -280,6 +280,11 @@ latex_elements = {
      # Additional stuff for the LaTeX preamble.
      #
      # 'preamble': '',
+     'preamble': r'''
+        \usepackage{charter}
+        \usepackage[defaultsans]{lato}
+        \usepackage{inconsolata}
+    	''',
 
      # Latex figure (float) alignment
      #
