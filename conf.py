@@ -59,7 +59,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = u'Genomics Tutorial'
-copyright = u'2016-2017, Sebastian Schmeier (https://sschmeier.com)'
+copyright = u'2016-2018, Sebastian Schmeier (https://sschmeier.com)'
 author = u'Sebastian Schmeier'
 
 # The version info for the project you're documenting, acts as replacement for
