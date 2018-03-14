@@ -13,9 +13,9 @@ reads from the evolved line to our ancestral reference genome.
 
 .. NOTE::
 
-   You will encounter some **To-do** sections at times. Write the solutions and answers into a text-file.   
+   You will encounter some **To-do** sections at times. Write the solutions and answers into a text-file.
 
-   
+
 Overview
 --------
 
@@ -25,7 +25,7 @@ The part of the workflow we will work on in this section can be viewed in :numre
 .. figure:: images/workflow.png
 
    The part of the workflow we will work on in this section marked in red.
-   
+
 
 Learning outcomes
 -----------------
@@ -48,10 +48,10 @@ Lets see how our directory structure looks so far:
           # create a mapping result directory
           mkdir mappings
           ls -1F
-          
+
 
 .. code:: bash
-          
+
           assembly/
           data/
           mappings/
@@ -60,7 +60,7 @@ Lets see how our directory structure looks so far:
           trimmed/
           trimmed-fastqc/
           trimmed-solexaqa/
-          
+
 
 Mapping sequence reads to a reference genome
 --------------------------------------------
@@ -69,10 +69,10 @@ We want to map the sequencing reads to the ancestral reference genome we created
 We are going to use the quality trimmed forward and backward DNA sequences of the evolved line and use a program called |bwa| to map the reads.
 
 .. todo::
-                
+
    #. Discuss briefly why we are using the ancestral genome as a reference genome as opposed to a genome for the evolved line.
 
-      
+
 Installing the software
 ~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -90,7 +90,7 @@ It is simple to install and use.
           conda install bwa
           conda install picard
 
-          
+
 Bowtie2
 -------
 
@@ -106,8 +106,8 @@ The general command structure of the |bowtie| tools we are going to use are show
 
    # bowtie2 help
    bowtie2-build
-          
-   # indexing 
+
+   # indexing
    bowtie2-build genome.fasta PATH_TO_INDEX_PREFIX
 
    # paired-end mapping
@@ -115,7 +115,7 @@ The general command structure of the |bowtie| tools we are going to use are show
 
 
 - ``-X``: Adjust the maximum fragment size (length of paired-end alignments + insert size) to 1000bp. This might be useful if you do not know the exact insert size of your data. The |bowtie| default is set to 500 which is `often considered too short <http://lab.loman.net/2013/05/02/use-x-with-bowtie2-to-set-minimum-and-maximum-insert-sizes-for-nextera-libraries/>`__.
-  
+
 
 Creating a reference index for mapping
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -134,7 +134,7 @@ Creating a reference index for mapping
 
    Should you be unable to run |bowtie| indexing on the data, you can download the index from :ref:`downloads`. Unarchive and uncompress the files with ``tar -xvzf bowtie2-index.tar.gz``.
 
-   
+
 
 Mapping reads in a paired-end manner
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -142,21 +142,21 @@ Mapping reads in a paired-end manner
 Now that we have created our index, it is time to map the filtered and trimmed sequencing reads of our evolved line to the reference genome.
 
 .. todo::
-   
+
    Use the correct ``bowtie2`` command structure from above and map the reads of the evolved line to the reference genome.
-   
+
 
 .. hint::
 
    Should you not get it right, try the commands in :ref:`code-bowtie2`.
 
-   
+
 .. note::
 
    |bowtie| does give very cryptic error messages without telling much why it did not want to run. The most likely reason is that you specified the paths to the files and result file wrongly. Check this first. Use tab completion a lot!
 
 
-   
+
 BWA
 ---
 
@@ -176,20 +176,20 @@ The general command structure of the |bwa| tools we are going to use are shown b
 
    # bwa index help
    bwa index
-          
-   # indexing 
+
+   # indexing
    bwa index reference-genome.fa
 
    # bwa mem help
    bwa mem
-   
+
    # single-end mapping
    bwa mem reference-genome.fa reads.fq > aln-se.sam
-   
+
    # paired-end mapping
    bwa mem reference-genome.fa read1.fq read2.fq > aln-pe.sam
 
-   
+
 Creating a reference index for mapping
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -207,8 +207,8 @@ Creating a reference index for mapping
 
    Should you be unable to run |bwa| indexing on the data, you can download the index from :ref:`downloads`. Unarchive and uncompress the files with ``tar -xvzf bwa-index.tar.gz``.
 
-   
-   
+
+
 
 Mapping reads in a paired-end manner
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -216,15 +216,15 @@ Mapping reads in a paired-end manner
 Now that we have created our index, it is time to map the filtered and trimmed sequencing reads of our evolved line to the reference genome.
 
 .. todo::
-   
+
    Use the correct ``bwa mem`` command structure from above and map the reads of the evolved line to the reference genome.
-   
+
 
 .. hint::
 
    Should you not get it right, try the commands in :ref:`code-bwa2`.
 
-   
+
 The sam mapping file-format
 ---------------------------
 
@@ -285,28 +285,28 @@ We are going to produce also compressed bam output for efficient storing of and 
 
 
 .. code:: bash
-               
+
    samtools fixmate -O bam mappings/evolved-6.sam mappings/evolved-6.fixmate.bam
 
-   
+
 - ``-O bam``: specifies that we want compressed bam output
 
 
-.. attention:: 
+.. attention::
 
-   The step of sam to bam-file conversion might take a few minutes to finish, depending on how big your mapping file is. 
+   The step of sam to bam-file conversion might take a few minutes to finish, depending on how big your mapping file is.
 
 
-We will be using the `SAM flag <http://bio-bwa.sourceforge.net/bwa.shtml#4>`__ information later below to extract specific alignments. 
+We will be using the `SAM flag <http://bio-bwa.sourceforge.net/bwa.shtml#4>`__ information later below to extract specific alignments.
 
 .. hint::
 
    A very useful tools to explain flags can be found `here <http://broadinstitute.github.io/picard/explain-flags.html>`__.
 
-      
+
 Once we have bam-file, we can also delete the original sam-file as it requires too much space.
-   
-  
+
+
 .. code:: bash
 
    rm mappings/evolved-6.sam
@@ -322,7 +322,7 @@ We are going to use |samtools| again to sort the bam-file into coordinate order:
 
     # convert to bam file and sort
     samtools sort -O bam -o mappings/evolved-6.sorted.bam mappings/evolved-6.fixmate.bam
-    
+
 
 - ``-o``: specifies the name of the output file.
 - ``-O bam``: specifies that the output will be bam-format
@@ -345,7 +345,7 @@ However, for other research questions that use mapping, you might not want to re
 .. todo::
 
    Figure out what "PCR amplification bias" means.
-    
+
 
 .. note::
 
@@ -365,15 +365,15 @@ Lets get an mapping overview:
 
     samtools flagstat mappings/evolved-6.sorted.dedup.bam
 
-    
+
 .. todo::
 
    Look at the mapping statistics and understand `their meaning
    <https://www.biostars.org/p/12475/>`__. Discuss your results.
    Explain why we may find mapped reads that have their mate mapped to a different chromosome/contig?
    Can they be used for something?
-         
-   
+
+
 For the sorted bam-file we can get read depth for at all positions of the reference genome, e.g. how many reads are overlapping the genomic position.
 
 
@@ -386,15 +386,15 @@ For the sorted bam-file we can get read depth for at all positions of the refere
 
    Extract the depth values for contig 20 and load the data into R, calculate some statistics of our scaffold.
 
-   
+
 .. code:: bash
-   
+
    zcat mappings/evolved-6.depth.txt.gz | egrep '^NODE_20_' | gzip >  mappings/NODE_20.depth.txt.gz
 
-   
+
 Now we quickly use some |R| to make a coverage plot for contig NODE20.
 Open a |R| shell by typing ``R`` on the command-line of the shell.
-   
+
 .. code:: R
 
    x <- read.table('mappings/NODE_20.depth.txt.gz', sep='\t', header=FALSE,  strip.white=TRUE)
@@ -406,7 +406,7 @@ Open a |R| shell by typing ``R`` on the command-line of the shell.
    mean(x[,3])
    # std dev
    sqrt(var(x[,3]))
-   
+
    # mark areas that have a coverage below 20 in red
    plot(x[,2], x[,3], col = ifelse(x[,3] < 20,'red','black'), pch=19, xlab='postion', ylab='coverage')
 
@@ -422,8 +422,8 @@ The result plot will be looking similar to the one in :numref:`coverage`
 .. figure:: images/covNODE20.png
 
    A example coverage plot for a contig with highlighted in red regions with a coverage below 20 reads.
-   
-   
+
+
 .. todo::
 
    Look at the created plot. Explain why it makes sense that you find relatively bad coverage at the beginning and the end of the contig.
@@ -455,14 +455,14 @@ Run |qualimap| with:
 This will create a report in the mapping folder.
 See this `webpage <http://qualimap.bioinfo.cipf.es/doc_html/analysis.html#output>`__ to get help on the sections in the report.
 
-   
+
 .. todo::
 
    Install |qualimap| and investigate the mapping of the evolved sample. Write
    down your observations.
-    
-   
-   
+
+
+
 Sub-selecting reads
 -------------------
 
@@ -472,7 +472,7 @@ We can sub-select from the output reads we want to analyse further using |samtoo
 .. todo::
 
    Explain what concordant and discordant read pairs are? Look at the |bowtie| manual.
-   
+
 
 Concordant reads
 ~~~~~~~~~~~~~~~~
@@ -481,14 +481,14 @@ We select read-pair that have been mapped in a correct manner (same chromosome/c
 
 
 .. code:: bash
-               
-   samtools view -h -b -f 2 mappings/evolved-6.sorted.dedup.bam > mappings/evolved-6.sorted.concordant.bam
+
+   samtools view -h -b -f 3 mappings/evolved-6.sorted.dedup.bam > mappings/evolved-6.sorted.concordant.bam
 
 - ``-h``: Include the sam header
 - ``-b``: Output will be bam-format
-- ``-f 2``: Only extract correctly paired reads. ``-f`` extracts alignments with the specified `SAM flag <http://bio-bwa.sourceforge.net/bwa.shtml#4>`__ set.
+- ``-f 3``: Only extract correctly paired reads. ``-f`` extracts alignments with the specified `SAM flag <http://bio-bwa.sourceforge.net/bwa.shtml#4>`__ set.
 
-   
+
 Quality-based sub-selection
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -512,13 +512,13 @@ For the sake of going forward, we will sub-select reads with at least medium qua
 - ``-h``: Include the sam header
 - ``-q 20``: Only extract reads with mapping quality >= 20
 
-  
+
 .. hint::
 
    I will repeat here a recommendation given at the source `link <https://sequencing.qcfail.com/articles/mapq-values-are-really-useful-but-their-implementation-is-a-mess/>`__ above, as it is a good one: If you unsure what :math:`MAPQ` scoring scheme is being used in your own data then you can plot out the :math:`MAPQ` distribution in a BAM file using programs like the mentioned |qualimap| or similar programs.
    This will at least show you the range and frequency with which different :math:`MAPQ` values appear and may help identify a suitable threshold you may want to use.
 
-   
+
 Unmapped reads
 ~~~~~~~~~~~~~~
 
@@ -528,15 +528,15 @@ Lets see how we can get the unmapped portion of the reads from the bam-file:
 
 
 .. code:: bash
-               
+
     samtools view -b -f 4 mappings/evolved-6.sorted.dedup.bam > mappings/evolved-6.sorted.unmapped.bam
-    
+
     # count them
     samtools view -c mappings/evolved-6.sorted.unmapped.bam
-    
-    
+
+
 - ``-b``: indicates that the output is BAM.
-- ``-f INT``: only include reads with this `SAM flag <http://bio-bwa.sourceforge.net/bwa.shtml#4>`__ set. You can also use the command ``samtools flags`` to get an overview of the flags. 
+- ``-f INT``: only include reads with this `SAM flag <http://bio-bwa.sourceforge.net/bwa.shtml#4>`__ set. You can also use the command ``samtools flags`` to get an overview of the flags.
 - ``-c``: count the reads
 
 
@@ -544,7 +544,7 @@ Lets extract the fastq sequence of the unmapped reads for read1 and read2.
 
 
 .. code:: bash
-          
+
     bamToFastq -i mappings/evolved-6.sorted.unmapped.bam -fq mappings/evolved-6.sorted.unmapped.R1.fastq -fq2  mappings/evolved-6.sorted.unmapped.R2.fastq
 
 
@@ -552,5 +552,5 @@ Lets extract the fastq sequence of the unmapped reads for read1 and read2.
 
    .. rubric:: References
 
-               
+
 .. [TRAPNELL2009] Trapnell C, Salzberg SL. How to map billions of short reads onto genomes. `Nat Biotechnol. (2009) 27(5):455-7. doi: 10.1038/nbt0509-455. <http://doi.org/10.1038/nbt0509-455>`__
