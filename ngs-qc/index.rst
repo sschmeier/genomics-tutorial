@@ -425,6 +425,14 @@ The basic command looks like:
 
    The result will be a HTML page per input file that can be opened in a web-browser.
 
+   
+.. hint::
+
+   The authors of |fastqc| made some nice help pages explaining each of the
+   plots and results you expect to see `here <http://www.bioinformatics.babraham.ac.uk/projects/fastqc/Help/3%20Analysis%20Modules/>`__.
+
+
+   
 
 Run FastQC on the untrimmed and trimmed data
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -461,6 +469,8 @@ Run FastQC on the untrimmed and trimmed data
     GC distribution over all sequences.
 
 
+
+    
   
 .. only:: html
 
