@@ -22,36 +22,17 @@ It is not installed by default, thus we need to install it first to be able to u
     # delete the installer after successful run
     rm Miniconda3-latest-Linux-x86_64.sh
 
-    # Install some conda channels
-    # A channel is where conda looks for packages
-    conda config --add channels conda-forge
-    conda config --add channels defaults
-    conda config --add channels r
-    conda config --add channels bioconda    
-    
-Close shell/terminal, **re-open** new shell/terminal.
 
-
-.. code-block:: bash
-
-    conda update conda
-
-    
 .. Note::
    Should the conda installer download fail. Please find links to alternative locations on the
    :doc:`../downloads` page.
 
-
-.. Attention::
-   The conda install assumes a bash shell.
-   Biolinux might default to a zsh shell.
-   Thus, the conda command might not be available after installation.
-   A quick solution for the current shell window is to switch to a bash shell by typing ``bash``.
-
-   
+    
 Update ``.bashrc`` and ``.zshrc`` config-files
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+Before we are able to use |conda| we need to tell our shell where it can find the program.
+We add the right path to the |conda| installation to our shell config files:
 
 .. code::
    
@@ -70,6 +51,40 @@ If we are starting a new command-line shell, either file gets executed first (de
 What this line does, is to put permanently the directory ``~/miniconda3/bin`` first on your ``PATH`` variable.
 The ``PATH`` variable contains directories in which our computer looks for installed programs, one directory after the other until the program you requested is found (or not, then it will complain).
 Through the addition of the above line we make sure that the program ``conda`` can be found anytime we open a new shell.
+
+
+Close shell/terminal, **re-open** new shell/terminal.
+Now, we should be able to use the |conda| command:
+
+
+.. code-block:: bash
+
+    conda update conda
+
+
+Installing conda channels to make tools available
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Different tools are packaged in what |conda| calls channels.
+We need to add some channels to make the bioinformatics and genomics tools
+available for installation:
+
+
+.. code-block:: bash
+    
+    # Install some conda channels
+    # A channel is where conda looks for packages
+    conda config --add channels conda-forge
+    conda config --add channels defaults
+    conda config --add channels r
+    conda config --add channels bioconda    
+    
+
+
+
+
+
+
    
 Create environments
 -------------------

@@ -102,6 +102,7 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="#">2. Tool installation</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#install-the-conda-package-manager">2.1. Install the conda package manager</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#update-bashrc-and-zshrc-config-files">2.1.1. Update <code class="docutils literal"><span class="pre">.bashrc</span></code> and <code class="docutils literal"><span class="pre">.zshrc</span></code> config-files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#installing-conda-channels-to-make-tools-available">2.1.2. Installing conda channels to make tools available</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#create-environments">2.2. Create environments</a></li>
@@ -196,17 +197,6 @@ bash Miniconda3-latest-Linux-x86_64.sh
 
 <span class="c1"># delete the installer after successful run</span>
 rm Miniconda3-latest-Linux-x86_64.sh
-
-<span class="c1"># Install some conda channels</span>
-<span class="c1"># A channel is where conda looks for packages</span>
-conda config --add channels conda-forge
-conda config --add channels defaults
-conda config --add channels r
-conda config --add channels bioconda
-</pre></div>
-</div>
-<p>Close shell/terminal, <strong>re-open</strong> new shell/terminal.</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>conda update conda
 </pre></div>
 </div>
 <div class="admonition note">
@@ -214,15 +204,10 @@ conda config --add channels bioconda
 <p class="last">Should the conda installer download fail. Please find links to alternative locations on the
 <a class="reference internal" href="../downloads.html"><span class="doc">Downloads</span></a> page.</p>
 </div>
-<div class="admonition attention">
-<p class="first admonition-title">Attention</p>
-<p class="last">The conda install assumes a bash shell.
-Biolinux might default to a zsh shell.
-Thus, the conda command might not be available after installation.
-A quick solution for the current shell window is to switch to a bash shell by typing <code class="docutils literal"><span class="pre">bash</span></code>.</p>
-</div>
 <div class="section" id="update-bashrc-and-zshrc-config-files">
 <h3>2.1.1. Update <code class="docutils literal"><span class="pre">.bashrc</span></code> and <code class="docutils literal"><span class="pre">.zshrc</span></code> config-files<a class="headerlink" href="#update-bashrc-and-zshrc-config-files" title="Permalink to this headline">¶</a></h3>
+<p>Before we are able to use <a class="reference external" href="http://conda.pydata.org/miniconda.html">conda</a> we need to tell our shell where it can find the program.
+We add the right path to the <a class="reference external" href="http://conda.pydata.org/miniconda.html">conda</a> installation to our shell config files:</p>
 <div class="code highlight-default"><div class="highlight"><pre><span></span><span class="n">echo</span> <span class="s1">&#39;export PATH=&quot;/home/manager/miniconda3/bin:$PATH&quot;&#39;</span> <span class="o">&gt;&gt;</span> <span class="o">~/.</span><span class="n">bashrc</span>
 <span class="n">echo</span> <span class="s1">&#39;export PATH=&quot;/home/manager/miniconda3/bin:$PATH&quot;&#39;</span> <span class="o">&gt;&gt;</span> <span class="o">~/.</span><span class="n">zshrc</span>
 </pre></div>
@@ -238,6 +223,25 @@ If we are starting a new command-line shell, either file gets executed first (de
 What this line does, is to put permanently the directory <code class="docutils literal"><span class="pre">~/miniconda3/bin</span></code> first on your <code class="docutils literal"><span class="pre">PATH</span></code> variable.
 The <code class="docutils literal"><span class="pre">PATH</span></code> variable contains directories in which our computer looks for installed programs, one directory after the other until the program you requested is found (or not, then it will complain).
 Through the addition of the above line we make sure that the program <code class="docutils literal"><span class="pre">conda</span></code> can be found anytime we open a new shell.</p>
+<p>Close shell/terminal, <strong>re-open</strong> new shell/terminal.
+Now, we should be able to use the <a class="reference external" href="http://conda.pydata.org/miniconda.html">conda</a> command:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>conda update conda
+</pre></div>
+</div>
+</div>
+<div class="section" id="installing-conda-channels-to-make-tools-available">
+<h3>2.1.2. Installing conda channels to make tools available<a class="headerlink" href="#installing-conda-channels-to-make-tools-available" title="Permalink to this headline">¶</a></h3>
+<p>Different tools are packaged in what <a class="reference external" href="http://conda.pydata.org/miniconda.html">conda</a> calls channels.
+We need to add some channels to make the bioinformatics and genomics tools
+available for installation:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="c1"># Install some conda channels</span>
+<span class="c1"># A channel is where conda looks for packages</span>
+conda config --add channels conda-forge
+conda config --add channels defaults
+conda config --add channels r
+conda config --add channels bioconda
+</pre></div>
+</div>
 </div>
 </div>
 <div class="section" id="create-environments">
@@ -323,7 +327,7 @@ conda create -n <span class="o">[</span>name<span class="o">]</span> package <sp
   <div role="contentinfo">
     <p>
         &copy; Copyright 2016-2018, Sebastian Schmeier (https://sschmeier.com).
-      Last updated on Jan 07, 2018.
+      Last updated on Mar 14, 2018.
 
     </p>
   </div>

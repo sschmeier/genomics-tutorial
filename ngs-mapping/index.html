@@ -616,13 +616,13 @@ We can sub-select from the output reads we want to analyse further using <a clas
 <div class="section" id="concordant-reads">
 <h3>5.11.1. Concordant reads<a class="headerlink" href="#concordant-reads" title="Permalink to this headline">¶</a></h3>
 <p>We select read-pair that have been mapped in a correct manner (same chromosome/contig, correct orientation to each other).</p>
-<div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="n">samtools</span> <span class="n">view</span> <span class="o">-</span><span class="n">h</span> <span class="o">-</span><span class="n">b</span> <span class="o">-</span><span class="n">f</span> <span class="mi">2</span> <span class="n">mappings</span><span class="o">/</span><span class="n">evolved</span><span class="o">-</span><span class="mf">6.</span><span class="n">sorted</span><span class="o">.</span><span class="n">dedup</span><span class="o">.</span><span class="n">bam</span> <span class="o">&gt;</span> <span class="n">mappings</span><span class="o">/</span><span class="n">evolved</span><span class="o">-</span><span class="mf">6.</span><span class="n">sorted</span><span class="o">.</span><span class="n">concordant</span><span class="o">.</span><span class="n">bam</span>
+<div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="n">samtools</span> <span class="n">view</span> <span class="o">-</span><span class="n">h</span> <span class="o">-</span><span class="n">b</span> <span class="o">-</span><span class="n">f</span> <span class="mi">3</span> <span class="n">mappings</span><span class="o">/</span><span class="n">evolved</span><span class="o">-</span><span class="mf">6.</span><span class="n">sorted</span><span class="o">.</span><span class="n">dedup</span><span class="o">.</span><span class="n">bam</span> <span class="o">&gt;</span> <span class="n">mappings</span><span class="o">/</span><span class="n">evolved</span><span class="o">-</span><span class="mf">6.</span><span class="n">sorted</span><span class="o">.</span><span class="n">concordant</span><span class="o">.</span><span class="n">bam</span>
 </pre></div>
 </div>
 <ul class="simple">
 <li><code class="docutils literal"><span class="pre">-h</span></code>: Include the sam header</li>
 <li><code class="docutils literal"><span class="pre">-b</span></code>: Output will be bam-format</li>
-<li><code class="docutils literal"><span class="pre">-f</span> <span class="pre">2</span></code>: Only extract correctly paired reads. <code class="docutils literal"><span class="pre">-f</span></code> extracts alignments with the specified <a class="reference external" href="http://bio-bwa.sourceforge.net/bwa.shtml#4">SAM flag</a> set.</li>
+<li><code class="docutils literal"><span class="pre">-f</span> <span class="pre">3</span></code>: Only extract correctly paired reads. <code class="docutils literal"><span class="pre">-f</span></code> extracts alignments with the specified <a class="reference external" href="http://bio-bwa.sourceforge.net/bwa.shtml#4">SAM flag</a> set.</li>
 </ul>
 </div>
 <div class="section" id="quality-based-sub-selection">
@@ -704,7 +704,7 @@ This will at least show you the range and frequency with which different <span c
   <div role="contentinfo">
     <p>
         &copy; Copyright 2016-2018, Sebastian Schmeier (https://sschmeier.com).
-      Last updated on Jan 07, 2018.
+      Last updated on Mar 14, 2018.
 
     </p>
   </div>
