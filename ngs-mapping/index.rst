@@ -482,7 +482,7 @@ We select read-pair that have been mapped in a correct manner (same chromosome/c
 
 .. code:: bash
 
-   samtools view -h -b -f 3 mappings/evolved-6.sorted.dedup.bam > mappings/evolved-6.sorted.concordant.bam
+   samtools view -h -b -f 3 mappings/evolved-6.sorted.dedup.bam > mappings/evolved-6.sorted.dedup.concordant.bam
 
 - ``-h``: Include the sam header
 - ``-b``: Output will be bam-format
@@ -507,7 +507,7 @@ For the sake of going forward, we will sub-select reads with at least medium qua
 
 .. code:: bash
 
-   samtools view -h -b -q 20 mappings/evolved-6.sorted.dedup.concordant.bam > mappings/evolved-6.sorted.concordant.q20.bam
+   samtools view -h -b -q 20 mappings/evolved-6.sorted.dedup.concordant.bam > mappings/evolved-6.sorted.dedup.concordant.q20.bam
 
 - ``-h``: Include the sam header
 - ``-q 20``: Only extract reads with mapping quality >= 20
