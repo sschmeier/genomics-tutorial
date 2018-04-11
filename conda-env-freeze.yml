@@ -10,41 +10,47 @@ dependencies:
   - alabaster=0.7.10=py36h174008c_0
   - asn1crypto=0.24.0=py36_0
   - babel=2.5.3=py36_0
-  - ca-certificates=2017.08.26=ha1e5d58_0
+  - ca-certificates=2018.03.07=0
   - certifi=2018.1.18=py36_0
-  - cffi=1.11.4=py36h342bebf_0
+  - cffi=1.11.5=py36h342bebf_0
   - chardet=3.0.4=py36h96c241c_1
-  - cryptography=2.1.4=py36h842514c_0
+  - cryptography=2.2.2=py36h1de35cc_0
   - docutils=0.14=py36hbfde631_0
+  - ecdsa=0.13=py36_0
+  - fabric3=1.14.post1=py36_0
   - idna=2.6=py36h8628d0a_1
-  - imagesize=0.7.1=py36h3495948_0
+  - imagesize=1.0.0=py36_0
   - jinja2=2.10=py36hd36f9c5_0
   - libcxx=4.0.1=h579ed51_0
   - libcxxabi=4.0.1=hebd6815_0
   - libedit=3.1=hb4e282d_0
   - markupsafe=1.0=py36h3a1e703_1
   - ncurses=6.0=hd04f020_2
-  - openssl=1.0.2n=hdbc3d79_0
-  - pip=9.0.1=py36h1555ced_4
+  - openssl=1.0.2o=h26aff7b_0
+  - packaging=17.1=py36_0
+  - paramiko=1.18.4=py36h4418bf7_0
+  - pip=9.0.3=py36_0
   - pycparser=2.18=py36h724b2fc_1
+  - pycrypto=2.6.1=py36h1de35cc_7
   - pygments=2.2.0=py36h240cd3f_0
   - pyopenssl=17.5.0=py36h51e4350_0
-  - pysocks=1.6.7=py36hfa33cec_1
-  - python=3.6.4=hc167b69_1
-  - pytz=2017.3=py36hf0bf824_0
+  - pyparsing=2.2.0=py36hb281f35_0
+  - pysocks=1.6.8=py36_0
+  - python=3.6.5=hc167b69_0
+  - pytz=2018.3=py36_0
   - readline=7.0=hc1231fa_4
   - requests=2.18.4=py36h4516966_1
-  - setuptools=38.4.0=py36_0
+  - setuptools=39.0.1=py36_0
   - six=1.11.0=py36h0e22d5e_1
   - snowballstemmer=1.2.1=py36h6c7b616_0
-  - sphinx=1.6.6=py36_0
+  - sphinx=1.7.2=py36_0
   - sphinx_rtd_theme=0.2.4=py36_0
   - sphinxcontrib=1.0=py36h9364dc8_1
   - sphinxcontrib-websupport=1.0.1=py36h92f4a7a_1
   - sqlite=3.22.0=h3efe00b_0
   - tk=8.6.7=h35a86e2_3
   - urllib3=1.22=py36h68b9469_0
-  - wheel=0.30.0=py36h5eb2c71_1
+  - wheel=0.31.0=py36_0
   - xz=5.2.3=h0278029_2
   - zlib=1.2.11=hf3cbc9b_2
 prefix: /Users/sschmeie/miniconda3/envs/sphinx
