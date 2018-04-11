@@ -46,13 +46,13 @@ Code: SolexaQA++ trimming
 
 .. code:: bash
                
-   ./SolexaQA++ dynamictrim -p 0.01 -d trimmed/ data/ancestor-R1.fastq.gz
+   ./SolexaQA++ dynamictrim -p 0.05 -d trimmed/ data/ancestor-R1.fastq.gz
    
-   ./SolexaQA++ dynamictrim -p 0.01 -d trimmed/ data/ancestor-R2.fastq.gz
+   ./SolexaQA++ dynamictrim -p 0.05 -d trimmed/ data/ancestor-R2.fastq.gz
 
-   ./SolexaQA++ dynamictrim -p 0.01 -d trimmed/ data/evolved-6-R1.fastq.gz
+   ./SolexaQA++ dynamictrim -p 0.05 -d trimmed/ data/evolved-6-R1.fastq.gz
 
-   ./SolexaQA++ dynamictrim -p 0.01 -d trimmed/ data/evolved-6-R2.fastq.gz
+   ./SolexaQA++ dynamictrim -p 0.05 -d trimmed/ data/evolved-6-R2.fastq.gz
 
 
 .. _code-qc3:

@@ -273,7 +273,7 @@ We will use |solexaqa| dynamic trim the reads, to chop of nucleotides witha a ba
 .. todo::
 
     #. Create a directory for the result-files --> **trimmed/**.
-    #. Run |solexaqa| ``dynamictrim`` with the untrimmed data and a probability cutoff of 0.01., and submit result-directory **trimmed/**.
+    #. Run |solexaqa| ``dynamictrim`` with the untrimmed data and a probability cutoff of 0.05., and submit result-directory **trimmed/**.
     #. Investigate the result-files in **trimmed/**, e.g. do the file-sizes change to the original files?
     #. |solexaqa| ``dynamictrim`` produces a graphical output. Explain what the graph shows. Find heklp on the |solexaqa| website.
 
