@@ -243,13 +243,13 @@ reads from the evolved line to our ancestral reference genome.</p>
 <div class="section" id="before-we-start">
 <h2>5.4. Before we start<a class="headerlink" href="#before-we-start" title="Permalink to this headline">¶</a></h2>
 <p>Lets see how our directory structure looks so far:</p>
-<div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~/</span><span class="n">analysis</span>
+<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~/</span><span class="n">analysis</span>
 <span class="c1"># create a mapping result directory</span>
 <span class="n">mkdir</span> <span class="n">mappings</span>
 <span class="n">ls</span> <span class="o">-</span><span class="mi">1</span><span class="n">F</span>
 </pre></div>
 </div>
-<div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="n">assembly</span><span class="o">/</span>
+<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">assembly</span><span class="o">/</span>
 <span class="n">data</span><span class="o">/</span>
 <span class="n">mappings</span><span class="o">/</span>
 <span class="n">SolexaQA</span><span class="o">/</span>
@@ -274,7 +274,7 @@ We are going to use the quality trimmed forward and backward DNA sequences of th
 <h3>5.5.1. Installing the software<a class="headerlink" href="#installing-the-software" title="Permalink to this headline">¶</a></h3>
 <p>We are going to use a program called <a class="reference external" href="http://bio-bwa.sourceforge.net/">BWA</a> fo map our reads to a genome.</p>
 <p>It is simple to install and use.</p>
-<div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="n">source</span> <span class="n">activate</span> <span class="n">ngs</span>
+<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">source</span> <span class="n">activate</span> <span class="n">ngs</span>
 <span class="n">conda</span> <span class="n">install</span> <span class="n">samtools</span>
 <span class="n">conda</span> <span class="n">install</span> <span class="n">bamtools</span>
 <span class="n">conda</span> <span class="n">install</span> <span class="n">bedtools</span>
@@ -292,7 +292,7 @@ We are going to use the quality trimmed forward and backward DNA sequences of th
 <p><a class="reference external" href="http://bowtie-bio.sourceforge.net/bowtie2/index.shtml">Bowtie2</a> is a short read aligner, that can take a reference genome and map single- or paired-end data to it <a class="reference internal" href="#trapnell2009" id="id2">[TRAPNELL2009]</a>.
 It requires an indexing step in which one supplies the reference genome and <a class="reference external" href="http://bowtie-bio.sourceforge.net/bowtie2/index.shtml">Bowtie2</a> will create an index that in the subsequent steps will be used for aligning the reads to the reference genome.
 The general command structure of the <a class="reference external" href="http://bowtie-bio.sourceforge.net/bowtie2/index.shtml">Bowtie2</a> tools we are going to use are shown below:</p>
-<div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="c1"># bowtie2 help</span>
+<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># bowtie2 help</span>
 <span class="n">bowtie2</span><span class="o">-</span><span class="n">build</span>
 
 <span class="c1"># indexing</span>
@@ -303,7 +303,7 @@ The general command structure of the <a class="reference external" href="http://
 </pre></div>
 </div>
 <ul class="simple">
-<li><code class="docutils literal"><span class="pre">-X</span></code>: Adjust the maximum fragment size (length of paired-end alignments + insert size) to 1000bp. This might be useful if you do not know the exact insert size of your data. The <a class="reference external" href="http://bowtie-bio.sourceforge.net/bowtie2/index.shtml">Bowtie2</a> default is set to 500 which is <a class="reference external" href="http://lab.loman.net/2013/05/02/use-x-with-bowtie2-to-set-minimum-and-maximum-insert-sizes-for-nextera-libraries/">often considered too short</a>.</li>
+<li><code class="docutils literal notranslate"><span class="pre">-X</span></code>: Adjust the maximum fragment size (length of paired-end alignments + insert size) to 1000bp. This might be useful if you do not know the exact insert size of your data. The <a class="reference external" href="http://bowtie-bio.sourceforge.net/bowtie2/index.shtml">Bowtie2</a> default is set to 500 which is <a class="reference external" href="http://lab.loman.net/2013/05/02/use-x-with-bowtie2-to-set-minimum-and-maximum-insert-sizes-for-nextera-libraries/">often considered too short</a>.</li>
 </ul>
 </div>
 <div class="section" id="creating-a-reference-index-for-mapping">
@@ -318,7 +318,7 @@ The general command structure of the <a class="reference external" href="http://
 </div>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">Should you be unable to run <a class="reference external" href="http://bowtie-bio.sourceforge.net/bowtie2/index.shtml">Bowtie2</a> indexing on the data, you can download the index from <a class="reference internal" href="../downloads.html#downloads"><span class="std std-ref">Downloads</span></a>. Unarchive and uncompress the files with <code class="docutils literal"><span class="pre">tar</span> <span class="pre">-xvzf</span> <span class="pre">bowtie2-index.tar.gz</span></code>.</p>
+<p class="last">Should you be unable to run <a class="reference external" href="http://bowtie-bio.sourceforge.net/bowtie2/index.shtml">Bowtie2</a> indexing on the data, you can download the index from <a class="reference internal" href="../downloads.html#downloads"><span class="std std-ref">Downloads</span></a>. Unarchive and uncompress the files with <code class="docutils literal notranslate"><span class="pre">tar</span> <span class="pre">-xvzf</span> <span class="pre">bowtie2-index.tar.gz</span></code>.</p>
 </div>
 </div>
 <div class="section" id="mapping-reads-in-a-paired-end-manner">
@@ -326,7 +326,7 @@ The general command structure of the <a class="reference external" href="http://
 <p>Now that we have created our index, it is time to map the filtered and trimmed sequencing reads of our evolved line to the reference genome.</p>
 <div class="admonition-todo admonition" id="index-2">
 <p class="first admonition-title">Todo</p>
-<p class="last">Use the correct <code class="docutils literal"><span class="pre">bowtie2</span></code> command structure from above and map the reads of the evolved line to the reference genome.</p>
+<p class="last">Use the correct <code class="docutils literal notranslate"><span class="pre">bowtie2</span></code> command structure from above and map the reads of the evolved line to the reference genome.</p>
 </div>
 <div class="admonition hint">
 <p class="first admonition-title">Hint</p>
@@ -349,7 +349,7 @@ The general command structure of the <a class="reference external" href="http://
 <p><a class="reference external" href="http://bio-bwa.sourceforge.net/">BWA</a> is a short read aligner, that can take a reference genome and map single- or paired-end data to it.
 It requires an indexing step in which one supplies the reference genome and <a class="reference external" href="http://bio-bwa.sourceforge.net/">BWA</a> will create an index that in the subsequent steps will be used for aligning the reads to the reference genome.
 The general command structure of the <a class="reference external" href="http://bio-bwa.sourceforge.net/">BWA</a> tools we are going to use are shown below:</p>
-<div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="c1"># bwa index help</span>
+<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># bwa index help</span>
 <span class="n">bwa</span> <span class="n">index</span>
 
 <span class="c1"># indexing</span>
@@ -378,7 +378,7 @@ The general command structure of the <a class="reference external" href="http://
 </div>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">Should you be unable to run <a class="reference external" href="http://bio-bwa.sourceforge.net/">BWA</a> indexing on the data, you can download the index from <a class="reference internal" href="../downloads.html#downloads"><span class="std std-ref">Downloads</span></a>. Unarchive and uncompress the files with <code class="docutils literal"><span class="pre">tar</span> <span class="pre">-xvzf</span> <span class="pre">bwa-index.tar.gz</span></code>.</p>
+<p class="last">Should you be unable to run <a class="reference external" href="http://bio-bwa.sourceforge.net/">BWA</a> indexing on the data, you can download the index from <a class="reference internal" href="../downloads.html#downloads"><span class="std std-ref">Downloads</span></a>. Unarchive and uncompress the files with <code class="docutils literal notranslate"><span class="pre">tar</span> <span class="pre">-xvzf</span> <span class="pre">bwa-index.tar.gz</span></code>.</p>
 </div>
 </div>
 <div class="section" id="id5">
@@ -386,7 +386,7 @@ The general command structure of the <a class="reference external" href="http://
 <p>Now that we have created our index, it is time to map the filtered and trimmed sequencing reads of our evolved line to the reference genome.</p>
 <div class="admonition-todo admonition" id="index-4">
 <p class="first admonition-title">Todo</p>
-<p class="last">Use the correct <code class="docutils literal"><span class="pre">bwa</span> <span class="pre">mem</span></code> command structure from above and map the reads of the evolved line to the reference genome.</p>
+<p class="last">Use the correct <code class="docutils literal notranslate"><span class="pre">bwa</span> <span class="pre">mem</span></code> command structure from above and map the reads of the evolved line to the reference genome.</p>
 </div>
 <div class="admonition hint">
 <p class="first admonition-title">Hint</p>
@@ -465,7 +465,7 @@ Briefly, first there are a lot of header lines. Then, for each read, that mapped
 </tbody>
 </table>
 <p>One line of a mapped read can be seen here:</p>
-<div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="n">M02810</span><span class="p">:</span><span class="mi">197</span><span class="p">:</span><span class="mi">000000000</span><span class="o">-</span><span class="n">AV55U</span><span class="p">:</span><span class="mi">1</span><span class="p">:</span><span class="mi">1101</span><span class="p">:</span><span class="mi">10000</span><span class="p">:</span><span class="mi">11540</span>   <span class="mi">83</span>      <span class="n">NODE_1_length_1419525_cov_15</span><span class="o">.</span><span class="mi">3898</span>       <span class="mi">607378</span>  <span class="mi">60</span>      <span class="mi">151</span><span class="n">M</span>    <span class="o">=</span>       <span class="mi">607100</span>  <span class="o">-</span><span class="mi">429</span>    <span class="n">TATGGTATCACTTATGGTATCACTTATGGCTATCACTAATGGCTATCACTTATGGTATCACTTATGACTATCAGACGTTATTACTATCAGACGATAACTATCAGACTTTATTACTATCACTTTCATATTACCCACTATCATCCCTTCTTTA</span> <span class="n">FHGHHHHHGGGHHHHHHHHHHHHHHHHHHGHHHHHHHHHHHGHHHHHGHHHHHHHHGDHHHHHHHHGHHHHGHHHGHHHHHHFHHHHGHHHHIHHHHHHHHHHHHHHHHHHHGHHHHHGHGHHHHHHHHEGGGGGGGGGFBCFFFFCCCCC</span> <span class="n">NM</span><span class="p">:</span><span class="n">i</span><span class="p">:</span><span class="mi">0</span>  <span class="n">MD</span><span class="p">:</span><span class="n">Z</span><span class="p">:</span><span class="mi">151</span>        <span class="n">AS</span><span class="p">:</span><span class="n">i</span><span class="p">:</span><span class="mi">151</span>        <span class="n">XS</span><span class="p">:</span><span class="n">i</span><span class="p">:</span><span class="mi">0</span>
+<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">M02810</span><span class="p">:</span><span class="mi">197</span><span class="p">:</span><span class="mi">000000000</span><span class="o">-</span><span class="n">AV55U</span><span class="p">:</span><span class="mi">1</span><span class="p">:</span><span class="mi">1101</span><span class="p">:</span><span class="mi">10000</span><span class="p">:</span><span class="mi">11540</span>   <span class="mi">83</span>      <span class="n">NODE_1_length_1419525_cov_15</span><span class="o">.</span><span class="mi">3898</span>       <span class="mi">607378</span>  <span class="mi">60</span>      <span class="mi">151</span><span class="n">M</span>    <span class="o">=</span>       <span class="mi">607100</span>  <span class="o">-</span><span class="mi">429</span>    <span class="n">TATGGTATCACTTATGGTATCACTTATGGCTATCACTAATGGCTATCACTTATGGTATCACTTATGACTATCAGACGTTATTACTATCAGACGATAACTATCAGACTTTATTACTATCACTTTCATATTACCCACTATCATCCCTTCTTTA</span> <span class="n">FHGHHHHHGGGHHHHHHHHHHHHHHHHHHGHHHHHHHHHHHGHHHHHGHHHHHHHHGDHHHHHHHHGHHHHGHHHGHHHHHHFHHHHGHHHHIHHHHHHHHHHHHHHHHHHHGHHHHHGHGHHHHHHHHEGGGGGGGGGFBCFFFFCCCCC</span> <span class="n">NM</span><span class="p">:</span><span class="n">i</span><span class="p">:</span><span class="mi">0</span>  <span class="n">MD</span><span class="p">:</span><span class="n">Z</span><span class="p">:</span><span class="mi">151</span>        <span class="n">AS</span><span class="p">:</span><span class="n">i</span><span class="p">:</span><span class="mi">151</span>        <span class="n">XS</span><span class="p">:</span><span class="n">i</span><span class="p">:</span><span class="mi">0</span>
 </pre></div>
 </div>
 <p>It basically defines, the read and the position in the reference genome where the read mapped and a quality of the map.</p>
@@ -476,11 +476,11 @@ Briefly, first there are a lot of header lines. Then, for each read, that mapped
 <h3>5.9.1. Fix mates and compress<a class="headerlink" href="#fix-mates-and-compress" title="Permalink to this headline">¶</a></h3>
 <p>Because aligners can sometimes leave unusual <a class="reference external" href="http://bio-bwa.sourceforge.net/bwa.shtml#4">SAM flag</a> information on SAM records, it is helpful when working with many tools to first clean up read pairing information and flags with <a class="reference external" href="http://samtools.sourceforge.net/">SAMtools</a>.
 We are going to produce also compressed bam output for efficient storing of and access to the mapped reads.</p>
-<div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="n">samtools</span> <span class="n">fixmate</span> <span class="o">-</span><span class="n">O</span> <span class="n">bam</span> <span class="n">mappings</span><span class="o">/</span><span class="n">evolved</span><span class="o">-</span><span class="mf">6.</span><span class="n">sam</span> <span class="n">mappings</span><span class="o">/</span><span class="n">evolved</span><span class="o">-</span><span class="mf">6.</span><span class="n">fixmate</span><span class="o">.</span><span class="n">bam</span>
+<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">samtools</span> <span class="n">fixmate</span> <span class="o">-</span><span class="n">O</span> <span class="n">bam</span> <span class="n">mappings</span><span class="o">/</span><span class="n">evolved</span><span class="o">-</span><span class="mf">6.</span><span class="n">sam</span> <span class="n">mappings</span><span class="o">/</span><span class="n">evolved</span><span class="o">-</span><span class="mf">6.</span><span class="n">fixmate</span><span class="o">.</span><span class="n">bam</span>
 </pre></div>
 </div>
 <ul class="simple">
-<li><code class="docutils literal"><span class="pre">-O</span> <span class="pre">bam</span></code>: specifies that we want compressed bam output</li>
+<li><code class="docutils literal notranslate"><span class="pre">-O</span> <span class="pre">bam</span></code>: specifies that we want compressed bam output</li>
 </ul>
 <div class="admonition attention">
 <p class="first admonition-title">Attention</p>
@@ -492,20 +492,20 @@ We are going to produce also compressed bam output for efficient storing of and 
 <p class="last">A very useful tools to explain flags can be found <a class="reference external" href="http://broadinstitute.github.io/picard/explain-flags.html">here</a>.</p>
 </div>
 <p>Once we have bam-file, we can also delete the original sam-file as it requires too much space.</p>
-<div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="n">rm</span> <span class="n">mappings</span><span class="o">/</span><span class="n">evolved</span><span class="o">-</span><span class="mf">6.</span><span class="n">sam</span>
+<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">rm</span> <span class="n">mappings</span><span class="o">/</span><span class="n">evolved</span><span class="o">-</span><span class="mf">6.</span><span class="n">sam</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="sorting">
 <h3>5.9.2. Sorting<a class="headerlink" href="#sorting" title="Permalink to this headline">¶</a></h3>
 <p>We are going to use <a class="reference external" href="http://samtools.sourceforge.net/">SAMtools</a> again to sort the bam-file into coordinate order:</p>
-<div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="c1"># convert to bam file and sort</span>
+<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># convert to bam file and sort</span>
 <span class="n">samtools</span> <span class="n">sort</span> <span class="o">-</span><span class="n">O</span> <span class="n">bam</span> <span class="o">-</span><span class="n">o</span> <span class="n">mappings</span><span class="o">/</span><span class="n">evolved</span><span class="o">-</span><span class="mf">6.</span><span class="n">sorted</span><span class="o">.</span><span class="n">bam</span> <span class="n">mappings</span><span class="o">/</span><span class="n">evolved</span><span class="o">-</span><span class="mf">6.</span><span class="n">fixmate</span><span class="o">.</span><span class="n">bam</span>
 </pre></div>
 </div>
 <ul class="simple">
-<li><code class="docutils literal"><span class="pre">-o</span></code>: specifies the name of the output file.</li>
-<li><code class="docutils literal"><span class="pre">-O</span> <span class="pre">bam</span></code>: specifies that the output will be bam-format</li>
+<li><code class="docutils literal notranslate"><span class="pre">-o</span></code>: specifies the name of the output file.</li>
+<li><code class="docutils literal notranslate"><span class="pre">-O</span> <span class="pre">bam</span></code>: specifies that the output will be bam-format</li>
 </ul>
 </div>
 <div class="section" id="remove-duplicates">
@@ -515,7 +515,7 @@ We are going to produce also compressed bam output for efficient storing of and 
 It depends on the research question.
 In SNP calling it is a good idea to remove duplicates, as the statistics used in the tools that call SNPs sub-sequently expect this (most tools anyways).
 However, for other research questions that use mapping, you might not want to remove duplicates, e.g. RNA-seq.</p>
-<div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="n">picard</span> <span class="n">MarkDuplicates</span> <span class="n">REMOVE_DUPLICATES</span><span class="o">=</span><span class="n">true</span> <span class="n">METRICS_FILE</span><span class="o">=</span><span class="n">mappings</span><span class="o">/</span><span class="n">evolved</span><span class="o">-</span><span class="mf">6.</span><span class="n">marked_dup_metrics</span><span class="o">.</span><span class="n">txt</span> <span class="n">INPUT</span><span class="o">=</span><span class="n">mappings</span><span class="o">/</span><span class="n">evolved</span><span class="o">-</span><span class="mf">6.</span><span class="n">sorted</span><span class="o">.</span><span class="n">bam</span> <span class="n">OUTPUT</span><span class="o">=</span><span class="n">mappings</span><span class="o">/</span><span class="n">evolved</span><span class="o">-</span><span class="mf">6.</span><span class="n">sorted</span><span class="o">.</span><span class="n">dedup</span><span class="o">.</span><span class="n">bam</span>
+<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">picard</span> <span class="n">MarkDuplicates</span> <span class="n">REMOVE_DUPLICATES</span><span class="o">=</span><span class="n">true</span> <span class="n">METRICS_FILE</span><span class="o">=</span><span class="n">mappings</span><span class="o">/</span><span class="n">evolved</span><span class="o">-</span><span class="mf">6.</span><span class="n">marked_dup_metrics</span><span class="o">.</span><span class="n">txt</span> <span class="n">INPUT</span><span class="o">=</span><span class="n">mappings</span><span class="o">/</span><span class="n">evolved</span><span class="o">-</span><span class="mf">6.</span><span class="n">sorted</span><span class="o">.</span><span class="n">bam</span> <span class="n">OUTPUT</span><span class="o">=</span><span class="n">mappings</span><span class="o">/</span><span class="n">evolved</span><span class="o">-</span><span class="mf">6.</span><span class="n">sorted</span><span class="o">.</span><span class="n">dedup</span><span class="o">.</span><span class="n">bam</span>
 </pre></div>
 </div>
 <div class="admonition-todo admonition" id="index-5">
@@ -533,7 +533,7 @@ However, for other research questions that use mapping, you might not want to re
 <div class="section" id="stats-with-samtools">
 <h3>5.10.1. Stats with SAMtools<a class="headerlink" href="#stats-with-samtools" title="Permalink to this headline">¶</a></h3>
 <p>Lets get an mapping overview:</p>
-<div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="n">samtools</span> <span class="n">flagstat</span> <span class="n">mappings</span><span class="o">/</span><span class="n">evolved</span><span class="o">-</span><span class="mf">6.</span><span class="n">sorted</span><span class="o">.</span><span class="n">dedup</span><span class="o">.</span><span class="n">bam</span>
+<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">samtools</span> <span class="n">flagstat</span> <span class="n">mappings</span><span class="o">/</span><span class="n">evolved</span><span class="o">-</span><span class="mf">6.</span><span class="n">sorted</span><span class="o">.</span><span class="n">dedup</span><span class="o">.</span><span class="n">bam</span>
 </pre></div>
 </div>
 <div class="admonition-todo admonition" id="index-6">
@@ -543,19 +543,19 @@ Explain why we may find mapped reads that have their mate mapped to a different 
 Can they be used for something?</p>
 </div>
 <p>For the sorted bam-file we can get read depth for at all positions of the reference genome, e.g. how many reads are overlapping the genomic position.</p>
-<div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="n">samtools</span> <span class="n">depth</span> <span class="n">mappings</span><span class="o">/</span><span class="n">evolved</span><span class="o">-</span><span class="mf">6.</span><span class="n">sorted</span><span class="o">.</span><span class="n">dedup</span><span class="o">.</span><span class="n">bam</span> <span class="o">|</span> <span class="n">gzip</span> <span class="o">&gt;</span> <span class="n">mappings</span><span class="o">/</span><span class="n">evolved</span><span class="o">-</span><span class="mf">6.</span><span class="n">depth</span><span class="o">.</span><span class="n">txt</span><span class="o">.</span><span class="n">gz</span>
+<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">samtools</span> <span class="n">depth</span> <span class="n">mappings</span><span class="o">/</span><span class="n">evolved</span><span class="o">-</span><span class="mf">6.</span><span class="n">sorted</span><span class="o">.</span><span class="n">dedup</span><span class="o">.</span><span class="n">bam</span> <span class="o">|</span> <span class="n">gzip</span> <span class="o">&gt;</span> <span class="n">mappings</span><span class="o">/</span><span class="n">evolved</span><span class="o">-</span><span class="mf">6.</span><span class="n">depth</span><span class="o">.</span><span class="n">txt</span><span class="o">.</span><span class="n">gz</span>
 </pre></div>
 </div>
 <div class="admonition-todo admonition" id="index-7">
 <p class="first admonition-title">Todo</p>
 <p class="last">Extract the depth values for contig 20 and load the data into R, calculate some statistics of our scaffold.</p>
 </div>
-<div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="n">zcat</span> <span class="n">mappings</span><span class="o">/</span><span class="n">evolved</span><span class="o">-</span><span class="mf">6.</span><span class="n">depth</span><span class="o">.</span><span class="n">txt</span><span class="o">.</span><span class="n">gz</span> <span class="o">|</span> <span class="n">egrep</span> <span class="s1">&#39;^NODE_20_&#39;</span> <span class="o">|</span> <span class="n">gzip</span> <span class="o">&gt;</span>  <span class="n">mappings</span><span class="o">/</span><span class="n">NODE_20</span><span class="o">.</span><span class="n">depth</span><span class="o">.</span><span class="n">txt</span><span class="o">.</span><span class="n">gz</span>
+<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">zcat</span> <span class="n">mappings</span><span class="o">/</span><span class="n">evolved</span><span class="o">-</span><span class="mf">6.</span><span class="n">depth</span><span class="o">.</span><span class="n">txt</span><span class="o">.</span><span class="n">gz</span> <span class="o">|</span> <span class="n">egrep</span> <span class="s1">&#39;^NODE_20_&#39;</span> <span class="o">|</span> <span class="n">gzip</span> <span class="o">&gt;</span>  <span class="n">mappings</span><span class="o">/</span><span class="n">NODE_20</span><span class="o">.</span><span class="n">depth</span><span class="o">.</span><span class="n">txt</span><span class="o">.</span><span class="n">gz</span>
 </pre></div>
 </div>
 <p>Now we quickly use some <a class="reference external" href="https://www.r-project.org/">R</a> to make a coverage plot for contig NODE20.
-Open a <a class="reference external" href="https://www.r-project.org/">R</a> shell by typing <code class="docutils literal"><span class="pre">R</span></code> on the command-line of the shell.</p>
-<div class="code R highlight-default"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">&lt;-</span> <span class="n">read</span><span class="o">.</span><span class="n">table</span><span class="p">(</span><span class="s1">&#39;mappings/NODE_20.depth.txt.gz&#39;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="n">FALSE</span><span class="p">,</span>  <span class="n">strip</span><span class="o">.</span><span class="n">white</span><span class="o">=</span><span class="n">TRUE</span><span class="p">)</span>
+Open a <a class="reference external" href="https://www.r-project.org/">R</a> shell by typing <code class="docutils literal notranslate"><span class="pre">R</span></code> on the command-line of the shell.</p>
+<div class="code R highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">&lt;-</span> <span class="n">read</span><span class="o">.</span><span class="n">table</span><span class="p">(</span><span class="s1">&#39;mappings/NODE_20.depth.txt.gz&#39;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="n">FALSE</span><span class="p">,</span>  <span class="n">strip</span><span class="o">.</span><span class="n">white</span><span class="o">=</span><span class="n">TRUE</span><span class="p">)</span>
 
 <span class="c1"># Look at the beginning of x</span>
 <span class="n">head</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
@@ -589,11 +589,11 @@ Open a <a class="reference external" href="https://www.r-project.org/">R</a> she
 <p>For a more in depth analysis of the mappings, one can use <a class="reference external" href="http://qualimap.bioinfo.cipf.es/">QualiMap</a>.</p>
 <p><a class="reference external" href="http://qualimap.bioinfo.cipf.es/">QualiMap</a> examines sequencing alignment data in SAM/BAM files according to the features of the mapped reads and provides an overall view of the data that helps to the detect biases in the sequencing and/or mapping of the data and eases decision-making for further analysis.</p>
 <p>Installation:</p>
-<div class="code highlight-default"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">install</span> <span class="n">qualimap</span>
+<div class="code highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">install</span> <span class="n">qualimap</span>
 </pre></div>
 </div>
 <p>Run <a class="reference external" href="http://qualimap.bioinfo.cipf.es/">QualiMap</a> with:</p>
-<div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="n">qualimap</span> <span class="n">bamqc</span> <span class="o">-</span><span class="n">bam</span> <span class="n">mappings</span><span class="o">/</span><span class="n">evolved</span><span class="o">-</span><span class="mf">6.</span><span class="n">sorted</span><span class="o">.</span><span class="n">dedup</span><span class="o">.</span><span class="n">bam</span>
+<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">qualimap</span> <span class="n">bamqc</span> <span class="o">-</span><span class="n">bam</span> <span class="n">mappings</span><span class="o">/</span><span class="n">evolved</span><span class="o">-</span><span class="mf">6.</span><span class="n">sorted</span><span class="o">.</span><span class="n">dedup</span><span class="o">.</span><span class="n">bam</span>
 </pre></div>
 </div>
 <p>This will create a report in the mapping folder.
@@ -607,7 +607,7 @@ down your observations.</p>
 </div>
 <div class="section" id="sub-selecting-reads">
 <h2>5.11. Sub-selecting reads<a class="headerlink" href="#sub-selecting-reads" title="Permalink to this headline">¶</a></h2>
-<p>It is important to remember that the mapping commands we used above, without additional parameters to sub-select specific alignments (e.g. for <a class="reference external" href="http://bowtie-bio.sourceforge.net/bowtie2/index.shtml">Bowtie2</a> there are options like <code class="docutils literal"><span class="pre">--no-mixed</span></code>, which suppresses unpaired alignments for paired reads or <code class="docutils literal"><span class="pre">--no-discordant</span></code>, which suppresses discordant alignments for paired reads, etc.), are going to output all reads, including unmapped reads, multi-mapping reads, unpaired reads, discordant read pairs, etc. in one file.
+<p>It is important to remember that the mapping commands we used above, without additional parameters to sub-select specific alignments (e.g. for <a class="reference external" href="http://bowtie-bio.sourceforge.net/bowtie2/index.shtml">Bowtie2</a> there are options like <code class="docutils literal notranslate"><span class="pre">--no-mixed</span></code>, which suppresses unpaired alignments for paired reads or <code class="docutils literal notranslate"><span class="pre">--no-discordant</span></code>, which suppresses discordant alignments for paired reads, etc.), are going to output all reads, including unmapped reads, multi-mapping reads, unpaired reads, discordant read pairs, etc. in one file.
 We can sub-select from the output reads we want to analyse further using <a class="reference external" href="http://samtools.sourceforge.net/">SAMtools</a>.</p>
 <div class="admonition-todo admonition" id="index-10">
 <p class="first admonition-title">Todo</p>
@@ -616,58 +616,58 @@ We can sub-select from the output reads we want to analyse further using <a clas
 <div class="section" id="concordant-reads">
 <h3>5.11.1. Concordant reads<a class="headerlink" href="#concordant-reads" title="Permalink to this headline">¶</a></h3>
 <p>We select read-pair that have been mapped in a correct manner (same chromosome/contig, correct orientation to each other).</p>
-<div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="n">samtools</span> <span class="n">view</span> <span class="o">-</span><span class="n">h</span> <span class="o">-</span><span class="n">b</span> <span class="o">-</span><span class="n">f</span> <span class="mi">3</span> <span class="n">mappings</span><span class="o">/</span><span class="n">evolved</span><span class="o">-</span><span class="mf">6.</span><span class="n">sorted</span><span class="o">.</span><span class="n">dedup</span><span class="o">.</span><span class="n">bam</span> <span class="o">&gt;</span> <span class="n">mappings</span><span class="o">/</span><span class="n">evolved</span><span class="o">-</span><span class="mf">6.</span><span class="n">sorted</span><span class="o">.</span><span class="n">concordant</span><span class="o">.</span><span class="n">bam</span>
+<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">samtools</span> <span class="n">view</span> <span class="o">-</span><span class="n">h</span> <span class="o">-</span><span class="n">b</span> <span class="o">-</span><span class="n">f</span> <span class="mi">3</span> <span class="n">mappings</span><span class="o">/</span><span class="n">evolved</span><span class="o">-</span><span class="mf">6.</span><span class="n">sorted</span><span class="o">.</span><span class="n">dedup</span><span class="o">.</span><span class="n">bam</span> <span class="o">&gt;</span> <span class="n">mappings</span><span class="o">/</span><span class="n">evolved</span><span class="o">-</span><span class="mf">6.</span><span class="n">sorted</span><span class="o">.</span><span class="n">dedup</span><span class="o">.</span><span class="n">concordant</span><span class="o">.</span><span class="n">bam</span>
 </pre></div>
 </div>
 <ul class="simple">
-<li><code class="docutils literal"><span class="pre">-h</span></code>: Include the sam header</li>
-<li><code class="docutils literal"><span class="pre">-b</span></code>: Output will be bam-format</li>
-<li><code class="docutils literal"><span class="pre">-f</span> <span class="pre">3</span></code>: Only extract correctly paired reads. <code class="docutils literal"><span class="pre">-f</span></code> extracts alignments with the specified <a class="reference external" href="http://bio-bwa.sourceforge.net/bwa.shtml#4">SAM flag</a> set.</li>
+<li><code class="docutils literal notranslate"><span class="pre">-h</span></code>: Include the sam header</li>
+<li><code class="docutils literal notranslate"><span class="pre">-b</span></code>: Output will be bam-format</li>
+<li><code class="docutils literal notranslate"><span class="pre">-f</span> <span class="pre">3</span></code>: Only extract correctly paired reads. <code class="docutils literal notranslate"><span class="pre">-f</span></code> extracts alignments with the specified <a class="reference external" href="http://bio-bwa.sourceforge.net/bwa.shtml#4">SAM flag</a> set.</li>
 </ul>
 </div>
 <div class="section" id="quality-based-sub-selection">
 <h3>5.11.2. Quality-based sub-selection<a class="headerlink" href="#quality-based-sub-selection" title="Permalink to this headline">¶</a></h3>
 <p>In this section we want to sub-select reads based on the quality of the mapping.
 It seems a reasonable idea to only keep good mapping reads.
-As the SAM-format contains at column 5 the <span class="math">\(MAPQ\)</span> value, which we established earlier is the “MAPping Quality” in Phred-scaled, this seems easily achieved.
-The formula to calculate the <span class="math">\(MAPQ\)</span> value is: <span class="math">\(MAPQ=-10*log10(p)\)</span>, where <span class="math">\(p\)</span> is the probability that the read is mapped wrongly.
+As the SAM-format contains at column 5 the <span class="math notranslate">\(MAPQ\)</span> value, which we established earlier is the “MAPping Quality” in Phred-scaled, this seems easily achieved.
+The formula to calculate the <span class="math notranslate">\(MAPQ\)</span> value is: <span class="math notranslate">\(MAPQ=-10*log10(p)\)</span>, where <span class="math notranslate">\(p\)</span> is the probability that the read is mapped wrongly.
 However, there is a problem!
 <strong>While the MAPQ information would be very helpful indeed, the way that various tools implement this value differs.</strong>
 A good overview can be found <a class="reference external" href="https://sequencing.qcfail.com/articles/mapq-values-are-really-useful-but-their-implementation-is-a-mess/">here</a>.
 Bottom-line is that we need to be aware that different tools use this value in different ways and the it is good to know the information that is encoded in the value.
-Once you dig deeper into the mechanics of the <span class="math">\(MAPQ\)</span> implementation it becomes clear that this is not an easy topic.
-If you want to know more about the <span class="math">\(MAPQ\)</span> topic, please follow the link above.</p>
+Once you dig deeper into the mechanics of the <span class="math notranslate">\(MAPQ\)</span> implementation it becomes clear that this is not an easy topic.
+If you want to know more about the <span class="math notranslate">\(MAPQ\)</span> topic, please follow the link above.</p>
 <p>For the sake of going forward, we will sub-select reads with at least medium quality as defined by <a class="reference external" href="http://bowtie-bio.sourceforge.net/bowtie2/index.shtml">Bowtie2</a>:</p>
-<div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="n">samtools</span> <span class="n">view</span> <span class="o">-</span><span class="n">h</span> <span class="o">-</span><span class="n">b</span> <span class="o">-</span><span class="n">q</span> <span class="mi">20</span> <span class="n">mappings</span><span class="o">/</span><span class="n">evolved</span><span class="o">-</span><span class="mf">6.</span><span class="n">sorted</span><span class="o">.</span><span class="n">dedup</span><span class="o">.</span><span class="n">concordant</span><span class="o">.</span><span class="n">bam</span> <span class="o">&gt;</span> <span class="n">mappings</span><span class="o">/</span><span class="n">evolved</span><span class="o">-</span><span class="mf">6.</span><span class="n">sorted</span><span class="o">.</span><span class="n">concordant</span><span class="o">.</span><span class="n">q20</span><span class="o">.</span><span class="n">bam</span>
+<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">samtools</span> <span class="n">view</span> <span class="o">-</span><span class="n">h</span> <span class="o">-</span><span class="n">b</span> <span class="o">-</span><span class="n">q</span> <span class="mi">20</span> <span class="n">mappings</span><span class="o">/</span><span class="n">evolved</span><span class="o">-</span><span class="mf">6.</span><span class="n">sorted</span><span class="o">.</span><span class="n">dedup</span><span class="o">.</span><span class="n">concordant</span><span class="o">.</span><span class="n">bam</span> <span class="o">&gt;</span> <span class="n">mappings</span><span class="o">/</span><span class="n">evolved</span><span class="o">-</span><span class="mf">6.</span><span class="n">sorted</span><span class="o">.</span><span class="n">dedup</span><span class="o">.</span><span class="n">concordant</span><span class="o">.</span><span class="n">q20</span><span class="o">.</span><span class="n">bam</span>
 </pre></div>
 </div>
 <ul class="simple">
-<li><code class="docutils literal"><span class="pre">-h</span></code>: Include the sam header</li>
-<li><code class="docutils literal"><span class="pre">-q</span> <span class="pre">20</span></code>: Only extract reads with mapping quality &gt;= 20</li>
+<li><code class="docutils literal notranslate"><span class="pre">-h</span></code>: Include the sam header</li>
+<li><code class="docutils literal notranslate"><span class="pre">-q</span> <span class="pre">20</span></code>: Only extract reads with mapping quality &gt;= 20</li>
 </ul>
 <div class="admonition hint">
 <p class="first admonition-title">Hint</p>
-<p class="last">I will repeat here a recommendation given at the source <a class="reference external" href="https://sequencing.qcfail.com/articles/mapq-values-are-really-useful-but-their-implementation-is-a-mess/">link</a> above, as it is a good one: If you unsure what <span class="math">\(MAPQ\)</span> scoring scheme is being used in your own data then you can plot out the <span class="math">\(MAPQ\)</span> distribution in a BAM file using programs like the mentioned <a class="reference external" href="http://qualimap.bioinfo.cipf.es/">QualiMap</a> or similar programs.
-This will at least show you the range and frequency with which different <span class="math">\(MAPQ\)</span> values appear and may help identify a suitable threshold you may want to use.</p>
+<p class="last">I will repeat here a recommendation given at the source <a class="reference external" href="https://sequencing.qcfail.com/articles/mapq-values-are-really-useful-but-their-implementation-is-a-mess/">link</a> above, as it is a good one: If you unsure what <span class="math notranslate">\(MAPQ\)</span> scoring scheme is being used in your own data then you can plot out the <span class="math notranslate">\(MAPQ\)</span> distribution in a BAM file using programs like the mentioned <a class="reference external" href="http://qualimap.bioinfo.cipf.es/">QualiMap</a> or similar programs.
+This will at least show you the range and frequency with which different <span class="math notranslate">\(MAPQ\)</span> values appear and may help identify a suitable threshold you may want to use.</p>
 </div>
 </div>
 <div class="section" id="unmapped-reads">
 <h3>5.11.3. Unmapped reads<a class="headerlink" href="#unmapped-reads" title="Permalink to this headline">¶</a></h3>
 <p>We could decide to use <a class="reference external" href="https://ccb.jhu.edu/software/kraken/">Kraken</a> like in section <a class="reference internal" href="../ngs-taxonomic-investigation/index.html#taxonomic-investigation"><span class="std std-ref">Taxonomic investigation</span></a> to classify all unmapped sequence reads and identify the species they are coming from and test for contamination.</p>
 <p>Lets see how we can get the unmapped portion of the reads from the bam-file:</p>
-<div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="n">samtools</span> <span class="n">view</span> <span class="o">-</span><span class="n">b</span> <span class="o">-</span><span class="n">f</span> <span class="mi">4</span> <span class="n">mappings</span><span class="o">/</span><span class="n">evolved</span><span class="o">-</span><span class="mf">6.</span><span class="n">sorted</span><span class="o">.</span><span class="n">dedup</span><span class="o">.</span><span class="n">bam</span> <span class="o">&gt;</span> <span class="n">mappings</span><span class="o">/</span><span class="n">evolved</span><span class="o">-</span><span class="mf">6.</span><span class="n">sorted</span><span class="o">.</span><span class="n">unmapped</span><span class="o">.</span><span class="n">bam</span>
+<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">samtools</span> <span class="n">view</span> <span class="o">-</span><span class="n">b</span> <span class="o">-</span><span class="n">f</span> <span class="mi">4</span> <span class="n">mappings</span><span class="o">/</span><span class="n">evolved</span><span class="o">-</span><span class="mf">6.</span><span class="n">sorted</span><span class="o">.</span><span class="n">dedup</span><span class="o">.</span><span class="n">bam</span> <span class="o">&gt;</span> <span class="n">mappings</span><span class="o">/</span><span class="n">evolved</span><span class="o">-</span><span class="mf">6.</span><span class="n">sorted</span><span class="o">.</span><span class="n">unmapped</span><span class="o">.</span><span class="n">bam</span>
 
 <span class="c1"># count them</span>
 <span class="n">samtools</span> <span class="n">view</span> <span class="o">-</span><span class="n">c</span> <span class="n">mappings</span><span class="o">/</span><span class="n">evolved</span><span class="o">-</span><span class="mf">6.</span><span class="n">sorted</span><span class="o">.</span><span class="n">unmapped</span><span class="o">.</span><span class="n">bam</span>
 </pre></div>
 </div>
 <ul class="simple">
-<li><code class="docutils literal"><span class="pre">-b</span></code>: indicates that the output is BAM.</li>
-<li><code class="docutils literal"><span class="pre">-f</span> <span class="pre">INT</span></code>: only include reads with this <a class="reference external" href="http://bio-bwa.sourceforge.net/bwa.shtml#4">SAM flag</a> set. You can also use the command <code class="docutils literal"><span class="pre">samtools</span> <span class="pre">flags</span></code> to get an overview of the flags.</li>
-<li><code class="docutils literal"><span class="pre">-c</span></code>: count the reads</li>
+<li><code class="docutils literal notranslate"><span class="pre">-b</span></code>: indicates that the output is BAM.</li>
+<li><code class="docutils literal notranslate"><span class="pre">-f</span> <span class="pre">INT</span></code>: only include reads with this <a class="reference external" href="http://bio-bwa.sourceforge.net/bwa.shtml#4">SAM flag</a> set. You can also use the command <code class="docutils literal notranslate"><span class="pre">samtools</span> <span class="pre">flags</span></code> to get an overview of the flags.</li>
+<li><code class="docutils literal notranslate"><span class="pre">-c</span></code>: count the reads</li>
 </ul>
 <p>Lets extract the fastq sequence of the unmapped reads for read1 and read2.</p>
-<div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="n">bamToFastq</span> <span class="o">-</span><span class="n">i</span> <span class="n">mappings</span><span class="o">/</span><span class="n">evolved</span><span class="o">-</span><span class="mf">6.</span><span class="n">sorted</span><span class="o">.</span><span class="n">unmapped</span><span class="o">.</span><span class="n">bam</span> <span class="o">-</span><span class="n">fq</span> <span class="n">mappings</span><span class="o">/</span><span class="n">evolved</span><span class="o">-</span><span class="mf">6.</span><span class="n">sorted</span><span class="o">.</span><span class="n">unmapped</span><span class="o">.</span><span class="n">R1</span><span class="o">.</span><span class="n">fastq</span> <span class="o">-</span><span class="n">fq2</span>  <span class="n">mappings</span><span class="o">/</span><span class="n">evolved</span><span class="o">-</span><span class="mf">6.</span><span class="n">sorted</span><span class="o">.</span><span class="n">unmapped</span><span class="o">.</span><span class="n">R2</span><span class="o">.</span><span class="n">fastq</span>
+<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">bamToFastq</span> <span class="o">-</span><span class="n">i</span> <span class="n">mappings</span><span class="o">/</span><span class="n">evolved</span><span class="o">-</span><span class="mf">6.</span><span class="n">sorted</span><span class="o">.</span><span class="n">unmapped</span><span class="o">.</span><span class="n">bam</span> <span class="o">-</span><span class="n">fq</span> <span class="n">mappings</span><span class="o">/</span><span class="n">evolved</span><span class="o">-</span><span class="mf">6.</span><span class="n">sorted</span><span class="o">.</span><span class="n">unmapped</span><span class="o">.</span><span class="n">R1</span><span class="o">.</span><span class="n">fastq</span> <span class="o">-</span><span class="n">fq2</span>  <span class="n">mappings</span><span class="o">/</span><span class="n">evolved</span><span class="o">-</span><span class="mf">6.</span><span class="n">sorted</span><span class="o">.</span><span class="n">unmapped</span><span class="o">.</span><span class="n">R2</span><span class="o">.</span><span class="n">fastq</span>
 </pre></div>
 </div>
 <p class="rubric">References</p>
@@ -704,7 +704,7 @@ This will at least show you the range and frequency with which different <span c
   <div role="contentinfo">
     <p>
         &copy; Copyright 2016-2018, Sebastian Schmeier (https://sschmeier.com).
-      Last updated on Mar 14, 2018.
+      Last updated on Apr 11, 2018.
 
     </p>
   </div>

@@ -200,11 +200,11 @@
 <div class="section" id="before-we-start">
 <h2>9.3. Before we start<a class="headerlink" href="#before-we-start" title="Permalink to this headline">¶</a></h2>
 <p>Lets see how our directory structure looks so far:</p>
-<div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~/</span><span class="n">analysis</span>
+<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~/</span><span class="n">analysis</span>
 <span class="n">ls</span> <span class="o">-</span><span class="mi">1</span><span class="n">F</span>
 </pre></div>
 </div>
-<div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="n">annotation</span><span class="o">/</span>
+<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">annotation</span><span class="o">/</span>
 <span class="n">assembly</span><span class="o">/</span>
 <span class="n">data</span><span class="o">/</span>
 <span class="n">kraken</span><span class="o">/</span>
@@ -218,11 +218,11 @@
 </pre></div>
 </div>
 <p>Make a directory for the phylogeny results (in your analysis directory):</p>
-<div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="n">mkdir</span> <span class="n">phylogeny</span>
+<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mkdir</span> <span class="n">phylogeny</span>
 </pre></div>
 </div>
 <p>Download the fasta file of the <em>S. cerevisiase</em> TEF2 gene to the phylogeny folder:</p>
-<div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">phylogeny</span>
+<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">phylogeny</span>
 <span class="n">curl</span> <span class="o">-</span><span class="n">O</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">compbio</span><span class="o">.</span><span class="n">massey</span><span class="o">.</span><span class="n">ac</span><span class="o">.</span><span class="n">nz</span><span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="mi">203341</span><span class="o">/</span><span class="n">s_cerev_tef2</span><span class="o">.</span><span class="n">fas</span>
 </pre></div>
 </div>
@@ -233,21 +233,21 @@
 </div>
 <div class="section" id="installing-the-software">
 <h2>9.4. Installing the software<a class="headerlink" href="#installing-the-software" title="Permalink to this headline">¶</a></h2>
-<div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="c1"># activate the env</span>
+<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># activate the env</span>
 <span class="n">source</span> <span class="n">activate</span> <span class="n">ngs</span>
 
 <span class="n">conda</span> <span class="n">install</span> <span class="n">blast</span>
 </pre></div>
 </div>
 <p>This will install a <a class="reference external" href="https://blast.ncbi.nlm.nih.gov/Blast.cgi">BLAST</a> executable that you can use to remotely query the NCBI database.</p>
-<div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">install</span> <span class="n">muscle</span>
+<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">install</span> <span class="n">muscle</span>
 </pre></div>
 </div>
 <p>This will install <a class="reference external" href="http://www.ebi.ac.uk/Tools/msa/muscle/">MUSCLE</a>, alignment program that you can use to align nucleotide or protein sequences.</p>
 <p>We will also install <a class="reference external" href="https://github.com/amkozlov/raxml-ng">RAxML-NG</a>, a phylogenetic tree inference tool, which uses
 maximum-likelihood (ML) optimality criterion. However, there is no conda
 repository for it yet. Thus, we need to download it manually.</p>
-<div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="n">wget</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">amkozlov</span><span class="o">/</span><span class="n">raxml</span><span class="o">-</span><span class="n">ng</span><span class="o">/</span><span class="n">releases</span><span class="o">/</span><span class="n">download</span><span class="o">/</span><span class="mf">0.3</span><span class="o">.</span><span class="mi">0</span><span class="o">/</span><span class="n">raxml</span><span class="o">-</span><span class="n">ng_v0</span><span class="o">.</span><span class="mf">3.0</span><span class="n">b_linux_x86_64</span><span class="o">.</span><span class="n">zip</span>
+<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">wget</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">amkozlov</span><span class="o">/</span><span class="n">raxml</span><span class="o">-</span><span class="n">ng</span><span class="o">/</span><span class="n">releases</span><span class="o">/</span><span class="n">download</span><span class="o">/</span><span class="mf">0.3</span><span class="o">.</span><span class="mi">0</span><span class="o">/</span><span class="n">raxml</span><span class="o">-</span><span class="n">ng_v0</span><span class="o">.</span><span class="mf">3.0</span><span class="n">b_linux_x86_64</span><span class="o">.</span><span class="n">zip</span>
 
 <span class="n">unzip</span> <span class="n">raxml</span><span class="o">-</span><span class="n">ng_v0</span><span class="o">.</span><span class="mf">3.0</span><span class="n">b_linux_x86_64</span><span class="o">.</span><span class="n">zip</span>
 
@@ -259,48 +259,48 @@ repository for it yet. Thus, we need to download it manually.</p>
 <h2>9.5. Finding orthologues using BLAST<a class="headerlink" href="#finding-orthologues-using-blast" title="Permalink to this headline">¶</a></h2>
 <p>We will first make a <a class="reference external" href="https://blast.ncbi.nlm.nih.gov/Blast.cgi">BLAST</a> database of our current assembly so that we can
 find the orthologous sequence of the <em>S. cerevisiae</em> gene.
-To do this, we run the command <code class="docutils literal"><span class="pre">makeblastdb</span></code>:</p>
-<div class="code bash highlight-default"><div class="highlight"><pre><span></span># create blast db
+To do this, we run the command <code class="docutils literal notranslate"><span class="pre">makeblastdb</span></code>:</p>
+<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span># create blast db
 makeblastdb –in ../assembly/spades-final/scaffolds.fasta –dbtype nucl
 </pre></div>
 </div>
 <p>To run <a class="reference external" href="https://blast.ncbi.nlm.nih.gov/Blast.cgi">BLAST</a>, we give it:</p>
 <ul class="simple">
-<li><code class="docutils literal"><span class="pre">-db</span></code>: The name of the database that we are BLASTing</li>
-<li><code class="docutils literal"><span class="pre">-query</span></code>: A fasta format input file</li>
+<li><code class="docutils literal notranslate"><span class="pre">-db</span></code>: The name of the database that we are BLASTing</li>
+<li><code class="docutils literal notranslate"><span class="pre">-query</span></code>: A fasta format input file</li>
 <li>A name for the output files</li>
 <li>Some notes about the format we want</li>
 </ul>
 <p>First, we blast without any formatting:</p>
-<div class="code bash highlight-default"><div class="highlight"><pre><span></span>blastn –db ../assembly/spades-final/scaffolds.fasta –query s_cerev_tef2.fas &gt; blast.out
+<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span>blastn –db ../assembly/spades-final/scaffolds.fasta –query s_cerev_tef2.fas &gt; blast.out
 </pre></div>
 </div>
 <p>This should output a file with a set of <a class="reference external" href="https://blast.ncbi.nlm.nih.gov/Blast.cgi">BLAST</a> hits similar to what you might
 see on the <a class="reference external" href="https://blast.ncbi.nlm.nih.gov/Blast.cgi">BLAST</a> web site.</p>
-<p>Read through the output (e.g. using <code class="docutils literal"><span class="pre">nano</span></code>) to see what the results of your <a class="reference external" href="https://blast.ncbi.nlm.nih.gov/Blast.cgi">BLAST</a> run was.</p>
+<p>Read through the output (e.g. using <code class="docutils literal notranslate"><span class="pre">nano</span></code>) to see what the results of your <a class="reference external" href="https://blast.ncbi.nlm.nih.gov/Blast.cgi">BLAST</a> run was.</p>
 <p>Next we will format the output a little so that it is easier to deal with.</p>
-<div class="code bash highlight-default"><div class="highlight"><pre><span></span>blastn –db ../assembly/spades-final/scaffolds.fasta –query s_cerev_tef2.fas –evalue 1e-100 –outfmt “6 length sseq” &gt; blast_formatted.out
+<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span>blastn –db ../assembly/spades-final/scaffolds.fasta –query s_cerev_tef2.fas –evalue 1e-100 –outfmt “6 length sseq” &gt; blast_formatted.out
 </pre></div>
 </div>
 <p>This will yield a file that has only the sequences of the subject, so that we can later add those to other fasta files.
 However, the formatting is not perfect.
-To adjust the format such that it is fasta format, open the file in an editor (e.g. <code class="docutils literal"><span class="pre">nano</span></code>) and edit the first line so that it has a name for your sequence.
+To adjust the format such that it is fasta format, open the file in an editor (e.g. <code class="docutils literal notranslate"><span class="pre">nano</span></code>) and edit the first line so that it has a name for your sequence.
 You should know the general format of a fasta-file (e.g. the first line start with a “&gt;”).</p>
 <div class="admonition hint">
 <p class="first admonition-title">Hint</p>
-<p class="last">To edit in <code class="docutils literal"><span class="pre">vi</span></code> editor, you will need to press the escape key and “a” or “e”.
-To save in <code class="docutils literal"><span class="pre">vi</span></code>, you will need to press the escape key and “w” (write).
-To quit <code class="docutils literal"><span class="pre">vi</span></code>, you will need to press the escape key and “q” (quit).</p>
+<p class="last">To edit in <code class="docutils literal notranslate"><span class="pre">vi</span></code> editor, you will need to press the escape key and “a” or “e”.
+To save in <code class="docutils literal notranslate"><span class="pre">vi</span></code>, you will need to press the escape key and “w” (write).
+To quit <code class="docutils literal notranslate"><span class="pre">vi</span></code>, you will need to press the escape key and “q” (quit).</p>
 </div>
 <p>Next, you have to replace the dashes (signifying indels in the <a class="reference external" href="https://blast.ncbi.nlm.nih.gov/Blast.cgi">BLAST</a> result).
-This can easily be done in <code class="docutils literal"><span class="pre">vi</span></code>:
-Press the escape key, followed by: <code class="docutils literal"><span class="pre">:%s/\-//g</span></code></p>
+This can easily be done in <code class="docutils literal notranslate"><span class="pre">vi</span></code>:
+Press the escape key, followed by: <code class="docutils literal notranslate"><span class="pre">:%s/\-//g</span></code></p>
 <p>Now we will <a class="reference external" href="https://blast.ncbi.nlm.nih.gov/Blast.cgi">BLAST</a> a remote database to get a list of hits that are already in the NCBI database.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">It turns out you may not be able to access this database from within BioLinux. In such a case, download the file named <code class="docutils literal"><span class="pre">blast.fas</span></code> and place it into your <code class="docutils literal"><span class="pre">~/analysis/phylogeny/</span></code> directory.</p>
+<p class="last">It turns out you may not be able to access this database from within BioLinux. In such a case, download the file named <code class="docutils literal notranslate"><span class="pre">blast.fas</span></code> and place it into your <code class="docutils literal notranslate"><span class="pre">~/analysis/phylogeny/</span></code> directory.</p>
 </div>
-<div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="n">curl</span> <span class="o">-</span><span class="n">O</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">compbio</span><span class="o">.</span><span class="n">massey</span><span class="o">.</span><span class="n">ac</span><span class="o">.</span><span class="n">nz</span><span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="mi">203341</span><span class="o">/</span><span class="n">blast</span><span class="o">.</span><span class="n">fas</span>
+<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">curl</span> <span class="o">-</span><span class="n">O</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">compbio</span><span class="o">.</span><span class="n">massey</span><span class="o">.</span><span class="n">ac</span><span class="o">.</span><span class="n">nz</span><span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="mi">203341</span><span class="o">/</span><span class="n">blast</span><span class="o">.</span><span class="n">fas</span>
 </pre></div>
 </div>
 <p>Append the fasta file of your yeast sequence to this file, using whatever set of commands you wish/know.</p>
@@ -313,7 +313,7 @@ Press the escape key, followed by: <code class="docutils literal"><span class="p
 <h2>9.6. Performing an alignment<a class="headerlink" href="#performing-an-alignment" title="Permalink to this headline">¶</a></h2>
 <p>We will use <a class="reference external" href="http://www.ebi.ac.uk/Tools/msa/muscle/">MUSCLE</a> to perform our alignment on all the sequences in the <a class="reference external" href="https://blast.ncbi.nlm.nih.gov/Blast.cgi">BLAST</a> fasta file.
 This syntax is very simple (change the filenames accordingly):</p>
-<div class="code bash highlight-default"><div class="highlight"><pre><span></span>muscle –in infile.fas –out your_alignment.aln
+<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span>muscle –in infile.fas –out your_alignment.aln
 </pre></div>
 </div>
 </div>
@@ -324,12 +324,12 @@ This uses a maximum likelihood method to infer parameters of evolution and the t
 Again, the syntx of the command is fairly simple, except you must make sure that you are using the directory in which <a class="reference external" href="https://github.com/amkozlov/raxml-ng">RAxML-NG</a> sits.</p>
 <p>The arguments are:</p>
 <ul class="simple">
-<li><code class="docutils literal"><span class="pre">-s</span></code>: an alignment file</li>
-<li><code class="docutils literal"><span class="pre">-m</span></code>: a model of evolution. In this case we will use a general time reversible model with gamma distributed rates (GTR+GAMMA)</li>
-<li><code class="docutils literal"><span class="pre">-n</span></code>: outfile-name</li>
-<li><code class="docutils literal"><span class="pre">-p</span></code>: specify a random number seed for the parsimony inferences</li>
+<li><code class="docutils literal notranslate"><span class="pre">-s</span></code>: an alignment file</li>
+<li><code class="docutils literal notranslate"><span class="pre">-m</span></code>: a model of evolution. In this case we will use a general time reversible model with gamma distributed rates (GTR+GAMMA)</li>
+<li><code class="docutils literal notranslate"><span class="pre">-n</span></code>: outfile-name</li>
+<li><code class="docutils literal notranslate"><span class="pre">-p</span></code>: specify a random number seed for the parsimony inferences</li>
 </ul>
-<div class="code bash highlight-default"><div class="highlight"><pre><span></span>raxmlHPC -s your_alignment.aln -m GTRGAMMA –n yeast_tree –p 12345
+<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span>raxmlHPC -s your_alignment.aln -m GTRGAMMA –n yeast_tree –p 12345
 </pre></div>
 </div>
 </div>
@@ -337,7 +337,7 @@ Again, the syntx of the command is fairly simple, except you must make sure that
 <h2>9.8. Visualizing the phylogeny<a class="headerlink" href="#visualizing-the-phylogeny" title="Permalink to this headline">¶</a></h2>
 <p>We will use the online software <a class="reference external" href="http://itol.embl.de/upload.cgi">Interactive Tree of Life (iTOL)</a> to visualize the tree.
 Navigate to this homepage.
-Open the file containing your tree (<code class="docutils literal"><span class="pre">*bestTree.out</span></code>), copy the contents, and paste into the web page (in the Tree text box).</p>
+Open the file containing your tree (<code class="docutils literal notranslate"><span class="pre">*bestTree.out</span></code>), copy the contents, and paste into the web page (in the Tree text box).</p>
 <p>You should then be able to zoom in and out to see where your yeast taxa is.
 To find out the closest relative, you will have to use the <a class="reference external" href="https://www.ncbi.nlm.nih.gov/Taxonomy/TaxIdentifier/tax_identifier.cgi">NCBI taxa page</a>.</p>
 <div class="admonition-todo admonition" id="index-0">
@@ -370,7 +370,7 @@ To find out the closest relative, you will have to use the <a class="reference e
   <div role="contentinfo">
     <p>
         &copy; Copyright 2016-2018, Sebastian Schmeier (https://sschmeier.com).
-      Last updated on Mar 14, 2018.
+      Last updated on Apr 11, 2018.
 
     </p>
   </div>

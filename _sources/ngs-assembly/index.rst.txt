@@ -136,12 +136,13 @@ Assembly statistics
 It is easy with |quast| to compare these measures among several assemblies.
 The program can be used on their `website <http://quast.bioinf.spbau.ru/>`__.
 
-We can install it locally with:
+As of March 2018, |quast| needs Python 2 instead of the default Python 3 we have been using so far.
+Thus, we make a new |conda| environment for |quast| based on Python 2.
 
 .. code:: bash
 
-          source activate ngs
-          conda install quast
+          conda create -n quast python=2 quast
+          source activate quast
 
 Run |quast| with both assembly scaffolds.fasta files to compare the results.
 
@@ -193,8 +194,6 @@ Assemblathon
 
    
 
-   
-   
 Further reading
 ---------------
 

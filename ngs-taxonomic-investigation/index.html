@@ -229,11 +229,11 @@ Let us see if we can id some sequences from other species.</p>
 <div class="section" id="before-we-start">
 <h2>6.3. Before we start<a class="headerlink" href="#before-we-start" title="Permalink to this headline">¶</a></h2>
 <p>Lets see how our directory structure looks so far:</p>
-<div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~/</span><span class="n">analysis</span>
+<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~/</span><span class="n">analysis</span>
 <span class="n">ls</span> <span class="o">-</span><span class="mi">1</span><span class="n">F</span>
 </pre></div>
 </div>
-<div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="n">assembly</span><span class="o">/</span>
+<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">assembly</span><span class="o">/</span>
 <span class="n">data</span><span class="o">/</span>
 <span class="n">mappings</span><span class="o">/</span>
 <span class="n">SolexaQA</span><span class="o">/</span>
@@ -254,12 +254,12 @@ If the k-mer content is not similar to any genomic sequence in the database used
 <div class="section" id="installation">
 <h3>6.4.1. Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h3>
 <p>Use conda in the same fashion as before to install <a class="reference external" href="https://ccb.jhu.edu/software/kraken/">Kraken</a>:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="nb">source</span> activate ngs
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">source</span> activate ngs
 conda install kraken-all
 </pre></div>
 </div>
 <p>Now we create a directory where we are going to do the analysis and we will change into that directory too.</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="c1"># make sure you are in your analysis root folder</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># make sure you are in your analysis root folder</span>
 <span class="nb">cd</span> ~/analysis
 
 <span class="c1"># create dir</span>
@@ -269,7 +269,7 @@ mkdir kraken
 </div>
 <p>Now we need to create or download a <a class="reference external" href="https://ccb.jhu.edu/software/kraken/">Kraken</a> database that can be used to assign the taxonomic labels to sequences.
 We opt for downloading the pre-build “minikraken” database from the <a class="reference external" href="https://ccb.jhu.edu/software/kraken/">Kraken</a> website:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>curl -O https://ccb.jhu.edu/software/kraken/dl/minikraken.tgz
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>curl -O https://ccb.jhu.edu/software/kraken/dl/minikraken.tgz
 
 <span class="c1"># alternatively we can use wget</span>
 wget https://ccb.jhu.edu/software/kraken/dl/minikraken.tgz
@@ -294,17 +294,17 @@ What are the implications for us when we are trying to classify our sequences?</
 <h3>6.4.2. Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h3>
 <p>Now that we have installed <a class="reference external" href="https://ccb.jhu.edu/software/kraken/">Kraken</a> and downloaded and extracted the minikraken database, we can attempt to investigate the sequences we got back from the sequencing provider for other species as the one it should contain.
 We call the <a class="reference external" href="https://ccb.jhu.edu/software/kraken/">Kraken</a> tool and specify the database and fasta-file with the sequences it should use. The general command structure looks like this:</p>
-<div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="n">kraken</span> <span class="o">--</span><span class="n">only</span><span class="o">-</span><span class="n">classified</span><span class="o">-</span><span class="n">output</span> <span class="o">--</span><span class="n">db</span> <span class="n">minikraken_20141208</span> <span class="n">example</span><span class="o">.</span><span class="n">fa</span> <span class="o">&gt;</span> <span class="n">example</span><span class="o">.</span><span class="n">kraken</span>
+<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">kraken</span> <span class="o">--</span><span class="n">only</span><span class="o">-</span><span class="n">classified</span><span class="o">-</span><span class="n">output</span> <span class="o">--</span><span class="n">db</span> <span class="n">minikraken_20141208</span> <span class="n">example</span><span class="o">.</span><span class="n">fa</span> <span class="o">&gt;</span> <span class="n">example</span><span class="o">.</span><span class="n">kraken</span>
 </pre></div>
 </div>
-<p>However, we may have fastq-files, so we need to use <code class="docutils literal"><span class="pre">--fastq-input</span></code> which tells <a class="reference external" href="https://ccb.jhu.edu/software/kraken/">Kraken</a> that it is dealing with fastq-formated files.
+<p>However, we may have fastq-files, so we need to use <code class="docutils literal notranslate"><span class="pre">--fastq-input</span></code> which tells <a class="reference external" href="https://ccb.jhu.edu/software/kraken/">Kraken</a> that it is dealing with fastq-formated files.
 Here, we are investigating one of the unmapped paired-end read files of the evolved line.</p>
-<div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="n">kraken</span> <span class="o">--</span><span class="n">only</span><span class="o">-</span><span class="n">classified</span><span class="o">-</span><span class="n">output</span> <span class="o">--</span><span class="n">db</span> <span class="n">minikraken_20141208</span> <span class="o">--</span><span class="n">fastq</span><span class="o">-</span><span class="nb">input</span> <span class="o">../</span><span class="n">mappings</span><span class="o">/</span><span class="n">evolved</span><span class="o">-</span><span class="mf">6.</span><span class="n">sorted</span><span class="o">.</span><span class="n">unmapped</span><span class="o">.</span><span class="n">R1</span><span class="o">.</span><span class="n">fastq</span> <span class="o">&gt;</span> <span class="n">evolved</span><span class="o">-</span><span class="mi">6</span><span class="o">-</span><span class="n">R1</span><span class="o">.</span><span class="n">kraken</span>
+<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">kraken</span> <span class="o">--</span><span class="n">only</span><span class="o">-</span><span class="n">classified</span><span class="o">-</span><span class="n">output</span> <span class="o">--</span><span class="n">db</span> <span class="n">minikraken_20141208</span> <span class="o">--</span><span class="n">fastq</span><span class="o">-</span><span class="nb">input</span> <span class="o">../</span><span class="n">mappings</span><span class="o">/</span><span class="n">evolved</span><span class="o">-</span><span class="mf">6.</span><span class="n">sorted</span><span class="o">.</span><span class="n">unmapped</span><span class="o">.</span><span class="n">R1</span><span class="o">.</span><span class="n">fastq</span> <span class="o">&gt;</span> <span class="n">evolved</span><span class="o">-</span><span class="mi">6</span><span class="o">-</span><span class="n">R1</span><span class="o">.</span><span class="n">kraken</span>
 </pre></div>
 </div>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">We are for now only interested in the portion of sequeuces that can be classified, that is why we supplied the option <code class="docutils literal"><span class="pre">--only-classified-output</span></code> to the <a class="reference external" href="https://ccb.jhu.edu/software/kraken/">Kraken</a> command.</p>
+<p class="last">We are for now only interested in the portion of sequeuces that can be classified, that is why we supplied the option <code class="docutils literal notranslate"><span class="pre">--only-classified-output</span></code> to the <a class="reference external" href="https://ccb.jhu.edu/software/kraken/">Kraken</a> command.</p>
 </div>
 <p>This classification may take a while, depending on how many sequences we are going to classify.
 The resulting content of the file “evolved-6-R1.kraken” looks similar to the following example:</p>
@@ -319,14 +319,14 @@ C       M02810:197:000000000-AV55U:1:1101:11705:24355/1 2157    151     0:1 2157
 <p>Each sequence classified by <a class="reference external" href="https://ccb.jhu.edu/software/kraken/">Kraken</a> results in a single line of output.
 Output lines contain five tab-delimited fields; from left to right, they are:</p>
 <ol class="arabic simple">
-<li><code class="docutils literal"><span class="pre">C/U</span></code>: one letter code indicating that the sequence was either classified or unclassified.</li>
+<li><code class="docutils literal notranslate"><span class="pre">C/U</span></code>: one letter code indicating that the sequence was either classified or unclassified.</li>
 <li>The sequence ID, obtained from the FASTA/FASTQ header.</li>
 <li>The taxonomy ID Kraken used to label the sequence; this is <strong>0</strong> if the sequence
 is unclassified and otherwise should be the <a class="reference external" href="https://www.ncbi.nlm.nih.gov/taxonomy">NCBI Taxonomy</a> identifier.</li>
 <li>The length of the sequence in bp.</li>
 <li>A space-delimited list indicating the lowest common ancestor (in the
 taxonomic tree) mapping of each k-mer in the sequence.
-For example, <code class="docutils literal"><span class="pre">562:13</span> <span class="pre">561:4</span> <span class="pre">A:31</span> <span class="pre">0:1</span> <span class="pre">562:3</span></code> would indicate that:<ul>
+For example, <code class="docutils literal notranslate"><span class="pre">562:13</span> <span class="pre">561:4</span> <span class="pre">A:31</span> <span class="pre">0:1</span> <span class="pre">562:3</span></code> would indicate that:<ul>
 <li>the first 13 k-mers mapped to taxonomy ID #562</li>
 <li>the next 4 k-mers mapped to taxonomy ID #561</li>
 <li>the next 31 k-mers contained an ambiguous nucleotide</li>
@@ -348,8 +348,8 @@ However, this is impractical as we are dealing potentially with many sequences.
 <div class="section" id="kraken-report">
 <h4>6.4.3.1. kraken-report<a class="headerlink" href="#kraken-report" title="Permalink to this headline">¶</a></h4>
 <p>First, we generate a sample-wide report of all taxa found.
-This can be achieved with the tool <code class="docutils literal"><span class="pre">kranken-report</span></code>.</p>
-<div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="n">kraken</span><span class="o">-</span><span class="n">report</span> <span class="o">--</span><span class="n">db</span> <span class="n">minikraken_20141208</span> <span class="n">evolved</span><span class="o">-</span><span class="mi">6</span><span class="o">-</span><span class="n">R1</span><span class="o">.</span><span class="n">kraken</span> <span class="o">&gt;</span> <span class="n">evolved</span><span class="o">-</span><span class="mi">6</span><span class="o">-</span><span class="n">R1</span><span class="o">.</span><span class="n">kraken</span><span class="o">.</span><span class="n">report</span>
+This can be achieved with the tool <code class="docutils literal notranslate"><span class="pre">kranken-report</span></code>.</p>
+<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">kraken</span><span class="o">-</span><span class="n">report</span> <span class="o">--</span><span class="n">db</span> <span class="n">minikraken_20141208</span> <span class="n">evolved</span><span class="o">-</span><span class="mi">6</span><span class="o">-</span><span class="n">R1</span><span class="o">.</span><span class="n">kraken</span> <span class="o">&gt;</span> <span class="n">evolved</span><span class="o">-</span><span class="mi">6</span><span class="o">-</span><span class="n">R1</span><span class="o">.</span><span class="n">kraken</span><span class="o">.</span><span class="n">report</span>
 </pre></div>
 </div>
 <p>The first few lines of an example report are shown below.</p>
@@ -380,9 +380,9 @@ The fields of the output, from left-to-right, are as follows:</p>
 <p class="first admonition-title">Note</p>
 <p class="last">If you want to compare the taxa content of different samples to another, one can create a report whose structure is always the same for all samples, disregarding which taxa are found (obviously the percentages and numbers will be different).</p>
 </div>
-<p>We can cerate such a report using the option <code class="docutils literal"><span class="pre">--show-zeros</span></code> which will print out all taxa (instead of only those found).
-We then sort the taxa according to taxa-ids (column 5), e.g. <code class="docutils literal"><span class="pre">sort</span> <span class="pre">-n</span> <span class="pre">-k5</span></code>.</p>
-<div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="n">kraken</span><span class="o">-</span><span class="n">report</span> <span class="o">*--</span><span class="n">show</span><span class="o">-</span><span class="n">zeros</span><span class="o">*</span> <span class="o">--</span><span class="n">db</span> <span class="n">minikraken_20141208</span> <span class="n">evolved</span><span class="o">-</span><span class="mi">6</span><span class="o">-</span><span class="n">R1</span><span class="o">.</span><span class="n">kraken</span> <span class="o">|</span> <span class="o">**</span><span class="n">sort</span> <span class="o">-</span><span class="n">n</span> <span class="o">-</span><span class="n">k5</span><span class="o">**</span> <span class="o">&gt;</span> <span class="n">evolved</span><span class="o">-</span><span class="mi">6</span><span class="o">-</span><span class="n">R1</span><span class="o">.</span><span class="n">kraken</span><span class="o">.</span><span class="n">report</span><span class="o">.</span><span class="n">sorted</span>
+<p>We can cerate such a report using the option <code class="docutils literal notranslate"><span class="pre">--show-zeros</span></code> which will print out all taxa (instead of only those found).
+We then sort the taxa according to taxa-ids (column 5), e.g. <code class="docutils literal notranslate"><span class="pre">sort</span> <span class="pre">-n</span> <span class="pre">-k5</span></code>.</p>
+<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">kraken</span><span class="o">-</span><span class="n">report</span> <span class="o">*--</span><span class="n">show</span><span class="o">-</span><span class="n">zeros</span><span class="o">*</span> <span class="o">--</span><span class="n">db</span> <span class="n">minikraken_20141208</span> <span class="n">evolved</span><span class="o">-</span><span class="mi">6</span><span class="o">-</span><span class="n">R1</span><span class="o">.</span><span class="n">kraken</span> <span class="o">|</span> <span class="o">**</span><span class="n">sort</span> <span class="o">-</span><span class="n">n</span> <span class="o">-</span><span class="n">k5</span><span class="o">**</span> <span class="o">&gt;</span> <span class="n">evolved</span><span class="o">-</span><span class="mi">6</span><span class="o">-</span><span class="n">R1</span><span class="o">.</span><span class="n">kraken</span><span class="o">.</span><span class="n">report</span><span class="o">.</span><span class="n">sorted</span>
 </pre></div>
 </div>
 <p>The report is not ordered according to taxa ids and contains all taxa in the database, even if they have not been found in our sample and are thus zero.
@@ -391,8 +391,8 @@ The columns are the same as in the former report, however, we have more rows and
 <div class="section" id="kraken-translate">
 <h4>6.4.3.2. kraken-translate<a class="headerlink" href="#kraken-translate" title="Permalink to this headline">¶</a></h4>
 <p>For every sequence in our sample and its predicted taxonomic identifier,
-we can attach the taxonomic names with <code class="docutils literal"><span class="pre">kraken-translate</span></code>.</p>
-<div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="n">kraken</span><span class="o">-</span><span class="n">translate</span> <span class="o">--</span><span class="n">mpa</span><span class="o">-</span><span class="nb">format</span> <span class="o">--</span><span class="n">db</span> <span class="n">minikraken_20141208</span> <span class="n">evolved</span><span class="o">-</span><span class="mi">6</span><span class="o">-</span><span class="n">R1</span><span class="o">.</span><span class="n">kraken</span> <span class="o">&gt;</span> <span class="n">evolved</span><span class="o">-</span><span class="mi">6</span><span class="o">-</span><span class="n">R1</span><span class="o">.</span><span class="n">kraken</span><span class="o">.</span><span class="n">names</span>
+we can attach the taxonomic names with <code class="docutils literal notranslate"><span class="pre">kraken-translate</span></code>.</p>
+<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">kraken</span><span class="o">-</span><span class="n">translate</span> <span class="o">--</span><span class="n">mpa</span><span class="o">-</span><span class="nb">format</span> <span class="o">--</span><span class="n">db</span> <span class="n">minikraken_20141208</span> <span class="n">evolved</span><span class="o">-</span><span class="mi">6</span><span class="o">-</span><span class="n">R1</span><span class="o">.</span><span class="n">kraken</span> <span class="o">&gt;</span> <span class="n">evolved</span><span class="o">-</span><span class="mi">6</span><span class="o">-</span><span class="n">R1</span><span class="o">.</span><span class="n">kraken</span><span class="o">.</span><span class="n">names</span>
 </pre></div>
 </div>
 <p>An example output looks like this:</p>
@@ -424,12 +424,12 @@ If the search sequence is not similar to any genomic sequence in the database us
 <div class="section" id="id4">
 <h3>6.5.1. Installation<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
 <p>Use conda in the same fashion as before to install <a class="reference external" href="http://www.ccb.jhu.edu/software/centrifuge/index.shtml">Centrifuge</a>:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="nb">source</span> activate ngs
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">source</span> activate ngs
 conda install centrifuge
 </pre></div>
 </div>
 <p>Now we create a directory where we are going to do the analysis and we will change into that directory too.</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="c1"># make sure you are in your analysis root folder</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># make sure you are in your analysis root folder</span>
 <span class="nb">cd</span> ~/analysis
 
 <span class="c1"># create dir</span>
@@ -439,7 +439,7 @@ mkdir centrifuge
 </div>
 <p>Now we need to create or download a <a class="reference external" href="http://www.ccb.jhu.edu/software/centrifuge/index.shtml">Centrifuge</a> database that can be used to assign the taxonomic labels to sequences.
 We opt for downloading the pre-build database from the <a class="reference external" href="http://www.ccb.jhu.edu/software/centrifuge/index.shtml">Centrifuge</a> website:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>curl -O ftp://ftp.ccb.jhu.edu/pub/infphilo/centrifuge/data/p_compressed.tar.gz
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>curl -O ftp://ftp.ccb.jhu.edu/pub/infphilo/centrifuge/data/p_compressed.tar.gz
 
 <span class="c1"># alternatively we can use wget</span>
 wget ftp://ftp.ccb.jhu.edu/pub/infphilo/centrifuge/data/p_compressed.tar.gz
@@ -464,16 +464,16 @@ What are the implications for us when we are trying to classify our sequences?</
 <h3>6.5.2. Usage<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
 <p>Now that we have installed <a class="reference external" href="http://www.ccb.jhu.edu/software/centrifuge/index.shtml">Centrifuge</a> and downloaded and extracted the pre-build database, we can attempt to investigate the sequences we got back from the sequencing provider for other species as the one it should contain.
 We call the <a class="reference external" href="http://www.ccb.jhu.edu/software/centrifuge/index.shtml">Centrifuge</a> tool and specify the database and fasta-file with the sequences it should use. The general command structure looks like this:</p>
-<div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="n">centrifuge</span> <span class="o">-</span><span class="n">x</span> <span class="n">p_compressed</span> <span class="o">-</span><span class="n">U</span> <span class="n">example</span><span class="o">.</span><span class="n">fa</span> <span class="o">--</span><span class="n">report</span><span class="o">-</span><span class="n">file</span> <span class="n">report</span><span class="o">.</span><span class="n">txt</span> <span class="o">-</span><span class="n">S</span> <span class="n">results</span><span class="o">.</span><span class="n">txt</span>
+<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">centrifuge</span> <span class="o">-</span><span class="n">x</span> <span class="n">p_compressed</span> <span class="o">-</span><span class="n">U</span> <span class="n">example</span><span class="o">.</span><span class="n">fa</span> <span class="o">--</span><span class="n">report</span><span class="o">-</span><span class="n">file</span> <span class="n">report</span><span class="o">.</span><span class="n">txt</span> <span class="o">-</span><span class="n">S</span> <span class="n">results</span><span class="o">.</span><span class="n">txt</span>
 </pre></div>
 </div>
-<p>However, if we do not have fastq-files we may have to use the  <code class="docutils literal"><span class="pre">-f</span></code> option, which tells <a class="reference external" href="http://www.ccb.jhu.edu/software/centrifuge/index.shtml">Centrifuge</a> that it is dealing with a fasta-formated file.
+<p>However, if we do not have fastq-files we may have to use the  <code class="docutils literal notranslate"><span class="pre">-f</span></code> option, which tells <a class="reference external" href="http://www.ccb.jhu.edu/software/centrifuge/index.shtml">Centrifuge</a> that it is dealing with a fasta-formated file.
 Here, we are investigating one of the unmapped paired-end read files of the evolved line.</p>
-<div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="n">centrifuge</span> <span class="o">-</span><span class="n">x</span> <span class="n">p_compressed</span> <span class="o">-</span><span class="n">U</span> <span class="o">../</span><span class="n">mappings</span><span class="o">/</span><span class="n">evolved</span><span class="o">-</span><span class="mf">6.</span><span class="n">sorted</span><span class="o">.</span><span class="n">unmapped</span><span class="o">.</span><span class="n">R1</span><span class="o">.</span><span class="n">fastq</span> <span class="o">--</span><span class="n">report</span><span class="o">-</span><span class="n">file</span> <span class="n">evolved</span><span class="o">-</span><span class="mi">6</span><span class="o">-</span><span class="n">R1</span><span class="o">-</span><span class="n">report</span><span class="o">.</span><span class="n">txt</span> <span class="o">-</span><span class="n">S</span> <span class="n">evolved</span><span class="o">-</span><span class="mi">6</span><span class="o">-</span><span class="n">R1</span><span class="o">-</span><span class="n">results</span><span class="o">.</span><span class="n">txt</span>
+<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">centrifuge</span> <span class="o">-</span><span class="n">x</span> <span class="n">p_compressed</span> <span class="o">-</span><span class="n">U</span> <span class="o">../</span><span class="n">mappings</span><span class="o">/</span><span class="n">evolved</span><span class="o">-</span><span class="mf">6.</span><span class="n">sorted</span><span class="o">.</span><span class="n">unmapped</span><span class="o">.</span><span class="n">R1</span><span class="o">.</span><span class="n">fastq</span> <span class="o">--</span><span class="n">report</span><span class="o">-</span><span class="n">file</span> <span class="n">evolved</span><span class="o">-</span><span class="mi">6</span><span class="o">-</span><span class="n">R1</span><span class="o">-</span><span class="n">report</span><span class="o">.</span><span class="n">txt</span> <span class="o">-</span><span class="n">S</span> <span class="n">evolved</span><span class="o">-</span><span class="mi">6</span><span class="o">-</span><span class="n">R1</span><span class="o">-</span><span class="n">results</span><span class="o">.</span><span class="n">txt</span>
 </pre></div>
 </div>
 <p>This classification may take a moment, depending on how many sequences we are going to classify.
-The resulting content of the file <code class="docutils literal"><span class="pre">evolved-6-R1-results.txt</span></code> looks similar to the following example:</p>
+The resulting content of the file <code class="docutils literal notranslate"><span class="pre">evolved-6-R1-results.txt</span></code> looks similar to the following example:</p>
 <pre class="literal-block">
 readID  seqID   taxID   score   2ndBestScore    hitLength       queryLength     numMatches
 M02810:197:000000000-AV55U:1:1101:15316:8461    cid|1747        1747    1892    0       103     135     1
@@ -524,7 +524,7 @@ Pseudomonas pseudoalcaligenes   330     species 4691662 1       1       0.017114
 <div class="section" id="kraken-like-report">
 <h4>6.5.3.2. Kraken-like report<a class="headerlink" href="#kraken-like-report" title="Permalink to this headline">¶</a></h4>
 <p>If we would like to generate a report as generated with the former tool <a class="reference external" href="https://ccb.jhu.edu/software/kraken/">Kraken</a>, we can do it like this:</p>
-<div class="code highlight-default"><div class="highlight"><pre><span></span><span class="n">centrifuge</span><span class="o">-</span><span class="n">kreport</span> <span class="o">-</span><span class="n">x</span> <span class="n">p_compressed</span> <span class="n">evolved</span><span class="o">-</span><span class="mi">6</span><span class="o">-</span><span class="n">R1</span><span class="o">-</span><span class="n">results</span><span class="o">.</span><span class="n">txt</span> <span class="o">&gt;</span> <span class="n">evolved</span><span class="o">-</span><span class="mi">6</span><span class="o">-</span><span class="n">R1</span><span class="o">-</span><span class="n">kreport</span><span class="o">.</span><span class="n">txt</span>
+<div class="code highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">centrifuge</span><span class="o">-</span><span class="n">kreport</span> <span class="o">-</span><span class="n">x</span> <span class="n">p_compressed</span> <span class="n">evolved</span><span class="o">-</span><span class="mi">6</span><span class="o">-</span><span class="n">R1</span><span class="o">-</span><span class="n">results</span><span class="o">.</span><span class="n">txt</span> <span class="o">&gt;</span> <span class="n">evolved</span><span class="o">-</span><span class="mi">6</span><span class="o">-</span><span class="n">R1</span><span class="o">-</span><span class="n">kreport</span><span class="o">.</span><span class="n">txt</span>
 </pre></div>
 </div>
 <pre class="literal-block">
@@ -574,13 +574,13 @@ Pseudomonas pseudoalcaligenes   330     species 4691662 1       1       0.017114
 <div class="section" id="id8">
 <h3>6.6.1. Installation<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
 <p>Install <a class="reference external" href="https://github.com/marbl/Krona/wiki">Krona</a> with:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="nb">source</span> activate ngs
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">source</span> activate ngs
 conda install krona
 </pre></div>
 </div>
 <p>First some house-keeping to make the <a class="reference external" href="https://github.com/marbl/Krona/wiki">Krona</a> installation work.
 Do not worry to much about what is happening here.</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="c1"># we delete a symbolic link that is not correct</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># we delete a symbolic link that is not correct</span>
 rm -rf ~/miniconda3/envs/ngs/opt/krona/taxonomy
 
 <span class="c1"># we create a directory in our home where the krona database will live</span>
@@ -596,11 +596,11 @@ ln -s ~/krona/taxonomy ~/miniconda3/envs/ngs/opt/krona/taxonomy
 <p>We need to build a taxonomy database for <a class="reference external" href="https://github.com/marbl/Krona/wiki">Krona</a>.
 However, if this fails we will skip this step and just download a pre-build one.
 Lets first try to build one.</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>ktUpdateTaxonomy.sh ~/krona/taxonomy
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ktUpdateTaxonomy.sh ~/krona/taxonomy
 </pre></div>
 </div>
 <p>Now, if this fails, we download a pre-build taxonomy database for krona:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="c1"># Download pre-build database</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Download pre-build database</span>
 curl -O http://compbio.massey.ac.nz/data/taxonomy.tab.gz
 
 <span class="c1"># we unzip the file</span>
@@ -617,10 +617,10 @@ mv taxonomy.tab ~/krona/taxonomy
 </div>
 <div class="section" id="visualise">
 <h3>6.6.3. Visualise<a class="headerlink" href="#visualise" title="Permalink to this headline">¶</a></h3>
-<p>Now, we use the tool <code class="docutils literal"><span class="pre">ktImportTaxonomy</span></code> from the <a class="reference external" href="https://github.com/marbl/Krona/wiki">Krona</a> tools to create the html web-page.
-We first need build a two column file (<code class="docutils literal"><span class="pre">read_id&lt;tab&gt;tax_id</span></code>) as input to the <code class="docutils literal"><span class="pre">ktImportTaxonomy</span></code> tool.
+<p>Now, we use the tool <code class="docutils literal notranslate"><span class="pre">ktImportTaxonomy</span></code> from the <a class="reference external" href="https://github.com/marbl/Krona/wiki">Krona</a> tools to create the html web-page.
+We first need build a two column file (<code class="docutils literal notranslate"><span class="pre">read_id&lt;tab&gt;tax_id</span></code>) as input to the <code class="docutils literal notranslate"><span class="pre">ktImportTaxonomy</span></code> tool.
 We will do this by cutting the columns out of either the <a class="reference external" href="https://ccb.jhu.edu/software/kraken/">Kraken</a> or <a class="reference external" href="http://www.ccb.jhu.edu/software/centrifuge/index.shtml">Centrifuge</a> results:</p>
-<div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="c1"># Kraken</span>
+<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Kraken</span>
 <span class="n">cd</span> <span class="n">kraken</span>
 <span class="n">cat</span> <span class="n">evolved</span><span class="o">-</span><span class="mi">6</span><span class="o">-</span><span class="n">R1</span><span class="o">.</span><span class="n">kraken</span> <span class="o">|</span> <span class="n">cut</span> <span class="o">-</span><span class="n">f</span> <span class="mi">2</span><span class="p">,</span><span class="mi">3</span> <span class="o">&gt;</span> <span class="n">evolved</span><span class="o">-</span><span class="mi">6</span><span class="o">-</span><span class="n">R1</span><span class="o">.</span><span class="n">kraken</span><span class="o">.</span><span class="n">krona</span>
 <span class="n">ktImportTaxonomy</span> <span class="n">evolved</span><span class="o">-</span><span class="mi">6</span><span class="o">-</span><span class="n">R1</span><span class="o">.</span><span class="n">kraken</span><span class="o">.</span><span class="n">krona</span>
@@ -683,7 +683,7 @@ sensitive classification of metagenomic sequences. <a class="reference external"
   <div role="contentinfo">
     <p>
         &copy; Copyright 2016-2018, Sebastian Schmeier (https://sschmeier.com).
-      Last updated on Mar 14, 2018.
+      Last updated on Apr 11, 2018.
 
     </p>
   </div>

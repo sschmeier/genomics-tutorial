@@ -218,11 +218,11 @@
 <div class="section" id="before-we-start">
 <h2>8.4. Before we start<a class="headerlink" href="#before-we-start" title="Permalink to this headline">¶</a></h2>
 <p>Lets see how our directory structure looks so far:</p>
-<div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~/</span><span class="n">analysis</span>
+<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~/</span><span class="n">analysis</span>
 <span class="n">ls</span> <span class="o">-</span><span class="mi">1</span><span class="n">F</span>
 </pre></div>
 </div>
-<div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="n">assembly</span><span class="o">/</span>
+<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">assembly</span><span class="o">/</span>
 <span class="n">data</span><span class="o">/</span>
 <span class="n">kraken</span><span class="o">/</span>
 <span class="n">mappings</span><span class="o">/</span>
@@ -237,7 +237,7 @@
 </div>
 <div class="section" id="installing-the-software">
 <h2>8.5. Installing the software<a class="headerlink" href="#installing-the-software" title="Permalink to this headline">¶</a></h2>
-<div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="c1"># activate the env</span>
+<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># activate the env</span>
 <span class="n">source</span> <span class="n">activate</span> <span class="n">ngs</span>
 
 <span class="n">conda</span> <span class="n">install</span> <span class="n">busco</span>
@@ -245,13 +245,13 @@
 </div>
 <p>This will install both the <a class="reference external" href="http://augustus.gobics.de">Augustus</a> <a class="reference internal" href="#stanke2005" id="id1">[STANKE2005]</a> and the <a class="reference external" href="http://busco.ezlab.org">BUSCO</a> <a class="reference internal" href="#simao2015" id="id2">[SIMAO2015]</a> software, which we will use (separately) for gene prediction and assessment of assembly completeness, respectively.</p>
 <p>Make a directory for the annotation results:</p>
-<div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="n">mkdir</span> <span class="n">annotation</span>
+<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mkdir</span> <span class="n">annotation</span>
 <span class="n">cd</span> <span class="n">annotation</span>
 </pre></div>
 </div>
 <p>We need to get the database that <a class="reference external" href="http://busco.ezlab.org">BUSCO</a> will use to assess orthologue presence absence in our genome annotation.
 We will use wget for this:</p>
-<div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="n">wget</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">busco</span><span class="o">.</span><span class="n">ezlab</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">datasets</span><span class="o">/</span><span class="n">saccharomycetales_odb9</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span>
+<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">wget</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">busco</span><span class="o">.</span><span class="n">ezlab</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">datasets</span><span class="o">/</span><span class="n">saccharomycetales_odb9</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span>
 
 <span class="c1"># unpack the archive</span>
 <span class="n">tar</span> <span class="o">-</span><span class="n">xzvf</span> <span class="n">saccharomycetales_odb9</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span>
@@ -263,16 +263,16 @@ We will use wget for this:</p>
 </div>
 <p>We also need to place the configuration file for this program in a location in which we have “write” privileges.
 Do this recursively for the entire config directory, placing it into your current annotation directory:</p>
-<div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="n">cp</span> <span class="o">-</span><span class="n">r</span> <span class="o">~/</span><span class="n">miniconda3</span><span class="o">/</span><span class="n">envs</span><span class="o">/</span><span class="n">ngs</span><span class="o">/</span><span class="n">config</span><span class="o">/</span> <span class="o">./</span>
+<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cp</span> <span class="o">-</span><span class="n">r</span> <span class="o">~/</span><span class="n">miniconda3</span><span class="o">/</span><span class="n">envs</span><span class="o">/</span><span class="n">ngs</span><span class="o">/</span><span class="n">config</span><span class="o">/</span> <span class="o">./</span>
 </pre></div>
 </div>
-<p>We next need to specify the <code class="docutils literal"><span class="pre">path</span></code> to this config file so that the program knows where to look now that we have changed the location (note that this is all one line below):</p>
-<div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="n">export</span> <span class="n">AUGUSTUS_CONFIG_PATH</span><span class="o">=</span><span class="s2">&quot;/full_path_to_your_annotation_directory/config/&quot;</span>
+<p>We next need to specify the <code class="docutils literal notranslate"><span class="pre">path</span></code> to this config file so that the program knows where to look now that we have changed the location (note that this is all one line below):</p>
+<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">export</span> <span class="n">AUGUSTUS_CONFIG_PATH</span><span class="o">=</span><span class="s2">&quot;/full_path_to_your_annotation_directory/config/&quot;</span>
 </pre></div>
 </div>
-<p>We next check that we have actually changed the <code class="docutils literal"><span class="pre">path</span></code> correctly.
+<p>We next check that we have actually changed the <code class="docutils literal notranslate"><span class="pre">path</span></code> correctly.
 Entering this into the command should result in the file location being output on the next line of the command prompt.</p>
-<div class="code bash highlight-default"><div class="highlight"><pre><span></span>echo $AUGUSTUS_CONFIG_PATH
+<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span>echo $AUGUSTUS_CONFIG_PATH
 </pre></div>
 </div>
 </div>
@@ -286,7 +286,7 @@ It uses <a class="reference external" href="https://blast.ncbi.nlm.nih.gov/Blast
 <li>The name of the lineage database against which we are assessing orthologue presence absence (that we downloaded above)</li>
 <li>An indication of the type of annotation we are doing (genomic, as opposed to transcriptomic or previously annotated protein files).</li>
 </ul>
-<div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="n">busco</span> <span class="o">-</span><span class="n">i</span> <span class="o">../</span><span class="n">assembly</span><span class="o">/</span><span class="n">spades</span><span class="o">-</span><span class="n">final</span><span class="o">/</span><span class="n">scaffolds</span><span class="o">.</span><span class="n">fasta</span> <span class="o">-</span><span class="n">o</span> <span class="n">file_name_of_your_choice</span> <span class="o">-</span><span class="n">l</span> <span class="o">./</span><span class="n">saccharomycetales_odb9</span> <span class="o">-</span><span class="n">m</span> <span class="n">geno</span>
+<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">busco</span> <span class="o">-</span><span class="n">i</span> <span class="o">../</span><span class="n">assembly</span><span class="o">/</span><span class="n">spades</span><span class="o">-</span><span class="n">final</span><span class="o">/</span><span class="n">scaffolds</span><span class="o">.</span><span class="n">fasta</span> <span class="o">-</span><span class="n">o</span> <span class="n">file_name_of_your_choice</span> <span class="o">-</span><span class="n">l</span> <span class="o">./</span><span class="n">saccharomycetales_odb9</span> <span class="o">-</span><span class="n">m</span> <span class="n">geno</span>
 </pre></div>
 </div>
 <div class="admonition note">
@@ -306,7 +306,7 @@ To run the program you need to give it:</p>
 <li>A name for the output file, which will be a .gff (general feature format) file.</li>
 <li>We will also tell it to display a progress bar as it moves through the genome assembly.</li>
 </ul>
-<div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="n">augustus</span> <span class="o">--</span><span class="n">progress</span><span class="o">=</span><span class="n">true</span> <span class="o">--</span><span class="n">strand</span><span class="o">=</span><span class="n">both</span> <span class="o">--</span><span class="n">species</span><span class="o">=</span><span class="n">saccharomyces_cerevisiae_S288C</span> <span class="o">../</span><span class="n">assembly</span><span class="o">/</span><span class="n">spades</span><span class="o">-</span><span class="n">final</span><span class="o">/</span><span class="n">scaffolds</span><span class="o">.</span><span class="n">fasta</span> <span class="o">&gt;</span> <span class="n">your_new_fungus</span><span class="o">.</span><span class="n">gff</span>
+<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">augustus</span> <span class="o">--</span><span class="n">progress</span><span class="o">=</span><span class="n">true</span> <span class="o">--</span><span class="n">strand</span><span class="o">=</span><span class="n">both</span> <span class="o">--</span><span class="n">species</span><span class="o">=</span><span class="n">saccharomyces_cerevisiae_S288C</span> <span class="o">../</span><span class="n">assembly</span><span class="o">/</span><span class="n">spades</span><span class="o">-</span><span class="n">final</span><span class="o">/</span><span class="n">scaffolds</span><span class="o">.</span><span class="n">fasta</span> <span class="o">&gt;</span> <span class="n">your_new_fungus</span><span class="o">.</span><span class="n">gff</span>
 </pre></div>
 </div>
 <div class="admonition note">
@@ -324,7 +324,7 @@ annotation manually from <a class="reference internal" href="../downloads.html#d
 <p>We will not install this software using <a class="reference external" href="http://conda.pydata.org/miniconda.html">conda</a>.
 Instead, make a new directory in your home directory entitled “software”, and change into this directory.
 You will have to download the software from the Broad Institute:</p>
-<div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="n">mkdir</span> <span class="n">software</span>
+<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mkdir</span> <span class="n">software</span>
 <span class="n">cd</span> <span class="n">software</span>
 <span class="n">wget</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">data</span><span class="o">.</span><span class="n">broadinstitute</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">igv</span><span class="o">/</span><span class="n">projects</span><span class="o">/</span><span class="n">downloads</span><span class="o">/</span><span class="n">IGV_2</span><span class="o">.</span><span class="mf">3.92</span><span class="o">.</span><span class="n">zip</span>
 
@@ -351,8 +351,8 @@ Navigate to that window and open up your genome assembly:</p>
 <p>Load the tracks:</p>
 <ul class="simple">
 <li>File -&gt; Load from file</li>
-<li>Load your <code class="docutils literal"><span class="pre">vcf</span></code> file from last week</li>
-<li>Load your <code class="docutils literal"><span class="pre">gff</span></code> file from this week.</li>
+<li>Load your <code class="docutils literal notranslate"><span class="pre">vcf</span></code> file from last week</li>
+<li>Load your <code class="docutils literal notranslate"><span class="pre">gff</span></code> file from this week.</li>
 </ul>
 <p>At this point you should be able to zoom in and out to see regions in which there are SNPs or other types of variants.
 You can also see the predicted genes.
@@ -367,7 +367,7 @@ There, you can blast your gene of interest (GOI) and see if blast can assign a f
 <p>Hopefully your <a class="reference external" href="http://busco.ezlab.org">BUSCO</a> analysis will have finished by this time.
 Navigate into the output directory you created.
 There are many directories and files in there containing information on the orthologues that were found, but here we are only really interested in one: the summary statistics.
-This is located in the <code class="docutils literal"><span class="pre">short_summary*.txt</span></code> file.
+This is located in the <code class="docutils literal notranslate"><span class="pre">short_summary*.txt</span></code> file.
 Look at this file.
 It will note the total number of orthologues found, the number expected, and the number missing.
 This gives an indication of your genome completeness.</p>
@@ -414,7 +414,7 @@ This gives an indication of your genome completeness.</p>
   <div role="contentinfo">
     <p>
         &copy; Copyright 2016-2018, Sebastian Schmeier (https://sschmeier.com).
-      Last updated on Mar 14, 2018.
+      Last updated on Apr 11, 2018.
 
     </p>
   </div>

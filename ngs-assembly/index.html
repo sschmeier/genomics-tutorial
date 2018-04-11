@@ -225,11 +225,11 @@ genome assembly from sequencing data.</p>
 <div class="section" id="before-we-start">
 <h2>4.4. Before we start<a class="headerlink" href="#before-we-start" title="Permalink to this headline">¶</a></h2>
 <p>Lets see how our directory structure looks so far:</p>
-<div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~/</span><span class="n">analysis</span>
+<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~/</span><span class="n">analysis</span>
 <span class="n">ls</span> <span class="o">-</span><span class="mi">1</span><span class="n">F</span>
 </pre></div>
 </div>
-<div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="n">data</span><span class="o">/</span>
+<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="o">/</span>
 <span class="n">SolexaQA</span><span class="o">/</span>
 <span class="n">SolexaQA</span><span class="o">++</span>
 <span class="n">trimmed</span><span class="o">/</span>
@@ -256,14 +256,14 @@ reference genome as opposed to the evolved line.</li>
 In a recent evaluation of assembly software, <a class="reference external" href="http://bioinf.spbau.ru/spades">SPAdes</a> was found to be a good
 choice for fungal genomes <a class="reference internal" href="#abbas2014" id="id1">[ABBAS2014]</a>.
 It is also simple to install and use.</p>
-<div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="n">source</span> <span class="n">activate</span> <span class="n">ngs</span>
+<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">source</span> <span class="n">activate</span> <span class="n">ngs</span>
 <span class="n">conda</span> <span class="n">install</span> <span class="n">spades</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="spades-usage">
 <h3>4.5.2. SPAdes usage<a class="headerlink" href="#spades-usage" title="Permalink to this headline">¶</a></h3>
-<div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="c1"># change to your analysis root folder</span>
+<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># change to your analysis root folder</span>
 <span class="n">cd</span> <span class="o">~/</span><span class="n">analysis</span>
 
 <span class="c1"># first create a output directory for the assemblies</span>
@@ -274,7 +274,7 @@ It is also simple to install and use.</p>
 </pre></div>
 </div>
 <p>The two files we need to submit to <a class="reference external" href="http://bioinf.spbau.ru/spades">SPAdes</a> are two paired-end read files.</p>
-<div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="n">spades</span><span class="o">.</span><span class="n">py</span> <span class="o">-</span><span class="n">o</span> <span class="n">assembly</span><span class="o">/</span><span class="n">spades</span><span class="o">-</span><span class="n">default</span><span class="o">/</span> <span class="o">-</span><span class="mi">1</span> <span class="n">trimmed</span><span class="o">/</span><span class="n">ancestor</span><span class="o">-</span><span class="n">R1</span><span class="o">.</span><span class="n">fastq</span><span class="o">.</span><span class="n">trimmed</span><span class="o">.</span><span class="n">gz</span> <span class="o">-</span><span class="mi">2</span> <span class="n">trimmed</span><span class="o">/</span><span class="n">ancestor</span><span class="o">-</span><span class="n">R2</span><span class="o">.</span><span class="n">fastq</span><span class="o">.</span><span class="n">trimmed</span><span class="o">.</span><span class="n">gz</span>
+<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">spades</span><span class="o">.</span><span class="n">py</span> <span class="o">-</span><span class="n">o</span> <span class="n">assembly</span><span class="o">/</span><span class="n">spades</span><span class="o">-</span><span class="n">default</span><span class="o">/</span> <span class="o">-</span><span class="mi">1</span> <span class="n">trimmed</span><span class="o">/</span><span class="n">ancestor</span><span class="o">-</span><span class="n">R1</span><span class="o">.</span><span class="n">fastq</span><span class="o">.</span><span class="n">trimmed</span><span class="o">.</span><span class="n">gz</span> <span class="o">-</span><span class="mi">2</span> <span class="n">trimmed</span><span class="o">/</span><span class="n">ancestor</span><span class="o">-</span><span class="n">R2</span><span class="o">.</span><span class="n">fastq</span><span class="o">.</span><span class="n">trimmed</span><span class="o">.</span><span class="n">gz</span>
 </pre></div>
 </div>
 <div class="admonition-todo admonition" id="index-1">
@@ -282,7 +282,7 @@ It is also simple to install and use.</p>
 <ol class="last arabic simple">
 <li>Run <a class="reference external" href="http://bioinf.spbau.ru/spades">SPAdes</a> with default parameters on the ancestor</li>
 <li>Read in the <a class="reference external" href="http://bioinf.spbau.ru/spades">SPAdes</a> manual about about assembling with 2x150bp reads</li>
-<li>Run <a class="reference external" href="http://bioinf.spbau.ru/spades">SPAdes</a> a second time but use the options suggested at the <a class="reference external" href="http://bioinf.spbau.ru/spades">SPAdes</a> manual <a class="reference external" href="http://spades.bioinf.spbau.ru/release3.9.1/manual.html#sec3.4">section 3.4</a> for assembling 2x150bp paired-end reads (are fungi multicellular?). Use a different output directory <code class="docutils literal"><span class="pre">assembly/spades-150</span></code> for this run.</li>
+<li>Run <a class="reference external" href="http://bioinf.spbau.ru/spades">SPAdes</a> a second time but use the options suggested at the <a class="reference external" href="http://bioinf.spbau.ru/spades">SPAdes</a> manual <a class="reference external" href="http://spades.bioinf.spbau.ru/release3.9.1/manual.html#sec3.4">section 3.4</a> for assembling 2x150bp paired-end reads (are fungi multicellular?). Use a different output directory <code class="docutils literal notranslate"><span class="pre">assembly/spades-150</span></code> for this run.</li>
 </ol>
 </div>
 <div class="admonition hint">
@@ -306,17 +306,18 @@ longer covers at least 50% of assembly length</li>
 </ul>
 <p>It is easy with <a class="reference external" href="http://quast.bioinf.spbau.ru/">Quast</a> to compare these measures among several assemblies.
 The program can be used on their <a class="reference external" href="http://quast.bioinf.spbau.ru/">website</a>.</p>
-<p>We can install it locally with:</p>
-<div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="n">source</span> <span class="n">activate</span> <span class="n">ngs</span>
-<span class="n">conda</span> <span class="n">install</span> <span class="n">quast</span>
+<p>As of March 2018, <a class="reference external" href="http://quast.bioinf.spbau.ru/">Quast</a> needs Python 2 instead of the default Python 3 we have been using so far.
+Thus, we make a new <a class="reference external" href="http://conda.pydata.org/miniconda.html">conda</a> environment for <a class="reference external" href="http://quast.bioinf.spbau.ru/">Quast</a> based on Python 2.</p>
+<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">create</span> <span class="o">-</span><span class="n">n</span> <span class="n">quast</span> <span class="n">python</span><span class="o">=</span><span class="mi">2</span> <span class="n">quast</span>
+<span class="n">source</span> <span class="n">activate</span> <span class="n">quast</span>
 </pre></div>
 </div>
 <p>Run <a class="reference external" href="http://quast.bioinf.spbau.ru/">Quast</a> with both assembly scaffolds.fasta files to compare the results.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">Should you be unable to run <a class="reference external" href="http://bioinf.spbau.ru/spades">SPAdes</a> on the data, you can manually download the assembly from <a class="reference internal" href="../downloads.html#downloads"><span class="std std-ref">Downloads</span></a>. Unarchive and uncompress the files with <code class="docutils literal"><span class="pre">tar</span> <span class="pre">-xvzf</span> <span class="pre">assembly.tar.gz</span></code>.</p>
+<p class="last">Should you be unable to run <a class="reference external" href="http://bioinf.spbau.ru/spades">SPAdes</a> on the data, you can manually download the assembly from <a class="reference internal" href="../downloads.html#downloads"><span class="std std-ref">Downloads</span></a>. Unarchive and uncompress the files with <code class="docutils literal notranslate"><span class="pre">tar</span> <span class="pre">-xvzf</span> <span class="pre">assembly.tar.gz</span></code>.</p>
 </div>
-<div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="n">quast</span> <span class="o">-</span><span class="n">o</span> <span class="n">assembly</span><span class="o">/</span><span class="n">quast</span> <span class="n">assembly</span><span class="o">/</span><span class="n">spades</span><span class="o">-</span><span class="n">default</span><span class="o">/</span><span class="n">scaffolds</span><span class="o">.</span><span class="n">fasta</span> <span class="n">assembly</span><span class="o">/</span><span class="n">spades</span><span class="o">-</span><span class="mi">150</span><span class="o">/</span><span class="n">scaffolds</span><span class="o">.</span><span class="n">fasta</span>
+<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">quast</span> <span class="o">-</span><span class="n">o</span> <span class="n">assembly</span><span class="o">/</span><span class="n">quast</span> <span class="n">assembly</span><span class="o">/</span><span class="n">spades</span><span class="o">-</span><span class="n">default</span><span class="o">/</span><span class="n">scaffolds</span><span class="o">.</span><span class="n">fasta</span> <span class="n">assembly</span><span class="o">/</span><span class="n">spades</span><span class="o">-</span><span class="mi">150</span><span class="o">/</span><span class="n">scaffolds</span><span class="o">.</span><span class="n">fasta</span>
 </pre></div>
 </div>
 <div class="admonition-todo admonition" id="index-2">
@@ -352,7 +353,7 @@ We will compare the assemblies to find out who created the best one.</p>
 <div class="admonition-todo admonition" id="index-5">
 <p class="first admonition-title">Todo</p>
 <ol class="last arabic simple">
-<li>Once you have your final assembly, rename your assembly directory int <code class="docutils literal"><span class="pre">spades-final</span></code>, e.g. <code class="docutils literal"><span class="pre">mv</span> <span class="pre">assembly/spades-default</span> <span class="pre">assembly/spades-final</span></code>.</li>
+<li>Once you have your final assembly, rename your assembly directory int <code class="docutils literal notranslate"><span class="pre">spades-final</span></code>, e.g. <code class="docutils literal notranslate"><span class="pre">mv</span> <span class="pre">assembly/spades-default</span> <span class="pre">assembly/spades-final</span></code>.</li>
 <li>Write down in your notes the command used to create your final assembly.</li>
 <li>Write down in your notes the assembly statistics derived through <a class="reference external" href="http://quast.bioinf.spbau.ru/">Quast</a></li>
 </ol>
@@ -446,7 +447,7 @@ We will compare the assemblies to find out who created the best one.</p>
   <div role="contentinfo">
     <p>
         &copy; Copyright 2016-2018, Sebastian Schmeier (https://sschmeier.com).
-      Last updated on Mar 14, 2018.
+      Last updated on Apr 11, 2018.
 
     </p>
   </div>

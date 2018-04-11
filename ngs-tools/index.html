@@ -101,7 +101,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../introduction.html">1. Introduction</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">2. Tool installation</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#install-the-conda-package-manager">2.1. Install the conda package manager</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#update-bashrc-and-zshrc-config-files">2.1.1. Update <code class="docutils literal"><span class="pre">.bashrc</span></code> and <code class="docutils literal"><span class="pre">.zshrc</span></code> config-files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#update-bashrc-and-zshrc-config-files">2.1.1. Update <code class="docutils literal notranslate"><span class="pre">.bashrc</span></code> and <code class="docutils literal notranslate"><span class="pre">.zshrc</span></code> config-files</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#installing-conda-channels-to-make-tools-available">2.1.2. Installing conda channels to make tools available</a></li>
 </ul>
 </li>
@@ -189,7 +189,7 @@
 <p>We will use the package/tool managing system <a class="reference external" href="http://conda.pydata.org/miniconda.html">conda</a> to install some programs
 that we will use during the course.
 It is not installed by default, thus we need to install it first to be able to use it.</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="c1"># download latest conda installer</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># download latest conda installer</span>
 curl -O https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh
 
 <span class="c1"># run the installer</span>
@@ -205,10 +205,10 @@ rm Miniconda3-latest-Linux-x86_64.sh
 <a class="reference internal" href="../downloads.html"><span class="doc">Downloads</span></a> page.</p>
 </div>
 <div class="section" id="update-bashrc-and-zshrc-config-files">
-<h3>2.1.1. Update <code class="docutils literal"><span class="pre">.bashrc</span></code> and <code class="docutils literal"><span class="pre">.zshrc</span></code> config-files<a class="headerlink" href="#update-bashrc-and-zshrc-config-files" title="Permalink to this headline">¶</a></h3>
+<h3>2.1.1. Update <code class="docutils literal notranslate"><span class="pre">.bashrc</span></code> and <code class="docutils literal notranslate"><span class="pre">.zshrc</span></code> config-files<a class="headerlink" href="#update-bashrc-and-zshrc-config-files" title="Permalink to this headline">¶</a></h3>
 <p>Before we are able to use <a class="reference external" href="http://conda.pydata.org/miniconda.html">conda</a> we need to tell our shell where it can find the program.
 We add the right path to the <a class="reference external" href="http://conda.pydata.org/miniconda.html">conda</a> installation to our shell config files:</p>
-<div class="code highlight-default"><div class="highlight"><pre><span></span><span class="n">echo</span> <span class="s1">&#39;export PATH=&quot;/home/manager/miniconda3/bin:$PATH&quot;&#39;</span> <span class="o">&gt;&gt;</span> <span class="o">~/.</span><span class="n">bashrc</span>
+<div class="code highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">echo</span> <span class="s1">&#39;export PATH=&quot;/home/manager/miniconda3/bin:$PATH&quot;&#39;</span> <span class="o">&gt;&gt;</span> <span class="o">~/.</span><span class="n">bashrc</span>
 <span class="n">echo</span> <span class="s1">&#39;export PATH=&quot;/home/manager/miniconda3/bin:$PATH&quot;&#39;</span> <span class="o">&gt;&gt;</span> <span class="o">~/.</span><span class="n">zshrc</span>
 </pre></div>
 </div>
@@ -216,16 +216,16 @@ We add the right path to the <a class="reference external" href="http://conda.py
 <p class="first admonition-title">Attention</p>
 <p class="last">The above assumes that your username is “manager”, which is the default on a Biolinux install.
 Replace “manager” with your actual username.
-Find out with <code class="docutils literal"><span class="pre">whoami</span></code>.</p>
+Find out with <code class="docutils literal notranslate"><span class="pre">whoami</span></code>.</p>
 </div>
-<p>So what is actually happening here? We are appending a line to a file (either <code class="docutils literal"><span class="pre">.bashrc</span></code> or <code class="docutils literal"><span class="pre">.zshrc</span></code>).
+<p>So what is actually happening here? We are appending a line to a file (either <code class="docutils literal notranslate"><span class="pre">.bashrc</span></code> or <code class="docutils literal notranslate"><span class="pre">.zshrc</span></code>).
 If we are starting a new command-line shell, either file gets executed first (depending on which shell you are using, either bash or zsh shells).
-What this line does, is to put permanently the directory <code class="docutils literal"><span class="pre">~/miniconda3/bin</span></code> first on your <code class="docutils literal"><span class="pre">PATH</span></code> variable.
-The <code class="docutils literal"><span class="pre">PATH</span></code> variable contains directories in which our computer looks for installed programs, one directory after the other until the program you requested is found (or not, then it will complain).
-Through the addition of the above line we make sure that the program <code class="docutils literal"><span class="pre">conda</span></code> can be found anytime we open a new shell.</p>
+What this line does, is to put permanently the directory <code class="docutils literal notranslate"><span class="pre">~/miniconda3/bin</span></code> first on your <code class="docutils literal notranslate"><span class="pre">PATH</span></code> variable.
+The <code class="docutils literal notranslate"><span class="pre">PATH</span></code> variable contains directories in which our computer looks for installed programs, one directory after the other until the program you requested is found (or not, then it will complain).
+Through the addition of the above line we make sure that the program <code class="docutils literal notranslate"><span class="pre">conda</span></code> can be found anytime we open a new shell.</p>
 <p>Close shell/terminal, <strong>re-open</strong> new shell/terminal.
 Now, we should be able to use the <a class="reference external" href="http://conda.pydata.org/miniconda.html">conda</a> command:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>conda update conda
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda update conda
 </pre></div>
 </div>
 </div>
@@ -234,11 +234,10 @@ Now, we should be able to use the <a class="reference external" href="http://con
 <p>Different tools are packaged in what <a class="reference external" href="http://conda.pydata.org/miniconda.html">conda</a> calls channels.
 We need to add some channels to make the bioinformatics and genomics tools
 available for installation:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="c1"># Install some conda channels</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Install some conda channels</span>
 <span class="c1"># A channel is where conda looks for packages</span>
-conda config --add channels conda-forge
 conda config --add channels defaults
-conda config --add channels r
+conda config --add channels conda-forge
 conda config --add channels bioconda
 </pre></div>
 </div>
@@ -247,26 +246,26 @@ conda config --add channels bioconda
 <div class="section" id="create-environments">
 <h2>2.2. Create environments<a class="headerlink" href="#create-environments" title="Permalink to this headline">¶</a></h2>
 <p>We create a <a class="reference external" href="http://conda.pydata.org/miniconda.html">conda</a> environment for some tools This is useful to work <strong>reproducible</strong> as we can easily re-create the tool-set with the same version numbers later on.</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>conda create -n ngs <span class="nv">python</span><span class="o">=</span><span class="m">3</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda create -n ngs <span class="nv">python</span><span class="o">=</span><span class="m">3</span>
 <span class="c1"># activate the environment</span>
 <span class="nb">source</span> activate ngs
 </pre></div>
 </div>
-<p>So what is happening when you type <code class="docutils literal"><span class="pre">source</span> <span class="pre">activate</span> <span class="pre">ngs</span></code> in a shell.
-The <code class="docutils literal"><span class="pre">PATH</span></code> variable (mentioned above) gets temporarily manipulated and set to:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ <span class="nb">source</span> activate ngs
+<p>So what is happening when you type <code class="docutils literal notranslate"><span class="pre">source</span> <span class="pre">activate</span> <span class="pre">ngs</span></code> in a shell.
+The <code class="docutils literal notranslate"><span class="pre">PATH</span></code> variable (mentioned above) gets temporarily manipulated and set to:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">source</span> activate ngs
 <span class="c1"># Lets look at the content of the PATH variable</span>
 <span class="o">(</span>ngs<span class="o">)</span> $ <span class="nb">echo</span> <span class="nv">$PATH</span>
 /home/manager/miniconda3/envs/ngs/bin:/home manager/miniconda3/bin:/usr/local/bin: ...
 </pre></div>
 </div>
 <p>Now it will look first in your environment’s bin directory but afterwards in the general conda bin (/home/manager/miniconda3/bin).
-So basically everything you install generally with conda (without being in an environment) is also available to you but gets overshadowed if a similar program is in <code class="docutils literal"><span class="pre">/home/manager/miniconda3/envs/ngs/bin</span></code> and you are in the <code class="docutils literal"><span class="pre">ngs</span></code> environment.</p>
+So basically everything you install generally with conda (without being in an environment) is also available to you but gets overshadowed if a similar program is in <code class="docutils literal notranslate"><span class="pre">/home/manager/miniconda3/envs/ngs/bin</span></code> and you are in the <code class="docutils literal notranslate"><span class="pre">ngs</span></code> environment.</p>
 </div>
 <div class="section" id="install-software">
 <h2>2.3. Install software<a class="headerlink" href="#install-software" title="Permalink to this headline">¶</a></h2>
-<p>To install software into the activated environment, one uses the command <code class="docutils literal"><span class="pre">conda</span> <span class="pre">install</span></code>.</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="c1"># install more tools into the environment</span>
+<p>To install software into the activated environment, one uses the command <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">install</span></code>.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># install more tools into the environment</span>
 conda install package
 </pre></div>
 </div>
@@ -274,12 +273,12 @@ conda install package
 <p class="first admonition-title">Note</p>
 <p class="last">To tell if you are in the correct conda environment, look at the command-prompt.
 Do you see the name of the environment in round brackets at the very beginning of the prompt, e.g. (ngs)?
-If not, activate the <code class="docutils literal"><span class="pre">ngs</span></code> environment with <code class="docutils literal"><span class="pre">source</span> <span class="pre">activate</span> <span class="pre">ngs</span></code> before installing the tools.</p>
+If not, activate the <code class="docutils literal notranslate"><span class="pre">ngs</span></code> environment with <code class="docutils literal notranslate"><span class="pre">source</span> <span class="pre">activate</span> <span class="pre">ngs</span></code> before installing the tools.</p>
 </div>
 </div>
 <div class="section" id="general-conda-commands">
 <h2>2.4. General conda commands<a class="headerlink" href="#general-conda-commands" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="c1"># to search for packages</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># to search for packages</span>
 conda search <span class="o">[</span>package<span class="o">]</span>
 
 <span class="c1"># To update all packages</span>
@@ -327,7 +326,7 @@ conda create -n <span class="o">[</span>name<span class="o">]</span> package <sp
   <div role="contentinfo">
     <p>
         &copy; Copyright 2016-2018, Sebastian Schmeier (https://sschmeier.com).
-      Last updated on Mar 14, 2018.
+      Last updated on Apr 11, 2018.
 
     </p>
   </div>

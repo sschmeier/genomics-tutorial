@@ -214,11 +214,11 @@
 <div class="section" id="before-we-start">
 <h2>7.4. Before we start<a class="headerlink" href="#before-we-start" title="Permalink to this headline">¶</a></h2>
 <p>Lets see how our directory structure looks so far:</p>
-<div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~/</span><span class="n">analysis</span>
+<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~/</span><span class="n">analysis</span>
 <span class="n">ls</span> <span class="o">-</span><span class="mi">1</span><span class="n">F</span>
 </pre></div>
 </div>
-<div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="n">assembly</span><span class="o">/</span>
+<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">assembly</span><span class="o">/</span>
 <span class="n">data</span><span class="o">/</span>
 <span class="n">kraken</span><span class="o">/</span>
 <span class="n">mappings</span><span class="o">/</span>
@@ -233,7 +233,7 @@
 <div class="section" id="installing-necessary-software">
 <h2>7.5. Installing necessary software<a class="headerlink" href="#installing-necessary-software" title="Permalink to this headline">¶</a></h2>
 <p>Tools we are going to use in this section and how to intall them if you not have done it yet.</p>
-<div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="c1"># activate the env</span>
+<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># activate the env</span>
 <span class="n">source</span> <span class="n">activate</span> <span class="n">ngs</span>
 
 <span class="c1"># Install these tools into the conda environment</span>
@@ -251,16 +251,16 @@
 <div class="section" id="preprocessing">
 <h2>7.6. Preprocessing<a class="headerlink" href="#preprocessing" title="Permalink to this headline">¶</a></h2>
 <p>We first need to make an index of our reference genome as this is required by the SNP caller.
-Given a scaffold/contig file in fasta-format, e.g. <code class="docutils literal"><span class="pre">scaffolds.fasta</span></code> which is located in the directory <code class="docutils literal"><span class="pre">assembly/spades_final</span></code>, use <a class="reference external" href="http://samtools.sourceforge.net/">SAMtools</a> to do this:</p>
-<div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="n">samtools</span> <span class="n">faidx</span> <span class="n">assembly</span><span class="o">/</span><span class="n">spades</span><span class="o">-</span><span class="n">final</span><span class="o">/</span><span class="n">scaffolds</span><span class="o">.</span><span class="n">fasta</span>
+Given a scaffold/contig file in fasta-format, e.g. <code class="docutils literal notranslate"><span class="pre">scaffolds.fasta</span></code> which is located in the directory <code class="docutils literal notranslate"><span class="pre">assembly/spades_final</span></code>, use <a class="reference external" href="http://samtools.sourceforge.net/">SAMtools</a> to do this:</p>
+<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">samtools</span> <span class="n">faidx</span> <span class="n">assembly</span><span class="o">/</span><span class="n">spades</span><span class="o">-</span><span class="n">final</span><span class="o">/</span><span class="n">scaffolds</span><span class="o">.</span><span class="n">fasta</span>
 </pre></div>
 </div>
-<p>Furthermore we need to pre-process our mapping files a bit further and create a bam-index file (<code class="docutils literal"><span class="pre">.bai</span></code>) for the bam-file we want to work with:</p>
-<div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="n">bamtools</span> <span class="n">index</span> <span class="o">-</span><span class="ow">in</span> <span class="n">mappings</span><span class="o">/</span><span class="n">evolved</span><span class="o">-</span><span class="mf">6.</span><span class="n">sorted</span><span class="o">.</span><span class="n">concordant</span><span class="o">.</span><span class="n">q20</span><span class="o">.</span><span class="n">bam</span>
+<p>Furthermore we need to pre-process our mapping files a bit further and create a bam-index file (<code class="docutils literal notranslate"><span class="pre">.bai</span></code>) for the bam-file we want to work with:</p>
+<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">bamtools</span> <span class="n">index</span> <span class="o">-</span><span class="ow">in</span> <span class="n">mappings</span><span class="o">/</span><span class="n">evolved</span><span class="o">-</span><span class="mf">6.</span><span class="n">sorted</span><span class="o">.</span><span class="n">concordant</span><span class="o">.</span><span class="n">q20</span><span class="o">.</span><span class="n">bam</span>
 </pre></div>
 </div>
 <p>Lets also create a new directory for the variants:</p>
-<div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="n">mkdir</span> <span class="n">variants</span>
+<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mkdir</span> <span class="n">variants</span>
 </pre></div>
 </div>
 </div>
@@ -269,29 +269,29 @@ Given a scaffold/contig file in fasta-format, e.g. <code class="docutils literal
 <div class="section" id="samtools-mpileup">
 <h3>7.7.1. SAMtools mpileup<a class="headerlink" href="#samtools-mpileup" title="Permalink to this headline">¶</a></h3>
 <p>We use the sorted filtered bam-file that we produced in the mapping step before.</p>
-<div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="c1"># We first pile up all the reads and then call variants</span>
+<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># We first pile up all the reads and then call variants</span>
 <span class="n">samtools</span> <span class="n">mpileup</span> <span class="o">-</span><span class="n">u</span> <span class="o">-</span><span class="n">g</span> <span class="o">-</span><span class="n">f</span> <span class="n">assembly</span><span class="o">/</span><span class="n">spades</span><span class="o">-</span><span class="n">final</span><span class="o">/</span><span class="n">scaffolds</span><span class="o">.</span><span class="n">fasta</span> <span class="n">mappings</span><span class="o">/</span><span class="n">evolved</span><span class="o">-</span><span class="mf">6.</span><span class="n">sorted</span><span class="o">.</span><span class="n">concordant</span><span class="o">.</span><span class="n">q20</span><span class="o">.</span><span class="n">bam</span> <span class="o">|</span> <span class="n">bcftools</span> <span class="n">call</span> <span class="o">-</span><span class="n">v</span> <span class="o">-</span><span class="n">m</span> <span class="o">-</span><span class="n">O</span> <span class="n">z</span> <span class="o">-</span><span class="n">o</span> <span class="n">variants</span><span class="o">/</span><span class="n">evolved</span><span class="o">-</span><span class="mf">6.</span><span class="n">mpileup</span><span class="o">.</span><span class="n">vcf</span><span class="o">.</span><span class="n">gz</span>
 </pre></div>
 </div>
 <p><a class="reference external" href="http://samtools.sourceforge.net/">SAMtools</a> mpileup parameter:</p>
 <ul class="simple">
-<li><code class="docutils literal"><span class="pre">-u</span></code>: uncompressed output</li>
-<li><code class="docutils literal"><span class="pre">-g</span></code>: generate genotype likelihoods in BCF format</li>
-<li><code class="docutils literal"><span class="pre">-f</span> <span class="pre">FILE</span></code>: faidx indexed reference sequence file</li>
+<li><code class="docutils literal notranslate"><span class="pre">-u</span></code>: uncompressed output</li>
+<li><code class="docutils literal notranslate"><span class="pre">-g</span></code>: generate genotype likelihoods in BCF format</li>
+<li><code class="docutils literal notranslate"><span class="pre">-f</span> <span class="pre">FILE</span></code>: faidx indexed reference sequence file</li>
 </ul>
 <p><a class="reference external" href="http://www.htslib.org/doc/bcftools.html">BCFtools</a> view parameter:</p>
 <ul class="simple">
-<li><code class="docutils literal"><span class="pre">-v</span></code>: output variant sites only</li>
-<li><code class="docutils literal"><span class="pre">-m</span></code>: alternative model for multiallelic and rare-variant calling</li>
-<li><code class="docutils literal"><span class="pre">-o</span></code>: output file-name</li>
-<li><code class="docutils literal"><span class="pre">-O</span> <span class="pre">z</span></code>: output type: ‘z’ compressed VCF</li>
+<li><code class="docutils literal notranslate"><span class="pre">-v</span></code>: output variant sites only</li>
+<li><code class="docutils literal notranslate"><span class="pre">-m</span></code>: alternative model for multiallelic and rare-variant calling</li>
+<li><code class="docutils literal notranslate"><span class="pre">-o</span></code>: output file-name</li>
+<li><code class="docutils literal notranslate"><span class="pre">-O</span> <span class="pre">z</span></code>: output type: ‘z’ compressed VCF</li>
 </ul>
 </div>
 <div class="section" id="freebayes">
 <h3>7.7.2. Freebayes<a class="headerlink" href="#freebayes" title="Permalink to this headline">¶</a></h3>
 <p>As an alternative we can do some variant calling with another tool called <a class="reference external" href="https://github.com/ekg/freebayes">freebayes</a>.
-Given a reference genome scaffold file in fasta-format, e.g. <code class="docutils literal"><span class="pre">scaffolds.fasta</span></code> and the index in <code class="docutils literal"><span class="pre">.fai</span></code> format and a mapping file (.bam file) and a mapping index (.bai file), we can call variants with <a class="reference external" href="https://github.com/ekg/freebayes">freebayes</a> like so:</p>
-<div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="c1"># Now we call variants and pipe the results into a new file</span>
+Given a reference genome scaffold file in fasta-format, e.g. <code class="docutils literal notranslate"><span class="pre">scaffolds.fasta</span></code> and the index in <code class="docutils literal notranslate"><span class="pre">.fai</span></code> format and a mapping file (.bam file) and a mapping index (.bai file), we can call variants with <a class="reference external" href="https://github.com/ekg/freebayes">freebayes</a> like so:</p>
+<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Now we call variants and pipe the results into a new file</span>
 <span class="n">freebayes</span> <span class="o">-</span><span class="n">f</span> <span class="n">assembly</span><span class="o">/</span><span class="n">spades</span><span class="o">-</span><span class="n">final</span><span class="o">/</span><span class="n">scaffolds</span><span class="o">.</span><span class="n">fasta</span> <span class="n">mappings</span><span class="o">/</span><span class="n">evolved</span><span class="o">-</span><span class="mf">6.</span><span class="n">sorted</span><span class="o">.</span><span class="n">concordant</span><span class="o">.</span><span class="n">q20</span><span class="o">.</span><span class="n">bam</span> <span class="o">|</span> <span class="n">gzip</span> <span class="o">&gt;</span> <span class="n">variants</span><span class="o">/</span><span class="n">evolved</span><span class="o">-</span><span class="mf">6.</span><span class="n">freebayes</span><span class="o">.</span><span class="n">vcf</span><span class="o">.</span><span class="n">gz</span>
 </pre></div>
 </div>
@@ -302,11 +302,11 @@ Given a reference genome scaffold file in fasta-format, e.g. <code class="docuti
 <div class="section" id="understanding-the-output-files-vcf">
 <h3>7.8.1. Understanding the output files (.vcf)<a class="headerlink" href="#understanding-the-output-files-vcf" title="Permalink to this headline">¶</a></h3>
 <p>Lets look at a vcf-file:</p>
-<div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="c1"># first 10 lines, which are part of the header</span>
+<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># first 10 lines, which are part of the header</span>
 <span class="n">zcat</span> <span class="n">variants</span><span class="o">/</span><span class="n">evolved</span><span class="o">-</span><span class="mf">6.</span><span class="n">mpileup</span><span class="o">.</span><span class="n">vcf</span><span class="o">.</span><span class="n">gz</span> <span class="o">|</span> <span class="n">head</span>
 </pre></div>
 </div>
-<div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="c1">##fileformat=VCFv4.2</span>
+<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">##fileformat=VCFv4.2</span>
 <span class="c1">##FILTER=&lt;ID=PASS,Description=&quot;All filters passed&quot;&gt;</span>
 <span class="c1">##samtoolsVersion=1.3.1+htslib-1.3.1</span>
 <span class="c1">##samtoolsCommand=samtools mpileup -g -f assembly/spades-final/scaffolds.fasta -o variants/evolved-6.mpileup.bcf mappings/evolved-6.sorted.concordant.q20.bam</span>
@@ -320,11 +320,11 @@ Given a reference genome scaffold file in fasta-format, e.g. <code class="docuti
 </pre></div>
 </div>
 <p>Lets look at the variants:</p>
-<div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="c1"># remove header lines and look at top 4 entires</span>
+<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># remove header lines and look at top 4 entires</span>
 <span class="n">zcat</span> <span class="n">variants</span><span class="o">/</span><span class="n">evolved</span><span class="o">-</span><span class="mf">6.</span><span class="n">mpileup</span><span class="o">.</span><span class="n">vcf</span><span class="o">.</span><span class="n">gz</span> <span class="o">|</span> <span class="n">egrep</span> <span class="o">-</span><span class="n">v</span> <span class="s1">&#39;##&#39;</span> <span class="o">|</span> <span class="n">head</span> <span class="o">-</span><span class="mi">4</span>
 </pre></div>
 </div>
-<div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="c1">#CHROM  POS     ID      REF     ALT     QUAL    FILTER  INFO    FORMAT  mappings/evolved-6.sorted.concordant.q20.bam</span>
+<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#CHROM  POS     ID      REF     ALT     QUAL    FILTER  INFO    FORMAT  mappings/evolved-6.sorted.concordant.q20.bam</span>
 <span class="n">NODE_1_length_1419525_cov_15</span><span class="o">.</span><span class="mi">3898</span>       <span class="mi">24721</span>   <span class="o">.</span>       <span class="n">T</span>       <span class="n">C</span>       <span class="mi">164</span>     <span class="o">.</span>       <span class="n">DP</span><span class="o">=</span><span class="mi">12</span><span class="p">;</span><span class="n">VDB</span><span class="o">=</span><span class="mf">0.205941</span><span class="p">;</span><span class="n">SGB</span><span class="o">=-</span><span class="mf">0.680642</span><span class="p">;</span><span class="n">MQ0F</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">AC</span><span class="o">=</span><span class="mi">2</span><span class="p">;</span><span class="n">AN</span><span class="o">=</span><span class="mi">2</span><span class="p">;</span><span class="n">DP4</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">12</span><span class="p">,</span><span class="mi">0</span><span class="p">;</span><span class="n">MQ</span><span class="o">=</span><span class="mi">40</span>     <span class="n">GT</span><span class="p">:</span><span class="n">PL</span>   <span class="mi">1</span><span class="o">/</span><span class="mi">1</span><span class="p">:</span><span class="mi">191</span><span class="p">,</span><span class="mi">36</span><span class="p">,</span><span class="mi">0</span>
 <span class="n">NODE_1_length_1419525_cov_15</span><span class="o">.</span><span class="mi">3898</span>       <span class="mi">157033</span>  <span class="o">.</span>       <span class="n">AAGAGAGAGAGAGAGAGAGAGAGA</span>        <span class="n">AAGAGAGAGAGAGAGAGAGAGA</span>  <span class="mf">39.3328</span>  <span class="o">.</span>       <span class="n">INDEL</span><span class="p">;</span><span class="n">IDV</span><span class="o">=</span><span class="mi">6</span><span class="p">;</span><span class="n">IMF</span><span class="o">=</span><span class="mf">0.146341</span><span class="p">;</span><span class="n">DP</span><span class="o">=</span><span class="mi">41</span><span class="p">;</span><span class="n">VDB</span><span class="o">=</span><span class="mf">0.0813946</span><span class="p">;</span><span class="n">SGB</span><span class="o">=-</span><span class="mf">0.616816</span><span class="p">;</span><span class="n">MQSB</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">MQ0F</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">ICB</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">HOB</span><span class="o">=</span><span class="mf">0.5</span><span class="p">;</span><span class="n">AC</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">AN</span><span class="o">=</span><span class="mi">2</span><span class="p">;</span><span class="n">DP4</span><span class="o">=</span><span class="mi">13</span><span class="p">,</span><span class="mi">17</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">;</span><span class="n">MQ</span><span class="o">=</span><span class="mi">42</span>     <span class="n">GT</span><span class="p">:</span><span class="n">PL</span>   <span class="mi">0</span><span class="o">/</span><span class="mi">1</span><span class="p">:</span><span class="mi">75</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">255</span>
 <span class="n">NODE_1_length_1419525_cov_15</span><span class="o">.</span><span class="mi">3898</span>       <span class="mi">162469</span>  <span class="o">.</span>       <span class="n">T</span>       <span class="n">C</span>       <span class="mf">19.609</span>  <span class="o">.</span>       <span class="n">DP</span><span class="o">=</span><span class="mi">16</span><span class="p">;</span><span class="n">VDB</span><span class="o">=</span><span class="mf">0.045681</span><span class="p">;</span><span class="n">SGB</span><span class="o">=-</span><span class="mf">0.511536</span><span class="p">;</span><span class="n">RPB</span><span class="o">=</span><span class="mf">0.032027</span><span class="p">;</span><span class="n">MQB</span><span class="o">=</span><span class="mf">0.832553</span><span class="p">;</span><span class="n">BQB</span><span class="o">=</span><span class="mf">0.130524</span><span class="p">;</span><span class="n">MQ0F</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">ICB</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">HOB</span><span class="o">=</span><span class="mf">0.5</span><span class="p">;</span><span class="n">AC</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">AN</span><span class="o">=</span><span class="mi">2</span><span class="p">;</span><span class="n">DP4</span><span class="o">=</span><span class="mi">13</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">0</span><span class="p">;</span><span class="n">MQ</span><span class="o">=</span><span class="mi">39</span>        <span class="n">GT</span><span class="p">:</span><span class="n">PL</span>   <span class="mi">0</span><span class="o">/</span><span class="mi">1</span><span class="p">:</span><span class="mi">54</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">155</span>
@@ -391,19 +391,19 @@ Given a reference genome scaffold file in fasta-format, e.g. <code class="docuti
 <div class="section" id="statistics">
 <h3>7.8.2. Statistics<a class="headerlink" href="#statistics" title="Permalink to this headline">¶</a></h3>
 <p>Now we can use it to do some statistics and filter our variant calls.</p>
-<p>First, to prepare out vcf-file for querying we need to index it with <code class="docutils literal"><span class="pre">tabix</span></code>:</p>
-<div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="n">tabix</span> <span class="o">-</span><span class="n">p</span> <span class="n">vcf</span> <span class="n">variants</span><span class="o">/</span><span class="n">evolved</span><span class="o">-</span><span class="mf">6.</span><span class="n">mpileup</span><span class="o">.</span><span class="n">vcf</span><span class="o">.</span><span class="n">gz</span>
+<p>First, to prepare out vcf-file for querying we need to index it with <code class="docutils literal notranslate"><span class="pre">tabix</span></code>:</p>
+<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">tabix</span> <span class="o">-</span><span class="n">p</span> <span class="n">vcf</span> <span class="n">variants</span><span class="o">/</span><span class="n">evolved</span><span class="o">-</span><span class="mf">6.</span><span class="n">mpileup</span><span class="o">.</span><span class="n">vcf</span><span class="o">.</span><span class="n">gz</span>
 </pre></div>
 </div>
 <ul class="simple">
-<li><code class="docutils literal"><span class="pre">-p</span> <span class="pre">vcf</span></code>: input format</li>
+<li><code class="docutils literal notranslate"><span class="pre">-p</span> <span class="pre">vcf</span></code>: input format</li>
 </ul>
-<p>We can get some quick stats with <code class="docutils literal"><span class="pre">rtg</span> <span class="pre">vcfstats</span></code>:</p>
-<div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="n">rtg</span> <span class="n">vcfstats</span> <span class="n">variants</span><span class="o">/</span><span class="n">evolved</span><span class="o">-</span><span class="mf">6.</span><span class="n">mpileup</span><span class="o">.</span><span class="n">vcf</span><span class="o">.</span><span class="n">gz</span>
+<p>We can get some quick stats with <code class="docutils literal notranslate"><span class="pre">rtg</span> <span class="pre">vcfstats</span></code>:</p>
+<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">rtg</span> <span class="n">vcfstats</span> <span class="n">variants</span><span class="o">/</span><span class="n">evolved</span><span class="o">-</span><span class="mf">6.</span><span class="n">mpileup</span><span class="o">.</span><span class="n">vcf</span><span class="o">.</span><span class="n">gz</span>
 </pre></div>
 </div>
-<p>Example output from <code class="docutils literal"><span class="pre">rtg</span> <span class="pre">vcfstats</span></code>:</p>
-<div class="code highlight-default"><div class="highlight"><pre><span></span><span class="n">Location</span>                     <span class="p">:</span> <span class="n">variants</span><span class="o">/</span><span class="n">evolved</span><span class="o">-</span><span class="mf">6.</span><span class="n">mpileup</span><span class="o">.</span><span class="n">vcf</span><span class="o">.</span><span class="n">gz</span>
+<p>Example output from <code class="docutils literal notranslate"><span class="pre">rtg</span> <span class="pre">vcfstats</span></code>:</p>
+<div class="code highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Location</span>                     <span class="p">:</span> <span class="n">variants</span><span class="o">/</span><span class="n">evolved</span><span class="o">-</span><span class="mf">6.</span><span class="n">mpileup</span><span class="o">.</span><span class="n">vcf</span><span class="o">.</span><span class="n">gz</span>
 <span class="n">Failed</span> <span class="n">Filters</span>               <span class="p">:</span> <span class="mi">0</span>
 <span class="n">Passed</span> <span class="n">Filters</span>               <span class="p">:</span> <span class="mi">516</span>
 <span class="n">SNPs</span>                         <span class="p">:</span> <span class="mi">399</span>
@@ -424,24 +424,24 @@ Given a reference genome scaffold file in fasta-format, e.g. <code class="docuti
 </pre></div>
 </div>
 <p>However, we can also run <a class="reference external" href="http://www.htslib.org/doc/bcftools.html">BCFtools</a> to extract more detailed statistics about our variant calls:</p>
-<div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="n">bcftools</span> <span class="n">stats</span> <span class="o">-</span><span class="n">F</span> <span class="n">assembly</span><span class="o">/</span><span class="n">spades</span><span class="o">-</span><span class="n">final</span><span class="o">/</span><span class="n">scaffolds</span><span class="o">.</span><span class="n">fasta</span> <span class="o">-</span><span class="n">s</span> <span class="o">-</span> <span class="n">variants</span><span class="o">/</span><span class="n">evolved</span><span class="o">-</span><span class="mf">6.</span><span class="n">mpileup</span><span class="o">.</span><span class="n">vcf</span><span class="o">.</span><span class="n">gz</span> <span class="o">&gt;</span> <span class="n">variants</span><span class="o">/</span><span class="n">evolved</span><span class="o">-</span><span class="mf">6.</span><span class="n">mpileup</span><span class="o">.</span><span class="n">vcf</span><span class="o">.</span><span class="n">gz</span><span class="o">.</span><span class="n">stats</span>
+<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">bcftools</span> <span class="n">stats</span> <span class="o">-</span><span class="n">F</span> <span class="n">assembly</span><span class="o">/</span><span class="n">spades</span><span class="o">-</span><span class="n">final</span><span class="o">/</span><span class="n">scaffolds</span><span class="o">.</span><span class="n">fasta</span> <span class="o">-</span><span class="n">s</span> <span class="o">-</span> <span class="n">variants</span><span class="o">/</span><span class="n">evolved</span><span class="o">-</span><span class="mf">6.</span><span class="n">mpileup</span><span class="o">.</span><span class="n">vcf</span><span class="o">.</span><span class="n">gz</span> <span class="o">&gt;</span> <span class="n">variants</span><span class="o">/</span><span class="n">evolved</span><span class="o">-</span><span class="mf">6.</span><span class="n">mpileup</span><span class="o">.</span><span class="n">vcf</span><span class="o">.</span><span class="n">gz</span><span class="o">.</span><span class="n">stats</span>
 </pre></div>
 </div>
 <ul class="simple">
-<li><code class="docutils literal"><span class="pre">-s</span> <span class="pre">-</span></code>: list of samples for sample stats, “-” to include all samples</li>
-<li><code class="docutils literal"><span class="pre">-F</span> <span class="pre">FILE</span></code>: faidx indexed reference sequence file to determine INDEL context</li>
+<li><code class="docutils literal notranslate"><span class="pre">-s</span> <span class="pre">-</span></code>: list of samples for sample stats, “-” to include all samples</li>
+<li><code class="docutils literal notranslate"><span class="pre">-F</span> <span class="pre">FILE</span></code>: faidx indexed reference sequence file to determine INDEL context</li>
 </ul>
 <p>Now we take the stats and make some plots (e.g. <a class="reference internal" href="#fig-vcfstats"><span class="std std-numref">Fig. 7.2</span></a>) which are particular of interest if having multiple samples, as one can easily compare them. However, we are only working with one here:</p>
-<div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="n">mkdir</span> <span class="n">variants</span><span class="o">/</span><span class="n">plots</span>
+<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mkdir</span> <span class="n">variants</span><span class="o">/</span><span class="n">plots</span>
 <span class="n">plot</span><span class="o">-</span><span class="n">vcfstats</span> <span class="o">-</span><span class="n">p</span> <span class="n">variants</span><span class="o">/</span><span class="n">plots</span><span class="o">/</span> <span class="n">variants</span><span class="o">/</span><span class="n">evolved</span><span class="o">-</span><span class="mf">6.</span><span class="n">mpileup</span><span class="o">.</span><span class="n">vcf</span><span class="o">.</span><span class="n">gz</span><span class="o">.</span><span class="n">stats</span>
 </pre></div>
 </div>
 <ul class="simple">
-<li><code class="docutils literal"><span class="pre">-p</span></code>: The output files prefix, add a slash at the end to create a new directory.</li>
+<li><code class="docutils literal notranslate"><span class="pre">-p</span></code>: The output files prefix, add a slash at the end to create a new directory.</li>
 </ul>
 <div class="figure" id="id5">
 <span id="fig-vcfstats"></span><img alt="../_images/vcfstats.png" src="../_images/vcfstats.png" />
-<p class="caption"><span class="caption-number">Fig. 7.2 </span><span class="caption-text">Example of <code class="docutils literal"><span class="pre">plot-vcfstats</span></code> output.</span></p>
+<p class="caption"><span class="caption-number">Fig. 7.2 </span><span class="caption-text">Example of <code class="docutils literal notranslate"><span class="pre">plot-vcfstats</span></code> output.</span></p>
 </div>
 </div>
 <div class="section" id="variant-filtration">
@@ -451,25 +451,25 @@ There is no consens yet and research on how to best filter variants is ongoing.<
 <p>We will do some simple filtration procedures here.
 For one, we can filter out low quality reads.</p>
 <p>Here, we only include variants that have quality &gt; 30.</p>
-<div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="c1"># use rtg vcfffilter</span>
+<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># use rtg vcfffilter</span>
 <span class="n">rtg</span> <span class="n">vcffilter</span> <span class="o">-</span><span class="n">q</span> <span class="mi">30</span> <span class="o">-</span><span class="n">i</span> <span class="n">variants</span><span class="o">/</span><span class="n">evolved</span><span class="o">-</span><span class="mf">6.</span><span class="n">mpileup</span><span class="o">.</span><span class="n">vcf</span><span class="o">.</span><span class="n">gz</span> <span class="o">-</span><span class="n">o</span> <span class="n">variants</span><span class="o">/</span><span class="n">evolved</span><span class="o">-</span><span class="mf">6.</span><span class="n">mpileup</span><span class="o">.</span><span class="n">q30</span><span class="o">.</span><span class="n">vcf</span><span class="o">.</span><span class="n">gz</span>
 </pre></div>
 </div>
 <ul class="simple">
-<li><code class="docutils literal"><span class="pre">-i</span> <span class="pre">FILE</span></code>: input file</li>
-<li><code class="docutils literal"><span class="pre">-o</span> <span class="pre">FILE</span></code>: output file</li>
-<li><code class="docutils literal"><span class="pre">-q</span> <span class="pre">FLOAT</span></code>: minimal allowed quality in output.</li>
+<li><code class="docutils literal notranslate"><span class="pre">-i</span> <span class="pre">FILE</span></code>: input file</li>
+<li><code class="docutils literal notranslate"><span class="pre">-o</span> <span class="pre">FILE</span></code>: output file</li>
+<li><code class="docutils literal notranslate"><span class="pre">-q</span> <span class="pre">FLOAT</span></code>: minimal allowed quality in output.</li>
 </ul>
 <p>or use <a class="reference external" href="https://github.com/vcflib/vcflib#vcflib">vcflib</a>:</p>
-<div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="c1"># or use vcflib</span>
+<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># or use vcflib</span>
 <span class="n">zcat</span> <span class="n">variants</span><span class="o">/</span><span class="n">evolved</span><span class="o">-</span><span class="mf">6.</span><span class="n">mpileup</span><span class="o">.</span><span class="n">vcf</span><span class="o">.</span><span class="n">gz</span>  <span class="o">|</span> <span class="n">vcffilter</span> <span class="o">-</span><span class="n">f</span> <span class="s2">&quot;QUAL &gt;= 30&quot;</span> <span class="o">|</span> <span class="n">gzip</span> <span class="o">&gt;</span> <span class="n">variants</span><span class="o">/</span><span class="n">evolved</span><span class="o">-</span><span class="mf">6.</span><span class="n">mpileup</span><span class="o">.</span><span class="n">q30</span><span class="o">.</span><span class="n">vcf</span><span class="o">.</span><span class="n">gz</span> <span class="n">z</span>
 </pre></div>
 </div>
 <ul class="simple">
-<li><code class="docutils literal"><span class="pre">-f</span> <span class="pre">&quot;QUAL</span> <span class="pre">&gt;=</span> <span class="pre">30&quot;</span></code>: we only include variants that have been called with quality &gt;= 30.</li>
+<li><code class="docutils literal notranslate"><span class="pre">-f</span> <span class="pre">&quot;QUAL</span> <span class="pre">&gt;=</span> <span class="pre">30&quot;</span></code>: we only include variants that have been called with quality &gt;= 30.</li>
 </ul>
 <p>Quick stats for the filtered variants:</p>
-<div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="c1"># look at stats for filtered</span>
+<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># look at stats for filtered</span>
 <span class="n">rtg</span> <span class="n">vcfstats</span> <span class="n">variants</span><span class="o">/</span><span class="n">evolved</span><span class="o">-</span><span class="mf">6.</span><span class="n">mpileup</span><span class="o">.</span><span class="n">q30</span><span class="o">.</span><span class="n">vcf</span><span class="o">.</span><span class="n">gz</span>
 </pre></div>
 </div>
@@ -477,14 +477,14 @@ For one, we can filter out low quality reads.</p>
 This allows for some more detailed filtering.
 This strategy will NOT work on the <a class="reference external" href="http://samtools.sourceforge.net/">SAMtools</a> mpileup called variants
 Here we filter, based on some recommendation form the developer of <a class="reference external" href="https://github.com/ekg/freebayes">freebayes</a>:</p>
-<div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="n">zcat</span> <span class="n">variants</span><span class="o">/</span><span class="n">evolved</span><span class="o">-</span><span class="mf">6.</span><span class="n">freebayes</span><span class="o">.</span><span class="n">vcf</span><span class="o">.</span><span class="n">gz</span>  <span class="o">|</span> <span class="n">vcffilter</span> <span class="o">-</span><span class="n">f</span> <span class="s2">&quot;QUAL &gt; 1 &amp; QUAL / AO &gt; 10 &amp; SAF &gt; 0 &amp; SAR &gt; 0 &amp; RPR &gt; 1 &amp; RPL &gt; 1&quot;</span> <span class="o">|</span> <span class="n">gzip</span> <span class="o">&gt;</span> <span class="n">variants</span><span class="o">/</span><span class="n">evolved</span><span class="o">-</span><span class="mf">6.</span><span class="n">freebayes</span><span class="o">.</span><span class="n">filtered</span><span class="o">.</span><span class="n">vcf</span><span class="o">.</span><span class="n">gz</span>
+<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">zcat</span> <span class="n">variants</span><span class="o">/</span><span class="n">evolved</span><span class="o">-</span><span class="mf">6.</span><span class="n">freebayes</span><span class="o">.</span><span class="n">vcf</span><span class="o">.</span><span class="n">gz</span>  <span class="o">|</span> <span class="n">vcffilter</span> <span class="o">-</span><span class="n">f</span> <span class="s2">&quot;QUAL &gt; 1 &amp; QUAL / AO &gt; 10 &amp; SAF &gt; 0 &amp; SAR &gt; 0 &amp; RPR &gt; 1 &amp; RPL &gt; 1&quot;</span> <span class="o">|</span> <span class="n">gzip</span> <span class="o">&gt;</span> <span class="n">variants</span><span class="o">/</span><span class="n">evolved</span><span class="o">-</span><span class="mf">6.</span><span class="n">freebayes</span><span class="o">.</span><span class="n">filtered</span><span class="o">.</span><span class="n">vcf</span><span class="o">.</span><span class="n">gz</span>
 </pre></div>
 </div>
 <ul class="simple">
-<li><code class="docutils literal"><span class="pre">QUAL</span> <span class="pre">&gt;</span> <span class="pre">1</span></code>: removes really bad sites</li>
-<li><code class="docutils literal"><span class="pre">QUAL</span> <span class="pre">/</span> <span class="pre">AO</span> <span class="pre">&gt;</span> <span class="pre">10</span></code>: additional contribution of each obs should be 10 log units (~ Q10 per read)</li>
-<li><code class="docutils literal"><span class="pre">SAF</span> <span class="pre">&gt;</span> <span class="pre">0</span> <span class="pre">&amp;</span> <span class="pre">SAR</span> <span class="pre">&gt;</span> <span class="pre">0</span></code>: reads on both strands</li>
-<li><code class="docutils literal"><span class="pre">RPR</span> <span class="pre">&gt;</span> <span class="pre">1</span> <span class="pre">&amp;</span> <span class="pre">RPL</span> <span class="pre">&gt;</span> <span class="pre">1</span></code>: at least two reads “balanced” to each side of the site</li>
+<li><code class="docutils literal notranslate"><span class="pre">QUAL</span> <span class="pre">&gt;</span> <span class="pre">1</span></code>: removes really bad sites</li>
+<li><code class="docutils literal notranslate"><span class="pre">QUAL</span> <span class="pre">/</span> <span class="pre">AO</span> <span class="pre">&gt;</span> <span class="pre">10</span></code>: additional contribution of each obs should be 10 log units (~ Q10 per read)</li>
+<li><code class="docutils literal notranslate"><span class="pre">SAF</span> <span class="pre">&gt;</span> <span class="pre">0</span> <span class="pre">&amp;</span> <span class="pre">SAR</span> <span class="pre">&gt;</span> <span class="pre">0</span></code>: reads on both strands</li>
+<li><code class="docutils literal notranslate"><span class="pre">RPR</span> <span class="pre">&gt;</span> <span class="pre">1</span> <span class="pre">&amp;</span> <span class="pre">RPL</span> <span class="pre">&gt;</span> <span class="pre">1</span></code>: at least two reads “balanced” to each side of the site</li>
 </ul>
 <div class="admonition-todo admonition" id="index-0">
 <p class="first admonition-title">Todo</p>
@@ -533,7 +533,7 @@ However, several more elaborate filtering strategies have been explored, e.g. <a
   <div role="contentinfo">
     <p>
         &copy; Copyright 2016-2018, Sebastian Schmeier (https://sschmeier.com).
-      Last updated on Mar 14, 2018.
+      Last updated on Apr 11, 2018.
 
     </p>
   </div>
