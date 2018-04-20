@@ -1,9 +1,8 @@
 name: sphinx
 channels:
   - bioconda
-  - r
-  - defaults
   - conda-forge
+  - defaults
 dependencies:
   - libffi=3.2.1=1
   - typing=3.5.2.2=py36_0
