@@ -82,7 +82,7 @@ It is simple to install and use.
 
 .. code:: bash
 
-          source activate ngs
+          conda activate ngs
           conda install samtools
           conda install bamtools
           conda install bedtools

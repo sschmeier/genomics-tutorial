@@ -73,7 +73,7 @@ Installing the software
 .. code:: bash
 
           # activate the env
-          source activate ngs
+          conda activate ngs
 
           conda install blast
 
@@ -95,11 +95,12 @@ repository for it yet. Thus, we need to download it manually.
 
 .. code:: bash
           
-          wget https://github.com/amkozlov/raxml-ng/releases/download/0.3.0/raxml-ng_v0.3.0b_linux_x86_64.zip
+          wget 
+          https://github.com/amkozlov/raxml-ng/releases/download/0.5.1/raxml-ng_v0.5.1b_linux_x86_64.zip
 
-          unzip raxml-ng_v0.3.0b_linux_x86_64.zip
+          unzip raxml-ng_v0.5.1b_linux_x86_64.zip
 
-          rm raxml-ng_v0.3.0b_linux_x86_64.zip
+          rm raxml-ng_v0.5.1b_linux_x86_64.zip
 
 
 Finding orthologues using BLAST
@@ -172,7 +173,7 @@ Now we will |blast| a remote database to get a list of hits that are already in 
 
 .. code:: bash
 
-           curl -O http://compbio.massey.ac.nz/data/203341/blast.fas
+           curl -O http://compbio.massey.ac.nz/data/203341/blast_u.fas
            
            
 Append the fasta file of your yeast sequence to this file, using whatever set of commands you wish/know.

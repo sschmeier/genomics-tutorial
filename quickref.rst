@@ -55,7 +55,7 @@ General conda commands
     conda create -n [name] package [package] ...
 
     # activate env
-    source activate [name]
+    conda activate [name]
 
     # deavtivate env
-    source deactivate
+    conda deactivate

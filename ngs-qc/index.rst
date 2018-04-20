@@ -328,7 +328,7 @@ Should the dynamic trimming not work with |solexaqa|, you can alternatively use 
 
 .. code:: bash
 
-    source activate ngs
+    conda activate ngs
     conda install sickle-trim
 
 Now we are going to run the program on our paired-end data:
@@ -362,7 +362,7 @@ Installing FastQC
 
 .. code-block:: bash
 
-    source activate ngs   
+    conda activate ngs   
     conda install fastqc
 
     # should now run the program
