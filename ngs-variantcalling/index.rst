@@ -66,7 +66,7 @@ Tools we are going to use in this section and how to intall them if you not have
 .. code:: bash
 
           # activate the env
-          source activate ngs
+          conda activate ngs
           
           # Install these tools into the conda environment
           # if not already installed

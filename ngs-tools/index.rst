@@ -89,16 +89,16 @@ We create a |conda| environment for some tools This is useful to work **reproduc
 
     conda create -n ngs python=3
     # activate the environment
-    source activate ngs
+    conda activate ngs
 
     
-So what is happening when you type ``source activate ngs`` in a shell.
+So what is happening when you type ``conda activate ngs`` in a shell.
 The ``PATH`` variable (mentioned above) gets temporarily manipulated and set to:
 
 
 .. code-block:: bash
                 
-   $ source activate ngs
+   $ conda activate ngs
    # Lets look at the content of the PATH variable
    (ngs) $ echo $PATH
    /home/manager/miniconda3/envs/ngs/bin:/home manager/miniconda3/bin:/usr/local/bin: ...
@@ -122,7 +122,7 @@ To install software into the activated environment, one uses the command ``conda
 .. note::
    To tell if you are in the correct conda environment, look at the command-prompt.
    Do you see the name of the environment in round brackets at the very beginning of the prompt, e.g. (ngs)?
-   If not, activate the ``ngs`` environment with ``source activate ngs`` before installing the tools.
+   If not, activate the ``ngs`` environment with ``conda activate ngs`` before installing the tools.
 
     
                 
@@ -147,7 +147,7 @@ General conda commands
     conda create -n [name] package [package] ...
 
     # activate env
-    source activate [name]
+    conda activate [name]
 
     # deavtivate env
-    source deactivate
+    conda deactivate

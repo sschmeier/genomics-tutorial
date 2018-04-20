@@ -69,7 +69,7 @@ Installing the software
 .. code:: bash
 
           # activate the env
-          source activate ngs
+          conda activate ngs
           
           conda install busco
 
@@ -115,7 +115,7 @@ We next need to specify the ``path`` to this config file so that the program kno
 
 .. code:: bash
           
-          export AUGUSTUS_CONFIG_PATH="/full_path_to_your_annotation_directory/config/"
+          export AUGUSTUS_CONFIG_PATH="~/analysis/annotation/config/"n
 
           
 We next check that we have actually changed the ``path`` correctly.
@@ -189,13 +189,13 @@ You will have to download the software from the Broad Institute:
 
           mkdir software
           cd software
-          wget http://data.broadinstitute.org/igv/projects/downloads/IGV_2.3.92.zip
+          wget http://data.broadinstitute.org/igv/projects/downloads/2.4/IGV_2.4.10.zip
 
           # unzip the software:
-          unzip IGV_2.3.92.zip
+          unzip IGV_2.4.10.zip
 
           # and change into that directory.
-          cd IGV_2.3.92
+          cd IGV_2.4.10.zip
           
           # To run the interactive GUI, you will need to run the bash script in that directory:
           bash igv.sh

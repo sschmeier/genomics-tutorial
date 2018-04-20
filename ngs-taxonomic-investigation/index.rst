@@ -71,7 +71,7 @@ Use conda in the same fashion as before to install |kraken|:
 
 .. code-block:: bash
           
-   source activate ngs
+   conda activate ngs
    conda install kraken-all
 
 Now we create a directory where we are going to do the analysis and we will change into that directory too.
@@ -262,7 +262,7 @@ Use conda in the same fashion as before to install |centrifuge|:
 
 .. code-block:: bash
           
-   source activate ngs
+   conda activate ngs
    conda install centrifuge
 
 Now we create a directory where we are going to do the analysis and we will change into that directory too.
