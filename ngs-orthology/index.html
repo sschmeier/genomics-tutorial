@@ -73,7 +73,7 @@
             
             
               <div class="version">
-                2017.10
+                2018.04
               </div>
             
           
@@ -234,7 +234,7 @@
 <div class="section" id="installing-the-software">
 <h2>9.4. Installing the software<a class="headerlink" href="#installing-the-software" title="Permalink to this headline">¶</a></h2>
 <div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># activate the env</span>
-<span class="n">source</span> <span class="n">activate</span> <span class="n">ngs</span>
+<span class="n">conda</span> <span class="n">activate</span> <span class="n">ngs</span>
 
 <span class="n">conda</span> <span class="n">install</span> <span class="n">blast</span>
 </pre></div>
@@ -247,11 +247,12 @@
 <p>We will also install <a class="reference external" href="https://github.com/amkozlov/raxml-ng">RAxML-NG</a>, a phylogenetic tree inference tool, which uses
 maximum-likelihood (ML) optimality criterion. However, there is no conda
 repository for it yet. Thus, we need to download it manually.</p>
-<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">wget</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">amkozlov</span><span class="o">/</span><span class="n">raxml</span><span class="o">-</span><span class="n">ng</span><span class="o">/</span><span class="n">releases</span><span class="o">/</span><span class="n">download</span><span class="o">/</span><span class="mf">0.3</span><span class="o">.</span><span class="mi">0</span><span class="o">/</span><span class="n">raxml</span><span class="o">-</span><span class="n">ng_v0</span><span class="o">.</span><span class="mf">3.0</span><span class="n">b_linux_x86_64</span><span class="o">.</span><span class="n">zip</span>
+<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">wget</span>
+<span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">amkozlov</span><span class="o">/</span><span class="n">raxml</span><span class="o">-</span><span class="n">ng</span><span class="o">/</span><span class="n">releases</span><span class="o">/</span><span class="n">download</span><span class="o">/</span><span class="mf">0.5</span><span class="o">.</span><span class="mi">1</span><span class="o">/</span><span class="n">raxml</span><span class="o">-</span><span class="n">ng_v0</span><span class="o">.</span><span class="mf">5.1</span><span class="n">b_linux_x86_64</span><span class="o">.</span><span class="n">zip</span>
 
-<span class="n">unzip</span> <span class="n">raxml</span><span class="o">-</span><span class="n">ng_v0</span><span class="o">.</span><span class="mf">3.0</span><span class="n">b_linux_x86_64</span><span class="o">.</span><span class="n">zip</span>
+<span class="n">unzip</span> <span class="n">raxml</span><span class="o">-</span><span class="n">ng_v0</span><span class="o">.</span><span class="mf">5.1</span><span class="n">b_linux_x86_64</span><span class="o">.</span><span class="n">zip</span>
 
-<span class="n">rm</span> <span class="n">raxml</span><span class="o">-</span><span class="n">ng_v0</span><span class="o">.</span><span class="mf">3.0</span><span class="n">b_linux_x86_64</span><span class="o">.</span><span class="n">zip</span>
+<span class="n">rm</span> <span class="n">raxml</span><span class="o">-</span><span class="n">ng_v0</span><span class="o">.</span><span class="mf">5.1</span><span class="n">b_linux_x86_64</span><span class="o">.</span><span class="n">zip</span>
 </pre></div>
 </div>
 </div>
@@ -300,7 +301,7 @@ Press the escape key, followed by: <code class="docutils literal notranslate"><s
 <p class="first admonition-title">Note</p>
 <p class="last">It turns out you may not be able to access this database from within BioLinux. In such a case, download the file named <code class="docutils literal notranslate"><span class="pre">blast.fas</span></code> and place it into your <code class="docutils literal notranslate"><span class="pre">~/analysis/phylogeny/</span></code> directory.</p>
 </div>
-<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">curl</span> <span class="o">-</span><span class="n">O</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">compbio</span><span class="o">.</span><span class="n">massey</span><span class="o">.</span><span class="n">ac</span><span class="o">.</span><span class="n">nz</span><span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="mi">203341</span><span class="o">/</span><span class="n">blast</span><span class="o">.</span><span class="n">fas</span>
+<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">curl</span> <span class="o">-</span><span class="n">O</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">compbio</span><span class="o">.</span><span class="n">massey</span><span class="o">.</span><span class="n">ac</span><span class="o">.</span><span class="n">nz</span><span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="mi">203341</span><span class="o">/</span><span class="n">blast_u</span><span class="o">.</span><span class="n">fas</span>
 </pre></div>
 </div>
 <p>Append the fasta file of your yeast sequence to this file, using whatever set of commands you wish/know.</p>
@@ -370,7 +371,7 @@ To find out the closest relative, you will have to use the <a class="reference e
   <div role="contentinfo">
     <p>
         &copy; Copyright 2016-2018, Sebastian Schmeier (https://sschmeier.com).
-      Last updated on Apr 11, 2018.
+      Last updated on Apr 20, 2018.
 
     </p>
   </div>
@@ -392,7 +393,7 @@ To find out the closest relative, you will have to use the <a class="reference e
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'2017.10',
+            VERSION:'2018.04',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

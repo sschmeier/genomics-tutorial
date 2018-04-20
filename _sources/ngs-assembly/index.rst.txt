@@ -79,7 +79,7 @@ It is also simple to install and use.
 
 .. code:: bash
 
-          source activate ngs
+          conda activate ngs
           conda install spades
 
           
@@ -142,7 +142,7 @@ Thus, we make a new |conda| environment for |quast| based on Python 2.
 .. code:: bash
 
           conda create -n quast python=2 quast
-          source activate quast
+          conda activate quast
 
 Run |quast| with both assembly scaffolds.fasta files to compare the results.
 

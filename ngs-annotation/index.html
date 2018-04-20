@@ -73,7 +73,7 @@
             
             
               <div class="version">
-                2017.10
+                2018.04
               </div>
             
           
@@ -238,7 +238,7 @@
 <div class="section" id="installing-the-software">
 <h2>8.5. Installing the software<a class="headerlink" href="#installing-the-software" title="Permalink to this headline">¶</a></h2>
 <div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># activate the env</span>
-<span class="n">source</span> <span class="n">activate</span> <span class="n">ngs</span>
+<span class="n">conda</span> <span class="n">activate</span> <span class="n">ngs</span>
 
 <span class="n">conda</span> <span class="n">install</span> <span class="n">busco</span>
 </pre></div>
@@ -267,7 +267,7 @@ Do this recursively for the entire config directory, placing it into your curren
 </pre></div>
 </div>
 <p>We next need to specify the <code class="docutils literal notranslate"><span class="pre">path</span></code> to this config file so that the program knows where to look now that we have changed the location (note that this is all one line below):</p>
-<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">export</span> <span class="n">AUGUSTUS_CONFIG_PATH</span><span class="o">=</span><span class="s2">&quot;/full_path_to_your_annotation_directory/config/&quot;</span>
+<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">export</span> <span class="n">AUGUSTUS_CONFIG_PATH</span><span class="o">=</span><span class="s2">&quot;~/analysis/annotation/config/&quot;</span><span class="n">n</span>
 </pre></div>
 </div>
 <p>We next check that we have actually changed the <code class="docutils literal notranslate"><span class="pre">path</span></code> correctly.
@@ -326,13 +326,13 @@ Instead, make a new directory in your home directory entitled “software”, an
 You will have to download the software from the Broad Institute:</p>
 <div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mkdir</span> <span class="n">software</span>
 <span class="n">cd</span> <span class="n">software</span>
-<span class="n">wget</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">data</span><span class="o">.</span><span class="n">broadinstitute</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">igv</span><span class="o">/</span><span class="n">projects</span><span class="o">/</span><span class="n">downloads</span><span class="o">/</span><span class="n">IGV_2</span><span class="o">.</span><span class="mf">3.92</span><span class="o">.</span><span class="n">zip</span>
+<span class="n">wget</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">data</span><span class="o">.</span><span class="n">broadinstitute</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">igv</span><span class="o">/</span><span class="n">projects</span><span class="o">/</span><span class="n">downloads</span><span class="o">/</span><span class="mf">2.4</span><span class="o">/</span><span class="n">IGV_2</span><span class="o">.</span><span class="mf">4.10</span><span class="o">.</span><span class="n">zip</span>
 
 <span class="c1"># unzip the software:</span>
-<span class="n">unzip</span> <span class="n">IGV_2</span><span class="o">.</span><span class="mf">3.92</span><span class="o">.</span><span class="n">zip</span>
+<span class="n">unzip</span> <span class="n">IGV_2</span><span class="o">.</span><span class="mf">4.10</span><span class="o">.</span><span class="n">zip</span>
 
 <span class="c1"># and change into that directory.</span>
-<span class="n">cd</span> <span class="n">IGV_2</span><span class="o">.</span><span class="mf">3.92</span>
+<span class="n">cd</span> <span class="n">IGV_2</span><span class="o">.</span><span class="mf">4.10</span><span class="o">.</span><span class="n">zip</span>
 
 <span class="c1"># To run the interactive GUI, you will need to run the bash script in that directory:</span>
 <span class="n">bash</span> <span class="n">igv</span><span class="o">.</span><span class="n">sh</span>
@@ -414,7 +414,7 @@ This gives an indication of your genome completeness.</p>
   <div role="contentinfo">
     <p>
         &copy; Copyright 2016-2018, Sebastian Schmeier (https://sschmeier.com).
-      Last updated on Apr 11, 2018.
+      Last updated on Apr 20, 2018.
 
     </p>
   </div>
@@ -436,7 +436,7 @@ This gives an indication of your genome completeness.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'2017.10',
+            VERSION:'2018.04',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

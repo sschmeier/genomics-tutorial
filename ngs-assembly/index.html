@@ -73,7 +73,7 @@
             
             
               <div class="version">
-                2017.10
+                2018.04
               </div>
             
           
@@ -256,7 +256,7 @@ reference genome as opposed to the evolved line.</li>
 In a recent evaluation of assembly software, <a class="reference external" href="http://bioinf.spbau.ru/spades">SPAdes</a> was found to be a good
 choice for fungal genomes <a class="reference internal" href="#abbas2014" id="id1">[ABBAS2014]</a>.
 It is also simple to install and use.</p>
-<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">source</span> <span class="n">activate</span> <span class="n">ngs</span>
+<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">activate</span> <span class="n">ngs</span>
 <span class="n">conda</span> <span class="n">install</span> <span class="n">spades</span>
 </pre></div>
 </div>
@@ -309,7 +309,7 @@ The program can be used on their <a class="reference external" href="http://quas
 <p>As of March 2018, <a class="reference external" href="http://quast.bioinf.spbau.ru/">Quast</a> needs Python 2 instead of the default Python 3 we have been using so far.
 Thus, we make a new <a class="reference external" href="http://conda.pydata.org/miniconda.html">conda</a> environment for <a class="reference external" href="http://quast.bioinf.spbau.ru/">Quast</a> based on Python 2.</p>
 <div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">create</span> <span class="o">-</span><span class="n">n</span> <span class="n">quast</span> <span class="n">python</span><span class="o">=</span><span class="mi">2</span> <span class="n">quast</span>
-<span class="n">source</span> <span class="n">activate</span> <span class="n">quast</span>
+<span class="n">conda</span> <span class="n">activate</span> <span class="n">quast</span>
 </pre></div>
 </div>
 <p>Run <a class="reference external" href="http://quast.bioinf.spbau.ru/">Quast</a> with both assembly scaffolds.fasta files to compare the results.</p>
@@ -447,7 +447,7 @@ We will compare the assemblies to find out who created the best one.</p>
   <div role="contentinfo">
     <p>
         &copy; Copyright 2016-2018, Sebastian Schmeier (https://sschmeier.com).
-      Last updated on Apr 11, 2018.
+      Last updated on Apr 20, 2018.
 
     </p>
   </div>
@@ -469,7 +469,7 @@ We will compare the assemblies to find out who created the best one.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'2017.10',
+            VERSION:'2018.04',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

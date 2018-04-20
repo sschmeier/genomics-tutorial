@@ -100,7 +100,7 @@ Tools we are going to use in this section and how to install them if you not hav
 .. code:: bash
 
     # activate the env
-    source activate ngs
+    conda activate ngs
           
     # Install these tools into the conda environment
     # if not already installed
@@ -132,7 +132,7 @@ We need to create our own config-file for |snpeff|. Where is the ``snpEff.config
     /home/manager/miniconda3/envs/ngs/share/snpeff-4.3.1m-0/snpEff.config
     
 
-This will give you the path to the ``snpEff.config``. It might be looking a bit different then the one shown here.
+This will give you the path to the ``snpEff.config``. It might be looking a bit different then the one shown here, depending on the version of |snpeff| that is installed.
 
 Make a local copy of the ``snpEff.config`` and then edit it with an editor of your choice:
 
