@@ -96,7 +96,7 @@ Furthermore we need to pre-process our mapping files a bit further and create a 
 
 .. code:: bash
                
-          bamtools index -in mappings/evolved-6.sorted.concordant.q20.bam
+          bamtools index -in mappings/evolved-6.sorted.dedup.concordant.q20.bam
 
 
 Lets also create a new directory for the variants:
@@ -118,7 +118,7 @@ We use the sorted filtered bam-file that we produced in the mapping step before.
 .. code:: bash
 
    # We first pile up all the reads and then call variants
-   samtools mpileup -u -g -f assembly/spades-final/scaffolds.fasta mappings/evolved-6.sorted.concordant.q20.bam | bcftools call -v -m -O z -o variants/evolved-6.mpileup.vcf.gz
+   samtools mpileup -u -g -f assembly/spades-final/scaffolds.fasta mappings/evolved-6.sorted.dedup.concordant.q20.bam | bcftools call -v -m -O z -o variants/evolved-6.mpileup.vcf.gz
    
 |samtools| mpileup parameter:
 
@@ -143,7 +143,7 @@ Given a reference genome scaffold file in fasta-format, e.g. ``scaffolds.fasta``
 .. code:: bash
 
    # Now we call variants and pipe the results into a new file
-   freebayes -f assembly/spades-final/scaffolds.fasta mappings/evolved-6.sorted.concordant.q20.bam | gzip > variants/evolved-6.freebayes.vcf.gz
+   freebayes -f assembly/spades-final/scaffolds.fasta mappings/evolved-6.sorted.dedup.concordant.q20.bam | gzip > variants/evolved-6.freebayes.vcf.gz
 
          
 Post-processing
