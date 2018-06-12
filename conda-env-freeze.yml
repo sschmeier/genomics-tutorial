@@ -6,11 +6,13 @@ channels:
 dependencies:
   - libffi=3.2.1=1
   - typing=3.5.2.2=py36_0
+  - ca-certificates=2018.4.16=0
+  - certifi=2018.4.16=py36_0
+  - openssl=1.0.2o=0
+  - sphinx_rtd_theme=0.4.0=py36_0
   - alabaster=0.7.10=py36h174008c_0
   - asn1crypto=0.24.0=py36_0
   - babel=2.5.3=py36_0
-  - ca-certificates=2018.03.07=0
-  - certifi=2018.1.18=py36_0
   - cffi=1.11.5=py36h342bebf_0
   - chardet=3.0.4=py36h96c241c_1
   - cryptography=2.2.2=py36h1de35cc_0
@@ -25,7 +27,6 @@ dependencies:
   - libedit=3.1=hb4e282d_0
   - markupsafe=1.0=py36h3a1e703_1
   - ncurses=6.0=hd04f020_2
-  - openssl=1.0.2o=h26aff7b_0
   - packaging=17.1=py36_0
   - paramiko=1.18.4=py36h4418bf7_0
   - pip=9.0.3=py36_0
@@ -43,7 +44,6 @@ dependencies:
   - six=1.11.0=py36h0e22d5e_1
   - snowballstemmer=1.2.1=py36h6c7b616_0
   - sphinx=1.7.2=py36_0
-  - sphinx_rtd_theme=0.2.4=py36_0
   - sphinxcontrib=1.0=py36h9364dc8_1
   - sphinxcontrib-websupport=1.0.1=py36h92f4a7a_1
   - sqlite=3.22.0=h3efe00b_0
