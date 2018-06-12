@@ -16,6 +16,15 @@ More information about other bioinformatics material and our research can be fou
 
 .. figure:: /images/workflow.png
 
+	    
+.. only:: builder_latex
+
+   .. note::
+
+      A online version of this tutorial can be accessed at `https://genomics.sschmeier.com
+      <https://genomics.sschmeier.com>`_.
+
+      
 .. only:: builder_html
 
    .. note::
