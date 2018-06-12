@@ -26,29 +26,20 @@
 
   
 
-  
-  
-    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-  
-
-  
-    <link rel="stylesheet" href="../_static/css/seb.css" type="text/css" />
-  
-
-  
-        <link rel="index" title="Index"
-              href="../genindex.html"/>
-        <link rel="search" title="Search" href="../search.html"/>
-    <link rel="top" title="" href="../index.html"/>
-        <link rel="next" title="3. Quality control" href="../ngs-qc/index.html"/>
-        <link rel="prev" title="1. Introduction" href="../introduction.html"/> 
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/seb.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="3. Quality control" href="../ngs-qc/index.html" />
+    <link rel="prev" title="1. Introduction" href="../introduction.html" /> 
 
   
   <script src="../_static/js/modernizr.min.js"></script>
 
 </head>
 
-<body class="wy-body-for-nav" role="document">
+<body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
@@ -65,7 +56,7 @@
 
           
             
-            <img src="../_static/icon.png" class="logo" />
+            <img src="../_static/icon.png" class="logo" alt="Logo"/>
           
           </a>
 
@@ -132,7 +123,7 @@
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
 
       
-      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+      <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../index.html">Genomics Tutorial</a>
@@ -140,9 +131,10 @@
       </nav>
 
 
-      
       <div class="wy-nav-content">
+        
         <div class="rst-content">
+        
           
 
 
@@ -245,7 +237,8 @@ conda config --add channels bioconda
 </div>
 <div class="section" id="create-environments">
 <h2>2.2. Create environments<a class="headerlink" href="#create-environments" title="Permalink to this headline">¶</a></h2>
-<p>We create a <a class="reference external" href="http://conda.pydata.org/miniconda.html">conda</a> environment for some tools This is useful to work <strong>reproducible</strong> as we can easily re-create the tool-set with the same version numbers later on.</p>
+<p>We create a <a class="reference external" href="http://conda.pydata.org/miniconda.html">conda</a> environment for some tools.
+This is useful to work <strong>reproducible</strong> as we can easily re-create the tool-set with the same version numbers later on.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda create -n ngs <span class="nv">python</span><span class="o">=</span><span class="m">3</span>
 <span class="c1"># activate the environment</span>
 conda activate ngs
@@ -256,7 +249,7 @@ The <code class="docutils literal notranslate"><span class="pre">PATH</span></co
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ conda activate ngs
 <span class="c1"># Lets look at the content of the PATH variable</span>
 <span class="o">(</span>ngs<span class="o">)</span> $ <span class="nb">echo</span> <span class="nv">$PATH</span>
-/home/manager/miniconda3/envs/ngs/bin:/home manager/miniconda3/bin:/usr/local/bin: ...
+/home/manager/miniconda3/envs/ngs/bin:/home/manager/miniconda3/bin:/usr/local/bin: ...
 </pre></div>
 </div>
 <p>Now it will look first in your environment’s bin directory but afterwards in the general conda bin (/home/manager/miniconda3/bin).
@@ -305,9 +298,7 @@ conda deactivate
 
 
            </div>
-           <div class="articleComments">
-            
-           </div>
+           
           </div>
           <footer>
   
@@ -326,11 +317,11 @@ conda deactivate
   <div role="contentinfo">
     <p>
         &copy; Copyright 2016-2018, Sebastian Schmeier (https://sschmeier.com).
-      Last updated on May 02, 2018.
+      Last updated on Jun 12, 2018.
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -349,6 +340,7 @@ conda deactivate
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
             VERSION:'2018.04',
+            LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
@@ -362,19 +354,13 @@ conda deactivate
 
   
 
-  
-  
-    <script type="text/javascript" src="../_static/js/theme.js"></script>
-  
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
 
-  
-  
   <script type="text/javascript">
       jQuery(function () {
-          SphinxRtdTheme.StickyNav.enable();
+          SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-   
+  </script> 
 
 </body>
 </html>

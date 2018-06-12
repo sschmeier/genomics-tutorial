@@ -82,7 +82,8 @@ available for installation:
 Create environments
 -------------------
 
-We create a |conda| environment for some tools This is useful to work **reproducible** as we can easily re-create the tool-set with the same version numbers later on.
+We create a |conda| environment for some tools.
+This is useful to work **reproducible** as we can easily re-create the tool-set with the same version numbers later on.
 
 
 .. code-block:: bash
@@ -101,7 +102,7 @@ The ``PATH`` variable (mentioned above) gets temporarily manipulated and set to:
    $ conda activate ngs
    # Lets look at the content of the PATH variable
    (ngs) $ echo $PATH
-   /home/manager/miniconda3/envs/ngs/bin:/home manager/miniconda3/bin:/usr/local/bin: ...
+   /home/manager/miniconda3/envs/ngs/bin:/home/manager/miniconda3/bin:/usr/local/bin: ...
 
 
 Now it will look first in your environment's bin directory but afterwards in the general conda bin (/home/manager/miniconda3/bin).
