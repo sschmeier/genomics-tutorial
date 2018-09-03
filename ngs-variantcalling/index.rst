@@ -96,7 +96,7 @@ Furthermore we need to pre-process our mapping files a bit further and create a 
 
 .. code:: bash
                
-          bamtools index -in mappings/evolved-6.sorted.dedup.concordant.q20.bam
+          bamtools index -in mappings/evolved-6.sorted.dedup.q20.bam
 
 
 Lets also create a new directory for the variants:
@@ -118,7 +118,7 @@ We use the sorted filtered bam-file that we produced in the mapping step before.
 .. code:: bash
 
    # We first pile up all the reads and then call variants
-   samtools mpileup -u -g -f assembly/spades-final/scaffolds.fasta mappings/evolved-6.sorted.dedup.concordant.q20.bam | bcftools call -v -m -O z -o variants/evolved-6.mpileup.vcf.gz
+   samtools mpileup -u -g -f assembly/spades-final/scaffolds.fasta mappings/evolved-6.sorted.dedup.q20.bam | bcftools call -v -m -O z -o variants/evolved-6.mpileup.vcf.gz
    
 |samtools| mpileup parameter:
 
@@ -143,7 +143,7 @@ Given a reference genome scaffold file in fasta-format, e.g. ``scaffolds.fasta``
 .. code:: bash
 
    # Now we call variants and pipe the results into a new file
-   freebayes -f assembly/spades-final/scaffolds.fasta mappings/evolved-6.sorted.dedup.concordant.q20.bam | gzip > variants/evolved-6.freebayes.vcf.gz
+   freebayes -f assembly/spades-final/scaffolds.fasta mappings/evolved-6.sorted.dedup.q20.bam | gzip > variants/evolved-6.freebayes.vcf.gz
 
          
 Post-processing
@@ -165,7 +165,7 @@ Lets look at a vcf-file:
    ##fileformat=VCFv4.2
    ##FILTER=<ID=PASS,Description="All filters passed">
    ##samtoolsVersion=1.3.1+htslib-1.3.1
-   ##samtoolsCommand=samtools mpileup -g -f assembly/spades-final/scaffolds.fasta -o variants/evolved-6.mpileup.bcf mappings/evolved-6.sorted.concordant.q20.bam
+   ##samtoolsCommand=samtools mpileup -g -f assembly/spades-final/scaffolds.fasta -o variants/evolved-6.mpileup.bcf mappings/evolved-6.sorted.q20.bam
    ##reference=file://assembly/spades-final/scaffolds.fasta
    ##contig=<ID=NODE_1_length_1419525_cov_15.3898,length=1419525>
    ##contig=<ID=NODE_2_length_1254443_cov_15.4779,length=1254443>
@@ -184,7 +184,7 @@ Lets look at the variants:
           
 .. code:: bash
           
-   #CHROM  POS     ID      REF     ALT     QUAL    FILTER  INFO    FORMAT  mappings/evolved-6.sorted.concordant.q20.bam
+   #CHROM  POS     ID      REF     ALT     QUAL    FILTER  INFO    FORMAT  mappings/evolved-6.sorted.q20.bam
    NODE_1_length_1419525_cov_15.3898       24721   .       T       C       164     .       DP=12;VDB=0.205941;SGB=-0.680642;MQ0F=0;AC=2;AN=2;DP4=0,0,12,0;MQ=40     GT:PL   1/1:191,36,0
    NODE_1_length_1419525_cov_15.3898       157033  .       AAGAGAGAGAGAGAGAGAGAGAGA        AAGAGAGAGAGAGAGAGAGAGA  39.3328  .       INDEL;IDV=6;IMF=0.146341;DP=41;VDB=0.0813946;SGB=-0.616816;MQSB=1;MQ0F=0;ICB=1;HOB=0.5;AC=1;AN=2;DP4=13,17,3,3;MQ=42     GT:PL   0/1:75,0,255
    NODE_1_length_1419525_cov_15.3898       162469  .       T       C       19.609  .       DP=16;VDB=0.045681;SGB=-0.511536;RPB=0.032027;MQB=0.832553;BQB=0.130524;MQ0F=0;ICB=1;HOB=0.5;AC=1;AN=2;DP4=13,0,3,0;MQ=39        GT:PL   0/1:54,0,155

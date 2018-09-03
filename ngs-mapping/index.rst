@@ -88,7 +88,6 @@ It is simple to install and use.
           conda install bedtools
           conda install bowtie2
           conda install bwa
-          conda install picard
 
 
 Bowtie2
@@ -282,14 +281,15 @@ Fix mates and compress
 
 Because aligners can sometimes leave unusual `SAM flag <http://bio-bwa.sourceforge.net/bwa.shtml#4>`__ information on SAM records, it is helpful when working with many tools to first clean up read pairing information and flags with |samtools|.
 We are going to produce also compressed bam output for efficient storing of and access to the mapped reads.
+Note, ``samtools fixmate`` expects **name-sorted** input files, which we can achieve with ``samtools sort -n``.
 
 
 .. code:: bash
 
-   samtools fixmate -O bam mappings/evolved-6.sam mappings/evolved-6.fixmate.bam
+   samtools sort -n -O sam mappings/evolved-6.sam | samtools fixmate -m -O bam - mappings/evolved-6.fixmate.bam
 
-
-- ``-O bam``: specifies that we want compressed bam output
+- ``-m``: Add ms (mate score) tags. These are used by markdup (below) to select the best reads to keep. 
+- ``-O bam``: specifies that we want compressed bam output from fixmate
 
 
 .. attention::
@@ -315,7 +315,7 @@ Once we have bam-file, we can also delete the original sam-file as it requires t
 Sorting
 ~~~~~~~
 
-We are going to use |samtools| again to sort the bam-file into coordinate order:
+We are going to use |samtools| again to sort the bam-file into **coordinate order**:
 
 
 .. code:: bash
@@ -339,8 +339,7 @@ However, for other research questions that use mapping, you might not want to re
 
 .. code:: bash
 
-    picard MarkDuplicates REMOVE_DUPLICATES=true METRICS_FILE=mappings/evolved-6.marked_dup_metrics.txt INPUT=mappings/evolved-6.sorted.bam OUTPUT=mappings/evolved-6.sorted.dedup.bam
-
+    samtools markdup -r -S mappings/evolved-6.sorted.bam mappings/evolved-6.sorted.dedup.bam
 
 .. todo::
 
@@ -477,7 +476,7 @@ We can sub-select from the output reads we want to analyse further using |samtoo
 Concordant reads
 ~~~~~~~~~~~~~~~~
 
-We select read-pair that have been mapped in a correct manner (same chromosome/contig, correct orientation to each other).
+We can select read-pair that have been mapped in a correct manner (same chromosome/contig, correct orientation to each other, distance between reads is not stupid).
 
 
 .. code:: bash
@@ -487,6 +486,11 @@ We select read-pair that have been mapped in a correct manner (same chromosome/c
 - ``-h``: Include the sam header
 - ``-b``: Output will be bam-format
 - ``-f 3``: Only extract correctly paired reads. ``-f`` extracts alignments with the specified `SAM flag <http://bio-bwa.sourceforge.net/bwa.shtml#4>`__ set.
+
+
+.. todo::
+
+   Our final aim is to identify variants. For a particular class of variants, it is not the best idea to only focus on concordant reads. Why is that? 
 
 
 Quality-based sub-selection
@@ -507,7 +511,7 @@ For the sake of going forward, we will sub-select reads with at least medium qua
 
 .. code:: bash
 
-   samtools view -h -b -q 20 mappings/evolved-6.sorted.dedup.concordant.bam > mappings/evolved-6.sorted.dedup.concordant.q20.bam
+   samtools view -h -b -q 20 mappings/evolved-6.sorted.dedup.bam > mappings/evolved-6.sorted.dedup.q20.bam
 
 - ``-h``: Include the sam header
 - ``-q 20``: Only extract reads with mapping quality >= 20
