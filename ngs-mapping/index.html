@@ -265,7 +265,7 @@ reads from the evolved line to our ancestral reference genome.</p>
 <div class="section" id="mapping-sequence-reads-to-a-reference-genome">
 <h2>5.5. Mapping sequence reads to a reference genome<a class="headerlink" href="#mapping-sequence-reads-to-a-reference-genome" title="Permalink to this headline">¶</a></h2>
 <p>We want to map the sequencing reads to the ancestral reference genome we created in the section <a class="reference internal" href="../ngs-assembly/index.html#ngs-assembly"><span class="std std-ref">Genome assembly</span></a>.
-We are going to use the quality trimmed forward and backward DNA sequences of the evolved line and use a program called <a class="reference external" href="http://bio-bwa.sourceforge.net/">BWA</a> to map the reads.</p>
+We are going to use the quality trimmed forward and backward DNA sequences of the evolved line and use a program called <a class="reference external" href="http://bowtie-bio.sourceforge.net/bowtie2/index.shtml">Bowtie2</a> to map the reads.</p>
 <div class="admonition-todo admonition" id="index-0">
 <p class="first admonition-title">Todo</p>
 <ol class="last arabic simple">
@@ -274,7 +274,7 @@ We are going to use the quality trimmed forward and backward DNA sequences of th
 </div>
 <div class="section" id="installing-the-software">
 <h3>5.5.1. Installing the software<a class="headerlink" href="#installing-the-software" title="Permalink to this headline">¶</a></h3>
-<p>We are going to use a program called <a class="reference external" href="http://bio-bwa.sourceforge.net/">BWA</a> fo map our reads to a genome.</p>
+<p>We are going to use a program called <a class="reference external" href="http://bowtie-bio.sourceforge.net/bowtie2/index.shtml">Bowtie2</a> fo map our reads to a genome.</p>
 <p>It is simple to install and use.</p>
 <div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">activate</span> <span class="n">ngs</span>
 <span class="n">conda</span> <span class="n">install</span> <span class="n">samtools</span>
@@ -343,7 +343,7 @@ The general command structure of the <a class="reference external" href="http://
 <h2>5.7. BWA<a class="headerlink" href="#bwa" title="Permalink to this headline">¶</a></h2>
 <div class="admonition attention">
 <p class="first admonition-title">Attention</p>
-<p class="last">If the mapping did not succeed with <a class="reference external" href="http://bowtie-bio.sourceforge.net/bowtie2/index.shtml">Bowtie2</a>. We can use the aligner <a class="reference external" href="http://bio-bwa.sourceforge.net/">BWA</a> explained in this section. If the mapping with <a class="reference external" href="http://bowtie-bio.sourceforge.net/bowtie2/index.shtml">Bowtie2</a> did work, you can jump this section.</p>
+<p class="last">If the mapping did not succeed with <a class="reference external" href="http://bowtie-bio.sourceforge.net/bowtie2/index.shtml">Bowtie2</a>. We can use the aligner <a class="reference external" href="http://bio-bwa.sourceforge.net/">BWA</a> explained in this section. If the mapping with <a class="reference external" href="http://bowtie-bio.sourceforge.net/bowtie2/index.shtml">Bowtie2</a> did work, you can jump this section. You can jump straight ahead to <a class="reference internal" href="#sam-file-format"><span class="std std-numref">Section 5.8</span></a>.</p>
 </div>
 <div class="section" id="id3">
 <h3>5.7.1. Overview<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
@@ -396,7 +396,7 @@ The general command structure of the <a class="reference external" href="http://
 </div>
 </div>
 <div class="section" id="the-sam-mapping-file-format">
-<h2>5.8. The sam mapping file-format<a class="headerlink" href="#the-sam-mapping-file-format" title="Permalink to this headline">¶</a></h2>
+<span id="sam-file-format"></span><h2>5.8. The sam mapping file-format<a class="headerlink" href="#the-sam-mapping-file-format" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="http://bowtie-bio.sourceforge.net/bowtie2/index.shtml">Bowtie2</a> and <a class="reference external" href="http://bio-bwa.sourceforge.net/">BWA</a> will produce a mapping file in sam-format. Have a look into the sam-file that was created by either program.
 A quick overview of the sam-format can be found <a class="reference external" href="http://bio-bwa.sourceforge.net/bwa.shtml#4">here</a> and even more information can be found <a class="reference external" href="http://samtools.github.io/hts-specs/SAMv1.pdf">here</a>.
 Briefly, first there are a lot of header lines. Then, for each read, that mapped to the reference, there is one line.</p>
@@ -709,7 +709,7 @@ This will at least show you the range and frequency with which different <span c
   <div role="contentinfo">
     <p>
         &copy; Copyright 2016-2018, Sebastian Schmeier (https://sschmeier.com).
-      Last updated on Sep 03, 2018.
+      Last updated on Oct 05, 2018.
 
     </p>
   </div>

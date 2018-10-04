@@ -66,7 +66,7 @@ Mapping sequence reads to a reference genome
 --------------------------------------------
 
 We want to map the sequencing reads to the ancestral reference genome we created in the section :ref:`ngs-assembly`.
-We are going to use the quality trimmed forward and backward DNA sequences of the evolved line and use a program called |bwa| to map the reads.
+We are going to use the quality trimmed forward and backward DNA sequences of the evolved line and use a program called |bowtie| to map the reads.
 
 .. todo::
 
@@ -76,7 +76,7 @@ We are going to use the quality trimmed forward and backward DNA sequences of th
 Installing the software
 ~~~~~~~~~~~~~~~~~~~~~~~
 
-We are going to use a program called |bwa| fo map our reads to a genome.
+We are going to use a program called |bowtie| fo map our reads to a genome.
 
 It is simple to install and use.
 
@@ -161,7 +161,7 @@ BWA
 
 .. Attention::
 
-   If the mapping did not succeed with |bowtie|. We can use the aligner |bwa| explained in this section. If the mapping with |bowtie| did work, you can jump this section.
+   If the mapping did not succeed with |bowtie|. We can use the aligner |bwa| explained in this section. If the mapping with |bowtie| did work, you can jump this section. You can jump straight ahead to :numref:`sam-file-format`.
 
 
 Overview
@@ -223,6 +223,9 @@ Now that we have created our index, it is time to map the filtered and trimmed s
 
    Should you not get it right, try the commands in :ref:`code-bwa2`.
 
+
+
+.. _sam-file-format:
 
 The sam mapping file-format
 ---------------------------
