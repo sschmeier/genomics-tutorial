@@ -74,7 +74,7 @@
             
             
               <div class="version">
-                2018.09
+                2018.12
               </div>
             
           
@@ -108,20 +108,21 @@
 <li class="toctree-l2"><a class="reference internal" href="#preface">6.1. Preface</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#overview">6.2. Overview</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#before-we-start">6.3. Before we start</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#kraken">6.4. Kraken</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#kraken2">6.4. Kraken2</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#installation">6.4.1. Installation</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#usage">6.4.2. Usage</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#investigate-taxa">6.4.3. Investigate taxa</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#kraken-report">6.4.3.1. kraken-report</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#kraken-translate">6.4.3.2. kraken-translate</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#investigate-taxa">6.4.3. Investigate taxa</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#bracken">6.4.4. Bracken</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id3">6.4.4.1. Installation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id4">6.4.4.2. Usage</a></li>
 </ul>
 </li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#centrifuge">6.5. Centrifuge</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id4">6.5.1. Installation</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id5">6.5.2. Usage</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id6">6.5.3. Investigate taxa</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id6">6.5.1. Installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id7">6.5.2. Usage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id8">6.5.3. Investigate taxa</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#centrifuge-report">6.5.3.1. Centrifuge report</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#kraken-like-report">6.5.3.2. Kraken-like report</a></li>
 </ul>
@@ -129,7 +130,7 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#visualisation-krona">6.6. Visualisation (Krona)</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id8">6.6.1. Installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id10">6.6.1. Installation</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#build-the-taxonomy">6.6.2. Build the taxonomy</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#visualise">6.6.3. Visualise</a></li>
 </ul>
@@ -213,7 +214,7 @@
 We hope that most of them are from our species that we try to study, i.e. the DNA that we have extracted and amplified.
 This might be a way of quality control, e.g. have the samples been contaminated?
 Lets investigate if we find sequences from other species in our sequence set.</p>
-<p>We will use the tool <a class="reference external" href="https://ccb.jhu.edu/software/kraken/">Kraken</a> to assign taxonomic classifications to our sequence reads.
+<p>We will use the tool <a class="reference external" href="https://www.ccb.jhu.edu/software/kraken2/">Kraken2</a> to assign taxonomic classifications to our sequence reads.
 Let us see if we can id some sequences from other species.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
@@ -223,7 +224,7 @@ Let us see if we can id some sequences from other species.</p>
 <div class="section" id="overview">
 <h2>6.2. Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
 <p>The part of the workflow we will work on in this section can be viewed in <a class="reference internal" href="#fig-workflow-taxa"><span class="std std-numref">Fig. 6.1</span></a>.</p>
-<div class="figure" id="id9">
+<div class="figure" id="id11">
 <span id="fig-workflow-taxa"></span><img alt="../_images/workflow5.png" src="../_images/workflow5.png" />
 <p class="caption"><span class="caption-number">Fig. 6.1 </span><span class="caption-text">The part of the workflow we will work on in this section marked in red.</span></p>
 </div>
@@ -246,18 +247,19 @@ Let us see if we can id some sequences from other species.</p>
 </pre></div>
 </div>
 </div>
-<div class="section" id="kraken">
-<h2>6.4. Kraken<a class="headerlink" href="#kraken" title="Permalink to this headline">¶</a></h2>
-<p>We will be using a tool called <a class="reference external" href="https://ccb.jhu.edu/software/kraken/">Kraken</a> <a class="reference internal" href="#wood2014" id="id2">[WOOD2014]</a>.
+<div class="section" id="kraken2">
+<h2>6.4. Kraken2<a class="headerlink" href="#kraken2" title="Permalink to this headline">¶</a></h2>
+<p>We will be using a tool called <a class="reference external" href="https://www.ccb.jhu.edu/software/kraken2/">Kraken2</a> <a class="reference internal" href="#wood2014" id="id2">[WOOD2014]</a>.
 This tool uses k-mers to assign a taxonomic labels in form of <a class="reference external" href="https://www.ncbi.nlm.nih.gov/taxonomy">NCBI Taxonomy</a> to the sequence (if possible).
 The taxonomic label is assigned based on similar k-mer content of the sequence in question to the k-mer content of reference genome sequence.
 The result is a classification of the sequence in question to the most likely taxonomic label.
 If the k-mer content is not similar to any genomic sequence in the database used, it will not assign any taxonomic label.</p>
 <div class="section" id="installation">
 <h3>6.4.1. Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h3>
-<p>Use conda in the same fashion as before to install <a class="reference external" href="https://ccb.jhu.edu/software/kraken/">Kraken</a>:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda activate ngs
-conda install kraken-all
+<p>Use conda in the same fashion as before to install <a class="reference external" href="https://www.ccb.jhu.edu/software/kraken2/">Kraken2</a>.
+However, we are going to install kraken into its own environment:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda create --yes -n kraken kraken2 bracken
+conda activate kraken
 </pre></div>
 </div>
 <p>Now we create a directory where we are going to do the analysis and we will change into that directory too.</p>
@@ -269,16 +271,15 @@ mkdir kraken
 <span class="nb">cd</span> kraken
 </pre></div>
 </div>
-<p>Now we need to create or download a <a class="reference external" href="https://ccb.jhu.edu/software/kraken/">Kraken</a> database that can be used to assign the taxonomic labels to sequences.
-We opt for downloading the pre-build “minikraken” database from the <a class="reference external" href="https://ccb.jhu.edu/software/kraken/">Kraken</a> website:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>curl -O https://ccb.jhu.edu/software/kraken/dl/minikraken.tgz
+<p>Now we need to create or download a <a class="reference external" href="https://www.ccb.jhu.edu/software/kraken2/">Kraken2</a> database that can be used to assign the taxonomic labels to sequences.
+We opt for downloading the pre-build “minikraken” database from the <a class="reference external" href="https://www.ccb.jhu.edu/software/kraken2/">Kraken2</a> website:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>curl -O https://www.ccb.jhu.edu/software/kraken2/dl/minikraken2_v2_8GB.tgz
 
 <span class="c1"># alternatively we can use wget</span>
-wget https://ccb.jhu.edu/software/kraken/dl/minikraken.tgz
+wget https://www.ccb.jhu.edu/software/kraken2/dl/minikraken2_v2_8GB.tgz
 
-<span class="c1"># once the download is finished, we need to extract the archive content</span>
-<span class="c1"># it will create a directory: &quot;minikraken_20141208/&quot;</span>
-tar -xvzf minikraken.tgz
+<span class="c1"># once the download is finished, we need to extract the archive content:</span>
+tar -xvzf minikraken2_v2_8GB.tgz
 </pre></div>
 </div>
 <div class="admonition attention">
@@ -294,36 +295,32 @@ What are the implications for us when we are trying to classify our sequences?</
 </div>
 <div class="section" id="usage">
 <h3>6.4.2. Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h3>
-<p>Now that we have installed <a class="reference external" href="https://ccb.jhu.edu/software/kraken/">Kraken</a> and downloaded and extracted the minikraken database, we can attempt to investigate the sequences we got back from the sequencing provider for other species as the one it should contain.
-We call the <a class="reference external" href="https://ccb.jhu.edu/software/kraken/">Kraken</a> tool and specify the database and fasta-file with the sequences it should use. The general command structure looks like this:</p>
-<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">kraken</span> <span class="o">--</span><span class="n">only</span><span class="o">-</span><span class="n">classified</span><span class="o">-</span><span class="n">output</span> <span class="o">--</span><span class="n">db</span> <span class="n">minikraken_20141208</span> <span class="n">example</span><span class="o">.</span><span class="n">fa</span> <span class="o">&gt;</span> <span class="n">example</span><span class="o">.</span><span class="n">kraken</span>
+<p>Now that we have installed <a class="reference external" href="https://www.ccb.jhu.edu/software/kraken2/">Kraken2</a> and downloaded and extracted the minikraken database, we can attempt to investigate the sequences we got back from the sequencing provider for other species as the one it should contain.
+We call the <a class="reference external" href="https://www.ccb.jhu.edu/software/kraken2/">Kraken2</a> tool and specify the database and fasta-file with the sequences it should use. The general command structure looks like this:</p>
+<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">kraken2</span> <span class="o">--</span><span class="n">use</span><span class="o">-</span><span class="n">names</span> <span class="o">--</span><span class="n">threads</span> <span class="mi">4</span> <span class="o">--</span><span class="n">db</span> <span class="n">minikraken2_v2_8GB</span> <span class="o">--</span><span class="n">report</span> <span class="n">example</span><span class="o">.</span><span class="n">report</span><span class="o">.</span><span class="n">txt</span> <span class="n">example</span><span class="o">.</span><span class="n">fa</span> <span class="o">&gt;</span> <span class="n">example</span><span class="o">.</span><span class="n">kraken</span>
 </pre></div>
 </div>
-<p>However, we may have fastq-files, so we need to use <code class="docutils literal notranslate"><span class="pre">--fastq-input</span></code> which tells <a class="reference external" href="https://ccb.jhu.edu/software/kraken/">Kraken</a> that it is dealing with fastq-formated files.
+<p>However, we may have fastq-files, so we need to use <code class="docutils literal notranslate"><span class="pre">--fastq-input</span></code> which tells <a class="reference external" href="https://www.ccb.jhu.edu/software/kraken2/">Kraken2</a> that it is dealing with fastq-formated files.
+In addition, we are dealing with paired-end data, which we can tell <a class="reference external" href="https://www.ccb.jhu.edu/software/kraken2/">Kraken2</a> with the switch <code class="docutils literal notranslate"><span class="pre">--paired</span></code>.
 Here, we are investigating one of the unmapped paired-end read files of the evolved line.</p>
-<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">kraken</span> <span class="o">--</span><span class="n">only</span><span class="o">-</span><span class="n">classified</span><span class="o">-</span><span class="n">output</span> <span class="o">--</span><span class="n">db</span> <span class="n">minikraken_20141208</span> <span class="o">--</span><span class="n">fastq</span><span class="o">-</span><span class="nb">input</span> <span class="o">../</span><span class="n">mappings</span><span class="o">/</span><span class="n">evolved</span><span class="o">-</span><span class="mf">6.</span><span class="n">sorted</span><span class="o">.</span><span class="n">unmapped</span><span class="o">.</span><span class="n">R1</span><span class="o">.</span><span class="n">fastq</span> <span class="o">&gt;</span> <span class="n">evolved</span><span class="o">-</span><span class="mi">6</span><span class="o">-</span><span class="n">R1</span><span class="o">.</span><span class="n">kraken</span>
+<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">kraken2</span> <span class="o">--</span><span class="n">use</span><span class="o">-</span><span class="n">names</span> <span class="o">--</span><span class="n">threads</span> <span class="mi">4</span> <span class="o">--</span><span class="n">db</span> <span class="n">minikraken2_v2_8GB</span> <span class="o">--</span><span class="n">fastq</span><span class="o">-</span><span class="nb">input</span> <span class="o">--</span><span class="n">report</span> <span class="n">evolved</span><span class="o">-</span><span class="mi">6</span> <span class="o">--</span><span class="n">paired</span> <span class="o">../</span><span class="n">mappings</span><span class="o">/</span><span class="n">evolved</span><span class="o">-</span><span class="mf">6.</span><span class="n">sorted</span><span class="o">.</span><span class="n">unmapped</span><span class="o">.</span><span class="n">R1</span><span class="o">.</span><span class="n">fastq</span> <span class="o">../</span><span class="n">mappings</span><span class="o">/</span><span class="n">evolved</span><span class="o">-</span><span class="mf">6.</span><span class="n">sorted</span><span class="o">.</span><span class="n">unmapped</span><span class="o">.</span><span class="n">R2</span><span class="o">.</span><span class="n">fastq</span> <span class="o">&gt;</span> <span class="n">evolved</span><span class="o">-</span><span class="mf">6.</span><span class="n">kraken</span>
 </pre></div>
-</div>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">We are for now only interested in the portion of sequeuces that can be classified, that is why we supplied the option <code class="docutils literal notranslate"><span class="pre">--only-classified-output</span></code> to the <a class="reference external" href="https://ccb.jhu.edu/software/kraken/">Kraken</a> command.</p>
 </div>
 <p>This classification may take a while, depending on how many sequences we are going to classify.
-The resulting content of the file “evolved-6-R1.kraken” looks similar to the following example:</p>
-<pre class="literal-block">
-C       M02810:197:000000000-AV55U:1:1101:10078:18384/1 2157    151     0:99 2157:1 0:1 2157:1 0:19
-C       M02810:197:000000000-AV55U:1:1101:10573:27304/1 364745  150     0:43 364745:1 0:76
-C       M02810:197:000000000-AV55U:1:1101:10852:5722/1  37665   151     0:33 37665:1 0:87
-C       M02810:197:000000000-AV55U:1:1101:11429:10330/1 374840  101     0:17 374840:1 0:4 374840:1 0:2 374840:1 0:45
-C       M02810:197:000000000-AV55U:1:1101:11705:24355/1 2157    151     0:1 2157:1 0:119
-
-</pre>
-<p>Each sequence classified by <a class="reference external" href="https://ccb.jhu.edu/software/kraken/">Kraken</a> results in a single line of output.
+The resulting content of the file “evolved-6.kraken” looks similar to the following example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">C</span>       <span class="mi">7001326</span><span class="n">F</span><span class="p">:</span><span class="mi">121</span><span class="p">:</span><span class="n">CBVVLANXX</span><span class="p">:</span><span class="mi">1</span><span class="p">:</span><span class="mi">1105</span><span class="p">:</span><span class="mi">2240</span><span class="p">:</span><span class="mi">12640</span>        <span class="mi">816</span>     <span class="mi">251</span>     <span class="mi">816</span><span class="p">:</span><span class="mi">9</span> <span class="mi">171549</span><span class="p">:</span><span class="mi">5</span> <span class="mi">816</span><span class="p">:</span><span class="mi">5</span> <span class="mi">171549</span><span class="p">:</span><span class="mi">3</span> <span class="mi">2</span><span class="p">:</span><span class="mi">2</span> <span class="mi">816</span><span class="p">:</span><span class="mi">5</span> <span class="mi">171549</span><span class="p">:</span><span class="mi">4</span> <span class="mi">816</span><span class="p">:</span><span class="mi">34</span> <span class="mi">171549</span><span class="p">:</span><span class="mi">8</span> <span class="mi">816</span><span class="p">:</span><span class="mi">4</span> <span class="mi">171549</span><span class="p">:</span><span class="mi">2</span> <span class="mi">816</span><span class="p">:</span><span class="mi">10</span> <span class="n">A</span><span class="p">:</span><span class="mi">35</span> <span class="mi">816</span><span class="p">:</span><span class="mi">10</span> <span class="mi">171549</span><span class="p">:</span><span class="mi">2</span> <span class="mi">816</span><span class="p">:</span><span class="mi">4</span> <span class="mi">171549</span><span class="p">:</span><span class="mi">8</span> <span class="mi">816</span><span class="p">:</span><span class="mi">34</span> <span class="mi">171549</span><span class="p">:</span><span class="mi">4</span> <span class="mi">816</span><span class="p">:</span><span class="mi">5</span> <span class="mi">2</span><span class="p">:</span><span class="mi">2</span> <span class="mi">171549</span><span class="p">:</span><span class="mi">3</span> <span class="mi">816</span><span class="p">:</span><span class="mi">5</span> <span class="mi">171549</span><span class="p">:</span><span class="mi">5</span> <span class="mi">816</span><span class="p">:</span><span class="mi">9</span>
+<span class="n">C</span>       <span class="mi">7001326</span><span class="n">F</span><span class="p">:</span><span class="mi">121</span><span class="p">:</span><span class="n">CBVVLANXX</span><span class="p">:</span><span class="mi">1</span><span class="p">:</span><span class="mi">1105</span><span class="p">:</span><span class="mi">3487</span><span class="p">:</span><span class="mi">12536</span>        <span class="mi">1339337</span> <span class="mi">202</span>     <span class="mi">1339337</span><span class="p">:</span><span class="mi">67</span> <span class="n">A</span><span class="p">:</span><span class="mi">35</span> <span class="mi">1339337</span><span class="p">:</span><span class="mi">66</span>
+<span class="n">U</span>       <span class="mi">7001326</span><span class="n">F</span><span class="p">:</span><span class="mi">121</span><span class="p">:</span><span class="n">CBVVLANXX</span><span class="p">:</span><span class="mi">1</span><span class="p">:</span><span class="mi">1105</span><span class="p">:</span><span class="mi">5188</span><span class="p">:</span><span class="mi">12504</span>        <span class="mi">0</span>       <span class="mi">251</span>     <span class="mi">0</span><span class="p">:</span><span class="mi">91</span> <span class="n">A</span><span class="p">:</span><span class="mi">35</span> <span class="mi">0</span><span class="p">:</span><span class="mi">91</span>
+<span class="n">U</span>       <span class="mi">7001326</span><span class="n">F</span><span class="p">:</span><span class="mi">121</span><span class="p">:</span><span class="n">CBVVLANXX</span><span class="p">:</span><span class="mi">1</span><span class="p">:</span><span class="mi">1105</span><span class="p">:</span><span class="mi">11030</span><span class="p">:</span><span class="mi">12689</span>       <span class="mi">0</span>       <span class="mi">251</span>     <span class="mi">0</span><span class="p">:</span><span class="mi">91</span> <span class="n">A</span><span class="p">:</span><span class="mi">35</span> <span class="mi">0</span><span class="p">:</span><span class="mi">91</span>
+<span class="n">U</span>       <span class="mi">7001326</span><span class="n">F</span><span class="p">:</span><span class="mi">121</span><span class="p">:</span><span class="n">CBVVLANXX</span><span class="p">:</span><span class="mi">1</span><span class="p">:</span><span class="mi">1105</span><span class="p">:</span><span class="mi">7157</span><span class="p">:</span><span class="mi">12806</span>        <span class="mi">0</span>       <span class="mi">206</span>     <span class="mi">0</span><span class="p">:</span><span class="mi">69</span> <span class="n">A</span><span class="p">:</span><span class="mi">35</span> <span class="mi">0</span><span class="p">:</span><span class="mi">68</span>
+</pre></div>
+</div>
+<p>Each sequence classified by <a class="reference external" href="https://www.ccb.jhu.edu/software/kraken2/">Kraken2</a> results in a single line of output.
 Output lines contain five tab-delimited fields; from left to right, they are:</p>
 <ol class="arabic simple">
 <li><code class="docutils literal notranslate"><span class="pre">C/U</span></code>: one letter code indicating that the sequence was either classified or unclassified.</li>
 <li>The sequence ID, obtained from the FASTA/FASTQ header.</li>
-<li>The taxonomy ID Kraken used to label the sequence; this is <strong>0</strong> if the sequence
+<li>The taxonomy ID <a class="reference external" href="https://www.ccb.jhu.edu/software/kraken2/">Kraken2</a> used to label the sequence; this is <strong>0</strong> if the sequence
 is unclassified and otherwise should be the <a class="reference external" href="https://www.ncbi.nlm.nih.gov/taxonomy">NCBI Taxonomy</a> identifier.</li>
 <li>The length of the sequence in bp.</li>
 <li>A space-delimited list indicating the lowest common ancestor (in the
@@ -339,35 +336,29 @@ For example, <code class="docutils literal notranslate"><span class="pre">562:13
 </ol>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">The <a class="reference external" href="https://ccb.jhu.edu/software/kraken/">Kraken</a> manual can be accessed <a class="reference external" href="http://ccb.jhu.edu/software/kraken/MANUAL.html">here</a>.</p>
+<p class="last">The <a class="reference external" href="https://www.ccb.jhu.edu/software/kraken2/">Kraken2</a> manual can be accessed <a class="reference external" href="https://www.ccb.jhu.edu/software/kraken2/index.shtml?t=manual">here</a>.</p>
 </div>
 </div>
 <div class="section" id="investigate-taxa">
 <h3>6.4.3. Investigate taxa<a class="headerlink" href="#investigate-taxa" title="Permalink to this headline">¶</a></h3>
 <p>We can use the webpage <a class="reference external" href="https://www.ncbi.nlm.nih.gov/Taxonomy/TaxIdentifier/tax_identifier.cgi">NCBI TaxIdentifier</a> to quickly get the names to the taxonomy identifier.
 However, this is impractical as we are dealing potentially with many sequences.
-<a class="reference external" href="https://ccb.jhu.edu/software/kraken/">Kraken</a> has some scripts that help us understand our results better.</p>
-<div class="section" id="kraken-report">
-<h4>6.4.3.1. kraken-report<a class="headerlink" href="#kraken-report" title="Permalink to this headline">¶</a></h4>
-<p>First, we generate a sample-wide report of all taxa found.
-This can be achieved with the tool <code class="docutils literal notranslate"><span class="pre">kranken-report</span></code>.</p>
-<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">kraken</span><span class="o">-</span><span class="n">report</span> <span class="o">--</span><span class="n">db</span> <span class="n">minikraken_20141208</span> <span class="n">evolved</span><span class="o">-</span><span class="mi">6</span><span class="o">-</span><span class="n">R1</span><span class="o">.</span><span class="n">kraken</span> <span class="o">&gt;</span> <span class="n">evolved</span><span class="o">-</span><span class="mi">6</span><span class="o">-</span><span class="n">R1</span><span class="o">.</span><span class="n">kraken</span><span class="o">.</span><span class="n">report</span>
+<a class="reference external" href="https://www.ccb.jhu.edu/software/kraken2/">Kraken2</a> has some scripts that help us understand our results better.</p>
+<p>Because we used the <a class="reference external" href="https://www.ccb.jhu.edu/software/kraken2/">Kraken2</a> switch <code class="docutils literal notranslate"><span class="pre">--report</span> <span class="pre">FILE</span></code>, we have got also a sample-wide report of all taxa found.
+This is much better to get an overview what was found.</p>
+<p>The first few lines of an example report are shown below.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">83.56</span>  <span class="mi">514312</span>  <span class="mi">514312</span>  <span class="n">U</span>       <span class="mi">0</span>       <span class="n">unclassified</span>
+<span class="mf">16.44</span>  <span class="mi">101180</span>  <span class="mi">0</span>       <span class="n">R</span>       <span class="mi">1</span>       <span class="n">root</span>
+<span class="mf">16.44</span>  <span class="mi">101180</span>  <span class="mi">0</span>       <span class="n">R1</span>      <span class="mi">131567</span>    <span class="n">cellular</span> <span class="n">organisms</span>
+<span class="mf">16.44</span>  <span class="mi">101180</span>  <span class="mi">2775</span>    <span class="n">D</span>       <span class="mi">2</span>           <span class="n">Bacteria</span>
+<span class="mf">13.99</span>  <span class="mi">86114</span>   <span class="mi">1</span>       <span class="n">D1</span>      <span class="mi">1783270</span>       <span class="n">FCB</span> <span class="n">group</span>
+<span class="mf">13.99</span>  <span class="mi">86112</span>   <span class="mi">0</span>       <span class="n">D2</span>      <span class="mi">68336</span>           <span class="n">Bacteroidetes</span><span class="o">/</span><span class="n">Chlorobi</span> <span class="n">group</span>
+<span class="mf">13.99</span>  <span class="mi">86103</span>   <span class="mi">8</span>       <span class="n">P</span>       <span class="mi">976</span>               <span class="n">Bacteroidetes</span>
+<span class="mf">13.94</span>  <span class="mi">85798</span>   <span class="mi">2</span>       <span class="n">C</span>       <span class="mi">200643</span>              <span class="n">Bacteroidia</span>
+<span class="mf">13.94</span>  <span class="mi">85789</span>   <span class="mi">19</span>      <span class="n">O</span>       <span class="mi">171549</span>                <span class="n">Bacteroidales</span>
+<span class="mf">13.87</span>  <span class="mi">85392</span>   <span class="mi">0</span>       <span class="n">F</span>       <span class="mi">815</span>                     <span class="n">Bacteroidaceae</span>
 </pre></div>
 </div>
-<p>The first few lines of an example report are shown below.</p>
-<pre class="literal-block">
-  0.00  0       0       U       0       unclassified
-100.00  2665    47      -       1       root
- 54.56  1454    0       -       131567    cellular organisms
- 38.50  1026    1023    D       2157        Archaea
-  0.08  2       0       P       651137        Thaumarchaeota
-  0.08  2       0       -       651142          unclassified Thaumarchaeota
-  0.08  2       0       G       1048752           Candidatus Caldiarchaeum
-  0.08  2       2       S       311458              Candidatus Caldiarchaeum subterraneum
-  0.04  1       0       P       28890         Euryarchaeota
-  0.04  1       0       C       183967          Thermoplasmata
-
-</pre>
 <p>The output of kraken-report is tab-delimited, with one line per taxon.
 The fields of the output, from left-to-right, are as follows:</p>
 <ol class="arabic simple">
@@ -382,52 +373,74 @@ The fields of the output, from left-to-right, are as follows:</p>
 <p class="first admonition-title">Note</p>
 <p class="last">If you want to compare the taxa content of different samples to another, one can create a report whose structure is always the same for all samples, disregarding which taxa are found (obviously the percentages and numbers will be different).</p>
 </div>
-<p>We can cerate such a report using the option <code class="docutils literal notranslate"><span class="pre">--show-zeros</span></code> which will print out all taxa (instead of only those found).
+<p>We can cerate such a report using the option <code class="docutils literal notranslate"><span class="pre">--report-zero-counts</span></code> which will print out all taxa (instead of only those found).
 We then sort the taxa according to taxa-ids (column 5), e.g. <code class="docutils literal notranslate"><span class="pre">sort</span> <span class="pre">-n</span> <span class="pre">-k5</span></code>.</p>
-<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">kraken</span><span class="o">-</span><span class="n">report</span> <span class="o">*--</span><span class="n">show</span><span class="o">-</span><span class="n">zeros</span><span class="o">*</span> <span class="o">--</span><span class="n">db</span> <span class="n">minikraken_20141208</span> <span class="n">evolved</span><span class="o">-</span><span class="mi">6</span><span class="o">-</span><span class="n">R1</span><span class="o">.</span><span class="n">kraken</span> <span class="o">|</span> <span class="o">**</span><span class="n">sort</span> <span class="o">-</span><span class="n">n</span> <span class="o">-</span><span class="n">k5</span><span class="o">**</span> <span class="o">&gt;</span> <span class="n">evolved</span><span class="o">-</span><span class="mi">6</span><span class="o">-</span><span class="n">R1</span><span class="o">.</span><span class="n">kraken</span><span class="o">.</span><span class="n">report</span><span class="o">.</span><span class="n">sorted</span>
-</pre></div>
-</div>
 <p>The report is not ordered according to taxa ids and contains all taxa in the database, even if they have not been found in our sample and are thus zero.
 The columns are the same as in the former report, however, we have more rows and they are now differently sorted, according to the <a class="reference external" href="https://www.ncbi.nlm.nih.gov/taxonomy">NCBI Taxonomy</a> id.</p>
 </div>
-<div class="section" id="kraken-translate">
-<h4>6.4.3.2. kraken-translate<a class="headerlink" href="#kraken-translate" title="Permalink to this headline">¶</a></h4>
-<p>For every sequence in our sample and its predicted taxonomic identifier,
-we can attach the taxonomic names with <code class="docutils literal notranslate"><span class="pre">kraken-translate</span></code>.</p>
-<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">kraken</span><span class="o">-</span><span class="n">translate</span> <span class="o">--</span><span class="n">mpa</span><span class="o">-</span><span class="nb">format</span> <span class="o">--</span><span class="n">db</span> <span class="n">minikraken_20141208</span> <span class="n">evolved</span><span class="o">-</span><span class="mi">6</span><span class="o">-</span><span class="n">R1</span><span class="o">.</span><span class="n">kraken</span> <span class="o">&gt;</span> <span class="n">evolved</span><span class="o">-</span><span class="mi">6</span><span class="o">-</span><span class="n">R1</span><span class="o">.</span><span class="n">kraken</span><span class="o">.</span><span class="n">names</span>
+<div class="section" id="bracken">
+<h3>6.4.4. Bracken<a class="headerlink" href="#bracken" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://ccb.jhu.edu/software/bracken/index.shtml">Bracken</a> stands for Bayesian Reestimation of Abundance with KrakEN, and is a statistical method that computes the abundance of species in DNA sequences from a metagenomics sample.
+<a class="reference external" href="https://ccb.jhu.edu/software/bracken/index.shtml">Bracken</a> uses the taxonomy labels assigned by <a class="reference external" href="https://www.ccb.jhu.edu/software/kraken2/">Kraken2</a> (see above) to estimate the number of reads originating from each species present in a sample.
+<a class="reference external" href="https://ccb.jhu.edu/software/bracken/index.shtml">Bracken</a> classifies reads to the best matching location in the taxonomic tree, but does not estimate abundances of species.
+Combined with the Kraken classifier, <a class="reference external" href="https://ccb.jhu.edu/software/bracken/index.shtml">Bracken</a> will produces more accurate species- and genus-level abundance estimates than <a class="reference external" href="https://www.ccb.jhu.edu/software/kraken2/">Kraken2</a> alone.</p>
+<p>The use of <a class="reference external" href="https://ccb.jhu.edu/software/bracken/index.shtml">Bracken</a> subsequent to <a class="reference external" href="https://www.ccb.jhu.edu/software/kraken2/">Kraken2</a> is optional but might improve on the <a class="reference external" href="https://www.ccb.jhu.edu/software/kraken2/">Kraken2</a> results.</p>
+<div class="section" id="id3">
+<h4>6.4.4.1. Installation<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h4>
+<p>We installed <a class="reference external" href="https://ccb.jhu.edu/software/bracken/index.shtml">Bracken</a> already together with <a class="reference external" href="https://www.ccb.jhu.edu/software/kraken2/">Kraken2</a> above, so it should be ready to be used.</p>
+<p>However, we need to download some additional files for the <a class="reference external" href="https://www.ccb.jhu.edu/software/kraken2/">Kraken2</a> database.</p>
+<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">minikraken2_v2_8GB</span>
+<span class="n">wget</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">ccb</span><span class="o">.</span><span class="n">jhu</span><span class="o">.</span><span class="n">edu</span><span class="o">/</span><span class="n">software</span><span class="o">/</span><span class="n">bracken</span><span class="o">/</span><span class="n">dl</span><span class="o">/</span><span class="n">minikraken2_vminikraken2_v2_8GB</span><span class="o">/</span><span class="n">database100mers</span><span class="o">.</span><span class="n">kmer_distrib</span>
+<span class="n">cd</span> <span class="o">-</span>
 </pre></div>
 </div>
-<p>An example output looks like this:</p>
-<pre class="literal-block">
-M02810:197:000000000-AV55U:1:1101:10078:18384/1 d__Archaea
-M02810:197:000000000-AV55U:1:1101:10573:27304/1 d__Viruses|f__Baculoviridae|g__Betabaculovirus|s__Choristoneura_occidentalis_granulovirus
-M02810:197:000000000-AV55U:1:1101:10852:5722/1  d__Viruses|f__Phycodnaviridae|g__Phaeovirus|s__Ectocarpus_siliculosus_virus_1
-M02810:197:000000000-AV55U:1:1101:11429:10330/1 d__Viruses|f__Microviridae|g__Microvirus|s__Enterobacteria_phage_phiX174_sensu_lato
-M02810:197:000000000-AV55U:1:1101:11705:24355/1 d__Archaea
-M02810:197:000000000-AV55U:1:1101:12206:13333/1 d__Viruses|o__Herpesvirales|f__Alloherpesviridae|g__Cyprinivirus|s__Cyprinid_herpesvirus_3
-M02810:197:000000000-AV55U:1:1101:12336:11626/1 d__Viruses|f__Baculoviridae|g__Betabaculovirus|s__Choristoneura_occidentalis_granulovirus
-M02810:197:000000000-AV55U:1:1101:12707:5809/1  d__Archaea
-M02810:197:000000000-AV55U:1:1101:12741:21685/1 d__Viruses|f__Baculoviridae|g__Betabaculovirus|s__Choristoneura_occidentalis_granulovirus
-M02810:197:000000000-AV55U:1:1101:12767:27821/1 d__Archaea
-
-</pre>
-<p>Here, each sequence that got classified is present in one row.
-The nomenclature for the names is preceded with an letter according to its rank, e.g. <strong>(d)omain, (k)ingdom, (p)hylum, (c)lass, (o)rder, (f)amily (g)enus, or (s)pecies</strong>.
-Taxonomy assignments above the superkingdom (<strong>d</strong>) rank are represented as just <strong>root</strong>.</p>
+</div>
+<div class="section" id="id4">
+<h4>6.4.4.2. Usage<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h4>
+<p>Now, we can use <a class="reference external" href="https://ccb.jhu.edu/software/bracken/index.shtml">Bracken</a> on the <a class="reference external" href="https://www.ccb.jhu.edu/software/kraken2/">Kraken2</a> results to improve them.</p>
+<p>The general structure of the <a class="reference external" href="https://ccb.jhu.edu/software/bracken/index.shtml">Bracken</a> command look like this:</p>
+<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">bracken</span> <span class="o">-</span><span class="n">d</span> <span class="n">DB</span> <span class="o">-</span><span class="n">i</span> <span class="n">kraken2</span><span class="o">.</span><span class="n">report</span> <span class="o">-</span><span class="n">o</span> <span class="n">bracken</span><span class="o">.</span><span class="n">species</span><span class="o">.</span><span class="n">txt</span> <span class="o">-</span><span class="n">l</span> <span class="n">S</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">-l</span> <span class="pre">S</span></code>: denotes the level we want to look at. <code class="docutils literal notranslate"><span class="pre">S</span></code> stands for species but other levels are available.</li>
+<li><code class="docutils literal notranslate"><span class="pre">-d</span> <span class="pre">DB</span></code>: specifies the <a class="reference external" href="https://www.ccb.jhu.edu/software/kraken2/">Kraken2</a> database that should be used.</li>
+</ul>
+<p>Let us apply <a class="reference external" href="https://ccb.jhu.edu/software/bracken/index.shtml">Bracken</a> to the example above:</p>
+<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">bracken</span> <span class="o">-</span><span class="n">d</span> <span class="n">minikraken2_v2_8GB</span> <span class="o">-</span><span class="n">i</span> <span class="n">evolved</span><span class="o">-</span><span class="mf">6.</span><span class="n">kraken</span> <span class="o">-</span><span class="n">l</span> <span class="n">S</span> <span class="o">-</span><span class="n">o</span> <span class="n">evolved</span><span class="o">-</span><span class="mf">6.</span><span class="n">bracken</span>
+</pre></div>
+</div>
+<p>The species-focused result-table looks similar to this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">name</span>    <span class="n">taxonomy_id</span>     <span class="n">taxonomy_lvl</span>    <span class="n">kraken_assigned_reads</span>   <span class="n">added_reads</span>     <span class="n">new_est_reads</span>   <span class="n">fraction_total_reads</span>
+<span class="n">Streptococcus</span> <span class="n">sp</span><span class="o">.</span> <span class="n">oral</span> <span class="n">taxon</span> <span class="mi">431</span>        <span class="mi">712633</span>  <span class="n">S</span>       <span class="mi">2</span>       <span class="mi">0</span>       <span class="mi">2</span>       <span class="mf">0.00001</span>
+<span class="n">Neorhizobium</span> <span class="n">sp</span><span class="o">.</span> <span class="n">NCHU2750</span>       <span class="mi">1825976</span> <span class="n">S</span>       <span class="mi">0</span>       <span class="mi">0</span>       <span class="mi">0</span>       <span class="mf">0.00000</span>
+<span class="n">Pseudomonas</span> <span class="n">sp</span><span class="o">.</span> <span class="n">MT</span><span class="o">-</span><span class="mi">1</span>    <span class="mi">150396</span>  <span class="n">S</span>       <span class="mi">0</span>       <span class="mi">0</span>       <span class="mi">0</span>       <span class="mf">0.00000</span>
+<span class="n">Ahniella</span> <span class="n">affigens</span>       <span class="mi">2021234</span> <span class="n">S</span>       <span class="mi">1</span>       <span class="mi">0</span>       <span class="mi">1</span>       <span class="mf">0.00000</span>
+<span class="n">Sinorhizobium</span> <span class="n">sp</span><span class="o">.</span> <span class="n">CCBAU</span> <span class="mi">05631</span>   <span class="mi">794846</span>  <span class="n">S</span>       <span class="mi">0</span>       <span class="mi">0</span>       <span class="mi">0</span>       <span class="mf">0.00000</span>
+<span class="n">Cohnella</span> <span class="n">sp</span><span class="o">.</span> <span class="mi">18</span><span class="n">JY8</span><span class="o">-</span><span class="mi">7</span>    <span class="mi">2480923</span> <span class="n">S</span>       <span class="mi">1</span>       <span class="mi">0</span>       <span class="mi">1</span>       <span class="mf">0.00000</span>
+<span class="n">Bacillus</span> <span class="n">velezensis</span>     <span class="mi">492670</span>  <span class="n">S</span>       <span class="mi">4</span>       <span class="mi">4</span>       <span class="mi">8</span>       <span class="mf">0.00002</span>
+<span class="n">Actinoplanes</span> <span class="n">missouriensis</span>      <span class="mi">1866</span>    <span class="n">S</span>       <span class="mi">2</span>       <span class="mi">8</span>       <span class="mi">10</span>      <span class="mf">0.00002</span>
+</pre></div>
+</div>
+<p>The important column is the <code class="docutils literal notranslate"><span class="pre">new_est_reads</span></code>, which gives the newly estimated reads.</p>
 </div>
 </div>
 </div>
 <div class="section" id="centrifuge">
 <h2>6.5. Centrifuge<a class="headerlink" href="#centrifuge" title="Permalink to this headline">¶</a></h2>
-<p>We can also use the successor to <a class="reference external" href="https://ccb.jhu.edu/software/kraken/">Kraken</a>, a tool by the same group called <a class="reference external" href="http://www.ccb.jhu.edu/software/centrifuge/index.shtml">Centrifuge</a> <a class="reference internal" href="#kim2017" id="id3">[KIM2017]</a>.
+<p>We can also use another tool by the same group called <a class="reference external" href="http://www.ccb.jhu.edu/software/centrifuge/index.shtml">Centrifuge</a> <a class="reference internal" href="#kim2017" id="id5">[KIM2017]</a>.
 This tool uses a novel indexing scheme based on the Burrows-Wheeler transform (BWT) and the Ferragina-Manzini (FM) index, optimized specifically for the metagenomic classification problem to assign a taxonomic labels in form of <a class="reference external" href="https://www.ncbi.nlm.nih.gov/taxonomy">NCBI Taxonomy</a> to the sequence (if possible).
 The result is a classification of the sequence in question to the most likely taxonomic label.
 If the search sequence is not similar to any genomic sequence in the database used, it will not assign any taxonomic label.</p>
-<div class="section" id="id4">
-<h3>6.5.1. Installation<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">I would normally use <a class="reference external" href="https://www.ccb.jhu.edu/software/kraken2/">Kraken2</a> and only prefer <a class="reference external" href="http://www.ccb.jhu.edu/software/centrifuge/index.shtml">Centrifuge</a> if memory and/or speed are an issue .</p>
+</div>
+<div class="section" id="id6">
+<h3>6.5.1. Installation<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
 <p>Use conda in the same fashion as before to install <a class="reference external" href="http://www.ccb.jhu.edu/software/centrifuge/index.shtml">Centrifuge</a>:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda activate ngs
-conda install centrifuge
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda create --yes -n centrifuge centrifuge
+conda activate centrifuge
 </pre></div>
 </div>
 <p>Now we create a directory where we are going to do the analysis and we will change into that directory too.</p>
@@ -462,8 +475,8 @@ tar -xvzf p_compressed.tar.gz
 What are the implications for us when we are trying to classify our sequences?</p>
 </div>
 </div>
-<div class="section" id="id5">
-<h3>6.5.2. Usage<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id7">
+<h3>6.5.2. Usage<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
 <p>Now that we have installed <a class="reference external" href="http://www.ccb.jhu.edu/software/centrifuge/index.shtml">Centrifuge</a> and downloaded and extracted the pre-build database, we can attempt to investigate the sequences we got back from the sequencing provider for other species as the one it should contain.
 We call the <a class="reference external" href="http://www.ccb.jhu.edu/software/centrifuge/index.shtml">Centrifuge</a> tool and specify the database and fasta-file with the sequences it should use. The general command structure looks like this:</p>
 <div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">centrifuge</span> <span class="o">-</span><span class="n">x</span> <span class="n">p_compressed</span> <span class="o">-</span><span class="n">U</span> <span class="n">example</span><span class="o">.</span><span class="n">fa</span> <span class="o">--</span><span class="n">report</span><span class="o">-</span><span class="n">file</span> <span class="n">report</span><span class="o">.</span><span class="n">txt</span> <span class="o">-</span><span class="n">S</span> <span class="n">results</span><span class="o">.</span><span class="n">txt</span>
@@ -497,8 +510,8 @@ Output lines contain eight tab-delimited fields; from left to right, they are ac
 <li>The  number of classifications for this read, indicating how many assignments were made.</li>
 </ol>
 </div>
-<div class="section" id="id6">
-<h3>6.5.3. Investigate taxa<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id8">
+<h3>6.5.3. Investigate taxa<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
 <div class="section" id="centrifuge-report">
 <h4>6.5.3.1. Centrifuge report<a class="headerlink" href="#centrifuge-report" title="Permalink to this headline">¶</a></h4>
 <p>The command above creates a <a class="reference external" href="http://www.ccb.jhu.edu/software/centrifuge/index.shtml">Centrifuge</a> report automatically for us.
@@ -525,7 +538,7 @@ Pseudomonas pseudoalcaligenes   330     species 4691662 1       1       0.017114
 </div>
 <div class="section" id="kraken-like-report">
 <h4>6.5.3.2. Kraken-like report<a class="headerlink" href="#kraken-like-report" title="Permalink to this headline">¶</a></h4>
-<p>If we would like to generate a report as generated with the former tool <a class="reference external" href="https://ccb.jhu.edu/software/kraken/">Kraken</a>, we can do it like this:</p>
+<p>If we would like to generate a report as generated with the former tool <a class="reference external" href="https://www.ccb.jhu.edu/software/kraken2/">Kraken2</a>, we can do it like this:</p>
 <div class="code highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">centrifuge</span><span class="o">-</span><span class="n">kreport</span> <span class="o">-</span><span class="n">x</span> <span class="n">p_compressed</span> <span class="n">evolved</span><span class="o">-</span><span class="mi">6</span><span class="o">-</span><span class="n">R1</span><span class="o">-</span><span class="n">results</span><span class="o">.</span><span class="n">txt</span> <span class="o">&gt;</span> <span class="n">evolved</span><span class="o">-</span><span class="mi">6</span><span class="o">-</span><span class="n">R1</span><span class="o">-</span><span class="n">kreport</span><span class="o">.</span><span class="n">txt</span>
 </pre></div>
 </div>
@@ -552,7 +565,7 @@ Pseudomonas pseudoalcaligenes   330     species 4691662 1       1       0.017114
   0.38  0       0       S       621                     Shigella boydii
 
 </pre>
-<p>This gives a similar (not the same) report as the <a class="reference external" href="https://ccb.jhu.edu/software/kraken/">Kraken</a> tool. The report is tab-delimited, with one line per taxon. The fields of the output, from left-to-right, are as follows:</p>
+<p>This gives a similar (not the same) report as the <a class="reference external" href="https://www.ccb.jhu.edu/software/kraken2/">Kraken2</a> tool. The report is tab-delimited, with one line per taxon. The fields of the output, from left-to-right, are as follows:</p>
 <ol class="arabic simple">
 <li>Percentage of reads covered by the clade rooted at this taxon</li>
 <li>Number of reads covered by the clade rooted at this taxon</li>
@@ -566,15 +579,15 @@ Pseudomonas pseudoalcaligenes   330     species 4691662 1       1       0.017114
 </div>
 <div class="section" id="visualisation-krona">
 <h2>6.6. Visualisation (Krona)<a class="headerlink" href="#visualisation-krona" title="Permalink to this headline">¶</a></h2>
-<p>We use the <a class="reference external" href="https://github.com/marbl/Krona/wiki">Krona</a> tools to create a nice interactive visualisation of the taxa content of our sample <a class="reference internal" href="#ondov2011" id="id7">[ONDOV2011]</a>.
+<p>We use the <a class="reference external" href="https://github.com/marbl/Krona/wiki">Krona</a> tools to create a nice interactive visualisation of the taxa content of our sample <a class="reference internal" href="#ondov2011" id="id9">[ONDOV2011]</a>.
 <a class="reference internal" href="#fig-krona"><span class="std std-numref">Fig. 6.2</span></a> shows an example (albeit an artificial one) snapshot of the visualisation <a class="reference external" href="https://github.com/marbl/Krona/wiki">Krona</a> provides.
 <a class="reference internal" href="#fig-krona"><span class="std std-numref">Fig. 6.2</span></a> is a snapshot of the <a class="reference external" href="../_static/taxonomy.krona.html">interactive web-page</a> similar to the one we try to create.</p>
-<div class="figure" id="id10">
+<div class="figure" id="id12">
 <span id="fig-krona"></span><img alt="../_images/krona.png" src="../_images/krona.png" />
 <p class="caption"><span class="caption-number">Fig. 6.2 </span><span class="caption-text">Example of an Krona output webpage.</span></p>
 </div>
-<div class="section" id="id8">
-<h3>6.6.1. Installation<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id10">
+<h3>6.6.1. Installation<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h3>
 <p>Install <a class="reference external" href="https://github.com/marbl/Krona/wiki">Krona</a> with:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">source</span> activate ngs
 conda install krona
@@ -621,11 +634,11 @@ mv taxonomy.tab ~/krona/taxonomy
 <h3>6.6.3. Visualise<a class="headerlink" href="#visualise" title="Permalink to this headline">¶</a></h3>
 <p>Now, we use the tool <code class="docutils literal notranslate"><span class="pre">ktImportTaxonomy</span></code> from the <a class="reference external" href="https://github.com/marbl/Krona/wiki">Krona</a> tools to create the html web-page.
 We first need build a two column file (<code class="docutils literal notranslate"><span class="pre">read_id&lt;tab&gt;tax_id</span></code>) as input to the <code class="docutils literal notranslate"><span class="pre">ktImportTaxonomy</span></code> tool.
-We will do this by cutting the columns out of either the <a class="reference external" href="https://ccb.jhu.edu/software/kraken/">Kraken</a> or <a class="reference external" href="http://www.ccb.jhu.edu/software/centrifuge/index.shtml">Centrifuge</a> results:</p>
-<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Kraken</span>
+We will do this by cutting the columns out of either the <a class="reference external" href="https://www.ccb.jhu.edu/software/kraken2/">Kraken2</a> or <a class="reference external" href="http://www.ccb.jhu.edu/software/centrifuge/index.shtml">Centrifuge</a> results:</p>
+<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Kraken2</span>
 <span class="n">cd</span> <span class="n">kraken</span>
-<span class="n">cat</span> <span class="n">evolved</span><span class="o">-</span><span class="mi">6</span><span class="o">-</span><span class="n">R1</span><span class="o">.</span><span class="n">kraken</span> <span class="o">|</span> <span class="n">cut</span> <span class="o">-</span><span class="n">f</span> <span class="mi">2</span><span class="p">,</span><span class="mi">3</span> <span class="o">&gt;</span> <span class="n">evolved</span><span class="o">-</span><span class="mi">6</span><span class="o">-</span><span class="n">R1</span><span class="o">.</span><span class="n">kraken</span><span class="o">.</span><span class="n">krona</span>
-<span class="n">ktImportTaxonomy</span> <span class="n">evolved</span><span class="o">-</span><span class="mi">6</span><span class="o">-</span><span class="n">R1</span><span class="o">.</span><span class="n">kraken</span><span class="o">.</span><span class="n">krona</span>
+<span class="n">cat</span> <span class="n">evolved</span><span class="o">-</span><span class="mf">6.</span><span class="n">kraken</span> <span class="o">|</span> <span class="n">cut</span> <span class="o">-</span><span class="n">f</span> <span class="mi">2</span><span class="p">,</span><span class="mi">3</span> <span class="o">&gt;</span> <span class="n">evolved</span><span class="o">-</span><span class="mf">6.</span><span class="n">kraken</span><span class="o">.</span><span class="n">krona</span>
+<span class="n">ktImportTaxonomy</span> <span class="n">evolved</span><span class="o">-</span><span class="mf">6.</span><span class="n">kraken</span><span class="o">.</span><span class="n">krona</span>
 <span class="n">firefox</span> <span class="n">taxonomy</span><span class="o">.</span><span class="n">krona</span><span class="o">.</span><span class="n">html</span>
 
 <span class="c1"># Centrifuge</span>
@@ -635,21 +648,21 @@ We will do this by cutting the columns out of either the <a class="reference ext
 <span class="n">firefox</span> <span class="n">taxonomy</span><span class="o">.</span><span class="n">krona</span><span class="o">.</span><span class="n">html</span>
 </pre></div>
 </div>
-<p>What happens here is that we extract the second and third column from the <a class="reference external" href="https://ccb.jhu.edu/software/kraken/">Kraken</a> results.
+<p>What happens here is that we extract the second and third column from the <a class="reference external" href="https://www.ccb.jhu.edu/software/kraken2/">Kraken2</a> results.
 Afterwards, we input these to the <a class="reference external" href="https://github.com/marbl/Krona/wiki">Krona</a> script, and open the resulting web-page in a bowser.
 Done!</p>
 <p class="rubric">References</p>
 <table class="docutils citation" frame="void" id="kim2017" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id3">[KIM2017]</a></td><td>Kim D, Song L, Breitwieser FP, Salzberg SL. Centrifuge: rapid and
+<tr><td class="label"><a class="fn-backref" href="#id5">[KIM2017]</a></td><td>Kim D, Song L, Breitwieser FP, Salzberg SL. Centrifuge: rapid and
 sensitive classification of metagenomic sequences. <a class="reference external" href="https://www.ncbi.nlm.nih.gov/pubmed/27852649">Genome Res. 2016 Dec;26(12):1721-1729</a></td></tr>
 </tbody>
 </table>
 <table class="docutils citation" frame="void" id="ondov2011" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id7">[ONDOV2011]</a></td><td>Ondov BD, Bergman NH, and Phillippy AM. Interactive metagenomic visualization in a Web browser. <a class="reference external" href="http://www.ncbi.nlm.nih.gov/pubmed/21961884">BMC Bioinformatics, 2011, 12(1):385.</a></td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id9">[ONDOV2011]</a></td><td>Ondov BD, Bergman NH, and Phillippy AM. Interactive metagenomic visualization in a Web browser. <a class="reference external" href="http://www.ncbi.nlm.nih.gov/pubmed/21961884">BMC Bioinformatics, 2011, 12(1):385.</a></td></tr>
 </tbody>
 </table>
 <table class="docutils citation" frame="void" id="wood2014" rules="none">
@@ -682,8 +695,8 @@ sensitive classification of metagenomic sequences. <a class="reference external"
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2016-2018, Sebastian Schmeier (https://sschmeier.com).
-      Last updated on Oct 05, 2018.
+        &copy; Copyright 2016-2019, Sebastian Schmeier (https://sschmeier.com).
+      Last updated on Dec 21, 2018.
 
     </p>
   </div>
@@ -705,7 +718,7 @@ sensitive classification of metagenomic sequences. <a class="reference external"
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'2018.09',
+            VERSION:'2018.12',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',

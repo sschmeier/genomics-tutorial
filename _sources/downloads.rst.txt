@@ -7,7 +7,8 @@ Tools
 -----
 
 * Miniconda installer [ `EXTERNAL <https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh>`__ | `INTERNAL <http://compbio.massey.ac.nz/data/203341/Miniconda3-latest-Linux-x86_64.sh>`__ | `DROPBOX <https://www.dropbox.com/s/tz2wocdzjr4grdy/Miniconda3-latest-Linux-x86_64.sh?dl=0>`__ ]
-* Minikraken database [ `EXTERNAL <http://ccb.jhu.edu/software/kraken/dl/minikraken.tgz>`__ | `INTERNAL <http://compbio.massey.ac.nz/data/203341/minikraken.tgz>`__ | `DROPBOX <https://www.dropbox.com/s/lje0ykzdxtq3rpk/minikraken.tgz?dl=0>`__ ]
+* Minikraken database [ `EXTERNAL <https://www.ccb.jhu.edu/software/kraken2/dl/minikraken2_v2_8GB.tgz>`__ ]
+* Bracken file [`EXTERANAL <https://ccb.jhu.edu/software/bracken/dl/minikraken2_v2/database100mers.kmer_distrib>`__ ]
 * Centrifuge database [ `EXTERNAL <ftp://ftp.ccb.jhu.edu/pub/infphilo/centrifuge/data/p_compressed.tar.gz>`__ | `INTERNAL <http://compbio.massey.ac.nz/data/203341/p_compressed.tar.gz>`__ | `DROPBOX <https://www.dropbox.com/s/a4u6u37ngk2nawx/p_compressed.tar.gz?dl=0>`__ ]
 * Krona taxonomy database [ `INTERNAL <http://compbio.massey.ac.nz/data/203341/taxonomy.tab.gz>`__ | `DROPBOX <https://www.dropbox.com/s/cwf1qc5zyq65yvn/taxonomy.tab.gz?dl=0>`__ ]
 * SolexaQA++ [ `EXTERNAL <https://downloads.sourceforge.net/project/solexaqa/src/SolexaQA%2B%2B_v3.1.7.1.zip?r=https%3A%2F%2Fsourceforge.net%2Fprojects%2Fsolexaqa%2Ffiles%2F&ts=1495062885&use_mirror=iweb>`__ | `INTERNAL <http://compbio.massey.ac.nz/data/203341/SolexaQA.tar.gz>`__ | `DROPBOX <https://www.dropbox.com/s/r9a7hg0tlwe6pk4/SolexaQA.tar.gz?dl=0>`__ ]
@@ -29,7 +30,7 @@ Data
 * :ref:`ngs-orthology`: *S. cerevisiase* TEF2 gene file [ `INTERNAL <http://compbio.massey.ac.nz/data/203341/s_cerev_tef2.fas>`__ | `DROPBOX <https://www.dropbox.com/s/ooxl2q0vp0bzmq3/s_cerev_tef2.fas?dl=0>`__ ]
 * :ref:`ngs-orthology`: BLAST file [ `INTERNAL <http://compbio.massey.ac.nz/data/203341/blast_u.fas>`__ | `DROPBOX <https://www.dropbox.com/s/ul4dzx44lfoewzx/blast_u.fas?dl=0>`__ ]
 * :ref:`ngs-voi`: SnpEff annotated vcf-file [ `INTERNAL <http://compbio.massey.ac.nz/data/203341/evolved-6.freebayes.filtered.anno.vcf>`__ | `DROPBOX <https://www.dropbox.com/s/67m45v5fghdh0d3/evolved-6.freebayes.filtered.anno.vcf?dl=0>`__ ]
-  
+
 
 .. only:: builder_html
 
