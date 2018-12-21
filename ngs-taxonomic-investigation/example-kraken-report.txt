@@ -1,10 +1,12 @@
-  0.00	0	0	U	0	unclassified
-100.00	2665	47	-	1	root
- 54.56	1454	0	-	131567	  cellular organisms
- 38.50	1026	1023	D	2157	    Archaea
-  0.08	2	0	P	651137	      Thaumarchaeota
-  0.08	2	0	-	651142	        unclassified Thaumarchaeota
-  0.08	2	0	G	1048752	          Candidatus Caldiarchaeum
-  0.08	2	2	S	311458	            Candidatus Caldiarchaeum subterraneum
-  0.04	1	0	P	28890	      Euryarchaeota
-  0.04	1	0	C	183967	        Thermoplasmata
+83.56  514312  514312  U       0       unclassified
+16.44  101180  0       R       1       root
+16.44  101180  0       R1      131567    cellular organisms
+16.44  101180  2775    D       2           Bacteria
+13.99  86114   1       D1      1783270       FCB group
+13.99  86112   0       D2      68336           Bacteroidetes/Chlorobi group
+13.99  86103   8       P       976               Bacteroidetes
+13.94  85798   2       C       200643              Bacteroidia
+13.94  85789   19      O       171549                Bacteroidales
+13.87  85392   0       F       815                     Bacteroidaceae
+13.87  85392   170     G       816                       Bacteroides
+13.71  84366   32233   S       817                         Bacteroides fragilis
