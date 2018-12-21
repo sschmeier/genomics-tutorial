@@ -113,16 +113,16 @@
 <li class="toctree-l3"><a class="reference internal" href="#usage">6.4.2. Usage</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#investigate-taxa">6.4.3. Investigate taxa</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#bracken">6.4.4. Bracken</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#id3">6.4.4.1. Installation</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id4">6.4.4.2. Usage</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id4">6.4.4.1. Installation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id5">6.4.4.2. Usage</a></li>
 </ul>
 </li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#centrifuge">6.5. Centrifuge</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id6">6.5.1. Installation</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id7">6.5.2. Usage</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id8">6.5.3. Investigate taxa</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id7">6.5.1. Installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id8">6.5.2. Usage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id9">6.5.3. Investigate taxa</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#centrifuge-report">6.5.3.1. Centrifuge report</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#kraken-like-report">6.5.3.2. Kraken-like report</a></li>
 </ul>
@@ -130,7 +130,7 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#visualisation-krona">6.6. Visualisation (Krona)</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id10">6.6.1. Installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id11">6.6.1. Installation</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#build-the-taxonomy">6.6.2. Build the taxonomy</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#visualise">6.6.3. Visualise</a></li>
 </ul>
@@ -224,7 +224,7 @@ Let us see if we can id some sequences from other species.</p>
 <div class="section" id="overview">
 <h2>6.2. Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
 <p>The part of the workflow we will work on in this section can be viewed in <a class="reference internal" href="#fig-workflow-taxa"><span class="std std-numref">Fig. 6.1</span></a>.</p>
-<div class="figure" id="id11">
+<div class="figure" id="id12">
 <span id="fig-workflow-taxa"></span><img alt="../_images/workflow5.png" src="../_images/workflow5.png" />
 <p class="caption"><span class="caption-number">Fig. 6.1 </span><span class="caption-text">The part of the workflow we will work on in this section marked in red.</span></p>
 </div>
@@ -380,13 +380,13 @@ The columns are the same as in the former report, however, we have more rows and
 </div>
 <div class="section" id="bracken">
 <h3>6.4.4. Bracken<a class="headerlink" href="#bracken" title="Permalink to this headline">¶</a></h3>
-<p><a class="reference external" href="https://ccb.jhu.edu/software/bracken/index.shtml">Bracken</a> stands for Bayesian Reestimation of Abundance with KrakEN, and is a statistical method that computes the abundance of species in DNA sequences from a metagenomics sample.
+<p><a class="reference external" href="https://ccb.jhu.edu/software/bracken/index.shtml">Bracken</a> stands for Bayesian Reestimation of Abundance with KrakEN, and is a statistical method that computes the abundance of species in DNA sequences from a metagenomics sample <a class="reference internal" href="#lu2017" id="id3">[LU2017]</a>.
 <a class="reference external" href="https://ccb.jhu.edu/software/bracken/index.shtml">Bracken</a> uses the taxonomy labels assigned by <a class="reference external" href="https://www.ccb.jhu.edu/software/kraken2/">Kraken2</a> (see above) to estimate the number of reads originating from each species present in a sample.
 <a class="reference external" href="https://ccb.jhu.edu/software/bracken/index.shtml">Bracken</a> classifies reads to the best matching location in the taxonomic tree, but does not estimate abundances of species.
 Combined with the Kraken classifier, <a class="reference external" href="https://ccb.jhu.edu/software/bracken/index.shtml">Bracken</a> will produces more accurate species- and genus-level abundance estimates than <a class="reference external" href="https://www.ccb.jhu.edu/software/kraken2/">Kraken2</a> alone.</p>
 <p>The use of <a class="reference external" href="https://ccb.jhu.edu/software/bracken/index.shtml">Bracken</a> subsequent to <a class="reference external" href="https://www.ccb.jhu.edu/software/kraken2/">Kraken2</a> is optional but might improve on the <a class="reference external" href="https://www.ccb.jhu.edu/software/kraken2/">Kraken2</a> results.</p>
-<div class="section" id="id3">
-<h4>6.4.4.1. Installation<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id4">
+<h4>6.4.4.1. Installation<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h4>
 <p>We installed <a class="reference external" href="https://ccb.jhu.edu/software/bracken/index.shtml">Bracken</a> already together with <a class="reference external" href="https://www.ccb.jhu.edu/software/kraken2/">Kraken2</a> above, so it should be ready to be used.</p>
 <p>However, we need to download some additional files for the <a class="reference external" href="https://www.ccb.jhu.edu/software/kraken2/">Kraken2</a> database.</p>
 <div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">minikraken2_v2_8GB</span>
@@ -395,8 +395,8 @@ Combined with the Kraken classifier, <a class="reference external" href="https:/
 </pre></div>
 </div>
 </div>
-<div class="section" id="id4">
-<h4>6.4.4.2. Usage<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id5">
+<h4>6.4.4.2. Usage<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h4>
 <p>Now, we can use <a class="reference external" href="https://ccb.jhu.edu/software/bracken/index.shtml">Bracken</a> on the <a class="reference external" href="https://www.ccb.jhu.edu/software/kraken2/">Kraken2</a> results to improve them.</p>
 <p>The general structure of the <a class="reference external" href="https://ccb.jhu.edu/software/bracken/index.shtml">Bracken</a> command look like this:</p>
 <div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">bracken</span> <span class="o">-</span><span class="n">d</span> <span class="n">DB</span> <span class="o">-</span><span class="n">i</span> <span class="n">kraken2</span><span class="o">.</span><span class="n">report</span> <span class="o">-</span><span class="n">o</span> <span class="n">bracken</span><span class="o">.</span><span class="n">species</span><span class="o">.</span><span class="n">txt</span> <span class="o">-</span><span class="n">l</span> <span class="n">S</span>
@@ -428,7 +428,7 @@ Combined with the Kraken classifier, <a class="reference external" href="https:/
 </div>
 <div class="section" id="centrifuge">
 <h2>6.5. Centrifuge<a class="headerlink" href="#centrifuge" title="Permalink to this headline">¶</a></h2>
-<p>We can also use another tool by the same group called <a class="reference external" href="http://www.ccb.jhu.edu/software/centrifuge/index.shtml">Centrifuge</a> <a class="reference internal" href="#kim2017" id="id5">[KIM2017]</a>.
+<p>We can also use another tool by the same group called <a class="reference external" href="http://www.ccb.jhu.edu/software/centrifuge/index.shtml">Centrifuge</a> <a class="reference internal" href="#kim2017" id="id6">[KIM2017]</a>.
 This tool uses a novel indexing scheme based on the Burrows-Wheeler transform (BWT) and the Ferragina-Manzini (FM) index, optimized specifically for the metagenomic classification problem to assign a taxonomic labels in form of <a class="reference external" href="https://www.ncbi.nlm.nih.gov/taxonomy">NCBI Taxonomy</a> to the sequence (if possible).
 The result is a classification of the sequence in question to the most likely taxonomic label.
 If the search sequence is not similar to any genomic sequence in the database used, it will not assign any taxonomic label.</p>
@@ -436,8 +436,8 @@ If the search sequence is not similar to any genomic sequence in the database us
 <p class="first admonition-title">Note</p>
 <p class="last">I would normally use <a class="reference external" href="https://www.ccb.jhu.edu/software/kraken2/">Kraken2</a> and only prefer <a class="reference external" href="http://www.ccb.jhu.edu/software/centrifuge/index.shtml">Centrifuge</a> if memory and/or speed are an issue .</p>
 </div>
-<div class="section" id="id6">
-<h3>6.5.1. Installation<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id7">
+<h3>6.5.1. Installation<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
 <p>Use conda in the same fashion as before to install <a class="reference external" href="http://www.ccb.jhu.edu/software/centrifuge/index.shtml">Centrifuge</a>:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda create --yes -n centrifuge centrifuge
 conda activate centrifuge
@@ -475,8 +475,8 @@ tar -xvzf p_compressed.tar.gz
 What are the implications for us when we are trying to classify our sequences?</p>
 </div>
 </div>
-<div class="section" id="id7">
-<h3>6.5.2. Usage<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id8">
+<h3>6.5.2. Usage<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
 <p>Now that we have installed <a class="reference external" href="http://www.ccb.jhu.edu/software/centrifuge/index.shtml">Centrifuge</a> and downloaded and extracted the pre-build database, we can attempt to investigate the sequences we got back from the sequencing provider for other species as the one it should contain.
 We call the <a class="reference external" href="http://www.ccb.jhu.edu/software/centrifuge/index.shtml">Centrifuge</a> tool and specify the database and fasta-file with the sequences it should use. The general command structure looks like this:</p>
 <div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">centrifuge</span> <span class="o">-</span><span class="n">x</span> <span class="n">p_compressed</span> <span class="o">-</span><span class="n">U</span> <span class="n">example</span><span class="o">.</span><span class="n">fa</span> <span class="o">--</span><span class="n">report</span><span class="o">-</span><span class="n">file</span> <span class="n">report</span><span class="o">.</span><span class="n">txt</span> <span class="o">-</span><span class="n">S</span> <span class="n">results</span><span class="o">.</span><span class="n">txt</span>
@@ -510,8 +510,8 @@ Output lines contain eight tab-delimited fields; from left to right, they are ac
 <li>The  number of classifications for this read, indicating how many assignments were made.</li>
 </ol>
 </div>
-<div class="section" id="id8">
-<h3>6.5.3. Investigate taxa<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id9">
+<h3>6.5.3. Investigate taxa<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h3>
 <div class="section" id="centrifuge-report">
 <h4>6.5.3.1. Centrifuge report<a class="headerlink" href="#centrifuge-report" title="Permalink to this headline">¶</a></h4>
 <p>The command above creates a <a class="reference external" href="http://www.ccb.jhu.edu/software/centrifuge/index.shtml">Centrifuge</a> report automatically for us.
@@ -579,15 +579,15 @@ Pseudomonas pseudoalcaligenes   330     species 4691662 1       1       0.017114
 </div>
 <div class="section" id="visualisation-krona">
 <h2>6.6. Visualisation (Krona)<a class="headerlink" href="#visualisation-krona" title="Permalink to this headline">¶</a></h2>
-<p>We use the <a class="reference external" href="https://github.com/marbl/Krona/wiki">Krona</a> tools to create a nice interactive visualisation of the taxa content of our sample <a class="reference internal" href="#ondov2011" id="id9">[ONDOV2011]</a>.
+<p>We use the <a class="reference external" href="https://github.com/marbl/Krona/wiki">Krona</a> tools to create a nice interactive visualisation of the taxa content of our sample <a class="reference internal" href="#ondov2011" id="id10">[ONDOV2011]</a>.
 <a class="reference internal" href="#fig-krona"><span class="std std-numref">Fig. 6.2</span></a> shows an example (albeit an artificial one) snapshot of the visualisation <a class="reference external" href="https://github.com/marbl/Krona/wiki">Krona</a> provides.
 <a class="reference internal" href="#fig-krona"><span class="std std-numref">Fig. 6.2</span></a> is a snapshot of the <a class="reference external" href="../_static/taxonomy.krona.html">interactive web-page</a> similar to the one we try to create.</p>
-<div class="figure" id="id12">
+<div class="figure" id="id13">
 <span id="fig-krona"></span><img alt="../_images/krona.png" src="../_images/krona.png" />
 <p class="caption"><span class="caption-number">Fig. 6.2 </span><span class="caption-text">Example of an Krona output webpage.</span></p>
 </div>
-<div class="section" id="id10">
-<h3>6.6.1. Installation<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id11">
+<h3>6.6.1. Installation<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h3>
 <p>Install <a class="reference external" href="https://github.com/marbl/Krona/wiki">Krona</a> with:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">source</span> activate ngs
 conda install krona
@@ -655,14 +655,20 @@ Done!</p>
 <table class="docutils citation" frame="void" id="kim2017" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id5">[KIM2017]</a></td><td>Kim D, Song L, Breitwieser FP, Salzberg SL. Centrifuge: rapid and
+<tr><td class="label"><a class="fn-backref" href="#id6">[KIM2017]</a></td><td>Kim D, Song L, Breitwieser FP, Salzberg SL. Centrifuge: rapid and
 sensitive classification of metagenomic sequences. <a class="reference external" href="https://www.ncbi.nlm.nih.gov/pubmed/27852649">Genome Res. 2016 Dec;26(12):1721-1729</a></td></tr>
+</tbody>
+</table>
+<table class="docutils citation" frame="void" id="lu2017" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id3">[LU2017]</a></td><td>Lu J, Breitwieser FP, Thielen P, Salzberg SL. Bracken: estimating species abundance in metagenomics data. <a class="reference external" href="https://peerj.com/articles/cs-104/">PeerJ Computer Science, 2017, 3:e104, doi:10.7717/peerj-cs.104</a></td></tr>
 </tbody>
 </table>
 <table class="docutils citation" frame="void" id="ondov2011" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id9">[ONDOV2011]</a></td><td>Ondov BD, Bergman NH, and Phillippy AM. Interactive metagenomic visualization in a Web browser. <a class="reference external" href="http://www.ncbi.nlm.nih.gov/pubmed/21961884">BMC Bioinformatics, 2011, 12(1):385.</a></td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id10">[ONDOV2011]</a></td><td>Ondov BD, Bergman NH, and Phillippy AM. Interactive metagenomic visualization in a Web browser. <a class="reference external" href="http://www.ncbi.nlm.nih.gov/pubmed/21961884">BMC Bioinformatics, 2011, 12(1):385.</a></td></tr>
 </tbody>
 </table>
 <table class="docutils citation" frame="void" id="wood2014" rules="none">

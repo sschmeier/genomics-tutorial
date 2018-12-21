@@ -207,7 +207,7 @@ The columns are the same as in the former report, however, we have more rows and
 Bracken
 ^^^^^^^
 
-|bracken| stands for Bayesian Reestimation of Abundance with KrakEN, and is a statistical method that computes the abundance of species in DNA sequences from a metagenomics sample.
+|bracken| stands for Bayesian Reestimation of Abundance with KrakEN, and is a statistical method that computes the abundance of species in DNA sequences from a metagenomics sample [LU2017]_.
 |bracken| uses the taxonomy labels assigned by |kraken| (see above) to estimate the number of reads originating from each species present in a sample.
 |bracken| classifies reads to the best matching location in the taxonomic tree, but does not estimate abundances of species.
 Combined with the Kraken classifier, |bracken| will produces more accurate species- and genus-level abundance estimates than |kraken| alone.
@@ -525,6 +525,9 @@ Done!
 
 .. [KIM2017] Kim D, Song L, Breitwieser FP, Salzberg SL. Centrifuge: rapid and
              sensitive classification of metagenomic sequences. `Genome Res. 2016 Dec;26(12):1721-1729 <https://www.ncbi.nlm.nih.gov/pubmed/27852649>`__
+
+.. [LU2017] Lu J, Breitwieser FP, Thielen P, Salzberg SL. Bracken: estimating species abundance in metagenomics data. `PeerJ Computer Science, 2017, 3:e104, doi:10.7717/peerj-cs.104 <https://peerj.com/articles/cs-104/>`__
+
 
 .. [ONDOV2011] Ondov BD, Bergman NH, and Phillippy AM. Interactive metagenomic visualization in a Web browser. `BMC Bioinformatics, 2011, 12(1):385. <http://www.ncbi.nlm.nih.gov/pubmed/21961884>`__
 
