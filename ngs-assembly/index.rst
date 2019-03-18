@@ -80,7 +80,7 @@ Now that ``seqtk`` has been installed, we are going to sample 10% of the origina
 
     # sub sample reads
     seqtk sample -s11 trimmed/ancestor-R1.fastq.trimmed.gz 0.1 | gzip > sampled/ancestor-R1.fastq.trimmed.gz
-    seqtk sample -s11 trimmed/ancestor-R1.fastq.trimmed.gz 0.1 | gzip > sampled/ancestor-R1.fastq.trimmed.gz
+    seqtk sample -s11 trimmed/ancestor-R2.fastq.trimmed.gz 0.1 | gzip > sampled/ancestor-R2.fastq.trimmed.gz
 
 
 In the commands below you need to change the input directory from ``trimmed/`` to ``sampled/``.
