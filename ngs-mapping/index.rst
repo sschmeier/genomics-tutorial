@@ -83,7 +83,7 @@ We are going to use the quality trimmed forward and backward DNA sequences of th
 Installing the software
 ~~~~~~~~~~~~~~~~~~~~~~~
 
-We are going to use a program called |bowtie| fo map our reads to a genome.
+We are going to use a program called |bwa| to map our reads to our genome.
 
 It is simple to install and use.
 
