@@ -210,14 +210,19 @@ Now we are going to run the program on our paired-end data:
     # as we are dealing with paired-end data you will be using "sickle pe"
     sickle pe --help
 
-    # run sickle like this:
+    # run sickle like this on the ancestor:
     sickle pe -g -t sanger -f data/ancestor-R1.fastq.gz -r data/ancestor-R2.fastq.gz -o trimmed/ancestor-R1.trimmed.fastq.gz -p trimmed/ancestor-R2.trimmed.fastq.gz -s trimmed/ancestor-singles.fastq.gz
   
+
+.. todo::
+ 
+	#. Run |sickle| also on the evolved samples. 
+
 
 
 .. hint::
 
-   Should you be unable to run |sickle| at all to trim the data. You can download the trimmed dataset `here <http://compbio.massey.ac.nz/data/203341/trimmed.tar.gz>`__. Unarchive and uncompress the files with ``tar -xvzf trimmed.tar.gz``.
+   Should you not get the command togeter to trim the evolved samples, have a look at the coding solutions at :ref:`code-sickle`. Should you be unable to run |sickle| at all to trim the data. You can download the trimmed dataset `here <http://compbio.massey.ac.nz/data/203341/trimmed.tar.gz>`__. Unarchive and uncompress the files with ``tar -xvzf trimmed.tar.gz``.
 
 
 

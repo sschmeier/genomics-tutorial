@@ -1,8 +1,25 @@
+.. _ngs-code:
+
 Coding solutions
 ================
 
+
 QC
 --
+
+.. _code-sickle:
+
+Code: Sickle
+~~~~~~~~~~~~
+
+.. code:: bash
+
+   # run sickle like this on the ancestor:
+   sickle pe -g -t sanger -f data/ancestor-R1.fastq.gz -r data/ancestor-R2.fastq.gz -o trimmed/ancestor-R1.trimmed.fastq.gz -p trimmed/ancestor-R2.trimmed.fastq.gz -s trimmed/ancestor-singles.fastq.gz
+
+   # run the evolved samples through sickle
+   sickle pe -g -t sanger -f data/evolved-6-R1.fastq.gz -r data/evolved-6-R2.fastq.gz -o trimmed/evolved-6-R1.trimmed.fastq.gz -p trimmed/evolved-6-R2.trimmed.fastq.gz -s trimmed/evolved-6-singles.fastq.gz
+
 
 .. _code-qc1:
 
