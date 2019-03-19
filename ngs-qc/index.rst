@@ -152,6 +152,7 @@ Adapter trimming
 
 The process of sequencing DNA via |illumina| technology requires the addition of some adapters to the sequences.
 These get sequenced as well and need to be removed as they are artificial and do not belong to the species we try to sequence.
+Generally speaking adapter trimming takes time.
 
 
 .. attention::
@@ -184,147 +185,12 @@ Using the tool together with a adapter/contaminants list in fasta-file (here den
    
 - ``-o``: Specifies the output-files. These are fastq-files for forward and reverse read, with adapters removed.
   
-   
 
-Quality assessment of sequencing reads (SolexaQA++)
----------------------------------------------------
-
-To assess the sequence read quality of the |illumina| run we make use of a program called |solexaqa| [COX2010]_.
-|solexaqa| was originally developed to work with Solexa data (since bought by |illumina|), but long since working with |illumina| data.
-It produces nice graphics that intuitively show the quality of the sequences. it is also able to dynamically trim the bad quality ends off the reads.
-
-From the webpage:
-
-    "SolexaQA calculates sequence quality statistics and creates visual
-    representations of data quality for second-generation sequencing
-    data. Originally developed for the Illumina system (historically
-    known as "Solexa"), SolexaQA now also supports Ion Torrent and 454
-    data."
-
-    
-Install SolexaQA++
-~~~~~~~~~~~~~~~~~~
-
-Unfortunately, currently we cannot install |solexaqa| with |conda|.
-
-.. code:: bash
-
-    curl -O http://compbio.massey.ac.nz/data/203341/SolexaQA.tar.gz
-   
-    # uncompress the archive
-    tar -xvzf SolexaQA.tar.gz
-    
-    # make the file executable
-    chmod a+x SolexaQA/Linux_x64/SolexaQA++
-
-    # copy program to root folder
-    cp ./SolexaQA/Linux_x64/SolexaQA++ .
-    
-    # run the program
-    ./SolexaQA++
+Sickle for dynamic trimming 
+---------------------------
 
 
-.. note::
-
-   Should the download fail, download manually from :ref:`downloads`.
-
-    
-SolexaQA++ manual
-~~~~~~~~~~~~~~~~~
-
-|solexaqa| has three modes that can be run. Type:
-
-.. code:: bash
-
-     ./SolexaQA++
-     
-.. code:: bash
-
-    SolexaQA++ v3.1.3
-    Released under GNU General Public License version 3
-    C++ version developed by Mauro Truglio (M.Truglio@massey.ac.nz)
-
-    Usage: SolexaQA++ <command> [options]
-
-    Command: analysis      quality analysis and graphs generation
-             dynamictrim    trim reads using a chosen threshold
-             lengthsort  sort reads by a chosen length
-
-The three modes are: ``analysis``, ``dynamictrim``, and ``lengthsort``:
-
-``analysis`` - the primary quality analysis and visualization tool.
-Designed to run on unmodified FASTQ files obtained directly from
-|illumina|, Ion Torrent or 454 sequencers.
-
-``dynamictrim`` - a read trimmer that individually crops each read to
-its longest contiguous segment for which quality scores are greater than
-a user-supplied quality cutoff.
-
-``lengthsort`` - a program to separate high quality reads from low
-quality reads. LengthSort assigns trimmed reads to paired-end, singleton
-and discard files based on a user-defined length cutoff.
-
-
-SolexaQA++ dynamic trimming
-~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-We will use |solexaqa| dynamic trim the reads, to chop of nucleotides witha a bad quality score.
-
-.. todo::
-
-    #. Create a directory for the result-files --> **trimmed/**.
-    #. Run |solexaqa| ``dynamictrim`` with the untrimmed data and a probability cutoff of 0.05., and submit result-directory **trimmed/**.
-    #. Investigate the result-files in **trimmed/**, e.g. do the file-sizes change to the original files?
-    #. |solexaqa| ``dynamictrim`` produces a graphical output. Explain what the graph shows. Find heklp on the |solexaqa| website.
-
-.. hint::
-
-   Should you not get 1 and/or 2 right, try the commands in :ref:`code-qc2`.
-
-   
-SolexaQA++ analysis on trimmed data
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-
-.. todo::
-
-    #. Create a directory for the result-files --> **trimmed-solexaqa**.
-    #. Use |solexaqa| to do the quality assessment with the trimmed data-set.
-    #. Compare your results to the examples of a particularly bad MiSeq run (:numref:`solexaqa_heatmap_bad` to :numref:`solexaqa_heatmap_bad`, taken from |solexaqa| website). Write down your observations.
-    #. What elements in these example figures (:numref:`solexaqa_quality_bad` to :numref:`solexaqa_heatmap_bad`) indicate that the show a bad run? Write down your explanations.
-
-.. hint::
-
-   Should you not get 1 and/or 2 it right, try the commands in :ref:`code-qc3`.
-
-
-.. _solexaqa_quality_bad:
-.. figure:: images/solexaqa_quality_bad.png
-
-   SolexaQA++ example quality plot along reads of a bad MiSeq run
-
-.. _solexaqa_hist_bad:
-.. figure:: images/solexaqa_hist_bad.png
-
-   SolexaQA++ example histogram plot of a bad MiSeq run.
-
-.. _solexaqa_cumulative_bad:
-.. figure:: images/solexaqa_cumulative_bad.png
-
-   SolexaQA++ example cumulative plot of a bad MiSeq run.
-
-.. _solexaqa_heatmap_bad:
-.. figure:: images/solexaqa_heatmap_bad.png
-
-   SolexaQA++ example quality heatmap of a bad MiSeq run.
-
-
-   
-Sickle for dynamic trimming (alternative to SolexaQA++)
--------------------------------------------------------
-
-
-Should the dynamic trimming not work with |solexaqa|, you can alternatively use |sickle|.
+We are using a simple program |sickle| for dynamic trimming of our sequencing reads to remove bad quality called bases from our reads. 
 
 .. code:: bash
 
@@ -344,13 +210,15 @@ Now we are going to run the program on our paired-end data:
     # as we are dealing with paired-end data you will be using "sickle pe"
     sickle pe --help
 
-    # run sickle like so:
+    # run sickle like this:
     sickle pe -g -t sanger -f data/ancestor-R1.fastq.gz -r data/ancestor-R2.fastq.gz -o trimmed/ancestor-R1.trimmed.fastq.gz -p trimmed/ancestor-R2.trimmed.fastq.gz -s trimmed/ancestor-singles.fastq.gz
   
 
+
 .. hint::
 
-   Should you be unable to run |sickle| or |solexaqa| at all to trim the data. You can download the trimmed dataset `here <http://compbio.massey.ac.nz/data/203341/trimmed.tar.gz>`__. Unarchive and uncompress the files with ``tar -xvzf trimmed.tar.gz``.
+   Should you be unable to run |sickle| at all to trim the data. You can download the trimmed dataset `here <http://compbio.massey.ac.nz/data/203341/trimmed.tar.gz>`__. Unarchive and uncompress the files with ``tar -xvzf trimmed.tar.gz``.
+
 
 
 Quality assessment of sequencing reads (FastQC)
@@ -398,7 +266,7 @@ Installing FastQC
 FastQC manual
 ~~~~~~~~~~~~~
 
-|fastqc| is a very simple program to run that provides similar and additional information to |solexaqa|.
+|fastqc| is a very simple program to run that provides inforation about sequence read quality.
 
 From the webpage:
 
@@ -477,8 +345,6 @@ Run FastQC on the untrimmed and trimmed data
    .. rubric:: References
 
                
-
-.. [COX2010] Cox MP, Peterson DA and Biggs PJ. SolexaQA: At-a-glance quality assessment of Illumina second-generation sequencing data. `BMC Bioinformatics, 2010, 11:485. DOI: 10.1186/1471-2105-11-485 <http://doi.org/10.1186/1471-2105-11-485>`__
 
 .. [GLENN2011] Glenn T. Field guide to next-generation DNA sequencers. `Molecular Ecology Resources (2011) 11, 759–769 doi: 10.1111/j.1755-0998.2011.03024.x <http://doi.org/10.1111/j.1755-0998.2011.03024.x>`__
 
