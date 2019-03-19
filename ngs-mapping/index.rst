@@ -55,11 +55,18 @@ Lets see how our directory structure looks so far:
           assembly/
           data/
           mappings/
+          (sampled/)
           SolexaQA/
           SolexaQA++
           trimmed/
           trimmed-fastqc/
           trimmed-solexaqa/
+
+
+.. attention::
+
+    If you sampled reads randomly for the assembly tutorial in the last section, please go and download first the assembly on the full data set. This can be found under :ref:`downloads`. Unarchive and uncompress the files with ``tar -xvzf assembly.tar.gz``.
+
 
 
 Mapping sequence reads to a reference genome
@@ -76,22 +83,96 @@ We are going to use the quality trimmed forward and backward DNA sequences of th
 Installing the software
 ~~~~~~~~~~~~~~~~~~~~~~~
 
-We are going to use a program called |bowtie| fo map our reads to a genome.
+We are going to use a program called |bwa| to map our reads to our genome.
 
 It is simple to install and use.
 
 .. code:: bash
 
           conda activate ngs
-          conda install samtools
-          conda install bamtools
-          conda install bedtools
-          conda install bowtie2
-          conda install bwa
+          conda install bedtools samtools bwa
+
+
+BWA
+---
+
+
+Overview
+~~~~~~~~
+
+|bwa| is a short read aligner, that can take a reference genome and map single- or paired-end data to it [LI2009]_.
+It requires an indexing step in which one supplies the reference genome and |bwa| will create an index that in the subsequent steps will be used for aligning the reads to the reference genome.
+The general command structure of the |bwa| tools we are going to use are shown below:
+
+.. code:: bash
+
+   # bwa index help
+   bwa index
+
+   # indexing
+   bwa index path/to/reference-genome.fa
+
+   # bwa mem help
+   bwa mem
+
+   # single-end mapping
+   bwa mem path/to/reference-genome.fa path/to/reads.fq > path/to/aln-se.sam
+
+   # paired-end mapping
+   bwa mem path/to/reference-genome.fa path/to/read1.fq path/to/read2.fq > path/to/aln-pe.sam
+
+
+Creating a reference index for mapping
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. todo::
+
+   Create an |bwa| index for our reference genome assembly. Attention! Remember which file you need to submit to |bwa|.
+
+
+.. hint::
+
+   Should you not get it right, try the commands in :ref:`code-bwa1`.
+
+
+.. note::
+
+   Should you be unable to run |bwa| indexing on the data, you can download the index from :ref:`downloads`. Unarchive and uncompress the files with ``tar -xvzf bwa-index.tar.gz``.
+
+
+
+
+Mapping reads in a paired-end manner
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Now that we have created our index, it is time to map the filtered and trimmed sequencing reads of our evolved line to the reference genome.
+
+.. todo::
+
+   Use the correct ``bwa mem`` command structure from above and map the reads of the evolved line to the reference genome.
+
+
+.. hint::
+
+   Should you not get it right, try the commands in :ref:`code-bwa2`.
+
 
 
 Bowtie2
 -------
+
+.. Attention::
+
+   If the mapping did not succeed with |bwa|. We can use the aligner |bowtie| explained in this section. If the mapping with |bwa| did work, you can jump this section. You can jump straight ahead to :numref:`sam-file-format`.
+
+
+Install with:
+
+
+.. code:: bash
+
+    conda install bowtie2
+
 
 Overview
 ~~~~~~~~
@@ -107,10 +188,10 @@ The general command structure of the |bowtie| tools we are going to use are show
    bowtie2-build
 
    # indexing
-   bowtie2-build genome.fasta PATH_TO_INDEX_PREFIX
+   bowtie2-build genome.fasta /path/to/index/prefix
 
    # paired-end mapping
-   bowtie2 -X 1000 -x PATH_TO_INDEX_PREFIX -1 read1.fq.gz -2 read2.fq.gz -S aln-pe.sam
+   bowtie2 -X 1000 -x /path/to/index/prefix -1 read1.fq.gz -2 read2.fq.gz -S aln-pe.sam
 
 
 - ``-X``: Adjust the maximum fragment size (length of paired-end alignments + insert size) to 1000bp. This might be useful if you do not know the exact insert size of your data. The |bowtie| default is set to 500 which is `often considered too short <http://lab.loman.net/2013/05/02/use-x-with-bowtie2-to-set-minimum-and-maximum-insert-sizes-for-nextera-libraries/>`__.
@@ -153,75 +234,6 @@ Now that we have created our index, it is time to map the filtered and trimmed s
 .. note::
 
    |bowtie| does give very cryptic error messages without telling much why it did not want to run. The most likely reason is that you specified the paths to the files and result file wrongly. Check this first. Use tab completion a lot!
-
-
-
-BWA
----
-
-.. Attention::
-
-   If the mapping did not succeed with |bowtie|. We can use the aligner |bwa| explained in this section. If the mapping with |bowtie| did work, you can jump this section. You can jump straight ahead to :numref:`sam-file-format`.
-
-
-Overview
-~~~~~~~~
-
-|bwa| is a short read aligner, that can take a reference genome and map single- or paired-end data to it.
-It requires an indexing step in which one supplies the reference genome and |bwa| will create an index that in the subsequent steps will be used for aligning the reads to the reference genome.
-The general command structure of the |bwa| tools we are going to use are shown below:
-
-.. code:: bash
-
-   # bwa index help
-   bwa index
-
-   # indexing
-   bwa index reference-genome.fa
-
-   # bwa mem help
-   bwa mem
-
-   # single-end mapping
-   bwa mem reference-genome.fa reads.fq > aln-se.sam
-
-   # paired-end mapping
-   bwa mem reference-genome.fa read1.fq read2.fq > aln-pe.sam
-
-
-Creating a reference index for mapping
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-.. todo::
-
-   Create an |bwa| index for our reference genome assembly. Attention! Remember which file you need to submit to |bwa|.
-
-
-.. hint::
-
-   Should you not get it right, try the commands in :ref:`code-bwa1`.
-
-
-.. note::
-
-   Should you be unable to run |bwa| indexing on the data, you can download the index from :ref:`downloads`. Unarchive and uncompress the files with ``tar -xvzf bwa-index.tar.gz``.
-
-
-
-
-Mapping reads in a paired-end manner
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Now that we have created our index, it is time to map the filtered and trimmed sequencing reads of our evolved line to the reference genome.
-
-.. todo::
-
-   Use the correct ``bwa mem`` command structure from above and map the reads of the evolved line to the reference genome.
-
-
-.. hint::
-
-   Should you not get it right, try the commands in :ref:`code-bwa2`.
 
 
 
@@ -291,7 +303,7 @@ Note, ``samtools fixmate`` expects **name-sorted** input files, which we can ach
 
    samtools sort -n -O sam mappings/evolved-6.sam | samtools fixmate -m -O bam - mappings/evolved-6.fixmate.bam
 
-- ``-m``: Add ms (mate score) tags. These are used by markdup (below) to select the best reads to keep. 
+- ``-m``: Add ms (mate score) tags. These are used by markdup (below) to select the best reads to keep.
 - ``-O bam``: specifies that we want compressed bam output from fixmate
 
 
@@ -434,7 +446,7 @@ The result plot will be looking similar to the one in :numref:`coverage`
 Stats with QualiMap
 ~~~~~~~~~~~~~~~~~~~
 
-For a more in depth analysis of the mappings, one can use |qualimap|.
+For a more in depth analysis of the mappings, one can use |qualimap| [OKO2015]_.
 
 |qualimap| examines sequencing alignment data in SAM/BAM files according to the features of the mapped reads and provides an overall view of the data that helps to the detect biases in the sequencing and/or mapping of the data and eases decision-making for further analysis.
 
@@ -493,7 +505,7 @@ We can select read-pair that have been mapped in a correct manner (same chromoso
 
 .. todo::
 
-   Our final aim is to identify variants. For a particular class of variants, it is not the best idea to only focus on concordant reads. Why is that? 
+   Our final aim is to identify variants. For a particular class of variants, it is not the best idea to only focus on concordant reads. Why is that?
 
 
 Quality-based sub-selection
@@ -561,3 +573,7 @@ Lets extract the fastq sequence of the unmapped reads for read1 and read2.
 
 
 .. [TRAPNELL2009] Trapnell C, Salzberg SL. How to map billions of short reads onto genomes. `Nat Biotechnol. (2009) 27(5):455-7. doi: 10.1038/nbt0509-455. <http://doi.org/10.1038/nbt0509-455>`__
+
+.. [LI2009] Li H, Durbin R. (2009). Fast and accurate short read alignment with Burrows-Wheeler transform. `Bioinformatics. 25 (14): 1754–1760. <https://doi.org/10.1093%2Fbioinformatics%2Fbtp324>`__
+
+.. [OKO2015] Okonechnikov K, Conesa A, García-Alcalde F.  Qualimap 2: advanced multi-sample quality control for high-throughput sequencing data. `Bioinformatics (2015), 32, 2:292–294. <https://doi.org/10.1093/bioinformatics/btv566>`__
