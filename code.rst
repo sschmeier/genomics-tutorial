@@ -20,7 +20,7 @@ Code: FastQC
 
 .. code:: bash
 
-   fastqc -o trimmed-fastqc trimmed/ancestor-R1.fastq.trimmed.gz trimmed/ancestor-R2.fastq.trimmed.gz trimmed/evolved-6-R1.fastq.trimmed.gz trimmed/evolved-6-R2.fastq.trimmed.gz
+   fastqc -o trimmed-fastqc trimmed/ancestor-R1.trimmed.fastq.gz trimmed/ancestor-R2.trimmed.fastq.gz trimmed/evolved-6-R1.trimmed.fastq.gz trimmed/evolved-6-R2.trimmed.fastq.gz
 
 
 *Open html webpages:*
@@ -29,55 +29,6 @@ Code: FastQC
 
    firefox trimmed-fastqc/\*.html
 
-
-.. _code-qc2:
-
-Code: SolexaQA++ trimming
-~~~~~~~~~~~~~~~~~~~~~~~~~
-
-*Create directory for result-files:*
-
-.. code:: bash
-
-   mkdir trimmed
-
-
-*Run SolexaQA++:*
-
-.. code:: bash
-               
-   ./SolexaQA++ dynamictrim -p 0.05 -d trimmed/ data/ancestor-R1.fastq.gz
-   
-   ./SolexaQA++ dynamictrim -p 0.05 -d trimmed/ data/ancestor-R2.fastq.gz
-
-   ./SolexaQA++ dynamictrim -p 0.05 -d trimmed/ data/evolved-6-R1.fastq.gz
-
-   ./SolexaQA++ dynamictrim -p 0.05 -d trimmed/ data/evolved-6-R2.fastq.gz
-
-
-.. _code-qc3:
-
-Code: SolexaQA++ qc
-~~~~~~~~~~~~~~~~~~~
-
-*Create directory for result-files:*
-
-.. code:: bash
-               
-   mkdir trimmed-solexaqa/
-
-   
-*Run SolexaQA++:*
-
-.. code:: bash
-               
-   ./SolexaQA++ analysis -d trimmed-solexaqa trimmed/ancestor-R1.fastq.trimmed.gz
-   
-   ./SolexaQA++ analysis -d trimmed-solexaqa trimmed/ancestor-R2.fastq.trimmed.gz
-
-   ./SolexaQA++ analysis -d trimmed-solexaqa trimmed/evolved-6-R1.fastq.trimmed.gz
-
-   ./SolexaQA++ analysis -d trimmed-solexaqa trimmed/evolved-6-R2.fastq.trimmed.gz
 
 
 Assembly
@@ -90,7 +41,7 @@ Code: SPAdes assembly (trimmed data)
 
 .. code:: bash 
 
-   spades.py -o assembly/spades-150/ -k 21,33,55,77 --careful -1 trimmed/ancestor-R1.fastq.trimmed.gz -2 trimmed/ancestor-R2.fastq.trimmed.gz 
+   spades.py -o assembly/spades-150/ -k 21,33,55,77 --careful -1 trimmed/ancestor-R1.trimmed.fastq.gz -2 trimmed/ancestor-R2.trimmed.fastq.gz 
 
 
 .. _code-assembly2:
@@ -128,7 +79,7 @@ Code: Bowtie2 mapping
 
 .. code:: bash
 
-   bowtie2 -X 1000 -x assembly/spades-final/scaffolds -1 trimmed/evolved-6-R1.fastq.trimmed.gz -2 trimmed/evolved-6-R2.fastq.trimmed.gz -S mappings/evolved-6.sam 
+   bowtie2 -X 1000 -x assembly/spades-final/scaffolds -1 trimmed/evolved-6-R1.trimmed.fsatq.gz -2 trimmed/evolved-6-R2.trimmed.fastq.gz -S mappings/evolved-6.sam 
 
    
 .. _code-bwa1: 
@@ -151,5 +102,9 @@ Code: BWA mapping
 *Run bwa mem:*
 
 .. code:: bash
+   
+   # trimmed data
+   bwa mem assembly/spades-final/scaffolds.fasta trimmed/evolved-6-R1.trimmed.fastq.gz trimmed/evolved-6-R2.trimmed.fastq.gz > mappings/evolved-6.sam 
 
-   bwa mem assembly/spades-final/scaffolds.fasta trimmed/evolved-6-R1.fastq.trimmed.gz trimmed/evolved-6-R2.fastq.trimmed.gz > mappings/evolved-6.sam 
+   # raw data
+   bwa mem assembly/spades-final/scaffolds.fasta data/evolved-6-R1.fastq.gz data/evolved-6-R2.fastq.gz > mappings/evolved-6.raw.sam 

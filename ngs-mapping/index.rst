@@ -56,11 +56,8 @@ Lets see how our directory structure looks so far:
           data/
           mappings/
           (sampled/)
-          SolexaQA/
-          SolexaQA++
           trimmed/
           trimmed-fastqc/
-          trimmed-solexaqa/
 
 
 .. attention::
@@ -73,7 +70,7 @@ Mapping sequence reads to a reference genome
 --------------------------------------------
 
 We want to map the sequencing reads to the ancestral reference genome we created in the section :ref:`ngs-assembly`.
-We are going to use the quality trimmed forward and backward DNA sequences of the evolved line and use a program called |bowtie| to map the reads.
+We are going to use the quality trimmed forward and backward DNA sequences of the evolved line and use a program called |bwa| to map the reads.
 
 .. todo::
 
@@ -115,11 +112,11 @@ The general command structure of the |bwa| tools we are going to use are shown b
    # bwa mem help
    bwa mem
 
-   # single-end mapping
-   bwa mem path/to/reference-genome.fa path/to/reads.fq > path/to/aln-se.sam
+   # single-end mapping, general command structure, adjust to your case
+   bwa mem path/to/reference-genome.fa path/to/reads.fq.gz > path/to/aln-se.sam
 
-   # paired-end mapping
-   bwa mem path/to/reference-genome.fa path/to/read1.fq path/to/read2.fq > path/to/aln-pe.sam
+   # paired-end mapping, general command structure, adjust to your case
+   bwa mem path/to/reference-genome.fa path/to/read1.fq.gz path/to/read2.fq.gz > path/to/aln-pe.sam
 
 
 Creating a reference index for mapping
@@ -158,8 +155,8 @@ Now that we have created our index, it is time to map the filtered and trimmed s
 
 
 
-Bowtie2
--------
+Bowtie2 (alternative to BWA)
+----------------------------
 
 .. Attention::
 

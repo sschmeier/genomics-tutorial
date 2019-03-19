@@ -36,11 +36,8 @@ Lets see how our directory structure looks so far:
          data/
          kraken/
          mappings/
-         SolexaQA/
-         SolexaQA++
          trimmed/
          trimmed-fastqc/
-         trimmed-solexaqa/
          variants/
 
 

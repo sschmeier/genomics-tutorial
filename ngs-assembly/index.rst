@@ -49,11 +49,8 @@ Lets see how our directory structure looks so far:
 .. code:: bash
 
           data/
-          SolexaQA/
-          SolexaQA++
           trimmed/
           trimmed-fastqc/
-          trimmed-solexaqa/
 
 
 Subsampling reads
@@ -79,8 +76,8 @@ Now that ``seqtk`` has been installed, we are going to sample 10% of the origina
     mkdir sampled
 
     # sub sample reads
-    seqtk sample -s11 trimmed/ancestor-R1.fastq.trimmed.gz 0.1 | gzip > sampled/ancestor-R1.fastq.trimmed.gz
-    seqtk sample -s11 trimmed/ancestor-R2.fastq.trimmed.gz 0.1 | gzip > sampled/ancestor-R2.fastq.trimmed.gz
+    seqtk sample -s11 trimmed/ancestor-R1.trimmed.fastq.gz 0.1 | gzip > sampled/ancestor-R1.trimmed.fastq.gz
+    seqtk sample -s11 trimmed/ancestor-R2.trimmed.fastq.gz 0.1 | gzip > sampled/ancestor-R2.trimmed.fastq.gz
 
 
 In the commands below you need to change the input directory from ``trimmed/`` to ``sampled/``.
@@ -138,7 +135,7 @@ The two files we need to submit to |spades| are two paired-end read files.
 
 .. code:: bash
 
-    spades.py -o assembly/spades-default/ -1 trimmed/ancestor-R1.fastq.trimmed.gz -2 trimmed/ancestor-R2.fastq.trimmed.gz
+    spades.py -o assembly/spades-default/ -1 trimmed/ancestor-R1.trimmed.fastq.gz -2 trimmed/ancestor-R2.trimmed.fastq.gz
 
 
 .. todo::
