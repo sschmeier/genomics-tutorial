@@ -47,11 +47,8 @@ Lets see how our directory structure looks so far:
           assembly/
           data/
           mappings/
-          SolexaQA/
-          SolexaQA++
           trimmed/
           trimmed-fastqc/
-          trimmed-solexaqa/
 
 
 Kraken2
