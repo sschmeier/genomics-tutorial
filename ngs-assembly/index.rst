@@ -216,7 +216,7 @@ Assemblathon
 
 .. todo::
 
-   #. Once you have your final assembly, rename your assembly directory int ``spades-final``, e.g. ``mv assembly/spades-default assembly/spades-final``.
+   #. Once you have your final assembly, rename your assembly directory int ``spades_final``, e.g. ``mv assembly/spades-default assembly/spades_final``.
    #. Write down in your notes the command used to create your final assembly.
    #. Write down in your notes the assembly statistics derived through |quast|
 
