@@ -193,7 +193,7 @@ The name needs to be ``sequences.fa`` or ``yeastanc.fa``:
 
 .. code:: bash
     
-    cp ../assembly/spades-final/scaffolds.fasta ./data/yeastanc/sequences.fa
+    cp ../assembly/spades_final/scaffolds.fasta ./data/yeastanc/sequences.fa
     gzip ./data/yeastanc/sequences.fa
 
     

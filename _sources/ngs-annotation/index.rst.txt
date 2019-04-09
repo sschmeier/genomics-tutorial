@@ -137,7 +137,7 @@ It uses |blastn| to make sure that it does not miss any part of any possible cod
 
 .. code:: bash
   
-          busco -i ../assembly/spades-final/scaffolds.fasta -o file_name_of_your_choice -l ./saccharomycetales_odb9 -m geno
+          busco -i ../assembly/spades_final/scaffolds.fasta -o file_name_of_your_choice -l ./saccharomycetales_odb9 -m geno
 
           
 .. NOTE::
@@ -161,7 +161,7 @@ To run the program you need to give it:
 
 .. code:: bash
   
-          augustus --progress=true --strand=both --species=saccharomyces_cerevisiae_S288C ../assembly/spades-final/scaffolds.fasta > your_new_fungus.gff
+          augustus --progress=true --strand=both --species=saccharomyces_cerevisiae_S288C ../assembly/spades_final/scaffolds.fasta > your_new_fungus.gff
 
 
 .. note:: 

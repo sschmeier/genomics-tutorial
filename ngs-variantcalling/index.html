@@ -251,7 +251,7 @@
 <h2>7.6. Preprocessing<a class="headerlink" href="#preprocessing" title="Permalink to this headline">¶</a></h2>
 <p>We first need to make an index of our reference genome as this is required by the SNP caller.
 Given a scaffold/contig file in fasta-format, e.g. <code class="docutils literal notranslate"><span class="pre">scaffolds.fasta</span></code> which is located in the directory <code class="docutils literal notranslate"><span class="pre">assembly/spades_final</span></code>, use <a class="reference external" href="http://samtools.sourceforge.net/">SAMtools</a> to do this:</p>
-<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">samtools</span> <span class="n">faidx</span> <span class="n">assembly</span><span class="o">/</span><span class="n">spades</span><span class="o">-</span><span class="n">final</span><span class="o">/</span><span class="n">scaffolds</span><span class="o">.</span><span class="n">fasta</span>
+<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">samtools</span> <span class="n">faidx</span> <span class="n">assembly</span><span class="o">/</span><span class="n">spades_final</span><span class="o">/</span><span class="n">scaffolds</span><span class="o">.</span><span class="n">fasta</span>
 </pre></div>
 </div>
 <p>Furthermore we need to pre-process our mapping files a bit further and create a bam-index file (<code class="docutils literal notranslate"><span class="pre">.bai</span></code>) for the bam-file we want to work with:</p>
@@ -269,7 +269,7 @@ Given a scaffold/contig file in fasta-format, e.g. <code class="docutils literal
 <h3>7.7.1. SAMtools mpileup<a class="headerlink" href="#samtools-mpileup" title="Permalink to this headline">¶</a></h3>
 <p>We use the sorted filtered bam-file that we produced in the mapping step before.</p>
 <div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># We first pile up all the reads and then call variants</span>
-<span class="n">samtools</span> <span class="n">mpileup</span> <span class="o">-</span><span class="n">u</span> <span class="o">-</span><span class="n">g</span> <span class="o">-</span><span class="n">f</span> <span class="n">assembly</span><span class="o">/</span><span class="n">spades</span><span class="o">-</span><span class="n">final</span><span class="o">/</span><span class="n">scaffolds</span><span class="o">.</span><span class="n">fasta</span> <span class="n">mappings</span><span class="o">/</span><span class="n">evolved</span><span class="o">-</span><span class="mf">6.</span><span class="n">sorted</span><span class="o">.</span><span class="n">dedup</span><span class="o">.</span><span class="n">q20</span><span class="o">.</span><span class="n">bam</span> <span class="o">|</span> <span class="n">bcftools</span> <span class="n">call</span> <span class="o">-</span><span class="n">v</span> <span class="o">-</span><span class="n">m</span> <span class="o">-</span><span class="n">O</span> <span class="n">z</span> <span class="o">-</span><span class="n">o</span> <span class="n">variants</span><span class="o">/</span><span class="n">evolved</span><span class="o">-</span><span class="mf">6.</span><span class="n">mpileup</span><span class="o">.</span><span class="n">vcf</span><span class="o">.</span><span class="n">gz</span>
+<span class="n">samtools</span> <span class="n">mpileup</span> <span class="o">-</span><span class="n">u</span> <span class="o">-</span><span class="n">g</span> <span class="o">-</span><span class="n">f</span> <span class="n">assembly</span><span class="o">/</span><span class="n">spades_final</span><span class="o">/</span><span class="n">scaffolds</span><span class="o">.</span><span class="n">fasta</span> <span class="n">mappings</span><span class="o">/</span><span class="n">evolved</span><span class="o">-</span><span class="mf">6.</span><span class="n">sorted</span><span class="o">.</span><span class="n">dedup</span><span class="o">.</span><span class="n">q20</span><span class="o">.</span><span class="n">bam</span> <span class="o">|</span> <span class="n">bcftools</span> <span class="n">call</span> <span class="o">-</span><span class="n">v</span> <span class="o">-</span><span class="n">m</span> <span class="o">-</span><span class="n">O</span> <span class="n">z</span> <span class="o">-</span><span class="n">o</span> <span class="n">variants</span><span class="o">/</span><span class="n">evolved</span><span class="o">-</span><span class="mf">6.</span><span class="n">mpileup</span><span class="o">.</span><span class="n">vcf</span><span class="o">.</span><span class="n">gz</span>
 </pre></div>
 </div>
 <p><a class="reference external" href="http://samtools.sourceforge.net/">SAMtools</a> mpileup parameter:</p>
@@ -291,7 +291,7 @@ Given a scaffold/contig file in fasta-format, e.g. <code class="docutils literal
 <p>As an alternative we can do some variant calling with another tool called <a class="reference external" href="https://github.com/ekg/freebayes">freebayes</a>.
 Given a reference genome scaffold file in fasta-format, e.g. <code class="docutils literal notranslate"><span class="pre">scaffolds.fasta</span></code> and the index in <code class="docutils literal notranslate"><span class="pre">.fai</span></code> format and a mapping file (.bam file) and a mapping index (.bai file), we can call variants with <a class="reference external" href="https://github.com/ekg/freebayes">freebayes</a> like so:</p>
 <div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Now we call variants and pipe the results into a new file</span>
-<span class="n">freebayes</span> <span class="o">-</span><span class="n">f</span> <span class="n">assembly</span><span class="o">/</span><span class="n">spades</span><span class="o">-</span><span class="n">final</span><span class="o">/</span><span class="n">scaffolds</span><span class="o">.</span><span class="n">fasta</span> <span class="n">mappings</span><span class="o">/</span><span class="n">evolved</span><span class="o">-</span><span class="mf">6.</span><span class="n">sorted</span><span class="o">.</span><span class="n">dedup</span><span class="o">.</span><span class="n">q20</span><span class="o">.</span><span class="n">bam</span> <span class="o">|</span> <span class="n">gzip</span> <span class="o">&gt;</span> <span class="n">variants</span><span class="o">/</span><span class="n">evolved</span><span class="o">-</span><span class="mf">6.</span><span class="n">freebayes</span><span class="o">.</span><span class="n">vcf</span><span class="o">.</span><span class="n">gz</span>
+<span class="n">freebayes</span> <span class="o">-</span><span class="n">f</span> <span class="n">assembly</span><span class="o">/</span><span class="n">spades_final</span><span class="o">/</span><span class="n">scaffolds</span><span class="o">.</span><span class="n">fasta</span> <span class="n">mappings</span><span class="o">/</span><span class="n">evolved</span><span class="o">-</span><span class="mf">6.</span><span class="n">sorted</span><span class="o">.</span><span class="n">dedup</span><span class="o">.</span><span class="n">q20</span><span class="o">.</span><span class="n">bam</span> <span class="o">|</span> <span class="n">gzip</span> <span class="o">&gt;</span> <span class="n">variants</span><span class="o">/</span><span class="n">evolved</span><span class="o">-</span><span class="mf">6.</span><span class="n">freebayes</span><span class="o">.</span><span class="n">vcf</span><span class="o">.</span><span class="n">gz</span>
 </pre></div>
 </div>
 </div>
@@ -308,8 +308,8 @@ Given a reference genome scaffold file in fasta-format, e.g. <code class="docuti
 <div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">##fileformat=VCFv4.2</span>
 <span class="c1">##FILTER=&lt;ID=PASS,Description=&quot;All filters passed&quot;&gt;</span>
 <span class="c1">##samtoolsVersion=1.3.1+htslib-1.3.1</span>
-<span class="c1">##samtoolsCommand=samtools mpileup -g -f assembly/spades-final/scaffolds.fasta -o variants/evolved-6.mpileup.bcf mappings/evolved-6.sorted.q20.bam</span>
-<span class="c1">##reference=file://assembly/spades-final/scaffolds.fasta</span>
+<span class="c1">##samtoolsCommand=samtools mpileup -g -f assembly/spades_final/scaffolds.fasta -o variants/evolved-6.mpileup.bcf mappings/evolved-6.sorted.q20.bam</span>
+<span class="c1">##reference=file://assembly/spades_final/scaffolds.fasta</span>
 <span class="c1">##contig=&lt;ID=NODE_1_length_1419525_cov_15.3898,length=1419525&gt;</span>
 <span class="c1">##contig=&lt;ID=NODE_2_length_1254443_cov_15.4779,length=1254443&gt;</span>
 <span class="c1">##contig=&lt;ID=NODE_3_length_972329_cov_15.3966,length=972329&gt;</span>
@@ -423,7 +423,7 @@ Given a reference genome scaffold file in fasta-format, e.g. <code class="docuti
 </pre></div>
 </div>
 <p>However, we can also run <a class="reference external" href="http://www.htslib.org/doc/bcftools.html">BCFtools</a> to extract more detailed statistics about our variant calls:</p>
-<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">bcftools</span> <span class="n">stats</span> <span class="o">-</span><span class="n">F</span> <span class="n">assembly</span><span class="o">/</span><span class="n">spades</span><span class="o">-</span><span class="n">final</span><span class="o">/</span><span class="n">scaffolds</span><span class="o">.</span><span class="n">fasta</span> <span class="o">-</span><span class="n">s</span> <span class="o">-</span> <span class="n">variants</span><span class="o">/</span><span class="n">evolved</span><span class="o">-</span><span class="mf">6.</span><span class="n">mpileup</span><span class="o">.</span><span class="n">vcf</span><span class="o">.</span><span class="n">gz</span> <span class="o">&gt;</span> <span class="n">variants</span><span class="o">/</span><span class="n">evolved</span><span class="o">-</span><span class="mf">6.</span><span class="n">mpileup</span><span class="o">.</span><span class="n">vcf</span><span class="o">.</span><span class="n">gz</span><span class="o">.</span><span class="n">stats</span>
+<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">bcftools</span> <span class="n">stats</span> <span class="o">-</span><span class="n">F</span> <span class="n">assembly</span><span class="o">/</span><span class="n">spades_final</span><span class="o">/</span><span class="n">scaffolds</span><span class="o">.</span><span class="n">fasta</span> <span class="o">-</span><span class="n">s</span> <span class="o">-</span> <span class="n">variants</span><span class="o">/</span><span class="n">evolved</span><span class="o">-</span><span class="mf">6.</span><span class="n">mpileup</span><span class="o">.</span><span class="n">vcf</span><span class="o">.</span><span class="n">gz</span> <span class="o">&gt;</span> <span class="n">variants</span><span class="o">/</span><span class="n">evolved</span><span class="o">-</span><span class="mf">6.</span><span class="n">mpileup</span><span class="o">.</span><span class="n">vcf</span><span class="o">.</span><span class="n">gz</span><span class="o">.</span><span class="n">stats</span>
 </pre></div>
 </div>
 <ul class="simple">
@@ -472,7 +472,7 @@ For one, we can filter out low quality reads.</p>
 <span class="n">rtg</span> <span class="n">vcfstats</span> <span class="n">variants</span><span class="o">/</span><span class="n">evolved</span><span class="o">-</span><span class="mf">6.</span><span class="n">mpileup</span><span class="o">.</span><span class="n">q30</span><span class="o">.</span><span class="n">vcf</span><span class="o">.</span><span class="n">gz</span>
 </pre></div>
 </div>
-<p><a class="reference external" href="https://github.com/ekg/freebayes">freebayes</a> adds some extra information to the vcf-fiels it creates.
+<p><a class="reference external" href="https://github.com/ekg/freebayes">freebayes</a> adds some extra information to the vcf-files it creates.
 This allows for some more detailed filtering.
 This strategy will NOT work on the <a class="reference external" href="http://samtools.sourceforge.net/">SAMtools</a> mpileup called variants
 Here we filter, based on some recommendation form the developer of <a class="reference external" href="https://github.com/ekg/freebayes">freebayes</a>:</p>
@@ -530,7 +530,7 @@ However, several more elaborate filtering strategies have been explored, e.g. <a
   <div role="contentinfo">
     <p>
         &copy; Copyright 2016-2019, Sebastian Schmeier (https://sschmeier.com).
-      Last updated on Mar 28, 2019.
+      Last updated on Apr 09, 2019.
 
     </p>
   </div>

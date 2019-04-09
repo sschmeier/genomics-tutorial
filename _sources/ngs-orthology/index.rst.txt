@@ -111,7 +111,7 @@ To do this, we run the command ``makeblastdb``:
 .. code:: bash
           
           # create blast db
-          makeblastdb –in ../assembly/spades-final/scaffolds.fasta –dbtype nucl
+          makeblastdb –in ../assembly/spades_final/scaffolds.fasta –dbtype nucl
 
 
 To run |blast|, we give it:
@@ -127,7 +127,7 @@ First, we blast without any formatting:
 
 .. code:: bash
 
-          blastn –db ../assembly/spades-final/scaffolds.fasta –query s_cerev_tef2.fas > blast.out
+          blastn –db ../assembly/spades_final/scaffolds.fasta –query s_cerev_tef2.fas > blast.out
 
 
 This should output a file with a set of |blast| hits similar to what you might
@@ -140,7 +140,7 @@ Next we will format the output a little so that it is easier to deal with.
 
 .. code:: bash
           
-          blastn –db ../assembly/spades-final/scaffolds.fasta –query s_cerev_tef2.fas –evalue 1e-100 –outfmt “6 length sseq” > blast_formatted.out
+          blastn –db ../assembly/spades_final/scaffolds.fasta –query s_cerev_tef2.fas –evalue 1e-100 –outfmt “6 length sseq” > blast_formatted.out
 
           
 This will yield a file that has only the sequences of the subject, so that we can later add those to other fasta files.
