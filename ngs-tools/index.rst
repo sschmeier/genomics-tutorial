@@ -75,8 +75,8 @@ available for installation:
     # Install some conda channels
     # A channel is where conda looks for packages
     conda config --add channels defaults
-    conda config --add channels conda-forge
-    conda config --add channels bioconda      
+    conda config --add channels bioconda 
+    conda config --add channels conda-forge     
 
    
 Create environments
