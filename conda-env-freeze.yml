@@ -1,7 +1,7 @@
 name: sphinx
 channels:
-  - bioconda
   - conda-forge
+  - bioconda
   - defaults
 dependencies:
   - alabaster=0.7.10=py36h174008c_0
