@@ -85,7 +85,7 @@ Given a scaffold/contig file in fasta-format, e.g. ``scaffolds.fasta`` which is 
 
 .. code:: bash
           
-          samtools faidx assembly/spades-final/scaffolds.fasta
+          samtools faidx assembly/spades_final/scaffolds.fasta
    
 
 Furthermore we need to pre-process our mapping files a bit further and create a bam-index file (``.bai``) for the bam-file we want to work with:
@@ -115,7 +115,7 @@ We use the sorted filtered bam-file that we produced in the mapping step before.
 .. code:: bash
 
    # We first pile up all the reads and then call variants
-   samtools mpileup -u -g -f assembly/spades-final/scaffolds.fasta mappings/evolved-6.sorted.dedup.q20.bam | bcftools call -v -m -O z -o variants/evolved-6.mpileup.vcf.gz
+   samtools mpileup -u -g -f assembly/spades_final/scaffolds.fasta mappings/evolved-6.sorted.dedup.q20.bam | bcftools call -v -m -O z -o variants/evolved-6.mpileup.vcf.gz
    
 |samtools| mpileup parameter:
 
@@ -140,7 +140,7 @@ Given a reference genome scaffold file in fasta-format, e.g. ``scaffolds.fasta``
 .. code:: bash
 
    # Now we call variants and pipe the results into a new file
-   freebayes -f assembly/spades-final/scaffolds.fasta mappings/evolved-6.sorted.dedup.q20.bam | gzip > variants/evolved-6.freebayes.vcf.gz
+   freebayes -f assembly/spades_final/scaffolds.fasta mappings/evolved-6.sorted.dedup.q20.bam | gzip > variants/evolved-6.freebayes.vcf.gz
 
          
 Post-processing
@@ -162,8 +162,8 @@ Lets look at a vcf-file:
    ##fileformat=VCFv4.2
    ##FILTER=<ID=PASS,Description="All filters passed">
    ##samtoolsVersion=1.3.1+htslib-1.3.1
-   ##samtoolsCommand=samtools mpileup -g -f assembly/spades-final/scaffolds.fasta -o variants/evolved-6.mpileup.bcf mappings/evolved-6.sorted.q20.bam
-   ##reference=file://assembly/spades-final/scaffolds.fasta
+   ##samtoolsCommand=samtools mpileup -g -f assembly/spades_final/scaffolds.fasta -o variants/evolved-6.mpileup.bcf mappings/evolved-6.sorted.q20.bam
+   ##reference=file://assembly/spades_final/scaffolds.fasta
    ##contig=<ID=NODE_1_length_1419525_cov_15.3898,length=1419525>
    ##contig=<ID=NODE_2_length_1254443_cov_15.4779,length=1254443>
    ##contig=<ID=NODE_3_length_972329_cov_15.3966,length=972329>
@@ -272,7 +272,7 @@ However, we can also run |bcftools| to extract more detailed statistics about ou
 
 .. code:: bash
                
-   bcftools stats -F assembly/spades-final/scaffolds.fasta -s - variants/evolved-6.mpileup.vcf.gz > variants/evolved-6.mpileup.vcf.gz.stats
+   bcftools stats -F assembly/spades_final/scaffolds.fasta -s - variants/evolved-6.mpileup.vcf.gz > variants/evolved-6.mpileup.vcf.gz.stats
 
 
 - ``-s -``: list of samples for sample stats, "-" to include all samples
@@ -340,7 +340,7 @@ Quick stats for the filtered variants:
    rtg vcfstats variants/evolved-6.mpileup.q30.vcf.gz
 
 
-|freebayes| adds some extra information to the vcf-fiels it creates.
+|freebayes| adds some extra information to the vcf-files it creates.
 This allows for some more detailed filtering.
 This strategy will NOT work on the |samtools| mpileup called variants
 Here we filter, based on some recommendation form the developer of |freebayes|:
