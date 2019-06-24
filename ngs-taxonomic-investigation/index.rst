@@ -7,7 +7,7 @@ Taxonomic investigation
 Preface
 -------
 
-We want to investate if there are sequences of other species in our collection of sequenced DNA pieces.
+We want to investigate if there are sequences of other species in our collection of sequenced DNA pieces.
 We hope that most of them are from our species that we try to study, i.e. the DNA that we have extracted and amplified.
 This might be a way of quality control, e.g. have the samples been contaminated?
 Lets investigate if we find sequences from other species in our sequence set.
@@ -84,17 +84,17 @@ Now we create a directory where we are going to do the analysis and we will chan
    cd kraken
 
 Now we need to create or download a |kraken| database that can be used to assign the taxonomic labels to sequences.
-We opt for downloading the pre-build "minikraken" database from the |kraken| website:
+We opt for downloading the pre-build "minikraken2" database from the |kraken| website:
 
 .. code-block:: bash
 
-   curl -O https://www.ccb.jhu.edu/software/kraken2/dl/minikraken2_v2_8GB.tgz
+   curl -O ftp://ftp.ccb.jhu.edu/pub/data/kraken2_dbs/minikraken2_v2_8GB_201904_UPDATE.tgz
 
    # alternatively we can use wget
-   wget https://www.ccb.jhu.edu/software/kraken2/dl/minikraken2_v2_8GB.tgz
+   wget ftp://ftp.ccb.jhu.edu/pub/data/kraken2_dbs/minikraken2_v2_8GB_201904_UPDATE.tgz
 
    # once the download is finished, we need to extract the archive content:
-   tar -xvzf minikraken2_v2_8GB.tgz
+   tar -xvzf minikraken2_v2_8GB_201904_UPDATE.tgz
 
 
 .. ATTENTION::
@@ -102,20 +102,20 @@ We opt for downloading the pre-build "minikraken" database from the |kraken| web
    :ref:`downloads` page.
 
 .. NOTE::
-   The "minikraken" database was created from bacteria, viral and archaea sequences.
+   The "minikraken2" database was created from bacteria, viral and archaea sequences.
    What are the implications for us when we are trying to classify our sequences?
 
 
 Usage
 ^^^^^
 
-Now that we have installed |kraken| and downloaded and extracted the minikraken database, we can attempt to investigate the sequences we got back from the sequencing provider for other species as the one it should contain.
+Now that we have installed |kraken| and downloaded and extracted the minikraken2 database, we can attempt to investigate the sequences we got back from the sequencing provider for other species as the one it should contain.
 We call the |kraken| tool and specify the database and fasta-file with the sequences it should use. The general command structure looks like this:
 
 
 .. code:: bash
 
-   kraken2 --use-names --threads 4 --db minikraken2_v2_8GB --report example.report.txt example.fa > example.kraken
+   kraken2 --use-names --threads 4 --db PATH_TO_DB_DIR --report example.report.txt example.fa > example.kraken
 
 
 However, we may have fastq-files, so we need to use ``--fastq-input`` which tells |kraken| that it is dealing with fastq-formated files.
@@ -125,7 +125,7 @@ Here, we are investigating one of the unmapped paired-end read files of the evol
 
 .. code:: bash
 
-   kraken2 --use-names --threads 4 --db minikraken2_v2_8GB --fastq-input --report evolved-6 --paired ../mappings/evolved-6.sorted.unmapped.R1.fastq ../mappings/evolved-6.sorted.unmapped.R2.fastq > evolved-6.kraken
+   kraken2 --use-names --threads 4 --db minikraken2_v2_8GB_201904_UPDATE --fastq-input --report evolved-6 --paired ../mappings/evolved-6.sorted.unmapped.R1.fastq ../mappings/evolved-6.sorted.unmapped.R2.fastq > evolved-6.kraken
 
 
 
@@ -204,7 +204,7 @@ The columns are the same as in the former report, however, we have more rows and
 Bracken
 ^^^^^^^
 
-|bracken| stands for Bayesian Reestimation of Abundance with KrakEN, and is a statistical method that computes the abundance of species in DNA sequences from a metagenomics sample [LU2017]_.
+|bracken| stands for Bayesian Re-estimation of Abundance with KrakEN, and is a statistical method that computes the abundance of species in DNA sequences from a metagenomics sample [LU2017]_.
 |bracken| uses the taxonomy labels assigned by |kraken| (see above) to estimate the number of reads originating from each species present in a sample.
 |bracken| classifies reads to the best matching location in the taxonomic tree, but does not estimate abundances of species.
 Combined with the Kraken classifier, |bracken| will produces more accurate species- and genus-level abundance estimates than |kraken| alone.
@@ -215,16 +215,9 @@ The use of |bracken| subsequent to |kraken| is optional but might improve on the
 Installation
 """"""""""""
 
-We installed |bracken| already together with |kraken| above, so it should be ready to be used.
+We installed |bracken| already together with |kraken| above, so it should be ready to be used. 
+We also downloaded the |bracken| files together with the minikraken2 database above, so we are good to go.
 
-However, we need to download some additional files for the |kraken| database.
-
-
-.. code:: bash
-
-    cd minikraken2_v2_8GB
-    wget https://ccb.jhu.edu/software/bracken/dl/minikraken2_vminikraken2_v2_8GB/database100mers.kmer_distrib
-    cd -
 
 
 Usage
@@ -237,11 +230,11 @@ The general structure of the |bracken| command look like this:
 
 .. code:: bash
 
-    bracken -d DB -i kraken2.report -o bracken.species.txt -l S
+    bracken -d PATH_TO_DB_DIR -i kraken2.report -o bracken.species.txt -l S
 
 
 - ``-l S``: denotes the level we want to look at. ``S`` stands for species but other levels are available.
-- ``-d DB``: specifies the |kraken| database that should be used.
+- ``-d PATH_TO_DB_DIR``: specifies the path to the |kraken| database that should be used.
 
 
 Let us apply |bracken| to the example above:
@@ -249,7 +242,7 @@ Let us apply |bracken| to the example above:
 
 .. code:: bash
 
-    bracken -d minikraken2_v2_8GB -i evolved-6.kraken -l S -o evolved-6.bracken
+    bracken -d minikraken2_v2_8GB_201904_UPDATE -i evolved-6.kraken -l S -o evolved-6.bracken
 
 
 
@@ -302,14 +295,14 @@ We opt for downloading the pre-build database from the |centrifuge| website:
 
 .. code-block:: bash
 
-   curl -O ftp://ftp.ccb.jhu.edu/pub/infphilo/centrifuge/data/p_compressed.tar.gz
+   curl -O ftp://ftp.ccb.jhu.edu/pub/infphilo/centrifuge/data/p_compressed+h+v.tar.gz
 
    # alternatively we can use wget
-   wget ftp://ftp.ccb.jhu.edu/pub/infphilo/centrifuge/data/p_compressed.tar.gz
+   wget ftp://ftp.ccb.jhu.edu/pub/infphilo/centrifuge/data/p_compressed+h+v.tar.gz
 
    # once the download is finished, we need to extract the archive content
    # It will extract a few files from the archive and may take a moment to finish.
-   tar -xvzf p_compressed.tar.gz
+   tar -xvzf p_compressed+h+v.tar.gz
 
 
 .. ATTENTION::
@@ -330,7 +323,7 @@ We call the |centrifuge| tool and specify the database and fasta-file with the s
 
 .. code:: bash
 
-   centrifuge -x p_compressed -U example.fa --report-file report.txt -S results.txt
+   centrifuge -x p_compressed+h+v -U example.fa --report-file report.txt -S results.txt
 
 
 However, if we do not have fastq-files we may have to use the  ``-f`` option, which tells |centrifuge| that it is dealing with a fasta-formated file.
@@ -339,7 +332,7 @@ Here, we are investigating one of the unmapped paired-end read files of the evol
 
 .. code:: bash
 
-   centrifuge -x p_compressed -U ../mappings/evolved-6.sorted.unmapped.R1.fastq --report-file evolved-6-R1-report.txt -S evolved-6-R1-results.txt
+   centrifuge -x p_compressed+h+v -U ../mappings/evolved-6.sorted.unmapped.R1.fastq --report-file evolved-6-R1-report.txt -S evolved-6-R1-results.txt
 
 
 This classification may take a moment, depending on how many sequences we are going to classify.
@@ -398,7 +391,7 @@ If we would like to generate a report as generated with the former tool |kraken|
 
 .. code::
 
-   centrifuge-kreport -x p_compressed evolved-6-R1-results.txt > evolved-6-R1-kreport.txt
+   centrifuge-kreport -x p_compressed+h+v evolved-6-R1-results.txt > evolved-6-R1-kreport.txt
 
 
 .. include:: example-centrifuge-kreport.txt

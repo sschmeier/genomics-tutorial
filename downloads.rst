@@ -6,10 +6,9 @@ Downloads
 Tools
 -----
 
-* Miniconda installer [ `EXTERNAL <https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh>`__ | `INTERNAL <http://compbio.massey.ac.nz/data/203341/Miniconda3-latest-Linux-x86_64.sh>`__ | `DROPBOX <https://www.dropbox.com/s/tz2wocdzjr4grdy/Miniconda3-latest-Linux-x86_64.sh?dl=0>`__ ]
-* Minikraken database [ `EXTERNAL <https://www.ccb.jhu.edu/software/kraken2/dl/minikraken2_v2_8GB.tgz>`__ ]
-* Bracken file [`EXTERANAL <https://ccb.jhu.edu/software/bracken/dl/minikraken2_v2/database100mers.kmer_distrib>`__ ]
-* Centrifuge database [ `EXTERNAL <ftp://ftp.ccb.jhu.edu/pub/infphilo/centrifuge/data/p_compressed.tar.gz>`__ | `INTERNAL <http://compbio.massey.ac.nz/data/203341/p_compressed.tar.gz>`__ | `DROPBOX <https://www.dropbox.com/s/a4u6u37ngk2nawx/p_compressed.tar.gz?dl=0>`__ ]
+* Miniconda installer [ `EXTERNAL <https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh>`__ ]
+* Minikraken database [ `EXTERNAL <ftp://ftp.ccb.jhu.edu/pub/data/kraken2_dbs/minikraken2_v2_8GB_201904_UPDATE.tgz>`__ ]
+* Centrifuge database [ `EXTERNAL <ftp://ftp.ccb.jhu.edu/pub/infphilo/centrifuge/data/p_compressed+h+v.tar.gz>`__ ]
 * Krona taxonomy database [ `INTERNAL <http://compbio.massey.ac.nz/data/203341/taxonomy.tab.gz>`__ | `DROPBOX <https://www.dropbox.com/s/cwf1qc5zyq65yvn/taxonomy.tab.gz?dl=0>`__ ]
 * SolexaQA++ [ `EXTERNAL <https://downloads.sourceforge.net/project/solexaqa/src/SolexaQA%2B%2B_v3.1.7.1.zip?r=https%3A%2F%2Fsourceforge.net%2Fprojects%2Fsolexaqa%2Ffiles%2F&ts=1495062885&use_mirror=iweb>`__ | `INTERNAL <http://compbio.massey.ac.nz/data/203341/SolexaQA.tar.gz>`__ | `DROPBOX <https://www.dropbox.com/s/r9a7hg0tlwe6pk4/SolexaQA.tar.gz?dl=0>`__ ]
 * BUSCO Saccharomycetales_odb9 database [ `EXTERNAL <http://busco.ezlab.org/datasets/saccharomycetales_odb9.tar.gz>`__ | `INTERNAL <http://compbio.massey.ac.nz/data/203341/saccharomycetales_odb9.tar.gz>`__ | `DROPBOX <https://www.dropbox.com/s/7ow5yi6s5a0ente/saccharomycetales_odb9.tar.gz?dl=0>`__ ]
