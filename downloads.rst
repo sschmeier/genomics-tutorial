@@ -3,6 +3,10 @@
 Downloads
 =========
 
+.. warning::
+
+  Since 2020, none of the internal links are functioning. Please use the Dropbox links.
+
 Tools
 -----
 
