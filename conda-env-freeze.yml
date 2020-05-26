@@ -1,5 +1,6 @@
 name: sphinx
 channels:
+  - https://repo.anaconda.com/pkgs/free
   - conda-forge
   - bioconda
   - defaults
