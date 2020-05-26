@@ -3,6 +3,10 @@
 Taxonomic investigation
 =======================
 
+.. warning::
+
+  Since 2020, none of the internal links are functioning. Please use the Dropbox links in the :ref:`downloads` section.
+
 
 Preface
 -------
