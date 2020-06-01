@@ -3,6 +3,11 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
+.. attention::
+
+   There is a **new revised release**, using data from **E. coli** to speed the analysis steps up. The new tutorial can be accessed at `https://genomics.sschmeier.com/ <https://genomics.sschmeier.com/>`__.
+
+
 Computational Genomics Tutorial
 ===============================
 
